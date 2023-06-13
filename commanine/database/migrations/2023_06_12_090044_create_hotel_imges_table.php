@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('hotel_imges', function (Blueprint $table) {
             $table->increments('id');
             $table->string('hotel_img', 100);
-            $table->int('hotel_id');
+            $table->integer('hotel_id');
         });
     }
 

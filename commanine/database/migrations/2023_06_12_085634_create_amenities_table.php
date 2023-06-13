@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('amenities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('amenitiies_name', 50);
-            $table->int('hotel_id');
+            $table->integer('hotel_id');
         });
     }
 
