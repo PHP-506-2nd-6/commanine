@@ -1,4 +1,12 @@
-{{-- @section('contents') --}}
+{{-- /**************************************
+ * 프로젝트명 : commanine
+ * 디렉토리   : Views
+ * 파일명     : regist.blade.php
+ * 이력       : 0613 KMH new
+ * *********************************** */ --}}
+@extends('layout.layout')
+@section('title','Regist')
+@section('contents')
     <div>회원가입</div>
     <form action="{{route('users.regist.post')}}" method="post">
         @csrf
@@ -30,7 +38,7 @@
         <input type="text" name="questAnswer" id="questAnswer" placeholder="질문의 답">
         <br>
         <button type="submit">회원가입</button>
-        
+        <button type="button">취소</button>
     </form>
     <script src="{{asset('js/regist.js')}}"></script>
-{{-- @endsection --}}
+@endsection

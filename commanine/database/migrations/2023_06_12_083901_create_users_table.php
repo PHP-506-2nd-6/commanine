@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('user_name',30);
             $table->string('user_pw',256);
             // 생각해보니까 birth는 date만 필요하지 않나???
+            $table->char('pw_flg',1)->default('0');
             $table->date('user_birth');
             $table->char('user_num',11);
             $table->integer('user_que');
