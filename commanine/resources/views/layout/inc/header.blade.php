@@ -24,6 +24,13 @@
                 <input type="text" placeholder="어디로 떠날까요?">
             </form>
         </div>
+        <div class="search-wrapper">
+            <div class="input-holder">
+                <input type="text" class="search-input" placeholder="Type to search" />
+                <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+            </div>
+            <span class="close" onclick="searchToggle(this, event);"></span>
+        </div>
     </div>
     {{-- <div class="nav-border">
         <ul class="gnb clearfix">
@@ -69,29 +76,6 @@
 
 
 
-
-
-
-        {{-- <div class="nav">
-            <div class="logo">
-                <img src="{{asset('/img/logo.png')}}" alt="#">
-            </div>
-            <div class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav_list">
-                <a class="nav-a1">로그인</a>
-                <a class="nav-a2" href="/user/signup">회원가입</a>
-                <p class="nav-a3"></p>
-
-                <a class="nav-a6">마이페이지</a>
-                <a class="nav-a3" href="#">
-                    예약내역
-                </a>
-            </div>
-        </div>
-        <div class="search">
-        
-        </div> --}}
-
-
 <script>
 var picker = new Lightpick({
     field: document.getElementById('demo-5'),
@@ -105,4 +89,19 @@ var picker = new Lightpick({
         document.getElementById('result-5').innerHTML = str;
     }
 });
+
+
+
+function searchToggle(obj, evt){
+    var container = $(obj).closest('.search-wrapper');
+        if(!container.hasClass('active')){
+            container.addClass('active');
+            evt.preventDefault();
+        }
+        else if(container.hasClass('active') && $(obj).closest('.input-holder').length == 0){
+            container.removeClass('active');
+            // clear input
+            container.find('.search-input').val('');
+        }
+}
 </script>
