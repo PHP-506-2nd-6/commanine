@@ -34,6 +34,11 @@ return new class extends Migration
             $table->string('room_detail', 100);
             $table->string('room_facility', 100);
             $table->integer('hotel_id');
+            $table->string('room_img1', 300); // 0613 KMJ add
+            $table->string('room_img2', 300);
+            $table->string('room_img3', 300);
+            $table->string('room_img4', 300);
+            $table->string('room_img5', 300);
             $table->timestamps();
             $table->softDeletes();
         });
