@@ -1,6 +1,14 @@
-{{-- @section('contents') --}}
-    <div>아이디 찾기</div>
-    <form action="{{route('users.findId.post')}}" method="post">
+{{-- /**************************************
+ * 프로젝트명 : commanine
+ * 디렉토리   : Views
+ * 파일명     : findpw.blade.php
+ * 이력       : 0613 KMH new
+ * *********************************** */ --}}
+{{-- @extends('layout.layout')
+@section('title','Find Password')
+@section('contents') --}}
+    <div>비밀번호 찾기</div>
+    <form action="{{route('users.findPw.post')}}" method="post">
         @csrf
         <input type="text" name="email" id="email" placeholder="이메일">
         <br>
@@ -16,7 +24,7 @@
         <br>
         <input type="text" name="questAnswer" id="questAnswer" placeholder="질문의 답">
         <br>
-        <button type="submit">아이디 찾기</button>
-        
+        <button type="submit">비밀번호 찾기</button>
+        <button type="button">취소</button>
     </form>
 {{-- @endsection --}}
