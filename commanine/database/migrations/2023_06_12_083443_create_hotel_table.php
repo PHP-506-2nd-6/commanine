@@ -31,6 +31,11 @@ return new class extends Migration
             $table->string('hotel_info', 1000);
             $table->string('hotel_refund', 30);
             $table->char('hotel_type', 1);
+            $table->string('hotel_img1', 300);
+            $table->string('hotel_img2', 300);
+            $table->string('hotel_img3', 300);
+            $table->string('hotel_img4', 300);
+            $table->string('hotel_img5', 300);
             $table->timestamps();
             $table->softDeletes();
         });
