@@ -19,23 +19,23 @@ return new class extends Migration
     // 0612 BYJ new
     public function up()
     {
-        Schema::create('hotels', function (Blueprint $table) {
+        Schema::create('hanoks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hotel_name', 100);
-            $table->string('hotel_local', 30);
-            $table->string('hotel_coment', 300);
-            $table->string('hotel_addr', 200);
+            $table->string('hanok_name', 100);
+            $table->string('hanok_local', 30);
+            $table->string('hanok_coment', 300);
+            $table->string('hanok_addr', 200);
             $table->string('longitude', 30);
             $table->string('latitude', 30);
-            $table->char('hotel_num', 11);
-            $table->string('hotel_info', 1000);
-            $table->string('hotel_refund', 30);
-            $table->char('hotel_type', 1);
-            $table->string('hotel_img1', 300);
-            $table->string('hotel_img2', 300);
-            $table->string('hotel_img3', 300);
-            $table->string('hotel_img4', 300);
-            $table->string('hotel_img5', 300);
+            $table->char('hanok_num', 11);
+            $table->string('hanok_info', 1000);
+            $table->string('hanok_refund', 30);
+            $table->char('hanok_type', 1);
+            $table->string('hanok_img1', 300);
+            $table->string('hanok_img2', 300);
+            $table->string('hanok_img3', 300);
+            $table->string('hanok_img4', 300)->nullable();
+            $table->string('hanok_img5', 300)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
