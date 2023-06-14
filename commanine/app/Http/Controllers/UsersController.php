@@ -27,40 +27,38 @@ class UsersController extends Controller
 
     //0613 KMH new
     public function loginpost(Request $request){
-        $user = Users::where('email',$request->email)->first();
+        $error = '아이디와 비밀번호를 확인해주세요.';
         // 유효성 검사 
         $validator = Validator::make(
-            $request->only('id','email','password')
+            $request->only('email','password')
             ,[
-                'id'        => 'required|integer'
-                ,'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
-                ,'password'  =>  'required_with:passwordchk|same:passwordchk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+                'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
+                ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
             ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->with('error',$error);
         }
         // 유저 정보 습득 
-        // email이 request->email과 일치한 첫번째 데이터를 가져오겠다. 
+        $user = Users::where('user_email',$request->email)->first();
         // $user가 존재하지 않거나, 비밀번호가 일치하지 않을 경우
-        // (Hash::check($request->password, $user->password) : 해시화된 비밀번호와 요청된 비밀번호 체크
-        if(!$user || !(Hash::check($request->password, $user->password))){
-            $error = '아이디와 비밀번호를 확인해 주세요.';
+        // if(!$user || !(Hash::check($request->password, $user->password))){
+            if(!$user || !($request->password === $user->user_pw)){
             return redirect()
                     ->back()
                     ->with('error',$error);
         }
-        Auth::login($user);// 알아서 토큰이나 세션을 넣어줌 
+        Auth::login($user);
         if(Auth::check()){
-            session($user->only('id')); // 세션에 인증된 회원 pk 등록
-            //intended()는 완전 새로운 redirect이기 때문에 필요없는 데이터는 모두 정리해줌 
-            //! 유저 인증 작업을 완료하고 원래 접속하려고한 url에 접속하게 해주고 만약에 실패할 경우 intended()에 있는 url로 이동
-            //todo: 메인페이지 이동으로 변경
+            session($user->only('id')); 
+            // todo: 메인페이지 이동으로 변경
             return redirect()->intended(route('main'));
         }else{
             $error = '유저 인증 작업 에러. 잠시 후에 다시 입력해 주세요';
             return redirect()->back()->with('error',$error);
         }
     }
+    
+
 
     //0613 KMH new
     public function regist(){
@@ -70,23 +68,51 @@ class UsersController extends Controller
     public function registpost(Request $request){
         // 유효성 검사 
         $validator = Validator::make(
-            $request->only('id','name','phonNumber','email','chkEmail','password','passwordChk','birth','question','questAnswer')
+            $request->only('name','phonNumber','email','password','passwordChk','birth','question','questAnswer')
             ,[
-                'id'        => 'required|integer'
-                ,'name'     => 'required|'
-                ,'phoneNumber' =>'required|'
-                ,'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
-                ,'chkEmail'     =>'required|'
+                // 'id'        => 'required|integer'
+                'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
+                // ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+                ,'email'     =>  'required|email|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
                 ,'password'  =>  'required_with:passwordchk|same:passwordChk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
-                ,'passwordChk'=>'required|'
-                ,'birth'    =>'required|'
-                ,'question' =>'required|'
-                ,'questAnswer'=>'required|'
+                ,'passwordChk' => 'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+                ,'birth'    =>'required'
+                ,'question' =>'required'
+                ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]{2,30}$/'
             ]);
+        return  var_dump($request);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
+        
+            // return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        $data['user_email'] = $request->email;
+        $data['user_name']   = $request->name;
+        // 비밀번호 해시화
+        $data['user_pw'] = Hash::make($request->password);
+        $data['user_birth'] = $request->birth;
+        $data['user_num'] = $request->phoneNumber;
+
+        $data['user_que'] = $request->question;
+        $data['user_an'] = $request->questAnswer;
+
+        // return var_dump($data);
+
+        $user = Users::create($data);   // insert 
+        if(!$user){
+            $error = '잠시 후에 다시 시도해 주세요';
+            return redirect()
+                    ->route('users.regist')
+                    ->with('error',$error);
+        } 
+        // 회원가입 완료 로그인 페이지 이동
+        return redirect()
+                ->route('users.login')
+                ->with('success','회원가입을 완료했습니다.<br>가입하신 아이디와 비밀번호로 로그인을 해주세요.');
     }
+
+
     //0613 KMH new
     public function findPw(){
         return view('findpw');
@@ -94,64 +120,67 @@ class UsersController extends Controller
     //0613 KMH new
     public function findPwpost(Request $request){
          // 유효성 검사 
-        // $validator = Validator::make(
-        //     $request->only('email','phoneNumber','question','questAnswer')
-        //     ,[
-        //         'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
-        //         ,'phoneNumber' =>'required|'
-        //         ,'question' =>'required|'
-        //         ,'questAnswer'=>'required|'
-        //     ]);
-        // if($validator->fails()){
-        //     return redirect()->back()->withErrors($validator)->withInput();
-        // }
+        $validator = Validator::make(
+            $request->only('email','phoneNumber','question','questAnswer')
+            ,[
+                
+                'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
+                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+                ,'question' =>'required'
+                // 질문의 답 
+                ,'questAnswer'=>'required|max:30|/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/'
+            ]);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         // 유저 정보 가져와서 
         $user = Users::where('user_email',$request->email)->first();
         // email, phoneNumber,question, questAnswer이 유저 테이블의 user_email, user_num, user_que,user_an 과 일치하지 않을 경우
-        // if((!($user->email === $request->email)&&
-        //     ($user->user_num === $request->phoneNumber)&&
-        //     ($user->user_que === $request->question)&&
-        //     ($user->user_an === $request->questAnswer))){
-        //         $error="작성하신 정보가 일치하지 않습니다";
-        //         // 에러 메세지 출력하면서 redirect->back();
-        //         return redirect()->back()->with('error',$error);
-        //     }else{
-                // 일치할 경우에는 임시비밀번호로 변경하면서 임시비밀번호변경알림페이지로 이동
-                // $user->user_pw = Str::random(8);
-                Mail::to($request->email)->send(new FindPassword($request->email));
-                $user->pw_flg = '1';
-                Hash::make($user->user_pw);
-                $user->save();
+        if((!($user->email === $request->email)&&
+            ($user->user_num === $request->phoneNumber)&&
+            ($user->user_que === $request->question)&&
+            ($user->user_an === $request->questAnswer))){
+                $error="일치하는 회원 정보가 없습니다";
+                // 에러 메세지 출력하면서 redirect->back();
+                return redirect()->back()->with('error',$error);
+            }else{
+                // todo: 비밀번호 변경 페이지로 이동
                 return redirect()->route('users.login');
             }
         
-
+    }
     //0613 KMH new
     public function findId(){
         return view('findid');
     }
     //0613 KMH new
     public function findIdpost(Request $request){
+        $error="일치하는 회원 정보가 없습니다";
          // 유효성 검사 
         $validator = Validator::make(
             $request->only('name','phoneNumber','question','questAnswer')
             ,[
-                'name'     =>  'required|'
-                ,'phoneNumber' =>'required|'
-                ,'question' =>'required|'
-                ,'questAnswer'=>'required|'
+                'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
+                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+                ,'question' =>'required'
+                // 질문의 답 
+                ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/'
             ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->with('error',$error);
         }
         // 유저 정보 가져와서 
-        $user = Users::where('email',$request->email)->first();
+        $user = Users::where('user_name',$request->name)
+                    ->where('user_num',$request->phoneNumber)
+                    ->where('user_que',$request->question)
+                    ->where('user_an',$request->questAnswer)
+                    ->first();
+        // return var_dump($user);
         // email, phoneNumber,question, questAnswer이 유저 테이블의 user_email, user_num, user_que,user_an 과 일치하지 않을 경우
         if((!($user->name === $request->name)&&
             ($user->user_num === $request->phoneNumber)&&
             ($user->user_que === $request->question)&&
             ($user->user_an === $request->questAnswer))){
-                $error="작성하신 정보가 일치하지 않습니다";
                 // 에러 메세지 출력하면서 redirect->back();
                 return redirect()->back()->with('error',$error);
             }else{
@@ -166,10 +195,6 @@ class UsersController extends Controller
     //0613 KMH new
     public function alertFindId(){
         return view('alertfindid');
-    }
-    //0613 KMH new
-    public function alertFindPw(){
-        return view('alertfindpw');
     }
 
 }

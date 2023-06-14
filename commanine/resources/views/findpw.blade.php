@@ -4,10 +4,11 @@
  * 파일명     : findpw.blade.php
  * 이력       : 0613 KMH new
  * *********************************** */ --}}
-{{-- @extends('layout.layout')
-@section('title','Find Password')
-@section('contents') --}}
+ @extends('layout.layout')
+{{-- @section('title','Find Password') --}}
+@section('contents')
     <div>비밀번호 찾기</div>
+    @include('layout.errors_validate')
     <form action="{{route('users.findPw.post')}}" method="post">
         @csrf
         <input type="text" name="email" id="email" placeholder="이메일">
@@ -27,4 +28,4 @@
         <button type="submit">비밀번호 찾기</button>
         <button type="button">취소</button>
     </form>
-{{-- @endsection --}}
+@endsection

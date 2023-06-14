@@ -5,9 +5,10 @@
  * 이력       : 0613 KMH new
  * *********************************** */ --}}
 @extends('layout.layout')
-@section('title','Find ID')
+{{-- @section('title','Find ID') --}}
 @section('contents')
     <div>아이디 찾기</div>
+    @include('layout.errors_validate')
     <form action="{{route('users.findId.post')}}" method="post">
         @csrf
         <input type="text" name="name" id="name" placeholder="이름">
