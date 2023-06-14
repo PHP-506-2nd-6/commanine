@@ -15,7 +15,7 @@ use App\Http\Controllers\UsersController;
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('main');
 
 // 0613 KMH new
 // 로그인 
@@ -31,7 +31,7 @@ Route::post('/users/findPwpost',[UsersController::class,'findPwpost'])->name('us
 Route::get('/users/findId',[UsersController::class,'findId'])->name('users.findId');
 Route::post('/users/findIdpost',[UsersController::class,'findIdpost'])->name('users.findId.post');
 // 임시비밀번호발송페이지 
-Route::get('/users/alertFindPw',[UsersController::class,'alertFindPw'])->name('users.alert.findPw');
+// Route::get('/users/alertFindPw',[UsersController::class,'alertFindPw'])->name('users.alert.findPw'); // 0614 del KMH
 // 아이디찾기알림페이지
-Route::get('/users/alertFindId',[UsersController::class,'alertFindId'])->name('users.alert.findId');
+Route::get('/users/alertFindId',[UsersController::class,'alertFindId'])->name('users.alert.findId'); // 0614 del KMH
 //0613 KMH new end***********************************************

@@ -5,21 +5,18 @@
  * 이력       : 0613 KMH new
  * *********************************** */ --}}
 @extends('layout.layout')
-@section('title','Regist')
+{{-- @section('title','Regist') --}}
 @section('contents')
     <div>회원가입</div>
+    @include('layout.errors_validate')
     <form action="{{route('users.regist.post')}}" method="post">
         @csrf
         <input type="text" name="name" id="name" placeholder="이름">
         <br>
-        <input type="text" name="phoneNumber" id="phoneNumber" placeholder="전화번호" max="11">
+        <input type="text" name="phoneNumber" id="phoneNumber" placeholder="전화번호">
         <br>
         <input type="text" name="email" id="email" placeholder="이메일">
-        <br>
-        <button type="button" id="emailBtn">인증하기</button>
-        <br>
-        <input type="text" name="chkEmail" id="chkEmail" placeholder="인증번호">
-        <button type="button" id="chkEmailBtn">확인하기</button>
+        <button type="button">확인하기</button>
         <br>
         <input type="password" name="password" id="password" placeholder="비밀번호">
         <br>

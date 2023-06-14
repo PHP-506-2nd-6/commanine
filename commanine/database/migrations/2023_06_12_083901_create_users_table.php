@@ -25,12 +25,16 @@ return new class extends Migration
             $table->string('user_email',50)->unique();
             $table->string('user_name',30);
             $table->string('user_pw',256);
-            // 생각해보니까 birth는 date만 필요하지 않나???
             $table->char('pw_flg',1)->default('0');
             $table->date('user_birth');
             $table->char('user_num',11);
             $table->integer('user_que');
             $table->string('user_an',30);
+            // 0614 add KMH
+            $table->string('owner_name',30)->nullable();    
+            $table->string('license_num')->nullable();  
+            $table->string('company',30)->nullable();   
+            // 0614 add KMH end
             $table->timestamps();
             $table->softDeletes();
             // token도 테이블에 있어야할려나..?
