@@ -1,5 +1,9 @@
 
+<head>
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+</head>
 <header>
+
     <div class="header_bg">
         <nav class="clearfix">
             {{-- <ul class="nav-left">
@@ -20,27 +24,43 @@
         <div class="logo">
             <img src="{{asset('/img/logo.png')}}" alt="#">
         </div>
-        <div class="clearfix nav-form">
-            <form action="search"><i class="fas fa-search "></i>
-                <input type="text" placeholder="어디로 떠날까요?">
-            </form>
-        </div>
-        {{-- <div class="search-wrapper">
-            <div class="input-holder">
-                <input type="text" class="search-input" placeholder="Type to search" />
-                <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
-            </div>
-            <span class="close" onclick="searchToggle(this, event);"></span>
-        </div> --}}
 
-    </div>
-    <input id="modalToggle" class="hide" type="checkbox">
+        <input id="modalToggle" class="hide" type="checkbox">
         <div class="modal">
-            <label class="btn btn-open" for="modalToggle">Open modal</label>
+            <label class="btn btn-open" for="modalToggle">어디로 떠날까요?</label>
             <div class="inside">
                 <label class="btn-close" for="modalToggle">X</label>
-                <p>Text goes here.</p>
+                <div class="search">
+                    <ul class="search_form">
+                        <li>여행지</li>
+                        <li>체크인</li>
+                        <li>체크아웃</li>
+                        <li>인원</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </div>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/img/hanokImg/hanok1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
     
 </header>

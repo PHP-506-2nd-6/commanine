@@ -23,7 +23,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('hanok_name', 100);
             $table->string('hanok_local', 30);
-            $table->string('hanok_coment', 300);
+            $table->string('hanok_comment', 300);
             $table->string('hanok_addr', 200);
             $table->string('longitude', 30);
             $table->string('latitude', 30);

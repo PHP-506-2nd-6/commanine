@@ -31,7 +31,7 @@ return new class extends Migration
             // $table->dateTime('chk_out');
             $table->string('chk_in', 5); // 0613 KMJ add
             $table->string('chk_out', 5);
-            $table->string('room_detail', 100);
+            $table->string('room_detail', 300);
             $table->string('room_facility', 100);
             $table->integer('hanok_id');
             $table->string('room_img1', 300); // 0613 KMJ add
