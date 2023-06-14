@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('latitude', 30);
             $table->char('hanok_num', 11);
             $table->string('hanok_info', 1000);
-            $table->string('hanok_refund', 30);
+            $table->string('hanok_refund', 300);
             $table->char('hanok_type', 1);
             $table->string('hanok_img1', 300);
             $table->string('hanok_img2', 300);
