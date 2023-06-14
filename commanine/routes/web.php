@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HanoksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 /*
@@ -35,3 +36,5 @@ Route::get('/users/alertFindPw',[UsersController::class,'alertFindPw'])->name('u
 // 아이디찾기알림페이지
 Route::get('/users/alertFindId',[UsersController::class,'alertFindId'])->name('users.alert.findId');
 //0613 KMH new end***********************************************
+// 숙소 상세 페이지 0614 KMJ add
+Route::get('/hanoks/detail/{id}',[HanoksController::class,'hanoksDetail'])->name('hanoks.detail');

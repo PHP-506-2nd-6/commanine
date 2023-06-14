@@ -5,15 +5,15 @@
         <div style="overflow:hidden">
             캐러셀
             <div>
-                숙박업소 사진 최대 5장까지
+                <img src="{{asset($data->hanok_img1)}}" alt="{{$data->hanok_name}}">
             </div>
         </div>
     <div>
-        <span>숙소 이름</span>
+        <h4>{{$data->hanok_name}}</h4>
         <span>평균별점</span>
         <button>찜(하트모양 이미지)</button>
         <span>찜 갯수</span>
-        <span>사장 한 마디</span>
+        <span>{{$data->hanok_comment}}</span>
     </div>
 </div>
 <div class="detailTap">
