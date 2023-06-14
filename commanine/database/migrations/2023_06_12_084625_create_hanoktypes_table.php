@@ -19,7 +19,7 @@ return new class extends Migration
     // 0612 KMJ new
     public function up()
     {
-        Schema::create('hoteltypes', function (Blueprint $table) {
+        Schema::create('hanoktypes', function (Blueprint $table) {
             $table->char('id', 1);
             $table->string('category', 30);
         });

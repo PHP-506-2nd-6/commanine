@@ -21,8 +21,8 @@ return new class extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->integer('user_id');
-            $table->integer('hotel_id');
-            $table->primary(['user_id', 'hotel_id']);
+            $table->integer('hanok_id');
+            $table->primary(['user_id', 'hanok_id']);
         });
     }
 

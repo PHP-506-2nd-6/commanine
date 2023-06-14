@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('rev_content',30);
             $table->string('rate',30);
             $table->integer('user_id');
-            $table->integer('hotel_id');
+            $table->integer('hanok_id');
             $table->timestamps();
             $table->softDeletes();
             $table->dateTime('deadline');
