@@ -11,27 +11,54 @@
 </head>
 
 @section('contents')
-
-<div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" style="width: 80%; top: -300px; margin:0 auto;">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
+{{-- 슬라이드 프로모션 배너 --}}
+<main>
+    <div class="bg"></div>
+    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" style="width: 80%; top:-300px; margin:0 auto;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
+            </div>
         </div>
-        <div class="carousel-item">
-            <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+</main>
+{{-- 카테고리 --}}
+<div class="nav-border">
+    <ul class="gnb clearfix">
+        <li class="hotel">
+            <a href="#">
+                <img src="/img/hotel.png" alt="hotel"></a>
+        </li>
+
+        <li class="pension">
+            <a href="#">
+                <img src="/img/pension.png" alt="pension"></a>
+        </li>
+
+        <li class="guesthouse">
+            <a href="#">
+                <img src="/img/guesthouse.png" alt="guesthouse"></a>
+        </li>
+
+        <li class="resort">
+            <a href="#">
+                <img src="/img/resort.png" alt="resort"></a>
+        </li>
+    </ul>
 </div>
 
 

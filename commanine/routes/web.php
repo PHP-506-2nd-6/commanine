@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HanoksController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UsersInfoController;
@@ -56,3 +57,8 @@ Route::get('/users/information/review',[UsersInfoController::class,'reviewInfo']
 // 회원 정보 탈퇴 페이지
 Route::get('/users/information/unregist',[UsersInfoController::class,'unregist'])->name('users.unregist');
 // YSH new end***********************************************
+
+// 0615 BYJ new
+// 리뷰 작성 페이지
+Route::get('/users/reviewinsert',[ReviewController::class,'reviewinsert'])->name('users.review');
+Route::post('/users/reviewpost',[ReviewController::class,'reviewpost'])->name('users.review.post');

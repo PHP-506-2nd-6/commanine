@@ -13,16 +13,14 @@ header {
     position: relative;
     width: 100%;
 }
+.header_bg {
+    height: 250px;
+}
 .fix {
-    z-index: 99999;
+    z-index: 999;
     position: fixed;
     width: 100%;
     height: 250px;
-    background-color: #f6f6f0;
-}
-.header_bg {
-    width: 100%;
-    height: 600px;
     background-color: #f6f6f0;
 }
 nav {
@@ -32,6 +30,7 @@ img {
     width: 250px;
 }
 .logo {
+    z-index: 9999;
     width: 250px;
     margin: 0 auto;
 }
@@ -95,7 +94,7 @@ img {
     display: block;
     top: 50px;
     width: 100%;
-    height: 30%;
+    height: 20%;
     background: transparent;
     overflow: hidden;
     border-radius: 0.2em;
@@ -108,7 +107,7 @@ img {
     transform: translate(-50%, -50%);
     display: inline-block;
     height: 3em;
-    width: 13em;
+    width: 18em;
     line-height: 2em;
     border-radius: 1em;
     box-shadow: 2px 3px 10px 3px #cfcfcf;

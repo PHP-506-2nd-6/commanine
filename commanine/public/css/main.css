@@ -1,3 +1,25 @@
-.carousel-inner {
-    position: absolute;
+main {
+    height: 900px;
+}
+.bg {
+    height: 330px;
+    background-color: #f6f6f0;
+}
+
+.gnb img {
+    width: 100px;
+}
+.nav-form i {
+    font-size: 18px;
+}
+
+.nav-border li:hover img {
+    opacity: 0.5;
+}
+
+.gnb {
+    text-align: center;
+}
+.gnb li {
+    display: inline-block;
 }
