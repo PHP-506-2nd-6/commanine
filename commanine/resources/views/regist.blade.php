@@ -1,9 +1,11 @@
-{{-- /**************************************
+{{--
+ /**************************************
  * 프로젝트명 : commanine
  * 디렉토리   : Views
  * 파일명     : regist.blade.php
  * 이력       : 0613 KMH new
- * *********************************** */ --}}
+ * *********************************** */ 
+ --}}
 @extends('layout.layout')
 {{-- @section('title','Regist') --}}
 @section('contents')
@@ -16,12 +18,12 @@
         <input type="text" name="phoneNumber" id="phoneNumber" placeholder="전화번호">
         <br>
         <input type="text" name="email" id="email" placeholder="이메일" >
-        <button type="button" id="emailChkBtn" onclick="certification();">확인하기</button>
+        <button type="button" id="emailChkBtn" >확인하기</button>
         <div id="errMsgId"></div>
         <input type="password" name="password" id="password" placeholder="비밀번호">
         <br>
         <input type="password" name="passwordChk" id="passwordChk" placeholder="비밀번호 확인">
-        <br>
+        <div id="pwChkAlert"></div>
         <input type="date" name="birth" id="birth" >
         <br>
         <select name="question" size="1">
@@ -34,7 +36,7 @@
         <br>
         <input type="text" name="questAnswer" id="questAnswer" placeholder="질문의 답">
         <br>
-        <button type="submit">회원가입</button>
+        <button type="submit" class="registBtn">회원가입</button>
         <button type="button">취소</button>
     </form>
     <script src="{{asset('js/regist.js')}}"></script>
