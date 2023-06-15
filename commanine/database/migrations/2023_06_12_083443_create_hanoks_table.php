@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('hanok_img3', 300);
             $table->string('hanok_img4', 300)->nullable();
             $table->string('hanok_img5', 300)->nullable();
+            $table->string('license_num', 20); // 0615 add
             $table->timestamps();
             $table->softDeletes();
         });
