@@ -13,7 +13,7 @@
         @csrf
         <input type="text" name="name" id="name" placeholder="이름" >
         <br>
-        <input type="number" name="phoneNumber" id="phoneNumber" placeholder="전화번호">
+        <input type="text" name="phoneNumber" id="phoneNumber" placeholder="전화번호">
         <br>
         <input type="text" name="email" id="email" placeholder="이메일" >
         <button type="button" id="emailChkBtn" onclick="certification();">확인하기</button>

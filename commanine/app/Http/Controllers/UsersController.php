@@ -41,8 +41,8 @@ class UsersController extends Controller
         // 유저 정보 습득 
         $user = Users::where('user_email',$request->email)->first();
         // $user가 존재하지 않거나, 비밀번호가 일치하지 않을 경우
-        // if(!$user || !(Hash::check($request->password, $user->password))){
-            if(!$user || !($request->password === $user->user_pw)){
+        if(!$user || !(Hash::check($request->password, $user->user_pw))){
+            // if(!$user || !($request->password === $user->user_pw)){
             return redirect()
                     ->back()
                     ->with('error',$error);
@@ -50,8 +50,6 @@ class UsersController extends Controller
         Auth::login($user);
         if(Auth::check()){
             session($user->only('user_id')); 
-            // return var_dump(Auth::check());
-            // todo: 메인페이지 이동으로 변경
             return redirect()->intended(route('main'));
         }else{
             $error = '유저 인증 작업 에러. 잠시 후에 다시 입력해 주세요';
@@ -69,22 +67,20 @@ class UsersController extends Controller
     public function registpost(Request $request){
         // 유효성 검사 
         $validator = Validator::make(
-            $request->only('id','name','phonNumber','email','password','passwordChk','birth','question','questAnswer')
+            $request->only('name','phoneNumber','email','password','passwordChk','birth','question','questAnswer')
             ,[
-                'id'        => 'required|integer'
-                ,'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
-                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+
+                'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
                 ,'email'     =>  'required|email|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
                 ,'password'  =>  'required_with:passwordchk|same:passwordChk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
                 ,'passwordChk' => 'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
                 ,'birth'    =>'required'
+                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
                 ,'question' =>'required'
                 ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]{2,30}$/'
             ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
-        
-            // return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $data['user_name']   = $request->input('name');
