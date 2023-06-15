@@ -49,7 +49,8 @@ class UsersController extends Controller
         }
         Auth::login($user);
         if(Auth::check()){
-            session($user->only('id')); 
+            session($user->only('user_id')); 
+            // return var_dump(Auth::check());
             // todo: 메인페이지 이동으로 변경
             return redirect()->intended(route('main'));
         }else{
@@ -68,11 +69,11 @@ class UsersController extends Controller
     public function registpost(Request $request){
         // 유효성 검사 
         $validator = Validator::make(
-            $request->only('name','phonNumber','email','password','passwordChk','birth','question','questAnswer')
+            $request->only('id','name','phonNumber','email','password','passwordChk','birth','question','questAnswer')
             ,[
-                // 'id'        => 'required|integer'
-                'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
-                // ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+                'id'        => 'required|integer'
+                ,'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
+                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
                 ,'email'     =>  'required|email|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
                 ,'password'  =>  'required_with:passwordchk|same:passwordChk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
                 ,'passwordChk' => 'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
@@ -80,22 +81,21 @@ class UsersController extends Controller
                 ,'question' =>'required'
                 ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]{2,30}$/'
             ]);
-        return  var_dump($request);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         
             // return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $data['user_email'] = $request->email;
-        $data['user_name']   = $request->name;
+        $data['user_name']   = $request->input('name');
+        $data['user_email']  = $request->input('email');
         // 비밀번호 해시화
-        $data['user_pw'] = Hash::make($request->password);
-        $data['user_birth'] = $request->birth;
-        $data['user_num'] = $request->phoneNumber;
+        $data['user_pw'] = Hash::make($request->input('password'));
+        $data['user_birth'] = $request->input('birth');
+        $data['user_num'] = $request->input('phoneNumber');
 
-        $data['user_que'] = $request->question;
-        $data['user_an'] = $request->questAnswer;
+        $data['user_que'] = $request->input('question');
+        $data['user_an'] = $request->input('questAnswer');
 
         // return var_dump($data);
 

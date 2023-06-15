@@ -23,6 +23,7 @@ class Users extends Authenticatable
     //     'password',
     // ];
 
+    protected $primaryKey = 'user_id';
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -33,9 +34,6 @@ class Users extends Authenticatable
         'remember_token',
     ];
     protected $guarded=[
-        'user_id'
-        ,'user_email'
-        ,'user_birth'
     ];
     /**
      * The attributes that should be cast.

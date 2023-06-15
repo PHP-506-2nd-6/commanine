@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wishlists extends Model
 {
+    protected $table = 'hanoks';
+
+    protected $primaryKey = ['user_id','hotel_id'];
     //0613 KMH new
     use HasFactory;
     protected $guarded=[

@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('user_an',30);
             // 0614 add KMH
             $table->string('owner_name',30)->nullable();    
-            $table->string('license_num')->nullable();  
+            $table->string('license_num')->nullable()->unique();  
             $table->string('company',30)->nullable();   
             // 0614 add KMH end
             $table->timestamps();

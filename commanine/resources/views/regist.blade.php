@@ -11,13 +11,13 @@
     @include('layout.errors_validate')
     <form action="{{route('users.regist.post')}}" method="post">
         @csrf
-        <input type="text" name="name" id="name" placeholder="이름">
+        <input type="text" name="name" id="name" placeholder="이름" >
         <br>
-        <input type="text" name="phoneNumber" id="phoneNumber" placeholder="전화번호">
+        <input type="number" name="phoneNumber" id="phoneNumber" placeholder="전화번호">
         <br>
-        <input type="text" name="email" id="email" placeholder="이메일">
-        <button type="button">확인하기</button>
-        <br>
+        <input type="text" name="email" id="email" placeholder="이메일" >
+        <button type="button" id="emailChkBtn" onclick="certification();">확인하기</button>
+        <div id="errMsgId"></div>
         <input type="password" name="password" id="password" placeholder="비밀번호">
         <br>
         <input type="password" name="passwordChk" id="passwordChk" placeholder="비밀번호 확인">
