@@ -1,4 +1,10 @@
 <?php
+/**************************************
+ * 프로젝트명 : commanine
+ * 디렉토리   : migration
+ * 파일명     : 2023_06_12_084240_create_reservations_table.php
+ * 이력       : 0612 new
+ * *********************************** */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -27,6 +33,11 @@ return new class extends Migration
             $table->string('user_request',1000)->nullable();
             $table->integer('user_id');
             $table->integer('room_id');
+            $table->string('hotel_name',100);
+            $table->string('room_img1',300);
+            $table->string('room_name',100);
+            // 0614 new
+            $table->string('room_price',10);
         });
     }
 

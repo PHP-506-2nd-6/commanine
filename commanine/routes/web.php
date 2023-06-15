@@ -3,6 +3,7 @@
 use App\Http\Controllers\HanoksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UsersInfoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +40,19 @@ Route::post('/users/registpost',[UsersController::class,'registpost'])->name('us
 //0613 KMH new end***********************************************
 // 숙소 상세 페이지 0614 KMJ add
 Route::get('/hanoks/detail/{id}',[HanoksController::class,'hanoksDetail'])->name('hanoks.detail');
+
+// 0613 YSH new
+// 회원 정보 페이지(내 예약)
+Route::get('/users/information/reserve',[UsersInfoController::class,'reserveInfo'])->name('users.information.reserve');
+// 회원 정보 페이지(찜)
+Route::get('/users/information/dibs',[UsersInfoController::class,'dibsInfo'])->name('users.information.dibs');
+// 회원 정보 페이지(회원 정보)
+Route::get('/users/information/info',[UsersInfoController::class,'info'])->name('users.information.info');
+// 회원 정보 수정페이지
+Route::get('/users/information/info/edit',[UsersInfoController::class,'infoedit'])->name('users.information.info.edit');
+Route::post('/users/information/info/editpost',[UsersInfoController::class,'infoeditpost'])->name('users.information.info.edit.post');
+// 회원 정보 페이지(리뷰)
+Route::get('/users/information/review',[UsersInfoController::class,'reviewInfo'])->name('users.information.review');
+// 회원 정보 탈퇴 페이지
+Route::get('/users/information/unregist',[UsersInfoController::class,'unregist'])->name('users.unregist');
+// YSH new end***********************************************
