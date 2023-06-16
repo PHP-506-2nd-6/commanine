@@ -74,7 +74,7 @@ emailBtn.addEventListener('click',throttle(certification));
 registBtn.addEventListener('click', function(event) {
     if (btnChk !== true) {
       event.preventDefault(); // 기본 동작 중지
-      idSpan.innerHTML = "확인하기 버튼을 클릭해 주세요.";
+      idSpan.innerHTML = "사용 가능한 아이디인지 확인해 주세요.";
       idSpan.style.color = "red";
     }
   });

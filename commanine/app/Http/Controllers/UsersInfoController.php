@@ -103,7 +103,5 @@ class UsersInfoController extends Controller
 
         return redirect()->route('users.information.info.edit');
     }
-    public function unregist() {
-        return view('informationunregist');
-    }
+
 }

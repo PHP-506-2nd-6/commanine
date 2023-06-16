@@ -29,3 +29,49 @@
     font-size: 12px;
 }
 
+form>input,#email{
+    padding:5px 10px;
+    width:100%;
+}
+
+.emailBox{
+    position:relative;
+}
+#email{
+    padding:5px 10px;
+}
+#emailChkBtn{
+    position:absolute;
+    z-index: 9999;
+    top:15%;
+    right:10px;
+    width:70px;
+    font-size: 12px;
+    height: 30px;
+    padding: 5px 0;
+    
+}
+
+.btn1{
+    border:none;
+    background-color: #000;
+    color:#fff;
+}
+
+.btn1:hover{
+    border:1px solid #000;
+    background-color:#fff;
+    color:#000;
+    transition: all 0.4s;
+}
+.btn2{
+    border:1px solid #000;
+    background-color: #fff;
+    color:#000;
+}
+.btn2:hover{
+    border:1px solid #fff;
+    background-color:#000;
+    color:#fff;
+    transition: all 0.4s;
+}
