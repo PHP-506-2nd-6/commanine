@@ -22,14 +22,19 @@
                 <label class="btn btn-open" for="modalToggle">어디로 떠날까요?</label>
                 <div class="inside">
                     <label class="btn-close" for="modalToggle">X</label>
-                    <div class="search">
-                        <ul class="search_form">
-                            <li>여행지</li>
-                            <li>체크인</li>
-                            <li>체크아웃</li>
-                            <li>인원</li>
-                        </ul>
-                    </div>
+                    <form method="get" action="{{route('research.page')}}" >
+                        <div class="search">
+                            <div class="search_form1">
+                                <label for="hanok_name">스테이/여행지</label>
+                                <input type="text" name="hanok_name" id="hanok_name"  placeholder="스테이/여행지">
+                            </div>
+                            {{-- <div class="search_form2">
+                            </div>
+                            <div class="search_form3">
+                            </div> --}}
+                            <button type="submit">검색</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

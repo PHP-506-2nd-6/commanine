@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HanoksController;
+use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;

@@ -11,5 +11,11 @@
     <link rel="stylesheet" href="{{asset('css/reseach.css')}}">
 </head> --}}
 @section('contents')
-
+    @foreach($searches  as $search)
+        <tr>
+            <th scope="row">{{$search->id}}</th>
+            <td>{{$search->hanok_name}}</td>
+            <td>{{$search->hanok_img1}}</td>
+        </tr>
+    @endforeach
 @endsection
