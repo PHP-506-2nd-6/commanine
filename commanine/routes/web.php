@@ -39,6 +39,10 @@ Route::post('/users/registpost',[UsersController::class,'registpost'])->name('us
 // 아이디찾기알림페이지
 // Route::get('/users/alertFindId',[UsersController::class,'alertFindId'])->name('users.alert.findId'); // 0614 del KMH
 //0613 KMH new end***********************************************
+// 0616 KMH add
+Route::get('/research/page',[ResearchController::class,'researchPage'])->name('research.page');
+Route::get('/research/pagepost',[ResearchController::class,'researchPagepost'])->name('research.page.post');
+//0616 KMH add end********************************************
 // 숙소 상세 페이지 0614 KMJ add
 Route::get('/hanoks/detail/{id}',[HanoksController::class,'hanoksDetail'])->name('hanoks.detail');
 

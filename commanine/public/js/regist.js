@@ -83,12 +83,14 @@ registBtn.addEventListener('click', function(event) {
 const checkPasswordMatch = () => {
     const password = pw.value;
     const chkPassword = pwChk.value;
-  
+    // 비밀번호와 비밀번호 확인이 일치한 경우
     if (password === chkPassword) {
-    pwChkAlert.innerHTML = '비밀번호와 일치하지 않습니다';
+    pwChkAlert.innerHTML = '비밀번호와 일치합니다.';
     pwChkAlert.style.color = 'green';
+
+    // 비밀번호와 비밀번호 확인이 일치하지 않은 경우
     } else {
-    pwChkAlert.innerHTML = '비밀번호와 일치하지 않습니다.';
+    pwChkAlert.innerHTML = '비밀번호와 일치하지 않습니다..';
     pwChkAlert.style.color = 'red';
     }
   };

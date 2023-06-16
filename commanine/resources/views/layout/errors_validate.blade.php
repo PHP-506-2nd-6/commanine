@@ -7,9 +7,9 @@
 @if( count($errors) > 0 )
     {{-- erros->all() $errors객체에서 필요한 것만 가져와줌 --}}
     @foreach($errors->all() as  $error)
-        <div>{{$error}}</div>
+        <div class="msg">{{$error}}</div>
     @endforeach
 @endif
 @if(session()->has('error'))
-    <div>{!!session('error')!!}</div>
+    <div class="msg">{!!session('error')!!}</div>
 @endif

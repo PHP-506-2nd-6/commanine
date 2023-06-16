@@ -1,0 +1,31 @@
+/**************************************
+ * 프로젝트명 : commanine
+ * 디렉토리   : public/css
+ * 파일명     : regist.css
+ * 이력       : 0616 KMH new
+ * *********************************** */ 
+ .box{
+    position:relative;
+    width:100%;
+    height:800px;
+    text-align: center;
+}
+
+.registBox{
+    position:absolute;
+    width:400px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border:1px solid #000;
+}
+
+.title{
+    margin:0;
+    padding:20px 0 ;
+}
+.msg{
+    font-size: 12px;
+}
+
