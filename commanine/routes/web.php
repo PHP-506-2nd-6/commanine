@@ -43,7 +43,6 @@ Route::post('/users/registpost',[UsersController::class,'registpost'])->name('us
 // 0616 KMH add
 Route::get('/research/page',[ResearchController::class,'researchPage'])->name('research.page');
 Route::get('/research/pageget',[ResearchController::class,'researchPageget'])->name('research.page.get');
-//0616 KMH add end
 //0616 KMH add end********************************************
 // 숙소 상세 페이지 0614 KMJ add
 Route::get('/hanoks/detail/{id}',[HanoksController::class,'hanoksDetail'])->name('hanoks.detail');

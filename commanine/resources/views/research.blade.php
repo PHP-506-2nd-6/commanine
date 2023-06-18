@@ -7,17 +7,29 @@
  * *********************************** */ 
  --}}
 @extends('layout.layout')
-{{-- <head>
+<head>
     <link rel="stylesheet" href="{{asset('css/reseach.css')}}">
-</head> --}}
+</head>
 @section('contents')
 <div class="container">
     <form action="{{route('research.page.get')}}" method="get">
         <input type="text" placeholder="지역명 / 숙소명" name="locOrHan">
-        <input type="date" name="chkIn">
-        <input type="date" name="chkOut">
+        {{-- <div class="search_form2">
+            <label for="chk_in">체크인</label>
+            <input type="text" id="datepicker" class="hasDatepicker" name="chkIn">
+            <button type="button" class="ui-datepicker-trigger">선택</button>
+            <label for="chk_out">체크아웃</label>
+            <input type="text" id="datepicker2" class="hasDatepicker" name="chkOut">
+            <button type="button" class="ui-datepicker-trigger">선택</button>
+        </div> --}}
+        <div class="search_form2">
+            <label for="chkIn">체크인</label>
+            <input type="date" name="chkIn">
+            <label for="chkOut">체크아웃</label>
+            <input type="date"  name="chkOut">
+        </div>
         <select name="hanokType" id="" size="1" >
-            <option >숙소 유형</option>
+            <option disabled selected value="">숙소 유형</option>
             <option value="0">호텔</option>
             <option value="1">펜션</option>
             <option value="2">게스트 하우스</option>
@@ -28,9 +40,11 @@
         <input type="range" step="50000" min="0" max="1000000" name="price" id="price">
         {{-- 인원 클릭했을 때 밑에 창 나타나면서 type number로 바꾸고 설정 가능 할 수 있게 해야 함. --}}
         <div>
-            <input type="hidden" placeholder="성인" name="adults">
-            <input type="hidden" placeholder="아동" name="kids">
-            <button>확인</button>
+            <label for="adults">성인 : </label>
+            <input type="number" placeholder="성인" name="adults" id="adults">
+            <label for="kids">어린이 : </label>
+            <input type="number" placeholder="아동" name="kids" id="kids">
+            <button type="button">확인</button>
         </div>
         <button type="submit">Search</button>
     </form>
@@ -40,11 +54,11 @@
         <li>별점 순</li>
         <li>찜 많은 순</li>
     </ul> --}}
-    {{-- @forelse($data as $key => $value)
+    {{-- @forelse($searches as $value)
         
-    @empty --}}
+    @empty
         <div>검색된 결과가 없습니다.</div>
-    {{-- @endforelse --}}
+    @endforelse --}}
 
 </div>
 
