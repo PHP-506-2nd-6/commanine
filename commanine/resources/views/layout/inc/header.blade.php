@@ -15,7 +15,7 @@
                 </ul>
             </nav>
             <div class="logo">
-                <a href="#"><img src="{{asset('/img/logo.png')}}" alt="#"></a>
+                <a href="{{route('main')}}"><img src="{{asset('/img/logotest.png')}}" alt="#"></a>
             </div>
 
             <input id="modalToggle" class="hide" type="checkbox">

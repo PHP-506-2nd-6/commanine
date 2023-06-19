@@ -26,13 +26,12 @@ header {
 nav {
     margin: 0 auto;
 }
-img {
-    width: 250px;
-}
 .logo {
-    z-index: 9999;
     width: 250px;
     margin: 0 auto;
+}
+img {
+    width: 250px;
 }
 
 .nav-a1,
@@ -91,10 +90,11 @@ img {
 
 .modal {
     /* position: fixed; */
+    position: relative;
     display: block;
-    top: 50px;
+    top: 0;
     width: 100%;
-    height: 20%;
+    height: 100%;
     background: transparent;
     overflow: hidden;
     border-radius: 0.2em;
@@ -102,7 +102,7 @@ img {
 
 .btn {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: inline-block;
@@ -124,10 +124,10 @@ img {
 .modal .inside {
     opacity: 0;
     display: none;
-
+    background-color: #f6f6f0;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 30%;
     width: 100%;
     height: 100%;
 
@@ -203,10 +203,8 @@ img {
     }
 }
 
-
-
-
-.pro-qty { /* pro-qty 클래스가 들어가는 태그에 적용되는 CSS  */
+.pro-qty {
+    /* pro-qty 클래스가 들어가는 태그에 적용되는 CSS  */
     background: transparent;
     border-radius: 0px;
     font-size: 13px;
@@ -214,20 +212,22 @@ img {
     color: #777777;
     z-index: 0;
 }
-.pro-qty input{ /* pro-qty 클래스안에있는 input 태그에 적용되는 CSS  */
+.pro-qty input {
+    /* pro-qty 클래스안에있는 input 태그에 적용되는 CSS  */
     border: 1px solid #2b3146;
     border-radius: 25px;
     background: transparent;
     font-size: 13px;
     width: 50px;
-   text-align: center;
+    text-align: center;
     color: #333;
 }
-.pro-qty div{ /* pro-qty 클래스안에있는 div 태그에 적용되는 CSS  */
-  width: 30px;
-  text-align: center;
-  cursor: pointer;
-  color: #333;
-  font-size: 20px;
-  letter-spacing: 0.4px;
+.pro-qty div {
+    /* pro-qty 클래스안에있는 div 태그에 적용되는 CSS  */
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+    color: #333;
+    font-size: 20px;
+    letter-spacing: 0.4px;
 }
