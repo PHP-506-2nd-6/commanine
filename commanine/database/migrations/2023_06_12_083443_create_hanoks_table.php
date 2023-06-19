@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('hanok_addr', 200);
             $table->string('longitude', 30);
             $table->string('latitude', 30);
-            $table->char('hanok_num', 11);
+            $table->string('hanok_num', 20);
             $table->string('hanok_info', 1000);
             $table->string('hanok_refund', 300);
             $table->char('hanok_type', 1);

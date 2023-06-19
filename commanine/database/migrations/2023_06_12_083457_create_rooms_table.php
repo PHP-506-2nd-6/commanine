@@ -24,7 +24,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('room_name', 100);
             $table->string('room_content', 100);
-            $table->string('room_price', 10);
+            $table->integer('room_price', 10);
             $table->integer('room_min');
             $table->integer('room_max');
             // $table->dateTime('chk_in'); // 0613 KMJ del

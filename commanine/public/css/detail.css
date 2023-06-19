@@ -14,6 +14,17 @@ button{
     width: 100%;
 }
 
+.reserveBtn {
+    background-color: #000;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    width: 99%;
+    height: 50px;
+    border-radius: 5px;
+    margin: 3px;
+}
+
 body{
     background-color: #deeeff;
     /* display: flex;

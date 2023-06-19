@@ -3,9 +3,13 @@
  * 디렉토리   : public/js
  * 파일명     : detail.js
  * 이력       : 0615 KMJ new
+ *              0619 KMJ add
  * *********************************** */ 
 const tabs = document.querySelectorAll('.tabBtn');
 const contents = document.querySelectorAll('.content');
+const longitude = document.querySelector('#longitude').value;
+const latitude = document.querySelector('#latitude').value;
+
 // 탭 메뉴
 tabs.forEach((tab, index)=>{
     tab.addEventListener('click', (e)=> {
@@ -19,13 +23,13 @@ tabs.forEach((tab, index)=>{
         contents.forEach(content=>{content.classList.remove('active')});
         contents[index].classList.add('active');
         map.relayout();
-        map.setCenter(new kakao.maps.LatLng(37.823954277354865, 127.44406812794968));
+        map.setCenter(new kakao.maps.LatLng(latitude, longitude));
     })
 })
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(37.823954277354865, 127.44406812794968), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
 
@@ -37,7 +41,7 @@ var imageSrc = "http://localhost/img/map_pin.png", // 마커이미지의 주소�
 
 // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-    markerPosition = new kakao.maps.LatLng(37.823954277354865, 127.44406812794968); // 마커가 표시될 위치입니다
+    markerPosition = new kakao.maps.LatLng(latitude, longitude); // 마커가 표시될 위치입니다
 
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({

@@ -27,7 +27,7 @@
         <button type="button" class="tabBtn active">객실선택</button> {{-- TODO 탭 메뉴 기본적으로 객실선택 --}}
         <button type="button" class="tabBtn">위치</button>
         <button type="button" class="tabBtn">서비스</button>
-        <button type="button" class="tabBtn">정책</button>
+        <button type="button" class="tabBtn">안내/정책</button>
         <button type="button" class="tabBtn">후기</button>
         <div class="line"></div>
     </div>
@@ -39,7 +39,6 @@
                 <input type="date" name="date" id="date"> {{-- TODO 캘린더로 최대 7박까지 선택 가능하게 --}}
                 <button>적용</button>
             </div>
-            {{-- @php($i = 0) --}}
             @forelse($rooms as $val)
             <div class="room" style="border:1px #d6d6d6 solid;">
                 <div>
@@ -51,13 +50,13 @@
                         <h5>{{$val->room_name}}</h5>
                             <span>가격 {{number_format($val->room_price)}}</span>
                             <button type="button" style="background-color:#ccc" class="roomInfoBtn">객실 이용 안내 ></button>{{--TODO 이거 누르면 모달창으로 뜨기--}}
+                            <button type="button" class="reserveBtn">예약하기</button>{{--TODO 이거 누르면 모달창으로 뜨기--}}
                             {{-- <button type="button" style="background-color:#ccc" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내 ></button>TODO 이거 누르면 모달창으로 뜨기 --}}
                         </div>
                     </div>
                 </div>
             {{-- TODO 예약 가능한 객실 없으면 '선택하신 날짜에 예약가능한 객실이 없습니다. 날짜를 다시 선택해주세요' 출력 이미 예약 된 객실은 뜨면 안 됨--}}
             </div>
-    
             @empty
             <div>선택하신 날짜에 예약 가능한 객실이 없습니다. 날짜를 다시 선택해주세요</div>
             @endforelse
@@ -65,6 +64,7 @@
         <div class="content">
             <div id="map"></div> {{-- TODO 카카오맵 api 가져오기 --}}
             <div class="addrBox">
+                <i class="bi bi-geo-alt-fill"></i>
                 <span class="addr">{{$hanok->hanok_addr}}</span>
                 <button type="button" class="copy">주소복사</button>
             </div>
@@ -72,14 +72,29 @@
         <div class="content">서비스
             <div>어메니티 아이콘</div>
         </div>
-        <div class="content">{!! nl2br($hanok->hanok_refund) !!}</div>
-        <div class="content">리뷰
-            <div>평균 별점이랑 리뷰 갯수 출력</div>
-            <div>forelse 사용해서 리뷰 없으면 '아직 리뷰가 작성되지 않았습니다.' 출력</div>
+        <div class="content">
+            <strong>숙소 안내</strong>
+            <div>
+                {!! nl2br($hanok->hanok_info) !!}
+            </div>
+            <br>
+            <strong>환불정책</strong>
+            <div>
+            {!! nl2br($hanok->hanok_refund) !!}
+            </div>
+        </div>
+        <div class="content">
+            @forelse($reviews as $val)
+                <div>평균 별점이랑 리뷰 갯수 출력</div>
+                <div>
+                    {!! nl2br($hanok->hanok_refund) !!}
+                </div>
+            @empty
+            <div>아직 리뷰가 작성되지 않았습니다.</div>
+            @endforelse
         </div>
     </div>
 </div>
-{{-- @php($i = 0) --}}
 @forelse($rooms as $val)
 <div class="roomModal"style="border:1px black solid;">{{-- TODO 객실 이용 안내 모달 --}}
     <div>
@@ -92,7 +107,7 @@
     </div>
     <div>
         <h3>{{$val->room_name}}</h3>
-        <div>체크인 {{$val->chk_in}} 체크아웃 {{ $val->chk_out}}</div>
+        <div>체크인 {{$val->chk_in}} 체크아웃 {{$val->chk_out}}</div>
         <div>최소 {{$val->room_min}}인 / 최대 {{$val->room_max}}인</div>
     </div>
     <div>
@@ -165,6 +180,10 @@
     </div>
   </div>
 </div> --}}
+<form>
+    <input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}">
+    <input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}">
+</form>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script>
 <script src="{{asset('js/detail.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
