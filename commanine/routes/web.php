@@ -17,9 +17,7 @@ use App\Http\Controllers\UsersInfoController;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-})->name('main');
+Route::get('/',[HanoksController::class,'hanoksMain'])->name('main');
 
 // 0613 KMH new
 // 로그인 
@@ -67,3 +65,5 @@ Route::get('/users/information/unregist',[UsersInfoController::class,'unregist']
 // 리뷰 작성 페이지
 Route::get('/users/reviewinsert',[ReviewController::class,'reviewinsert'])->name('users.review');
 Route::post('/users/reviewpost',[ReviewController::class,'reviewpost'])->name('users.review.post');
+// 메인
+// Route::get('/hanoks/main/{id}',[HanoksController::class,'hanoksMain'])->name('hanoks.main');
