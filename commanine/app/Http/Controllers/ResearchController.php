@@ -11,6 +11,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Hanoks;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class ResearchController extends Controller
@@ -51,13 +53,10 @@ class ResearchController extends Controller
     }
 
     public function researchPageget(Request $req){
-        // return var_dump($req->all());
         // 지역명/ 호텔명
         $val_local = $req->input('locOrHan');
         // 체크인
         $val_chkIn = $req->input('chkIn');
-        // 체크인 서브쿼리
-        // $chkInSub = DB::table('reservations')->select('room_id')->where('reservations.chk_in','<=',$val_chkIn);
         // 체크아웃
         $val_chkOut = $req->input('chkOut');
         // 체크인 날짜만 선택했을 경우 자동으로 1박으로 계산 
@@ -196,38 +195,72 @@ class ResearchController extends Controller
     // -- AND han.hanok_type = '0'
     // ");
     //****************************************************************** */
-    // $result = DB::table('hanoks')
-    // ->select('hanoks.hanok_name','hanoks.hanok_img1','room.room_price')
-    // ->join(DB::raw('SELECT rooms.hanok_id, MIN(rooms.room_price) room_price FROM rooms')
-    //     ->when($val_count, function($query, $val_count){
-    //         $query->where('rooms.room_max','>=',$val_count);
-    //         })
-    //     ->when($val_chkIn, function ($query) use ($val_chkIn,$val_chkOut) {
-    //             $query->whereNotExists(function ($subQuery) use ($val_chkIn,$val_chkOut) {
-    //                 $subQuery->select(DB::raw(1))
-    //                     ->from('reservations')
-    //                     ->whereColumn('rooms.id', 'reservations.room_id')
-    //                     ->where('reservations.chk_in', '>=', $val_chkIn)
-    //                     ->where('reservations.chk_out','<=',$val_chkOut);
-    //             }
-    //         );
-    //     })->groupBy('rooms.hanok_id').' as room')
-
-        
-        
-
-    
-
-    
-
-        // return var_dump($result);
-        // exit();
-        // return view('research')->with('searches',$result);
-
-
-    
+    $query = " SELECT
+        han.hanok_name
+        ,han.hanok_img1
+        ,room.room_price
+        FROM hanoks han
+        JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
+                FROM rooms r ";
+    // 수용 가능 인원
+    if($val_price){
+        $query .= " WHERE r.room_price <= ".$val_price; 
     }
+        if($val_count){
+            $query .= " AND r.room_min <= ".$val_count
+                    ." AND r.room_max >= ".$val_count;
+        }
 
-    // 헤더에서 검색을 하면 route('research.page')로 검색한 데이터를 보내야함
+    // 체크인
+        if($val_chkIn){
+            $query .= " AND NOT EXISTS
+                        (SELECT 1
+                        FROM reservations res
+                        WHERE res.room_id = r.id
+                        AND res.chk_in >=  ".$val_chkIn.
+                        " AND res.chk_out <= ".$val_chkOut." ) ";
+        }
+
+
+        $query .=" GROUP BY r.hanok_id) room
+            ON han.id = room.hanok_id
+            LEFT JOIN wishlists wish 
+            ON room.hanok_id = wish.hanok_id ";
+    // 지역명/ 호텔명
+        if($val_local){
+            $query .= " WHERE han.hanok_name like "."'%$val_local%'";
+        }
+    // 호텔 유형
+        if($val_type){
+            $query .= " AND han.hanok_type = "."'$val_type'  ";
+        }
+
+
+
+        $notices = DB::select($query);
+        $result = $this->arrayPaginator($notices, $req);
+    
+        return view('research')->with('searches', $result);
+        
+    }
+    
+    public function arrayPaginator($array, $request) {
+        $page = $request->input('page',1);
+        $perPage = 4;
+        $offset = ($page * $perPage) - $perPage;
+
+        return new LengthAwarePaginator(
+            array_slice(
+                $array,
+                $offset,
+                $perPage,
+                true
+            ),
+            count($array),
+            $perPage,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
+}
 
 }

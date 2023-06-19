@@ -12,6 +12,7 @@
 </head>
 @section('contents')
 <div class="container">
+<br><br><br><br><br><br><br><br><br><br>
     <form action="{{route('research.page.get')}}" method="get">
         <input type="text" placeholder="지역명 / 숙소명" name="locOrHan">
         {{-- <div class="search_form2">
@@ -54,7 +55,7 @@
         <li>별점 순</li>
         <li>찜 많은 순</li>
     </ul> --}}
-    {{-- @forelse($searches as $value)
+    @forelse($searches as $value)
         <div>
             {{$value->hanok_name}}
         </div>
@@ -66,12 +67,12 @@
         </div>
     @empty
         <div>검색된 결과가 없습니다.</div>
-    @endforelse --}}
+    @endforelse
 
-{{-- </div>
+</div>
 <div>
     {{$searches->onEachSide(3)->withQueryString()->links()}}
-</div> --}}
+</div> 
     {{-- @foreach($searches  as $search)
         <tr>
             <th scope="row">{{$search->id}}</th>
