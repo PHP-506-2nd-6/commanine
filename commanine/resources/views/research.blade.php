@@ -55,13 +55,23 @@
         <li>찜 많은 순</li>
     </ul> --}}
     {{-- @forelse($searches as $value)
-        
+        <div>
+            {{$value->hanok_name}}
+        </div>
+        <div>
+            <img src="{{asset($value->hanok_img1)}}" >
+        </div>
+        <div>
+            {{$value->room_price}}
+        </div>
     @empty
         <div>검색된 결과가 없습니다.</div>
     @endforelse --}}
 
-</div>
-
+{{-- </div>
+<div>
+    {{$searches->onEachSide(3)->withQueryString()->links()}}
+</div> --}}
     {{-- @foreach($searches  as $search)
         <tr>
             <th scope="row">{{$search->id}}</th>
