@@ -1,29 +1,135 @@
-.addr
-,.service
-,.policy
-,.review{
-    display: none;
-}
-.datePicker {
-    display: none;
-}
-
-.roomInfoBtn {
-    width: 100%;
-    height: 30px;
-    background-color: rgb(221, 221, 221);
-}
-
-.on {
-    display:block;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 button{
     display: inline-block;
     border: none;
-    background-color: transparent;
+    background: none;
 }
+
+.roomInfoBtn{
+    width: 100%;
+}
+
+body{
+    background-color: #deeeff;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; */
+}
+
+.hanokInfo {
+    width: 960px;
+    margin: auto;
+    display: flex;
+    margin-top: 30px;
+}
+
+.imgBox {
+    min-width: 450px;
+    margin-right: 10px;
+    /* height: ; */
+}
+
+.img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.detailCon {
+    margin: auto;
+    width: 960px;
+    background-color: white;
+    padding: 30px;
+}
+
+.tabBox {
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    border-bottom: 1px solid #c5c5c5;
+    position: relative;
+}
+
+.tabBox .tabBtn{
+    font-size: 18px;
+    padding: 18px;
+}
+
+.tabBox .tabBtn.active {
+    font-weight: 600;
+}
+
+.content {
+    min-height: 1000px;
+}
+
+.conBox .content{
+    display: none;
+    margin-bottom: 10px;
+}
+
+.conBox .content.active{
+    display: block;
+}
+
+.line {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 108px;
+    height: 4px;
+    background-color: #000;
+    /* transition: all .3s ease-in-out; */
+}
+
 .like {
     width: 28px;
     height: 28px;
 }
+
+.addrBox{
+    height: 4em;
+    border-top: 1px solid #c5c5c5;
+    border-bottom: 1px solid #c5c5c5;
+    line-height: 4em;
+}
+
+.copy {
+    color: #2677ce;
+    font-weight: 600;
+}
+
+.roomBox{
+    display: flex;
+}
+
+.roomModal {
+    display: none;
+    width: 960px;
+    position: absolute;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#map {
+    width:100%;
+    height:350px;
+}
+
+/* .copyAlert {
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+    height: 3em;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 3em;
+    box-shadow: 0px 0px 15px #666;
+} */

@@ -1,13 +1,14 @@
 @extends('layout.layout')
 <head>
     <link rel="stylesheet" href="{{asset('css/detail.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"/>
 </head>
 @section('contents')
-    <div style="border:1px black solid;">
-        <div style="overflow:hidden;">
-            <div>
-                <img src="{{asset($hanok->hanok_img1)}}" alt="{{$hanok->hanok_name}}">
-            </div>
+    <div class="hanokInfo">
+        <div style="overflow:hidden;" class="imgBox">
+            {{-- <div> --}}
+                <img src="{{asset($hanok->hanok_img1)}}" alt="{{$hanok->hanok_name}}" class="img">
+            {{-- </div> --}}
         </div>
     <div style="border:1px black solid;">
         <h5>{{$hanok->hanok_name}}</h5>
@@ -18,71 +19,75 @@
         <span>{{$likes->likes}}</span>
         <br>
         <span>{{$hanok->hanok_addr}}</span>
-        <div style="border:1px black solid;"><span>{{$hanok->hanok_comment}}</span></div>
+        <div style="border:1px black solid;"><span>{!! nl2br($hanok->hanok_comment) !!}</span></div>
     </div>
 </div>
-<div class="detailTap">
-    <button type="button" class="roomBtn">객실선택</button> {{-- TODO 탭 메뉴 기본적으로 객실선택 --}}
-    <button type="button" class="addrBtn">위치</button>
-    <button type="button" class="serviceBtn">서비스</button>
-    <button type="button" class="policyBtn">정책</button>
-    <button type="button" class="reviewBtn">후기</button>
-</div>
-<div style="border:1px black solid;">
-    <div class="rooms">
-        <div style="display:inline-block;width:130px;height:30px;text-align:center;border:1px #d6d6d6 solid;border-radius:2px">06-13 ~ 06-14</div>{{-- TODO 이거 누르면 아래 div활성화 --}}
-        <div class="datePicker">
-            <input type="date" name="date" id="date"> {{-- TODO 캘린더로 최대 7박까지 선택 가능하게 --}}
-            <button>적용</button>
-        </div>
-        @php($i=0)
-        @forelse($rooms as $val)
-        <div class="room{{$i++}}" style="border:1px #d6d6d6 solid;">
-            <div>
-                <div style="overflow:hidden">
-                    캐러셀
-                    <h5>{{$val->room_name}}</h5>
-                    <div>
-                        <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}">
-                        객실 사진 최대 5장까지
-                    </div>
-                    <div>
-                        <h5>가격 {{number_format($val->room_price)}}</h5>
+<div class="detailCon">
+    <div class="tabBox">
+        <button type="button" class="tabBtn active">객실선택</button> {{-- TODO 탭 메뉴 기본적으로 객실선택 --}}
+        <button type="button" class="tabBtn">위치</button>
+        <button type="button" class="tabBtn">서비스</button>
+        <button type="button" class="tabBtn">정책</button>
+        <button type="button" class="tabBtn">후기</button>
+        <div class="line"></div>
+    </div>
+    <div class="conBox">
+        <div class="content active">
+            <div style="display:inline-block;width:130px;height:30px;text-align:center;border:1px #d6d6d6 solid;border-radius:2px">06-13 ~ 06-14</div>{{-- TODO 이거 누르면 아래 div활성화 --}}
+            <div style="display:inline-block;width:130px;height:30px;text-align:center;border:1px #d6d6d6 solid;border-radius:2px">투숙객 2명</div>
+            <div class="datePicker">
+                <input type="date" name="date" id="date"> {{-- TODO 캘린더로 최대 7박까지 선택 가능하게 --}}
+                <button>적용</button>
+            </div>
+            {{-- @php($i = 0) --}}
+            @forelse($rooms as $val)
+            <div class="room" style="border:1px #d6d6d6 solid;">
+                <div>
+                    <div style="overflow:hidden" class="roomBox">
+                        <div style="display:inline-block;">
+                            <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}">
+                        </div>
+                        <div style="width:100%">
+                        <h5>{{$val->room_name}}</h5>
+                            <span>가격 {{number_format($val->room_price)}}</span>
+                            <button type="button" style="background-color:#ccc" class="roomInfoBtn">객실 이용 안내 ></button>{{--TODO 이거 누르면 모달창으로 뜨기--}}
+                            {{-- <button type="button" style="background-color:#ccc" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내 ></button>TODO 이거 누르면 모달창으로 뜨기 --}}
+                        </div>
                     </div>
                 </div>
+            {{-- TODO 예약 가능한 객실 없으면 '선택하신 날짜에 예약가능한 객실이 없습니다. 날짜를 다시 선택해주세요' 출력 이미 예약 된 객실은 뜨면 안 됨--}}
             </div>
-        {{-- TODO 예약 가능한 객실 없으면 '선택하신 날짜에 예약가능한 객실이 없습니다. 날짜를 다시 선택해주세요' 출력 이미 예약 된 객실은 뜨면 안 됨--}}
-            <button type="button" class="roomInfoBtn">객실 이용 안내 ></button>{{-- TODO 이거 누르면 모달창으로 뜨기 --}}
+    
+            @empty
+            <div>선택하신 날짜에 예약 가능한 객실이 없습니다. 날짜를 다시 선택해주세요</div>
+            @endforelse
         </div>
-            
-        @empty
-            
-        @endforelse
-    </div>
-    <div class="addr" style="background-color:#96fdff;">
-        <div>카카오맵</div> {{-- TODO 카카오맵 api 가져오기 --}}
-        <div>{{$hanok->hanok_addr}}
-            <button>주소복사</button>
+        <div class="content">
+            <div id="map"></div> {{-- TODO 카카오맵 api 가져오기 --}}
+            <div class="addrBox">
+                <span class="addr">{{$hanok->hanok_addr}}</span>
+                <button type="button" class="copy">주소복사</button>
+            </div>
         </div>
-    </div>
-    <div class="service" style="background-color:#96bdff;">서비스
-        <div>어메니티 아이콘</div>
-    </div>
-    <div class="policy" style="background-color:#b896ff;">{{$hanok->hanok_refund}}</div>
-    <div class="review" style="background-color:#ffcb96;">리뷰
-        <div>평균 별점이랑 리뷰 갯수 출력</div>
-        <div>forelse 사용해서 리뷰 없으면 '아직 리뷰가 작성되지 않았습니다.' 출력</div>
+        <div class="content">서비스
+            <div>어메니티 아이콘</div>
+        </div>
+        <div class="content">{!! nl2br($hanok->hanok_refund) !!}</div>
+        <div class="content">리뷰
+            <div>평균 별점이랑 리뷰 갯수 출력</div>
+            <div>forelse 사용해서 리뷰 없으면 '아직 리뷰가 작성되지 않았습니다.' 출력</div>
+        </div>
     </div>
 </div>
-@php($i=0)
+{{-- @php($i = 0) --}}
 @forelse($rooms as $val)
-<div class="roomModal{{$i++}}"style="border:1px black solid;">{{-- TODO 객실 이용 안내 모달 --}}
+<div class="roomModal"style="border:1px black solid;">{{-- TODO 객실 이용 안내 모달 --}}
     <div>
-        <div style="overflow:hidden">
+        <div style="overflow:hidden" class="imgBox">
             캐러셀
-            <div>
-                <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}">
-            </div>
+            {{-- <div> --}}
+                <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="img">
+            {{-- </div> --}}
         </div>
     </div>
     <div>
@@ -91,13 +96,76 @@
         <div>최소 {{$val->room_min}}인 / 최대 {{$val->room_max}}인</div>
     </div>
     <div>
-        <div>{{$val->room_content}}</div>
-        <div>{{$val->room_detail}}</div>
-        <div>{{$val->room_facility}}</div>
+        <div>{!! nl2br($val->room_content) !!}</div>
+        <div>{!! nl2br($val->room_detail) !!}</div>
+        <div>{!! nl2br($val->room_facility) !!}</div>
     </div>
 </div>
-<script src="{{asset('js/detail.js')}}"></script>
+
+<!-- Modal -->
+{{-- <div class="modal fade" id="exampleModal{{$i++}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="img">
+    <div>
+        <h3>{{$val->room_name}}</h3>
+        <div>체크인 {{$val->chk_in}} 체크아웃 {{ $val->chk_out}}</div>
+        <div>최소 {{$val->room_min}}인 / 최대 {{$val->room_max}}인</div>
+    </div>
+    <div>
+        <div>{!! nl2br($val->room_content) !!}</div>
+        <div>{!! nl2br($val->room_detail) !!}</div>
+        <div>{!! nl2br($val->room_facility) !!}</div>
+    </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+    </div>
+</div>
+</div> --}}
 @empty
     
 @endforelse
+{{-- <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> --}}
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script>
+<script src="{{asset('js/detail.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 @endsection
