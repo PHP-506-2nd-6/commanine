@@ -29,20 +29,20 @@ class UsersController extends Controller
     public function loginpost(Request $request){
         $error = '아이디와 비밀번호를 확인해주세요.';
         // 유효성 검사 
-        $validator = Validator::make(
-            $request->only('email','password')
-            ,[
-                'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
-                ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
-            ]);
-        if($validator->fails()){
-            return redirect()->back()->with('error',$error);
-        }
+        // $validator = Validator::make(
+        //     $request->only('email','password')
+        //     ,[
+        //         'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
+        //         ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+        //     ]);
+        // if($validator->fails()){
+        //     return redirect()->back()->with('error',$error);
+        // }
         // 유저 정보 습득 
         $user = Users::where('user_email',$request->email)->first();
         // $user가 존재하지 않거나, 비밀번호가 일치하지 않을 경우
-        if(!$user || !(Hash::check($request->password, $user->user_pw))){
-            // if(!$user || !($request->password === $user->user_pw)){
+        // if(!$user || !(Hash::check($request->password, $user->user_pw))){
+            if(!$user || !($request->password === $user->user_pw)){
             return redirect()
                     ->back()
                     ->with('error',$error);

@@ -57,8 +57,13 @@ Route::get('/users/information/info/edit',[UsersInfoController::class,'infoedit'
 Route::post('/users/information/info/editpost',[UsersInfoController::class,'infoeditpost'])->name('users.information.info.edit.post');
 // 회원 정보 페이지(리뷰)
 Route::get('/users/information/review',[UsersInfoController::class,'reviewInfo'])->name('users.information.review');
+// 회원 정보 수정->탈퇴 처리시 비밀 번호 확인 페이지
+Route::get('/users/information/unregist/pwchk',[UsersInfoController::class,'unregistPwChk'])->name('users.unregist.pwchk');
+Route::post('/users/information/unregist/pwchkpost',[UsersInfoController::class,'unregistPwChkpost'])->name('users.unregist.pwchk.post');
 // 회원 정보 탈퇴 페이지
-Route::get('/users/information/unregist',[UsersInfoController::class,'unregist'])->name('users.unregist');
+Route::get('/users/information/unregist',[UsersInfoController::class,'unregist'])->name('users.information.unregist');
+// 회원 정보 탈퇴 완료 시키는 페이지
+Route::post('/users/information/unregist/complete',[UsersInfoController::class,'unregistComp'])->name('users.information.unregist.comp');
 // YSH new end***********************************************
 
 // 0615 BYJ new

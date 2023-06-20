@@ -101,7 +101,38 @@ class UsersInfoController extends Controller
             return redirect()->route('users.information.info');
         }
 
-        return redirect()->route('users.information.info.edit');
+        if(empty($arrKey)) {
+            return redirect()->back()->with('error', '전화번호 및 비밀번호를 변경후 눌러 주시기 바랍니다');
+        }
+        // return redirect()->route('users.information.info.edit');
+        return redirect()->back();
+    }
+    // 회원 탈퇴 시 비밀번호 재확인 페이지
+    public function unregistPwChk() {
+        return view('pwcert')->with('data',1);
+    }
+    // 비밀번호 재확인->회원 탈퇴 페이지 이동
+    public function unregistPwChkpost(Request $req) {
+        if($req->pw_flg === "1") {
+            $req->validate([
+                'user_pw' => 'regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+            ]);
+            $baseUser = Users::find(Auth::User()->user_id);
+            if(!$baseUser || !(Hash::check($req->user_pw, $baseUser->user_pw))) {
+                $error = '비밀번호를 다시한번 확인해 주세요.';
+                return redirect()->back()->with('error',$error);
+            }
+            return view('informationunregist');
+        }
+    }
+    // 탈퇴 완료후 메인 페이지 이동
+    public function unregistComp() {
+        $baseUser = Users::find(Auth::User()->user_id);
+        $baseUser->delete();
+        Session::flush();
+        Auth::logout();
+        return redirect('/');
+
     }
 
 }
