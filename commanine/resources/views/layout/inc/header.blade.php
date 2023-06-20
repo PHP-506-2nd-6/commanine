@@ -20,7 +20,7 @@
 
             <input id="modalToggle" class="hide" type="checkbox">
             <div class="modal">
-                <label class="btn btn-open" for="modalToggle">어디로 떠날까요?</label>
+                <label class="btn_search btn-open" for="modalToggle">어디로 떠날까요?</label>
                 <div class="inside">
                     <label class="btn-close" for="modalToggle">X</label>
                     <form method="get" action="{{route('research.page')}}" >
