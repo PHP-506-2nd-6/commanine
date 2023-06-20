@@ -49,10 +49,10 @@ const certification = ()=>{
             }else{
                 idSpan.innerHTML = apiData["msg"];
                 idSpan.style.color = "green";
+                btnChk = true;
             }
         })
         .catch(error=>alert(error.message));
-    btnChk = true;
 }
 
 
@@ -69,6 +69,7 @@ const throttle = () =>{
         }
     }
 }
+
 emailBtn.addEventListener('click',throttle(certification));
 //이메일 확인하기 버튼을 누르지 않고 회원가입을 누를 경우 
 registBtn.addEventListener('click', function(event) {
@@ -87,12 +88,11 @@ const checkPasswordMatch = () => {
     if (password === chkPassword) {
     pwChkAlert.innerHTML = '비밀번호와 일치합니다.';
     pwChkAlert.style.color = 'green';
-
     // 비밀번호와 비밀번호 확인이 일치하지 않은 경우
     } else {
     pwChkAlert.innerHTML = '비밀번호와 일치하지 않습니다..';
     pwChkAlert.style.color = 'red';
     }
-  };
+};
 
- pwChk.addEventListener('input', checkPasswordMatch);
+pwChk.addEventListener('input', checkPasswordMatch);

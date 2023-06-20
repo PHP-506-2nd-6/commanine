@@ -72,7 +72,7 @@
 </div>
 <div>
     {{$searches->onEachSide(3)->withQueryString()->links()}}
-</div> 
+</div>  
     {{-- @foreach($searches  as $search)
         <tr>
             <th scope="row">{{$search->id}}</th>
