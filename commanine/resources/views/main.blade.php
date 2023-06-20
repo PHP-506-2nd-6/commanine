@@ -44,25 +44,29 @@
         <li class="hotel">
             <a href="#">
                 <img src="/img/hotel.png" alt="hotel"></a>
+            <p>호텔</p>
         </li>
 
         <li class="pension">
             <a href="#">
                 <img src="/img/pension.png" alt="pension"></a>
+            <p>펜션</p>
         </li>
 
         <li class="guesthouse">
             <a href="#">
                 <img src="/img/guesthouse.png" alt="guesthouse"></a>
+            <p>게스트하우스</p>
         </li>
 
         <li class="resort">
             <a href="#">
                 <img src="/img/resort.png" alt="resort"></a>
+            <p>리조트</p>
         </li>
     </ul>
 </div>
-
+{{-- 최신숙소 --}}
 <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
                 <h3>최신숙소</h3>

@@ -192,5 +192,11 @@ class UsersController extends Controller
     public function alertFindId(){
         return view('alertfindid');
     }
+    //0620 BYJ
+    public function logout() {
+        Session::flush();
+        Auth::logout(); 
+        return redirect()->route('main');
+    }
 
 }

@@ -9,9 +9,16 @@
         <div class="fix">
             <nav class="clearfix">
                 <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav_right">
+                    @guest()
                     <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
                     <li class="nav-a2"><a href="{{route('users.regist')}}">회원가입</a></li>
                     <li class="nav-a3"><a href="#">예약내역</a></li>
+                    @endguest
+
+                    @auth()
+                    <li class="nav-a1"><a href="{{route('users.logout')}}">로그아웃</a></li>
+                    {{-- <li class="nav-a2"><a href="{{route('users.information.pwchk')}}">마이페이지</a></li> --}}
+                    @endauth
                 </ul>
             </nav>
             <div class="logo">

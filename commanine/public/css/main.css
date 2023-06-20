@@ -12,7 +12,10 @@ main {
 .nav-form i {
     font-size: 18px;
 }
-
+.nav-border {
+    position: relative;
+    top: -200px;
+}
 .nav-border li:hover img {
     opacity: 0.5;
 }
@@ -22,4 +25,8 @@ main {
 }
 .gnb li {
     display: inline-block;
+    margin: 0 100px 0 0;
+}
+.gnb li:last-child {
+    margin-right: 0;
 }

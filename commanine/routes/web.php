@@ -70,5 +70,5 @@ Route::post('/users/information/unregist/complete',[UsersInfoController::class,'
 // 리뷰 작성 페이지
 Route::get('/users/reviewinsert',[ReviewController::class,'reviewinsert'])->name('users.review');
 Route::post('/users/reviewpost',[ReviewController::class,'reviewpost'])->name('users.review.post');
-// 메인
-// Route::get('/hanoks/main/{id}',[HanoksController::class,'hanoksMain'])->name('hanoks.main');
+// 0620 BYJ
+Route::get('/users/logout', [UsersController::class, 'logout'])->name('users.logout');
