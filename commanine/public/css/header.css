@@ -88,7 +88,7 @@ img {
     line-height: 1.6;
 }
 
-.modal {
+.modal_search {
     /* position: fixed; */
     position: relative;
     display: block;
@@ -121,7 +121,7 @@ img {
     animation-fill-mode: forwards;
 }
 
-.modal .inside {
+.modal_search .inside {
     opacity: 0;
     display: none;
     background-color: #f6f6f0;

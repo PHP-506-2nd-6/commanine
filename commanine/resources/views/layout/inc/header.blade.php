@@ -19,7 +19,7 @@
             </div>
 
             <input id="modalToggle" class="hide" type="checkbox">
-            <div class="modal">
+            <div class="modal_search">
                 <label class="btn_search btn-open" for="modalToggle">어디로 떠날까요?</label>
                 <div class="inside">
                     <label class="btn-close" for="modalToggle">X</label>
