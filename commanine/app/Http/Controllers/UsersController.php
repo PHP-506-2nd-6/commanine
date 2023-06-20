@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use App\Mail\CertificationEmail;
 use App\Mail\FindPassword;
+use App\Rules\birthcase;
 use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
@@ -65,20 +66,32 @@ class UsersController extends Controller
     }
     //0613 KMH new
     public function registpost(Request $request){
+
         // 유효성 검사 
         $validator = Validator::make(
             $request->only('name','phoneNumber','email','password','passwordChk','birth','question','questAnswer')
             ,[
-
                 'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
                 ,'email'     =>  'required|email|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
                 ,'password'  =>  'required_with:passwordchk|same:passwordChk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
                 ,'passwordChk' => 'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
-                ,'birth'    =>'required'
+                ,'birth'    =>['required',new birthcase]
                 ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
                 ,'question' =>'required'
                 ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]{2,30}$/'
-            ]);
+            ]
+        ,$message =[
+            'required'          => ':attribute은(는) 필수항목 입니다.'
+            ,'name.max'         => '이름은 최대 30자 입니다.'
+            ,'name.regex'       => '이름은 한글로 2~30자 입력해 주세요.'
+            ,'password.same'    => '비밀번호 확인과 일치해야 합니다.'
+            ,'password.regex'   => '비밀번호는 8~20자 영어,숫자,특수문자를 포함해 주세요.'
+            ,'phoneNumber.regex'    => '전화번호를 형식에 맞게 입력해 주세요.'
+            ,'questAnswer.max'      =>  '답은 최대 30자 입니다.'
+            ,'questAnswer.regex'    => '답은 한글,숫자,영어로 2~30자만 입력해주세요.'
+        ]);
+
+        
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -105,7 +118,7 @@ class UsersController extends Controller
         // 회원가입 완료 로그인 페이지 이동
         return redirect()
                 ->route('users.login')
-                ->with('success','회원가입을 완료했습니다.<br>가입하신 아이디와 비밀번호로 로그인을 해주세요.');
+                ->with('success','회원가입을 완료했습니다.');
     }
 
 
