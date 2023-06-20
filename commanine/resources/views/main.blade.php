@@ -22,7 +22,7 @@
                 <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
+                <img src="https://images.stayfolio.com/system/pictures/images/000/129/292/original/307685c48f0d25607027c1a6061a1a840cf3b9a1.jpg?1657031321" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
                 <img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="...">
@@ -78,13 +78,13 @@
                                 <div class="card" style="width: 20rem;">
                                     <a href=""><img src="{{asset($val->hanok_img1)}}" class="card-img-top" alt="..."></a>
                                     <div class="card-body">
-                                    <h5 class="card-title">{{$val->hanok_name}}</h5>
-                                    <p class="card-text">{{number_format($val->room_price)}}원</p>
-                                    <p class="card-text">{{$val->hanok_local}}</p>
-                                    <p class="card-text">별점</p>
-                                    <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; color: #333;">
-                                        예약하기
-                                    </button>
+                                        <h5 class="card-title">{{$val->hanok_name}}</h5>
+                                        <p class="card-text">{{number_format($val->room_price)}}원</p>
+                                        <p class="card-text">{{$val->hanok_local}}</p>
+                                        <p class="card-text">별점</p>
+                                        <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; color: #333;">
+                                            예약하기
+                                        </button>
                                     </div>
                                 </div>
                             </div>
