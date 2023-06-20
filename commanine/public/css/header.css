@@ -161,10 +161,10 @@ img {
     display: inline-block;
 }
 
-#modalToggle:checked ~ .modal .btn-open {
+#modalToggle:checked ~ .modal_search .btn-open {
     animation-name: btnExpand;
 }
-#modalToggle:checked ~ .modal .inside {
+#modalToggle:checked ~ .modal_search .inside {
     display: block;
     animation-name: delayedFadeIn;
 }
