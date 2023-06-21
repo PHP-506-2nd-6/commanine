@@ -10,31 +10,52 @@ const contents = document.querySelectorAll('.content');
 const longitude = document.querySelector('#longitude').value;
 const latitude = document.querySelector('#latitude').value;
 
+const searchBtn = document.querySelector('.searchBtn');
+const reserveBtn = document.querySelectorAll('.reserveBtn');
+
+const frm = document.querySelector('#frm')
+
+const room_id = document.querySelector('#room_id');
+
+searchBtn.addEventListener('click', ()=>{
+    room_id.setAttribute('disabled','true');
+    // frm.action="http://localhost/users/login";
+})
+
+function reserve() {
+    room_id.removeAttribute('disabled')
+    frm.action="http://localhost";
+    frm.submit();
+    // return true;
+}
+
 const chkIn = document.querySelector('#chkIn');
 const chkOut = document.querySelector('#chkOut');
 const adult = document.querySelector('#adult');
 const child = document.querySelector('#child');
 
-const chk_in = document.querySelector('#chk_in');
-const chk_out = document.querySelector('#chk_out');
-const reserve_adult = document.querySelector('#reserve_adult');
-const reserve_child = document.querySelector('#reserve_child');
+chkIn.value = new Date().toISOString().substring(0, 10);
 
-reserve_adult.value = adult.value;
-reserve_child.value = child.value;
+// const chk_in = document.querySelector('#chk_in');
+// const chk_out = document.querySelector('#chk_out');
+// const reserve_adult = document.querySelector('#reserve_adult');
+// const reserve_child = document.querySelector('#reserve_child');
 
-chkIn.addEventListener('input',()=>{
-    chk_in.value = chkIn.value;
-});
-chkOut.addEventListener('input',()=>{
-    chk_out.value = chkOut.value;
-});
-adult.addEventListener('input',()=>{
-    reserve_adult.value = adult.value;
-});
-child.addEventListener('input',()=>{
-    reserve_child.value = child.value;
-});
+// reserve_adult.value = adult.value;
+// reserve_child.value = child.value;
+
+// chkIn.addEventListener('input',()=>{
+//     chk_in.value = chkIn.value;
+// });
+// chkOut.addEventListener('input',()=>{
+//     chk_out.value = chkOut.value;
+// });
+// adult.addEventListener('input',()=>{
+//     reserve_adult.value = adult.value;
+// });
+// child.addEventListener('input',()=>{
+//     reserve_child.value = child.value;
+// });
 
 // 탭 메뉴
 tabs.forEach((tab, index)=>{
@@ -56,7 +77,7 @@ tabs.forEach((tab, index)=>{
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 2 // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

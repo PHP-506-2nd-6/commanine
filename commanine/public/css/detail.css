@@ -79,9 +79,9 @@ body{
     font-weight: 600;
 }
 
-/* .content {
-    min-height: 5px;
-} */
+.content {
+    min-height: 100vh;
+}
 
 .conBox .content{
     display: none;
