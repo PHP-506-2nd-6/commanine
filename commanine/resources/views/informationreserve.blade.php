@@ -10,8 +10,9 @@
         </div>
         <div>
             <h1>예약 내역</h1>
+            @forelse($variable as $data)
             <div>
-                <img src="img/hanokImg/경주행복한옥마을셔블3.jpg" alt="">
+                <img src="{{asset('/img/hanokimg/hanok1.jpg')}}" alt="#">
                 <div>숙소명</div>
                 <div>{{$data->hotel_name}}</div>
                 <div>객실명</div>
@@ -23,6 +24,9 @@
                 <div>인원</div>
                 <div>{{$data->reserve_adult}}</div>
             </div>
+        @empty
+            <span>작성한 리뷰가 없습니다.</span> 
+        @endforelse
         </div>
     </div>
 

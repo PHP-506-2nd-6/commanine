@@ -59,14 +59,10 @@ class ResearchController extends Controller
             $val_chkOut = date('Y-m-d', strtotime($val_chkIn . ' +1 day'));
         }
         
-        // 숙소유형
-        $val_type = $req->hanokType;
         // 인원
         $val_count = $req->input('adults')+$req->input('kids');
         // return var_dump($val_count);
-        // 가격
-        $val_minPrice = $req->input('minPrice');
-        $val_maxPrice = $req->input('maxPrice');
+
         
         // 쿼리 작성
         //*********************** 쿼리
@@ -102,13 +98,7 @@ class ResearchController extends Controller
             FROM hanoks han
             JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
                     FROM rooms r ";
-        // 가격
-        if($val_maxPrice){
-            $query .= " WHERE r.room_price <= ".$val_maxPrice; 
-        }
-        if($val_minPrice){
-            $query .= " AND r.room_price >= ".$val_minPrice;
-        }
+
         // 수용 가능 인원
             if($val_count){
                 $query .= " AND r.room_max >= ".$val_count;
@@ -133,10 +123,7 @@ class ResearchController extends Controller
             if($val_local){
                 $query .= " WHERE han.hanok_name like "."'%$val_local%'";
             }
-        // 호텔 유형
-            if($val_type){
-                $query .= " AND han.hanok_type = "."'$val_type'  ";
-            }
+        
     
             $result = DB::select($query);
             $notices = $this->arrayPaginator($result, $req);

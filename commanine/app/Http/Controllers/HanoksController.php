@@ -48,6 +48,7 @@ class HanoksController extends Controller
     }
     // 0619 BYJ new
     public function hanoksMain() {
+        // 최신순
         // $hanoks = DB::table('hanoks')
         //             -> select('*')
         //             -> orderBy('id','desc')
@@ -55,10 +56,10 @@ class HanoksController extends Controller
         //             -> get();
 
         $hanoks = DB::table('hanoks as han')
-        -> select('han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'))
+        -> select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'))
         -> join('rooms as ro', 'han.id', '=', 'ro.hanok_id')
         //-> join('reviews AS re', 'han.id', '=', 're.hanok_id')
-        -> groupBy('han.hanok_name', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+        -> groupBy('han.id','han.hanok_name', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
         // -> groupBy('han.hanok_img1')
         // -> groupBy('han.hanok_local')
         // -> groupBy('ro.room_price')
@@ -83,6 +84,52 @@ class HanoksController extends Controller
     //     echo $result->hanok_local;
     //     echo $result->room_price;  
     // }
-    return view('/main')->with('hanok', $hanoks);
+    // return var_dump($hanoks);
+
+    // 인기순
+    // $hanokswi = DB::table('wishlists as wi')
+    //     -> select('wi.hanok_id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('COUNT(wi.hanok_id) AS coun'))
+    //     -> join('hanoks as han', 'han.id', '=', 'wi.hanok_id')
+    //     //-> join('reviews AS re', 'han.id', '=', 're.hanok_id')
+    //     -> groupBy('wi.hanok_id','han.hanok_name', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+    //     // -> groupBy('han.hanok_img1')
+    //     // -> groupBy('han.hanok_local')
+    //     // -> groupBy('ro.room_price')
+    //     -> orderBy('coun', 'DESC')
+    //     -> limit('3')
+    //     -> get();
+
+//     $query="SELECT
+//     han.hanok_name
+//     ,han.hanok_img1
+//     ,room.room_price
+//     ,COUNT(wish.hanok_id) AS cnt
+//     FROM hanoks han
+//     JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
+//             FROM rooms r
+//             WHERE r.room_price
+//             GROUP BY r.hanok_id) room
+//     ON han.id = room.hanok_id
+//     LEFT JOIN wishlists wish ON room.hanok_id = wish.hanok_id
+// GROUP BY han.hanok_name
+//     ,han.hanok_img1
+//     ,room.room_price 
+// ORDER BY cnt DESC LIMIT 3;";
+
+$query = DB::table('hanoks AS han')
+    ->join(DB::raw('(SELECT r.hanok_id, MIN(r.room_price) AS room_price
+                    FROM rooms r
+                    WHERE r.room_price
+                    GROUP BY r.hanok_id) AS room'), 'han.id', '=', 'room.hanok_id')
+    ->leftJoin('wishlists AS wish', 'room.hanok_id', '=', 'wish.hanok_id')
+    ->select('han.id', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local', 'room.room_price', DB::raw('COUNT(wish.hanok_id) AS cnt'))
+    ->groupBy('han.id', 'han.hanok_name', 'han.hanok_img1', 'room.room_price','han.hanok_local')
+    ->orderBy('cnt', 'DESC')
+    ->limit(3)
+    ->get();
+    
+    return view('/main')->with('hanok', $hanoks)->with('wish', $query);
 }
+
+
 }
