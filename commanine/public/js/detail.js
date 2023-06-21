@@ -10,6 +10,32 @@ const contents = document.querySelectorAll('.content');
 const longitude = document.querySelector('#longitude').value;
 const latitude = document.querySelector('#latitude').value;
 
+const chkIn = document.querySelector('#chkIn');
+const chkOut = document.querySelector('#chkOut');
+const adult = document.querySelector('#adult');
+const child = document.querySelector('#child');
+
+const chk_in = document.querySelector('#chk_in');
+const chk_out = document.querySelector('#chk_out');
+const reserve_adult = document.querySelector('#reserve_adult');
+const reserve_child = document.querySelector('#reserve_child');
+
+reserve_adult.value = adult.value;
+reserve_child.value = child.value;
+
+chkIn.addEventListener('input',()=>{
+    chk_in.value = chkIn.value;
+});
+chkOut.addEventListener('input',()=>{
+    chk_out.value = chkOut.value;
+});
+adult.addEventListener('input',()=>{
+    reserve_adult.value = adult.value;
+});
+child.addEventListener('input',()=>{
+    reserve_child.value = child.value;
+});
+
 // 탭 메뉴
 tabs.forEach((tab, index)=>{
     tab.addEventListener('click', (e)=> {
@@ -52,6 +78,7 @@ var marker = new kakao.maps.Marker({
 // 마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(map);  
 
+// 클립보드에 숙소 주소 복사
 const addr = document.querySelector('.addr').textContent;
 const copy = document.querySelector('.copy');
 copy.addEventListener('click', copyClipboard)

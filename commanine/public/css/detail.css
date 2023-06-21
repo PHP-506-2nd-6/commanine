@@ -12,6 +12,9 @@ button{
 
 .roomInfoBtn{
     width: 100%;
+    height: 50px;
+    border-top: 1px solid #c5c5c5;
+    text-align: left;
 }
 
 .reserveBtn {
@@ -76,9 +79,9 @@ body{
     font-weight: 600;
 }
 
-.content {
-    min-height: 1000px;
-}
+/* .content {
+    min-height: 5px;
+} */
 
 .conBox .content{
     display: none;
@@ -118,16 +121,24 @@ body{
 
 .roomBox{
     display: flex;
+    padding: 20px;
 }
 
 .roomModal {
     display: none;
     width: 960px;
+    padding: 80px;
     position: absolute;
-    background-color: #fff;
+    background-color: rgb(173, 173, 173);
+    border-radius: 5px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.modal-content{
+    padding: 30px;
+    width: 960px;
 }
 
 #map {

@@ -33,29 +33,68 @@
     </div>
     <div class="conBox">
         <div class="content active">
-            <div style="display:inline-block;width:130px;height:30px;text-align:center;border:1px #d6d6d6 solid;border-radius:2px">06-13 ~ 06-14</div>{{-- TODO 이거 누르면 아래 div활성화 --}}
+            {{-- <div style="display:inline-block;width:130px;height:30px;text-align:center;border:1px #d6d6d6 solid;border-radius:2px">06-13 ~ 06-14</div>
             <div style="display:inline-block;width:130px;height:30px;text-align:center;border:1px #d6d6d6 solid;border-radius:2px">투숙객 2명</div>
             <div class="datePicker">
-                <input type="date" name="date" id="date"> {{-- TODO 캘린더로 최대 7박까지 선택 가능하게 --}}
+                <input type="date" name="date" id="date">
                 <button>적용</button>
-            </div>
+            </div> --}}
+            <form method="get" action="" >
+                        <div class="search_form">
+                            {{-- <div class="search_form1">
+                                <label for="hanok_name">스테이/여행지</label>
+                                <input type="text" name="hanok_name" id="hanok_name"  placeholder="스테이/여행지">
+                            </div> --}}
+                            <div class="search_form2">
+                                <label for="chk_in">체크인</label>
+                                <input type="date" id="chkIn" value="" required>
+                                <label for="chk_out">체크아웃</label>
+                                <input type="date" id="chkOut">
+                                <span>성인</span>
+                                <input type="number" min="1" max="16" value="2" id="adult">
+                                <span>아동</span>
+                                <input type="number" min="0" max="16" value="0" id="child">
+                            </div>
+                                {{-- <span>인원 : </span><span id='result'>0</span>
+                                <input type='button' onclick='count("plus")' value='+'/>
+                                <input class="nobtn" type='button' onclick='count("minus")' value='-'/> --}}
+
+                            {{-- <div class="pro-qty row" style="margin: 0 5px">
+                                <input type="text" min="1" value="2" readonly="readonly">
+                            </div> --}}
+                            {{-- <div class="search_form2">
+                            </div>
+                            <div class="search_form3">
+                            </div> --}}
+                            <button type="submit">검색</button>
+                        </div>
+                    </form>
+            @php($i = 0)
             @forelse($rooms as $val)
             <div class="room" style="border:1px #d6d6d6 solid;">
-                <div>
-                    <div style="overflow:hidden" class="roomBox">
+                    {{-- <form action="{{route('users.payment')}}"> --}}
+                    <form action="">
+                <div style="overflow:hidden" class="roomBox">
                         <div style="display:inline-block;">
                             <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}">
                         </div>
                         <div style="width:100%">
+                        <input type="hidden" name="room_id" value={{$val->id}}>
+                        <input type="hidden" name="chk_in" id="chk_in" value="">
+                        <input type="hidden" name="chk_out" id="chk_out" value="">
+                        <input type="hidden" name="reserve_adult" id="reserve_adult" value="">
+                        <input type="hidden" name="reserve_child" id="reserve_child" value="">
                         <h5>{{$val->room_name}}</h5>
                             <span>가격 {{number_format($val->room_price)}}</span>
-                            <button type="button" style="background-color:#ccc" class="roomInfoBtn">객실 이용 안내 ></button>{{--TODO 이거 누르면 모달창으로 뜨기--}}
-                            <button type="button" class="reserveBtn">예약하기</button>{{--TODO 이거 누르면 모달창으로 뜨기--}}
-                            {{-- <button type="button" style="background-color:#ccc" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내 ></button>TODO 이거 누르면 모달창으로 뜨기 --}}
+                            {{-- <button type="button" style="background-color:#ccc" class="roomInfoBtn">객실 이용 안내 ></button> --}}
+                            <button type="button" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내 ></button>
+                            <button type="submit" class="reserveBtn">예약하기</button>
+                            {{-- <button type="button" class="reserveBtn" onclick="location.href='/users/payment?room_id={{$val->id}}'">예약하기</button> --}}
+                            {{-- <button type="button" class="reserveBtn" onclick="location.href='/users/payment?room_id={{$val->id}}&chk_in={{}}&chk_out={{}}&reserve_adult={{}}&reserve_child={{}}'">예약하기</button> --}}
                         </div>
-                    </div>
                 </div>
-            {{-- TODO 예약 가능한 객실 없으면 '선택하신 날짜에 예약가능한 객실이 없습니다. 날짜를 다시 선택해주세요' 출력 이미 예약 된 객실은 뜨면 안 됨--}}
+                    </form>
+            {{-- TODO 이미 예약 된 객실은 뜨면 안 됨--}}
             </div>
             @empty
             <div>선택하신 날짜에 예약 가능한 객실이 없습니다. 날짜를 다시 선택해주세요</div>
@@ -95,91 +134,68 @@
         </div>
     </div>
 </div>
+@php($j = 0)
 @forelse($rooms as $val)
-<div class="roomModal"style="border:1px black solid;">{{-- TODO 객실 이용 안내 모달 --}}
-    <div>
-        <div style="overflow:hidden" class="imgBox">
-            캐러셀
-            {{-- <div> --}}
-                <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="img">
-            {{-- </div> --}}
-        </div>
-    </div>
-    <div>
-        <h3>{{$val->room_name}}</h3>
-        <div>체크인 {{$val->chk_in}} 체크아웃 {{$val->chk_out}}</div>
-        <div>최소 {{$val->room_min}}인 / 최대 {{$val->room_max}}인</div>
-    </div>
-    <div>
-        <div>{!! nl2br($val->room_content) !!}</div>
-        <div>{!! nl2br($val->room_detail) !!}</div>
-        <div>{!! nl2br($val->room_facility) !!}</div>
-    </div>
-</div>
-
 <!-- Modal -->
-{{-- <div class="modal fade" id="exampleModal{{$i++}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal{{$j++}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">객실 이용 안내</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
+    {{-- todo 객실 이미지 캐러셀 --}}
+        {{-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+        </div> --}}
+    {{-- todo 객실 이미지 캐러셀 --}}
         <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="img">
-    <div>
-        <h3>{{$val->room_name}}</h3>
-        <div>체크인 {{$val->chk_in}} 체크아웃 {{ $val->chk_out}}</div>
-        <div>최소 {{$val->room_min}}인 / 최대 {{$val->room_max}}인</div>
-    </div>
-    <div>
-        <div>{!! nl2br($val->room_content) !!}</div>
-        <div>{!! nl2br($val->room_detail) !!}</div>
-        <div>{!! nl2br($val->room_facility) !!}</div>
-    </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-    </div>
+        <div>
+            <h3>{{$val->room_name}}</h3>
+            <div>체크인 {{$val->chk_in}} 체크아웃 {{ $val->chk_out}}</div>
+            <div>기준 {{$val->room_min}}인 / 최대 {{$val->room_max}}인</div>
+        </div>
+        <hr>
+            <div>
+                <strong>기본 정보</strong>
+                <div>{!! nl2br($val->room_content) !!}</div>
+                <div>{!! nl2br($val->room_detail) !!}</div>
+            <hr>
+                <strong>편의 시설</strong>
+                <div>{!! nl2br($val->room_facility) !!}</div>
+            </div>
+        </div>
     </div>
 </div>
-</div> --}}
+</div>
 @empty
     
 @endforelse
-{{-- <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> --}}
 <form>
     <input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}">
     <input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}">
