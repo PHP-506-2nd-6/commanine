@@ -17,6 +17,9 @@ const pw = document.getElementById('password');
 const pwChk = document.getElementById('passwordChk');
 const pwChkAlert = document.getElementById('pwChkAlert');
 // password 체크 변수 end *********************
+// errbox 
+const errmsg = document.querySelectorAll('.errmsg');
+const errbox = document.querySelectorAll('.errbox');
 
 
 const certification = ()=>{

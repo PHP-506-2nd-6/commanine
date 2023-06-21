@@ -163,7 +163,8 @@ class ResearchController extends Controller
         $val_count = $req->input('adults')+$req->input('kids');
         // return var_dump($val_count);
         // 가격
-        $val_price = $req->input('price');
+        $val_minPrice = $req->input('minPrice');
+        $val_maxPrice = $req->input('maxPrice');
         
         // 쿼리 작성
         //*********************** 쿼리
@@ -192,182 +193,81 @@ class ResearchController extends Controller
         // -- AND han.hanok_type = '0'
         // ");
         //****************************************************************** */
-        // $query = " SELECT
-        //     han.hanok_name
-        //     ,han.hanok_img1
-        //     ,room.room_price
-        //     , "."COUNT(wish.hanok_id) as cnt"."
-        //     FROM hanoks han
-        //     JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
-        //             FROM rooms r ";
-        // // 가격
-        // if($val_price){
-        //     $query .= " WHERE r.room_price <= ".$val_price; 
-        // }
-        // // 수용 가능 인원
-        //     if($val_count){
-        //         $query .= " AND r.room_min <= ".$val_count
-        //                 ." AND r.room_max >= ".$val_count;
-        //     }
-    
-        // // 체크인
-        //     if($val_chkIn){
-        //         $query .= " AND NOT EXISTS
-        //                     (SELECT 1
-        //                     FROM reservations res
-        //                     WHERE res.room_id = r.id
-        //                     AND res.chk_in >=  ".$val_chkIn.
-        //                     " AND res.chk_out <= ".$val_chkOut." ) ";
-        //     }
-    
-    
-        //     $query .=" GROUP BY r.hanok_id) room
-        //         ON han.id = room.hanok_id
-        //         LEFT JOIN wishlists wish 
-        //         ON room.hanok_id = wish.hanok_id ";
-        // // 지역명/ 호텔명
-        //     if($val_local){
-        //         $query .= " WHERE han.hanok_name like "."'%$val_local%'";
-        //     }
-        // // 호텔 유형
-        //     if($val_type){
-        //         $query .= " AND han.hanok_type = "."'$val_type'  ";
-        //     }
-        //     $query .=" GROUP BY han.hanok_name
-        //     ,han.hanok_img1
-        //     ,room.room_price
-
-            // order by room.room_price ";
+        
     
         $query= "SELECT
-        han.hanok_name
-        ,han.hanok_img1
-        ,room.room_price
-        ,COUNT(wish.hanok_id) AS cnt
-        FROM hanoks han
-        JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
-                FROM rooms r
-                WHERE r.room_price <= 500000
-             AND r.room_max >= 4
-                AND NOT EXISTS
+                han.id
+                ,han.hanok_name
+                ,han.hanok_img1
+                ,room.room_price
+                ,COUNT(wish.hanok_id) AS cnt
+                FROM hanoks han
+                JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
+                FROM rooms r ";
+        if($val_maxPrice){
+            $query .= " WHERE r.room_price <= ".$val_maxPrice; 
+        }
+        if($val_minPrice){
+            $query .= " AND r.room_price >= ".$val_minPrice;
+        }
+        if($val_count){
+            $query .= " AND r.room_max >= ".$val_count;
+        }
+        if($val_chkIn){
+        $query .= " AND NOT EXISTS
                     (SELECT 1
                     FROM reservations res
                     WHERE res.room_id = r.id
-                    AND res.chk_in >= 20230621
-                    AND res.chk_out <= 20230622)
-                GROUP BY r.hanok_id) room
-        ON han.id = room.hanok_id
-        LEFT JOIN wishlists wish ON room.hanok_id = wish.hanok_id
-    WHERE han.hanok_name LIKE '%경주%'
-    GROUP BY han.hanok_name
-        ,han.hanok_img1
-        ,room.room_price 
-    ORDER BY room.room_price
-    ;";
+                    AND res.chk_in >=  ".$val_chkIn.
+                    " AND res.chk_out <= ".$val_chkOut." ) ";
+        }
+        $query .= " GROUP BY r.hanok_id) room
+                    ON han.id = room.hanok_id
+                    LEFT JOIN wishlists wish ON room.hanok_id = wish.hanok_id ";
 
-            $result = DB::select($query);
-            $notices = $this->arrayPaginator($result, $req);
-            // var_dump($result, $query);
-            return view('research')->with('searches', $notices);
+        if($val_local){
+                $query .= " WHERE han.hanok_name like "."'%$val_local%'"
+                ." OR han.hanok_addr LIKE "."'%$val_local%'";
+                }
+            // 호텔 유형
+        if($val_type){
+                $query .= " AND han.hanok_type = "."'$val_type'  ";
+        }
+                $query .=" GROUP BY 
+                han.id
+                ,han.hanok_name
+                ,han.hanok_img1
+                ,room.room_price 
 
-        
-        // $result = DB::table('hanoks')
-        // ->join('rooms', 'hanoks.id', '=', 'rooms.hanok_id')
-        // // ->join('wishlists', 'hanoks.id', '=', 'wishlists.hanok_id')
-        // // ->join('reviews', 'hanoks.id', '=', 'reviews.hanok_id')
-        // ->select( 'hanoks.hanok_name','hanoks.hanok_img1',DB::raw('min(rooms.room_price),(SELECT COUNT(wishlists.hanok_id) as cnt FROM wishlists INNER JOIN hanoks ON wishlists.hanok_id = hanoks.id) AS wish'))
-        
-        // // 지역, 호텔명 검색했을 때 
-        // ->when($val_local, function ($query, $val_local) {
-        //     $query->where('hanoks.hanok_name', 'LIKE', "'%".$val_local."%'")
-        //     ->where('hanoks.hanok_addr', 'LIKE', "'%".$val_local."%'");
-        // })
-        // // 숙소유형 검색
-        // ->when($val_type , function ($query, $val_type){
-        //     $query->where('hanoks.hanok_type','=',$val_type);
-        // })
-        // // ->when($val_type , function ($query, $val_type){
-        // //     $query->where(DB::raw('(hanoks.hanok_type ='{{$val_type}}')'));
-        // // })
-        // // 인원
-        // ->when($val_count, function($query, $val_count){
-        //     $query->where('rooms.room_max','>=',$val_count);
-        // })
-        // // 체크인
-        // // 체크인 날짜를 선택하면 체크인 날짜 이후의 날짜 중, 체크인이 가능한 숙소만 출력이 되어야 함. 
-        // // => 예약테이블에서 체크인 날짜 이후에 예약되어있는 숙소를 제외하고, 
-        // // 선택한 체크인 날짜 이전에 날짜는 출력이 되면 안됨. 
-        // // ->when($val_chkIn, function ($query, $val_chkIn) use ($chkInSub) {
-        // //     $query->whereNotIn('rooms.id', $chkInSub)
-        // //         ->where('reservations.chk_in', '>=', $val_chkIn);
-        // // })
-
-        // // ->when($val_chkIn, function ($query) use ($val_chkIn) {
-        // //     $query->whereNotExists(function ($query) use ($val_chkIn) {
-        // //         $query->select(DB::raw(1))
-        // //             ->from('reservations')
-        // //             ->where('reservations.chk_in', '>=', $val_chkIn);
-        // //     });
-                    
-        // //     });
-        // // })
-        // // ->when($val_chkIn, function ($query) use ($val_chkIn,$val_chkOut) {
-        // //     $query->whereNotExists(function ($subQuery) use ($val_chkIn,$val_chkOut) {
-        // //         $subQuery->select(DB::raw(1))
-        // //             ->from('reservations')
-        // //             ->whereColumn('rooms.id', 'reservations.room_id')
-        // //             ->where('reservations.chk_in', '>=', $val_chkIn)
-        // //             ->where('reservations.chk_out','<=',$val_chkOut);
-        // //     });
-        // // })
-        // // ->when($val_chkIn, function ($query) use ($val_chkIn,$val_chkOut) {
-        // //     $query->whereNotIn('rooms.id',function ($subQuery) use ($val_chkIn,$val_chkOut) {
-        // //         $subQuery->select('room_id')
-        // //             ->from('reservations')
-        // //             ->where('reservations.chk_in', '>=', $val_chkIn)
-        // //             ->where('reservations.chk_out','<=',$val_chkOut);
-        // //     });
-        // // })
-        // // ->when($val_chkIn, function ($query) use ($val_chkIn,$val_chkOut) {
-        // //     $query->where(DB::raw('NOT rooms.id in
-        // //     (SELECT room_id from reservations 
-        // //     where reservations.chk_in >= ')
-        // //     AND reservations.chk_out <= ? '),[$val_chkIn,$val_chkOut]);
-        // // })
-        // ->when($val_chkIn, function ($query) use ($val_chkIn,$val_chkOut) {
-        //     $query->whereRaw('NOT rooms.id in
-        //     (SELECT room_id from reservations 
-        //     where reservations.chk_in >= ?
-        //     AND reservations.chk_out <= ? )',[$val_chkIn,$val_chkOut]);
-        // })
+                order by room.room_price ";
 
 
 
+                $val_local = $req->input('locOrHan');
+                // 체크인
+                $val_chkIn = $req->input('chkIn');
+                // 체크아웃
+                $val_chkOut = $req->input('chkOut');
+                // 체크인 날짜만 선택했을 경우 자동으로 1박으로 계산 
+                if($val_chkOut === null){
+                    $val_chkOut = date('Y-m-d', strtotime($val_chkIn . ' +1 day'));
+                }
+                
 
-        // // 체크아웃
-        // // ->when($val_chkOut, function ($query) use ($val_chkOut) {
-        // //     $query->whereNotExists(function ($subQuery) use ($val_chkOut) {
-        // //         $subQuery->select(DB::raw(1))
-        // //             ->from('reservations')
-        // //             ->whereColumn('rooms.id', 'reservations.room_id')
-        // //             ->where('reservations.chk_in', '<=', $val_chkOut);
-        // //     });
-        // // })
-        // // 가격 
-        // ->when($val_price, function($query, $val_price){
-        //     $query->where('rooms.room_price','<=',$val_price);
-        // })
-        // // 'hanoks.hanok_name','hanoks.hanok_img1','rooms.room_price'
-        // ->groupBy('hanoks.hanok_name','hanoks.hanok_img1')
-        // // ->groupBy('hanoks.hanok_img1')
-        // // ->groupBy('rooms.room_price')
-        // // ->groupBy('cnt')
-        // ->orderBy('rooms.room_price')
-        // ->get();
 
-        // ->paginate(5);
-        
-        
+
+        $result = DB::select($query);
+        // return var_dump($val_count);
+        $notices = $this->arrayPaginator($result, $req);
+        return view('research')
+                ->with('searches', $notices)
+                ->with('local',$val_local)
+                ->with('chkIn',$val_chkIn)
+                ->with('chkOut',$val_chkOut)
+                ->with('type',$val_type)
+                ->with('minPrice',$val_minPrice)
+                ->with('maxPrice',$val_maxPrice);
+
     }
 
     //0620 KMH add
