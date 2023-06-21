@@ -72,8 +72,7 @@
             @php($i = 0)
             @forelse($rooms as $val)
             <div class="room" style="border:1px #d6d6d6 solid;">
-                    {{-- <form action="{{route('users.payment')}}"> --}}
-                    <form action="">
+                    <form action="{{route('users.payment')}}">
                 <div style="overflow:hidden" class="roomBox">
                         <div style="display:inline-block;">
                             <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}">
