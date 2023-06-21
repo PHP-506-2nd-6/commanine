@@ -6,6 +6,7 @@ use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UsersInfoController;
+use App\Http\Controllers\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +56,8 @@ Route::get('/users/information/info',[UsersInfoController::class,'info'])->name(
 // 회원 정보 수정페이지
 Route::get('/users/information/info/edit',[UsersInfoController::class,'infoedit'])->name('users.information.info.edit');
 Route::post('/users/information/info/editpost',[UsersInfoController::class,'infoeditpost'])->name('users.information.info.edit.post');
+// 회원 정보 페이지 갈때 비밀번호 확인 페이지
+Route::get('users/information/pwchk',[UsersInfoController::class,'infoPwChk'])->name('users.information.pwchk');
 // 회원 정보 페이지(리뷰)
 Route::get('/users/information/review',[UsersInfoController::class,'reviewInfo'])->name('users.information.review');
 // 회원 정보 수정->탈퇴 처리시 비밀 번호 확인 페이지
@@ -64,6 +67,8 @@ Route::post('/users/information/unregist/pwchkpost',[UsersInfoController::class,
 Route::get('/users/information/unregist',[UsersInfoController::class,'unregist'])->name('users.information.unregist');
 // 회원 정보 탈퇴 완료 시키는 페이지
 Route::post('/users/information/unregist/complete',[UsersInfoController::class,'unregistComp'])->name('users.information.unregist.comp');
+// 결제 페이지
+Route::get('/users/payment',[PaymentController::class,'payInfo'])->name('users.payment');
 // YSH new end***********************************************
 
 // 0615 BYJ new

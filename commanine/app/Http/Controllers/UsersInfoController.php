@@ -111,6 +111,13 @@ class UsersInfoController extends Controller
     public function unregistPwChk() {
         return view('pwcert')->with('data',1);
     }
+    // 회원 정보페이지 갈 때 비밀번호 재확인
+    public function infoPwChk() {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
+        return view('pwcert')->with('data',0);
+    }
     // 비밀번호 재확인->회원 탈퇴 페이지 이동
     public function unregistPwChkpost(Request $req) {
         if($req->pw_flg === "1") {
@@ -123,6 +130,18 @@ class UsersInfoController extends Controller
                 return redirect()->back()->with('error',$error);
             }
             return view('informationunregist');
+        }
+        // 회원 정보 페이지 이동
+        if($req->pw_flg === "0") {
+            $req->validate([
+                'user_pw' => 'regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+            ]);
+            $baseUser = Users::find(Auth::User()->user_id);
+            if(!$baseUser || !(Hash::check($req->user_pw, $baseUser->user_pw))) {
+                $error = '비밀번호를 다시한번 확인해 주세요.';
+                return redirect()->back()->with('error',$error);
+            }
+            return view('informationinfo')->with('data', $baseUser);
         }
     }
     // 탈퇴 완료후 메인 페이지 이동
