@@ -36,27 +36,6 @@ const child = document.querySelector('#child');
 
 chkIn.value = new Date().toISOString().substring(0, 10);
 
-// const chk_in = document.querySelector('#chk_in');
-// const chk_out = document.querySelector('#chk_out');
-// const reserve_adult = document.querySelector('#reserve_adult');
-// const reserve_child = document.querySelector('#reserve_child');
-
-// reserve_adult.value = adult.value;
-// reserve_child.value = child.value;
-
-// chkIn.addEventListener('input',()=>{
-//     chk_in.value = chkIn.value;
-// });
-// chkOut.addEventListener('input',()=>{
-//     chk_out.value = chkOut.value;
-// });
-// adult.addEventListener('input',()=>{
-//     reserve_adult.value = adult.value;
-// });
-// child.addEventListener('input',()=>{
-//     reserve_child.value = child.value;
-// });
-
 // 탭 메뉴
 tabs.forEach((tab, index)=>{
     tab.addEventListener('click', (e)=> {
@@ -108,3 +87,6 @@ function copyClipboard() {
         alert("클립보드에 주소가 복사되었습니다.");
     })
 }
+
+const userId = sessionStorage.getItem('user_id');
+console.log(userId);

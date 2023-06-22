@@ -145,7 +145,10 @@ body{
     width:100%;
     height:350px;
 }
-
+.amenities {
+    width: 64px;
+    height: 64px;
+}
 /* .copyAlert {
     background-color: rgb(255, 255, 255);
     width: 300px;

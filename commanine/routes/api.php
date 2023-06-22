@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiUsersController;
+use App\Http\Controllers\Api\ApiWishlistsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ use App\Http\Controllers\Api\ApiUsersController;
 
 
 Route::get('/users/regist/{email}',[ApiUsersController::class,'getUserChk']);
+
+Route::get('/hanoks/wishlist/{hanok_id}', [ApiWishlistsController::class, 'getWishList']);
