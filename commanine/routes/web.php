@@ -49,8 +49,8 @@ Route::get('/hanoks/detail/{id}',[HanoksController::class,'hanoksDetail'])->name
 // 0613 YSH new
 // 회원 정보 페이지(내 예약)
 Route::get('/users/information/reserve',[UsersInfoController::class,'reserveInfo'])->name('users.information.reserve');
-// 회원 정보 페이지(찜)
-Route::get('/users/information/dibs',[UsersInfoController::class,'dibsInfo'])->name('users.information.dibs');
+// // 회원 정보 페이지(찜)
+// Route::get('/users/information/dibs',[UsersInfoController::class,'dibsInfo'])->name('users.information.dibs');
 // 회원 정보 페이지(회원 정보)
 Route::get('/users/information/info',[UsersInfoController::class,'info'])->name('users.information.info');
 // 회원 정보 수정페이지
@@ -58,8 +58,8 @@ Route::get('/users/information/info/edit',[UsersInfoController::class,'infoedit'
 Route::post('/users/information/info/editpost',[UsersInfoController::class,'infoeditpost'])->name('users.information.info.edit.post');
 // 회원 정보 페이지 갈때 비밀번호 확인 페이지
 Route::get('users/information/pwchk',[UsersInfoController::class,'infoPwChk'])->name('users.information.pwchk');
-// 회원 정보 페이지(리뷰)
-Route::get('/users/information/review',[UsersInfoController::class,'reviewInfo'])->name('users.information.review');
+// // 회원 정보 페이지(리뷰)
+// Route::get('/users/information/review',[UsersInfoController::class,'reviewInfo'])->name('users.information.review');
 // 회원 정보 수정->탈퇴 처리시 비밀 번호 확인 페이지
 Route::get('/users/information/unregist/pwchk',[UsersInfoController::class,'unregistPwChk'])->name('users.unregist.pwchk');
 Route::post('/users/information/unregist/pwchkpost',[UsersInfoController::class,'unregistPwChkpost'])->name('users.unregist.pwchk.post');
@@ -69,6 +69,8 @@ Route::get('/users/information/unregist',[UsersInfoController::class,'unregist']
 Route::post('/users/information/unregist/complete',[UsersInfoController::class,'unregistComp'])->name('users.information.unregist.comp');
 // 결제 페이지
 Route::get('/users/payment',[PaymentController::class,'payInfo'])->name('users.payment');
+// 결제 완료 페이지
+Route::post('/users/payment/complete',[PaymentController::class,'payInfopost'])->name('users.payment.comp');
 // YSH new end***********************************************
 
 // 0615 BYJ new
