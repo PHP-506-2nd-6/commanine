@@ -11,5 +11,7 @@ class Reviews extends Model
     use HasFactory;
     use SoftDeletes;
     protected $table = 'reviews';
-    protected $guarded = [];
+    protected $guarded = [
+        'rev_id'
+    ];
 }

@@ -15,14 +15,15 @@
     @include('layout.errors_validate')
     <form action="{{route('users.review.post')}}" method="post">
         @csrf
-        <div class="rating">
-            <input class="rating__result" name="rate" id="rate"> 
+            {{-- <input type="text" name="rate" id="rate"> --}}
+        {{-- <div class="rating"> --}}
+            <input type="text" class="rating__result" name="rate" id="rate">
             <i class="rating__star far fa-star"></i>
             <i class="rating__star far fa-star"></i>
             <i class="rating__star far fa-star"></i>
             <i class="rating__star far fa-star"></i>
             <i class="rating__star far fa-star"></i>
-        </div>
+        {{-- </div> --}}
         <label for="rev_content">내용 : </label>
         <textarea name="rev_content" id="rev_content"></textarea>
         <br>

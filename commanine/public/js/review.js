@@ -30,3 +30,4 @@ function printRatingResult(result, num = 0) {
 }
 
 executeRating(ratingStars, ratingResult);
+var value = document.getElementById("rate");

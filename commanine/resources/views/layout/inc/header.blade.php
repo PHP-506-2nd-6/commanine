@@ -17,7 +17,7 @@
 
                     @auth()
                     <li class="nav-a1"><a href="{{route('users.logout')}}">로그아웃</a></li>
-                    {{-- <li class="nav-a2"><a href="{{route('users.information.pwchk')}}">마이페이지</a></li> --}}
+                    <li class="nav-a2"><a href="{{route('users.information.pwchk')}}">마이페이지</a></li>
                     @endauth
                 </ul>
             </nav>

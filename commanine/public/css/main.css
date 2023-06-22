@@ -1,5 +1,5 @@
 main {
-    height: 2000px;
+    height: 2600px;
 }
 .bg {
     height: 330px;
@@ -29,4 +29,8 @@ main {
 }
 .gnb li:last-child {
     margin-right: 0;
+}
+
+.recent {
+    margin: 100px;
 }
