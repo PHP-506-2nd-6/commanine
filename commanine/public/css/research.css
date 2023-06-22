@@ -47,15 +47,17 @@
     height: 20px;
     background-color: #000;
     border-radius: 50%;
-} 
+}     
+
+
 .slider > .thumb.left {
     left: 0%;
     transform: translate(-15px, -10px);
-}
+}    
 .slider > .thumb.right {
     right: 0%;
     transform: translate(15px, -10px);
-}
+}    
 input[type="range"] {
     position: absolute;
     /* opacity로 가린 것을 이벤트도 비활성화하기 위해 */
@@ -65,7 +67,7 @@ input[type="range"] {
     height: 10px;
     width: 100%;
     opacity: 0;
-}
+}    
 
 input[type="range"]::-webkit-slider-thumb {
     /* 겹쳐진 두 thumb를 모두 활성화 */
@@ -78,38 +80,102 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
     /* appearance를 해야 위의 스타일들을 볼 수 있음 */
     appearance: none;
-}
+}    
 
 
-.countBox{
-    display:none;
-    z-index: 999;
-}
 
-div>p{
-    display:none;
-}
+
 
 ul{
     justify-content: center;
-}
+}    
 
 .thumb{
     position:absolute;
     top:50%;
-}
+}    
 .star{
     width:16px;
     height:16px;
-}
+}    
 
 .searchBox{
     padding:20px;
     border:1px solid #000;
     margin:10px auto;
-}
+}    
 
 .searchList{
     padding: 0;
+}    
+
+.poRelative{
+    position : relative;
 }
 
+.poAbsolute{
+    position:absolute;
+} 
+
+.countBox{
+    display: none;
+    top: 28px;
+    width:183px;
+    background-color: #fff;
+    border:1px solid #000;
+    padding:10px;
+    right:125px;
+    /* position:relative; */
+}
+
+.countBox > div {
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+}
+
+.countBox > div > input {
+    width:100px;
+    position:absolute;
+    right:10px;
+    padding-left:40px;
+}
+
+.searchBtn{
+    width:200px;
+    height:40px;
+}
+
+
+.countBox.active{
+    display: inline-block;
+    top: 28px;
+    width:183px;
+    background-color: #fff;
+    border:1px solid #000;
+    padding:10px 10px 50px 10px;
+    right:125px;
+    /* position:relative; */
+}
+
+.countChkBtn{
+    position : absolute;
+    bottom:10px;
+    left:50%;
+    transform: translateX(-50%);
+}
+.qtybtn{
+    background-color: #fff;
+    border:1px solid #000;
+    color: #000;
+}
+
+.qtybtn:hover{
+    background-color: #000;
+    border:1px solid #fff;
+    color: #fff;
+    transition:all 0.3s;
+}
+
+.pagination{
+    justify-items: center;
+}

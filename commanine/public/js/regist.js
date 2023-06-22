@@ -21,6 +21,9 @@ const pwChkAlert = document.getElementById('pwChkAlert');
 const errmsg = document.querySelectorAll('.errmsg');
 const errbox = document.querySelectorAll('.errbox');
 
+//달력 input
+const birthInput = document.querySelector('#birth');
+
 
 const certification = ()=>{
     const email = document.getElementById('email');
@@ -60,7 +63,7 @@ const certification = ()=>{
 
 
 // 쓰로틀
-// todo : 쓰로틀 수정 필요, 달력, 또 뭐 해야하나..? 고민좀
+
 const throttle = () =>{
     let timer;
     return() => {
@@ -73,6 +76,7 @@ const throttle = () =>{
     }
 }
 
+// birthInput.addEventListener('click',throttleBirth());
 emailBtn.addEventListener('click',throttle(certification));
 //이메일 확인하기 버튼을 누르지 않고 회원가입을 누를 경우 
 registBtn.addEventListener('click', function(event) {

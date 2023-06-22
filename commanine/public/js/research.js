@@ -21,7 +21,7 @@ const maxVal = document.querySelector('.maxVal');
 // 가격 슬라이드 변수 end
 // 인원 박스 
 const countBox = document.querySelector('.countBox');
-const countPerson = document.querySelector('.countPerson');
+const countInput = document.querySelector('.countInput');
 const countChkBtn = document.querySelector('.countChkBtn');
 const adultsVal = document.querySelector('.adultsVal');
 const kidsVal = document.querySelector('.kidsVal');
@@ -29,6 +29,10 @@ const adults = document.querySelector('#adults');
 const kids = document.querySelector('#kids');
 
 const pagination = document.querySelector(".page > nav > .d-none");
+const pages = document.querySelector(".pages");
+const pagesNav = document.querySelector(".pages > nav");
+
+pagesNav.style.display= "block";
 //가격 슬라이드 
 const setLeftValue = () => {
   const _this = inputLeft;
@@ -63,15 +67,15 @@ inputRight.addEventListener('input',function(e) {
 });
 
 // 인원을 클릭했을 때 성인, 어린이를 선택할 수 있는 박스 생성
-countPerson.addEventListener('click',function(e){
-  countBox.style.display = "inline-block";
+countInput.addEventListener('click',function(e){
+  countBox.classList.toggle('active');
 })
 
 
 countChkBtn.addEventListener('click',function(e){
-  countBox.style.display = "none";
+  countBox.classList.toggle('active');
   adults.setAttribute('value',adultsVal.value);
   kids.setAttribute('value',kidsVal.value);
-  countPerson.setAttribute('value', "성인 : "+adultsVal.value+" / 어린이 : "+kidsVal.value);
+  countInput.setAttribute('value', "성인 : "+adultsVal.value+" / 어린이 : "+kidsVal.value);
 })
 
