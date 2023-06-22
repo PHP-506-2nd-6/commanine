@@ -233,10 +233,9 @@ class ResearchController extends Controller
         ,room.room_price
         ,COUNT(review.hanok_id ) AS cnt
         ,AVG(review.rate) AS rate
-         FROM hanoks han
-             JOIN ( SELECT r.hanok_id, MIN(r.room_price) room_price
-                     FROM rooms r  ";
-        // 최대가격
+        FROM hanoks han
+           JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
+                   FROM rooms r ";
         if($val_maxPrice){
             $query .= " WHERE r.room_price <= ".$val_maxPrice; 
         }
@@ -250,49 +249,48 @@ class ResearchController extends Controller
         }
         // 체크인 / 체크아웃
         if($val_chkIn){
-        $query .= " AND NOT EXISTS
-            (SELECT 1
-            FROM reservations res
-            WHERE res.room_id = r.id
-            AND (res.chk_in >=  ".$val_chkIn." OR res.chk_in < ".$val_chkOut." ) 
-            OR  (res.chk_out > ".$val_chkIn." OR res.chk_out <= ".$val_chkOut." )) ";
+        $query .= " AND r.id NOT IN      
+                    (SELECT res.room_id
+                    FROM reservations res
+                    WHERE 
+                        res.chk_out >  ".$val_chkIn.
+                    " or res.chk_in < ".$val_chkOut." ) ";
         }
         $query .= " GROUP BY r.hanok_id) room
-            ON han.id = room.hanok_id
-            JOIN reviews review ON han.id = review.hanok_id  ";
-        // 지역
+                    ON han.id = room.hanok_id
+                    left JOIN reviews review ON han.id = review.hanok_id ";
+
         if($val_local){
-            $query .= " WHERE han.hanok_name like "."'%$val_local%'"
-            ." OR han.hanok_addr LIKE "."'%$val_local%'";
-        }
-        // 호텔 유형
+                $query .= " WHERE ( han.hanok_name like "."'%$val_local%'"
+                ." OR han.hanok_addr LIKE "."'%$val_local%'"." ) ";
+                }
+            // 호텔 유형
         if($val_type){
                 $query .= " AND han.hanok_type = "."'$val_type'  ";
         }
-        $query .=" GROUP BY 
-                    han.id
-                    ,han.hanok_name
-                    ,han.hanok_img1
-                    ,room.room_price 
-                    order by room.room_price ";
-        
+                $query .=" GROUP BY 
+                han.id
+                ,han.hanok_name
+                ,room.room_price 
+
+                order by room.room_price ";
 
 
-        $val_local = $req->input('locOrHan');
-        // 체크인
-        $val_chkIn = $req->input('chkIn');
-        // 체크아웃
-        $val_chkOut = $req->input('chkOut');
-        // 체크인 날짜만 선택했을 경우 자동으로 1박으로 계산 
-        if($val_chkOut === null){
-            $val_chkOut = date('Y-m-d', strtotime($val_chkIn . ' +1 day'));
-        }
+
+                $val_local = $req->input('locOrHan');
+                // 체크인
+                $val_chkIn = $req->input('chkIn');
+                // 체크아웃
+                $val_chkOut = $req->input('chkOut');
+                // 체크인 날짜만 선택했을 경우 자동으로 1박으로 계산 
+                if($val_chkOut === null){
+                    $val_chkOut = date('Y-m-d', strtotime($val_chkIn . ' +1 day'));
+                }
                 
-
-
 
         $result = DB::select($query);
         // return var_dump($val_count);
+        // return print_r($query);
         $notices = $this->arrayPaginator($result, $req);
         return view('research')
                 ->with('searches', $notices)

@@ -4,6 +4,11 @@
  * 파일명     : research.css
  * 이력       : 0621 KMH new
  * *********************************** */ 
+ /* .container {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 30px;
+} */
  .middle {
     position: relative;
     width: 50%;
@@ -23,7 +28,7 @@
     top: 0;
     bottom: 0;
     border-radius: 5px;
-    background-color: #c6aee7;
+    background-color: #e2e2e2;
 }
 .slider > .range {
     position: absolute;
@@ -33,14 +38,14 @@
     top: 0;
     bottom: 0;
     border-radius: 5px;
-    background-color: #6200ee;
+    background-color: #000;
 }
 .slider > .thumb {
     position: absolute;
     z-index: 999;
-    width: 30px;
-    height: 30px;
-    background-color: #6200ee;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
     border-radius: 50%;
 } 
 .slider > .thumb.left {
@@ -65,11 +70,11 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
     /* 겹쳐진 두 thumb를 모두 활성화 */
     pointer-events: all;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border-radius: 0;
     border: 0 none;
-    background-color: red;
+    background-color: #e2e2e2;
     cursor: pointer;
     /* appearance를 해야 위의 스타일들을 볼 수 있음 */
     appearance: none;
@@ -78,6 +83,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 .countBox{
     display:none;
+    z-index: 999;
 }
 
 div>p{
@@ -88,5 +94,22 @@ ul{
     justify-content: center;
 }
 
+.thumb{
+    position:absolute;
+    top:50%;
+}
+.star{
+    width:16px;
+    height:16px;
+}
 
+.searchBox{
+    padding:20px;
+    border:1px solid #000;
+    margin:10px auto;
+}
+
+.searchList{
+    padding: 0;
+}
 
