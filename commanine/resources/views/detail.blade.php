@@ -105,8 +105,18 @@
                 <button type="button" class="copy">주소복사</button>
             </div>
         </div>
-        <div class="content">서비스
-            <div>어메니티 아이콘</div>
+        <div class="content">
+            <strong>서비스</strong>
+            <br>
+            @foreach($amenities as $val)
+            {{-- <div>{{$val->amenity_category}}</div> --}}
+                @if($val->amenity_category==='0')
+                <img src="{{asset('img/icon/amenities/wifi.png')}}" alt="와이파이" class="amenities">
+                @else
+                    
+                @endif
+            <div>{{$val->amenity_name}}</div>
+            @endforeach
         </div>
         <div class="content">
             <strong>숙소 안내</strong>
@@ -116,7 +126,7 @@
             <br>
             <strong>환불정책</strong>
             <div>
-            {!! nl2br($hanok->hanok_refund) !!}
+                {!! nl2br($hanok->hanok_refund) !!}
             </div>
         </div>
         <div class="content">
@@ -192,7 +202,7 @@
 @empty
     
 @endforelse
-
+{{-- {{var_dump(session('user_id'))}} --}}
 <form>
     <input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}">
     <input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}">

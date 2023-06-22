@@ -20,7 +20,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('amenity_categories', function (Blueprint $table) {
-            $table->char('id')->primary();
+            $table->char('id', 2)->primary();
             $table->string('amenity_name', 20);
         });
     }

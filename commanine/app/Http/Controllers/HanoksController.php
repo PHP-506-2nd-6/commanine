@@ -90,6 +90,11 @@ class HanoksController extends Controller
                         ->select(DB::raw("count(w.user_id) as 'likes'"))
                         ->where('h.id', '=', $id)
                         ->get();
+        // 0622 해당 숙소의 어메니티 가져오기 KMJ add
+        $amenities = DB::table('amenities as a')
+                            ->join('amenity_categories as ac', 'a.amenity_category', '=', 'ac.id')
+                            ->where('hanok_id', '=', $id)
+                            ->get();
         // 0619 해당 숙소의 리뷰 가져오기 KMJ add
         $reviews = DB::table('hanoks as h')
                         ->join('reviews as r', 'h.id', '=', 'r.hanok_id')
@@ -98,9 +103,9 @@ class HanoksController extends Controller
                         // ->groupBy('r.rev_id')
                         ->get();
         // TODO 리턴값 확인용 
-        // return var_dump($rooms);
+        // return var_dump($amenities);
         // return view('detail')->with('hanok', $hanoks); // 0615 KMJ del
-        return view('detail')->with('hanok', $hanoks)->with('rooms', $rooms)->with('likes', $likes[0])->with('reviews', $reviews); // 0615 KMJ new
+        return view('detail')->with('hanok', $hanoks)->with('rooms', $rooms)->with('likes', $likes[0])->with('amenities', $amenities)->with('reviews', $reviews); // 0615 KMJ new
     }
 
 
