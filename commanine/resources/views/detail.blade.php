@@ -39,13 +39,17 @@
                 <input type="date" name="date" id="date">
                 <button>적용</button>
             </div> --}}
-            <form id="frm" method="get" action="" >
+            <form id="frm" method="get" action="">
                 <div class="search_form">
                     <div class="search_form2">
                         <label for="chk_in">체크인</label>
                         <input type="date" id="chkIn" name="chk_in" required>
                         <label for="chk_out">체크아웃</label>
                         <input type="date" id="chkOut" name="chk_out">
+                        {{-- <label for="chk_in">체크인</label>
+                        <input type="text" name="chk_in" class="datepicker" value="{{old('chk_in')}}" required>
+                        <label for="chk_out">체크아웃</label>
+                        <input type="text" name="chk_out" class="datepicker2" value="{{old('chk_out')}}"> --}}
                         <span>성인</span>
                         <input type="number" min="1" max="16" value="2" id="adult" name="reserve_adult">
                         <span>아동</span>
@@ -61,12 +65,14 @@
                                 <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}">
                             </div>
                             <div style="width:100%">
-                            <input type="hidden" name="room_id" id="room_id" value="{{$val->id}}" disabled>
+                            {{-- <input type="hidden" name="test{{$i}}" class="test" value="test"> --}}
+                            <input type="hidden" name="room_id" class="room_id" value="{{$val->id}}" disabled>
                             <h5>{{$val->id}}</h5>
                             <h5>{{$val->room_name}}</h5>
                                 <span>가격 {{number_format($val->room_price)}} / 1박</span>
                                 <button type="button" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내 ></button>
-                                <button type="button" class="reserveBtn" onclick="return reserve()">예약하기</button>
+                                <button type="button" class="reserveBtn">예약하기</button>
+                                {{-- <button type="button" class="reserveBtn" onclick="return reserve()">예약하기</button> --}}
                             </div>
                     </div>
                 </div>
@@ -108,15 +114,12 @@
         <div class="content">
             <strong>서비스</strong>
             <br>
-            @foreach($amenities as $val)
-            {{-- <div>{{$val->amenity_category}}</div> --}}
-                @if($val->amenity_category==='0')
-                <img src="{{asset('img/icon/amenities/wifi.png')}}" alt="와이파이" class="amenities">
-                @else
-                    
-                @endif
-            <div>{{$val->amenity_name}}</div>
-            @endforeach
+            <div class="serviceCon">
+                @foreach($amenities as $val)
+                    <img src="{{asset($val->icon_img)}}" alt="{{$val->amenity_name}}" class="amenities">
+                    <span>{{$val->amenity_name}}</span>
+                @endforeach
+            </div>
         </div>
         <div class="content">
             <strong>숙소 안내</strong>

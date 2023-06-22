@@ -65,6 +65,7 @@ class HanoksController extends Controller
         $val_chkIn = $req->input('chk_in');
         // $val_chkIn = '2023-06-14';
         $val_chkOut = $req->input('chk_out');
+        // return var_dump($rooms);
         // $val_chkOut = '2023-06-15';
         $query =
         " SELECT * "

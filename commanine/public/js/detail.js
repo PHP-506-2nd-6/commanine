@@ -12,22 +12,33 @@ const latitude = document.querySelector('#latitude').value;
 
 const searchBtn = document.querySelector('.searchBtn');
 const reserveBtn = document.querySelectorAll('.reserveBtn');
+const room_id = document.querySelectorAll('.room_id');
 
 const frm = document.querySelector('#frm')
 
-const room_id = document.querySelector('#room_id');
+reserveBtn.forEach((btn, index)=> {
+    btn.addEventListener('click', () => {
+        // reserveBtn.forEach(btn=>{btn.setAttribute('disabled','true')})
+        // btn.removeAttribute('disabled')
+        room_id.forEach(id => {id.setAttribute('disabled','true');});
+        room_id[index].removeAttribute('disabled')
+        frm.submit();
+    })
+})
+
 
 searchBtn.addEventListener('click', ()=>{
+
     room_id.setAttribute('disabled','true');
     // frm.action="http://localhost/users/login";
 })
 
-function reserve() {
-    room_id.removeAttribute('disabled')
-    frm.action="http://localhost";
-    frm.submit();
-    // return true;
-}
+// function reserve() {
+//     // room_id.removeAttribute('disabled')
+//     // frm.action="http://localhost/users/payment";
+//     frm.submit();
+//     // return true;
+// }
 
 const chkIn = document.querySelector('#chkIn');
 const chkOut = document.querySelector('#chkOut');
@@ -52,6 +63,15 @@ tabs.forEach((tab, index)=>{
         map.setCenter(new kakao.maps.LatLng(latitude, longitude));
     })
 })
+
+// reserveBtn.forEach((btn, index)=> {
+//     btn.addEventListener('click', () => {
+//         // reserveBtn.forEach(btn=>{btn.setAttribute('disabled','true')})
+//         // btn.removeAttribute('disabled')
+//         room_id.forEach(id => {id.setAttribute('disabled','true');});
+//         room_id[index].removeAttribute('disabled')
+//     })
+// })
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
