@@ -9,18 +9,26 @@
 @extends('layout.layout')
 <head>
     <link rel="stylesheet" href="{{asset('css/research.css')}}">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 @section('contents')
-<div class="container row">
 
-    <form action="{{route('research.page.get')}}" method="get" class="row">
+<div class=" containerBox container row " style="margin-top : 40px;">
+
+    <form action="{{route('research.page.get')}}" method="get" class="row formBox">
         <div class="row">
             <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" class="col-3" value="{{$local }}">
-            <div class="search_form2 col-8 row">
+            {{-- <div class="search_form2 col-8 row">
                 <label for="chkIn" class="col-2">체크인</label>
                 <input type="date" name="chkIn" class="col" id="chkIn" value="{{$chkIn}}">
                 <label for="chkOut" class="col-2">체크아웃</label>
                 <input type="date"  name="chkOut" class="col" id="chkOut" value="{{$chkOut}}">
+            </div> --}}
+            <div class="search_form2">
+                <label for="chk_in">체크인</label>
+                <input type="text" class="datepicker">
+                <label for="chk_out">체크아웃</label>
+                <input type="text" class="datepicker2">
             </div>
         </div>
         <div class="row">
@@ -74,38 +82,42 @@
         <li>별점 순</li>
         <li>찜 많은 순</li>
     </ul> --}}
-    <div class="col">
+    <div class="col searchList">
         @forelse($searches as $value)
-            <a href="{{route('hanoks.detail',$value->id)}}">
-                <div class="row">
-                    <div>
-                        {{$value->hanok_name}}
-                    </div>
-                    <div>
+            <div class="searchBox">
+                <a href="{{route('hanoks.detail',$value->id)}}" class="row">
+                    <div class="col-3">
                         <img src="{{asset($value->hanok_img1)}}" >
                     </div>
-                    <div>
-                        {{$value->room_price}} / 1박
+                    <div class="col-9">
+                        <div>
+                        {{-- 숙소명 --}}
+                            {{$value->hanok_name}}
+                        </div>
+                        <div>
+                        {{-- 리뷰 개수 --}}
+                            <span><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
+                            <span>{{$value->cnt}}</span>
+                        {{-- 별점 평균 --}}
+                            <span>{{isset($value->rate) ? $value->rate : "0"}}</span>
+                        </div>
+                        <div>
+                        {{-- 숙소 가격 --}}
+                            {{$value->room_price}} / 1박
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         @empty
-            <div class="row">검색된 결과가 없습니다.</div>
+            <div class="row searchBox" >검색된 결과가 없습니다.</div>
         @endforelse
     </div>
- <div class = "text-center"> 
- {{$searches->onEachSide(3)->withQueryString()->links()}}
- </div>
-    {{-- @foreach($searches  as $search)
-        <tr>
-            <th scope="row">{{$search->id}}</th>
-            <td>{{$search->hanok_name}}</td>
-            <td>{{$search->hanok_img1}}</td>
-        </tr>
-    @endforeach --}}
-
+    <div class = "text-center"> 
+        {{$searches->onEachSide(3)->withQueryString()->links()}}
+    </div>
 </div>
 
     
     <script src="{{asset('js/research.js')}}"></script>
+
 @endsection

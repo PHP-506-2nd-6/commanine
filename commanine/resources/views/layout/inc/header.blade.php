@@ -38,9 +38,9 @@
                             </div>
                             <div class="search_form2">
                                 <label for="chk_in">체크인</label>
-                                <input type="text" id="datepicker">
+                                <input type="text" class="datepicker">
                                 <label for="chk_out">체크아웃</label>
-                                <input type="text" id="datepicker2">
+                                <input type="text" class="datepicker2">
                             </div>
                                 {{-- <span>인원 : </span><span id='result'>0</span>
                                 <input type='button' onclick='count("plus")' value='+'/>
