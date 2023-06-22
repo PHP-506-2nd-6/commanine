@@ -9,5 +9,6 @@
         <input type="text" name="user_pw" placeholder="비밀번호를 적어주세요">
         <button type="submit">확인</button>
         <button type="button" onclick="location.href= '{{route('users.information.info')}}'">취소</button>
+        
     </form>
 </div>

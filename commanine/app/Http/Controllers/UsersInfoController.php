@@ -12,6 +12,7 @@ use App\Models\Reservations;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\VarDumper\VarDumper;
@@ -21,14 +22,30 @@ class UsersInfoController extends Controller
     // 내 예약 정보 출력 페이지
     public function reserveInfo() {
         // $users = Users::find(Auth::User()->id); // 로그인된 id의 레코드 가져오는 방법
-        $users = Reservations::find(Auth::User()->user_id);
-        return view('informationreserve')->with('data', $users);
+        // $users = Reservations::find(Auth::User()->user_id);
+        // return view('informationreserve')->with('data', $users);
+
+        // 0622 BYJ
+        // $user_id = Reservations::find(Auth::User()->user_id);
+        // 예약 플래그 ??
+        $user_id = Auth::User()->user_id;
+        $query = DB::table('rooms as room')
+        ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
+        ->join('reservations as re', 're.room_id', '=', 'room.id')
+        ->select('han.hanok_name', 'han.hanok_img1', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id')
+        ->where('re.user_id', $user_id)
+        ->orderBy('re.id', 'desc')
+        ->get();
+        
+        return view('informationreserve')->with('reserve', $query);
+        
 
         // 로그인 안되었을 시 로그인 페이지 리다이렉트
         if(auth()->guest()) {
             return redirect()->route('users.login');
         }
     }
+    
     // 내 찜 정보 출력 페이지
     public function dibsInfo() {
         $users = Reservations::find(Auth::User()->user_id);
@@ -141,7 +158,8 @@ class UsersInfoController extends Controller
                 $error = '비밀번호를 다시한번 확인해 주세요.';
                 return redirect()->back()->with('error',$error);
             }
-            return view('informationinfo')->with('data', $baseUser);
+            // return view('informationinfo')->with('data', $baseUser);
+            return view('informationinfoedit')->with('data', $baseUser);
         }
     }
     // 탈퇴 완료후 메인 페이지 이동

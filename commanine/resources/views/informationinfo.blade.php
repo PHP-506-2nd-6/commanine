@@ -18,7 +18,7 @@
             <div>{{$data->user_num}}</div>
             <div>생년월일</div>
             <div>{{$data->user_birth}}</div>
-            <button type="button" onclick="location.href='{{route('users.information.info.edit')}}'">회원 정보 수정</button>
+            <button type="button" onclick="location.href='{{route('users.information.pwchk')}}'">회원 정보 수정</button>
         </div>
     </div>
 

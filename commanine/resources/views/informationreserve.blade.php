@@ -1,4 +1,5 @@
-{{-- @section('contents') --}}
+@extends('layout.layout')
+@section('contents')
     <div>
         <div>
             <ul>
@@ -10,27 +11,31 @@
         </div>
         <div>
             <h1>예약 내역</h1>
-            @forelse($variable as $data)
             <div>
-                <img src="{{asset('/img/hanokimg/hanok1.jpg')}}" alt="#">
+                @forelse($reserve as $data)
+                <img src="{{asset($data->hanok_img1)}}" alt="#">
+                <div>아이디</div>
+                <div><p>{{$data->user_id}}</p></div>
                 <div>숙소명</div>
-                <div>{{$data->hotel_name}}</div>
+                <div><p>{{$data->hanok_name}}</p></div>
                 <div>객실명</div>
-                <div>{{$data->room_name}}</div>
+                <div><p>{{$data->room_name}}</p></div>
                 <div>가격</div>
-                {{-- <div>{{$data->room_price}}</div> --}}
+                <div>{{$data->room_price}}</div>
                 <div>예약 날짜</div>
-                <div>{{$data->chk_in}} ~ {{$data->chk_out}}</div>
+                <div><p>{{$data->chk_in}} ~ {{$data->chk_out}}</p></div>
                 <div>인원</div>
-                <div>{{$data->reserve_adult}}</div>
-            </div>
+                <div><p>{{$data->reserve_adult}}</p></div>
+
+                <a href="{{route('users.review')}}">리뷰 작성하기</a>
         @empty
-            <span>작성한 리뷰가 없습니다.</span> 
+            <span>예약한 숙소가 없습니다.</span> 
         @endforelse
+            </div>
         </div>
     </div>
 
 
 
 
-{{-- @endsection --}}
+@endsection
