@@ -271,8 +271,9 @@ class ResearchController extends Controller
                 $query .=" GROUP BY 
                 han.id
                 ,han.hanok_name
+                ,han.hanok_img1
                 ,room.room_price 
-
+                
                 order by room.room_price ";
 
 

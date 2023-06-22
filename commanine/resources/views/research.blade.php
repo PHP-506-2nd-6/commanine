@@ -25,10 +25,10 @@
                 <input type="date"  name="chkOut" class="col" id="chkOut" value="{{$chkOut}}">
             </div> --}}
             <div class="search_form2">
-                <label for="chk_in">체크인</label>
-                <input type="text" class="datepicker">
-                <label for="chk_out">체크아웃</label>
-                <input type="text" class="datepicker2">
+                <label for="chkIn">체크인</label>
+                <input type="text" class="datepicker" name="chkIn" >
+                <label for="chkOut">체크아웃</label>
+                <input type="text" class="datepicker2" name="chkOut" value="{{$chkOut}}">
             </div>
         </div>
         <div class="row">
