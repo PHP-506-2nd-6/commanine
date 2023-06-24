@@ -1,5 +1,5 @@
 main {
-    height: 2600px;
+    height: 3000px;
 }
 .bg {
     height: 330px;
@@ -25,7 +25,7 @@ main {
 }
 .gnb li {
     display: inline-block;
-    margin: 0 100px 0 0;
+    margin: 0 120px 0 0;
 }
 .gnb li:last-child {
     margin-right: 0;
@@ -38,8 +38,8 @@ main {
 /* section 02*/
 .myCarousel {
     position: relative;
-    background-color: #efefef;
-    height: 850px;
+    background-color: #f8f8f8;
+    height: 700px;
 }
 
 .myCarousel .slides-wrapper .slides {
@@ -50,76 +50,20 @@ main {
     height: 60%;
     width: 30%;
     top: 20%;
-    right: 5%;
+    right: 10%;
     left: 60%;
 }
 
-.myCarousel .slides-wrapper .slides.content .bodytext {
+/* .myCarousel .slides-wrapper .slides.content .bodytext {
     padding: 80px 0;
     position: relative;
     top: 10%;
     transform: translateY(-30%);
     color: #000;
-}
-
-.myCarousel .slides-wrapper .slides.content .bodytext .tag_01 {
-    padding: 5px 10px;
-    margin: 0 20px;
-    border: 1.5px solid #fff;
-    font-size: 12px;
-    border-radius: 21px;
-    /*
-font-family: 'Noto Sans KR';
-font-weight: 800;
-*/
-    cursor: pointer;
-    font-family: "roboto";
-    font-weight: 600;
-}
-
-.myCarousel .slides-wrapper .slides.content .bodytext .tag_02 {
-    padding: 5px 10px;
-    margin: 0 20px;
-    border: 1.5px solid #fff;
-    font-size: 12px;
-    border-radius: 21px;
-    /*
-font-family: 'Noto Sans KR';
-font-weight: 800;
-*/
-    cursor: pointer;
-    font-family: "roboto";
-    font-weight: 600;
-}
-
-.myCarousel .slides-wrapper .slides.content .bodytext .tag_03 {
-    padding: 5px 10px;
-    margin: 0 20px;
-    border: 1.5px solid #fff;
-    font-size: 12px;
-    border-radius: 21px;
-    font-family: "roboto";
-    font-weight: 600;
-    cursor: pointer;
-}
+} */
 
 .myCarousel .slides-wrapper .slides.content .bodytext .tag {
     padding: 60px 0;
-}
-
-.myCarousel .slides-wrapper .slides.content .bodytext .tag_01:hover {
-    /* background-color: #decfb6; */
-    color: #555;
-}
-
-.myCarousel .slides-wrapper .slides.content .bodytext .tag_02:hover {
-    /* background-color: #a3af66; */
-    color: #555;
-}
-
-.myCarousel .slides-wrapper .slides.content .bodytext .tag_03:hover {
-    /* background-color: #ffb6c1; */
-    color: #555;
 }
 
 .myCarousel .slides-wrapper .slides.content .title {
@@ -129,28 +73,26 @@ font-weight: 800;
 }
 
 .myCarousel .slides-wrapper .slides.content .subtitle {
-    line-height: 1.5;
     font-size: 15px;
 }
 
 .myCarousel .slides-wrapper .slides.photo {
     height: 60%;
-    width: 50%;
+    width: 30%;
     top: 20%;
-    left: 15%;
-    z-index: 999999;
-    /*    width: 700px;*/
+    left: 20%;
 }
 
 .myCarousel .slides-wrapper .slides.photo .image {
+    /* position: relative; */
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     background-size: cover;
     background-position: center;
 }
 
 .myCarousel .slides-wrapper .slides.photo .image img {
-    width: 80%;
+    width: 100%;
 }
 
 .myCarousel .slides-wrapper .slides.title {
@@ -179,7 +121,6 @@ font-weight: 800;
 .myCarousel .slides-wrapper .slides.title .link {
     /*    position: relative;*/
     color: #444;
-    text-transform: uppercase;
     font-size: 15px;
     letter-spacing: 2px;
     margin-left: 3px;
@@ -191,18 +132,6 @@ font-weight: 800;
 
 .myCarousel .slides-wrapper .slides.title .link:hover:after {
     right: -18px;
-}
-
-.myCarousel .slides-wrapper .slides.title .red {
-    /* background-color: #decfb6; */
-}
-
-.myCarousel .slides-wrapper .slides.title .blue {
-    /* background-color: #a3af66; */
-}
-
-.myCarousel .slides-wrapper .slides.title .green {
-    /* background-color: lightpink; */
 }
 
 .myCarousel .slides-wrapper .slides.counter {
@@ -248,7 +177,36 @@ font-weight: 800;
 }
 
 .myCarousel #arrows .prev {
+    position: relative;
     margin-right: 45px;
+}
+
+.myCarousel #arrows .next {
+    position: relative;
+}
+
+.myCarousel #arrows .prev::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+    transform: rotate(225deg);
+}
+
+.myCarousel #arrows .next::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+    transform: rotate(-320deg);
 }
 
 .myCarousel #arrows .prev.disable,
@@ -287,19 +245,6 @@ font-weight: 800;
 
     .myCarousel .slides-wrapper .slides.content .subtitle {
         font-size: 13px;
-    }
-
-    .myCarousel .slides-wrapper .slides.content .bodytext .tag_01 {
-        font-size: 10px;
-    }
-
-    .myCarousel .slides-wrapper .slides.content .bodytext .tag_02 {
-        padding: 5px 5px;
-        font-size: 10px;
-    }
-
-    .myCarousel .slides-wrapper .slides.content .bodytext .tag_03 {
-        font-size: 10px;
     }
 
     .myCarousel #arrows span {
@@ -356,10 +301,6 @@ font-weight: 800;
         right: 10%;
     }
 
-    .myCarousel .slides-wrapper .slides.content .bodytext .tag_02 {
-        padding: 5px 3px;
-    }
-
     .myCarousel #arrows .prev,
     .myCarousel #arrows .next {
         font-size: 50px;
@@ -386,24 +327,6 @@ font-weight: 800;
 
     .myCarousel #arrows .prev {
         margin-right: 30px;
-    }
-
-    .myCarousel .slides-wrapper .slides.content .bodytext .tag_01 {
-        font-size: 8px;
-        display: block;
-        margin: 8px 0;
-    }
-
-    .myCarousel .slides-wrapper .slides.content .bodytext .tag_02 {
-        font-size: 8px;
-        display: block;
-        margin: 8px 0;
-    }
-
-    .myCarousel .slides-wrapper .slides.content .bodytext .tag_03 {
-        font-size: 8px;
-        display: block;
-        margin: 8px 0;
     }
 
     .myCarousel .slides-wrapper .slides.photo {

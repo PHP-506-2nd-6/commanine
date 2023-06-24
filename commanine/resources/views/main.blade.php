@@ -8,8 +8,6 @@
 <head>
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"/>
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"> --}}
 </head>
 
 @section('contents')
@@ -76,23 +74,25 @@
 
 
 {{-- test --}}
-{{-- <section id="menu2" class="content02">
+<section id="menu2" class="content02">
                 <div class="split myCarousel">
                     <div class="inner-wrapper">
+<h2 style="text-align:center">인 기 숙 소</h2>
                         <div class="slides-wrapper">
                             <div class="slides content">
+                                @foreach($wish as $val2)
                                 <div class="slide">
                                     <div class="bodytext">
-                                        <h2 class="title">vfx</h2>
-                                        <p class="subtitle">LOCUS는 최고의 VFX 기술을 보유하고 모든 미디어 플랫폼을 위한 <br> 컨텐츠 제작 및 크리에이티브 솔루션을 제공합니다.</p>
+                                        <h3 class="card-title">{{$val2->hanok_name}}</h3>
+                                        <p class="card-text">{{$val2->hanok_local}}</p>
+                                        <p class="card-text">별점</p>
                                         <div class="tag">
-                                            <span class="tag_01"># 3D Animation</span>
-                                            <!--                                            <span class="tag_01"># Visual Experience</span>-->
-                                            <span class="tag_01"># Game Cinematic</span>
+                                            <p class="card-text">{{number_format($val2->room_price)}}원</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="slide">
+                                @endforeach
+                                {{-- <div class="slide">
                                     <div class="bodytext">
                                         <h2 class="title">animation</h2>
                                         <p class="subtitle">LOCUS는 세계 최고 수준의 3D 애니메이션 제작 역량을 보유하고 <br> 다양한 TV, 극장용 애니메이션 제작을 진행하고 있습니다.</p>
@@ -113,12 +113,19 @@
                                             <span class="tag_03"># Licensing Business</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
 
 
                             <div class="slides photo">
+                                @foreach($wish as $val2)
                                 <div class="slide">
+                                    <div class="image">
+                                        <a href="{{route('hanoks.detail', ['id' => $val2->id])}}"><img src="{{asset($val2->hanok_img1)}}" class="card-img-top" alt="..."></a>
+                                    </div>
+                                </div>
+                                @endforeach
+                                {{-- <div class="slide">
                                     <div class="image">
                                         <img src="https://img.freepik.com/free-photo/cloud-and-blue-sky_1150-35749.jpg" alt="">
                                     </div>
@@ -127,41 +134,30 @@
                                     <div class="image">
                                         <img src="https://img.freepik.com/free-photo/cloud-and-blue-sky_1150-35749.jpg" alt="">
                                     </div>
-                                </div>
-                                <div class="slide">
-                                    <div class="image">
-                                        <img src="https://img.freepik.com/free-photo/cloud-and-blue-sky_1150-35749.jpg" alt="">
-                                    </div>
-                                </div>
+                                </div> --}}
                             </div>
 
-                            <div class="slides title">
-                                <div class="slide red">
-                                    <div class="bodytext ">
-                                        <a class="link" href="#"><span>View more</span></a>
-                                    </div>
+                            {{-- <div class="slides title">
+                                <div class="bodytext ">
+                                    <a class="link" href="#"><span>자세히 보기</span></a>
                                 </div>
-                                <div class="slide blue">
-                                    <div class="bodytext ">
-                                        <a class="link" href="#"><span>View more</span></a>
-                                    </div>
+                                <div class="bodytext ">
+                                    <a class="link" href="#"><span>자세히 보기</span></a>
                                 </div>
-                                <div class="slide green">
-                                    <div class="bodytext ">
-                                        <a class="link" href="#"><span>View more</span></a>
-                                    </div>
+
+                                <div class="bodytext ">
+                                    <a class="link" href="#"><span>자세히 보기</span></a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div id="arrows" class="navigation-wrapper">
-                            <a href="#" class="navigation-arrow prev"><i class="far fa-caret-square-left" aria-hidden="true"></i></a>
-                            <!--                            <span>.</span>-->
-                            <a href="#" class="navigation-arrow next"><i class="far fa-caret-square-right" aria-hidden="true"></i></a>
+                            <a href="#" class="navigation-arrow prev"></a>
+                            <a href="#" class="navigation-arrow next"></a>
                         </div>
                     </div>
                 </div>
-            </section> --}}
+            </section>
 
 
 
@@ -175,7 +171,7 @@
 
 
 {{-- 인기숙소 --}}
-<div id="carouselExample" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+{{-- <div id="carouselExample" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
                 <h3>인 기 숙 소</h3>
                 <div class="carousel-item active">
@@ -190,9 +186,6 @@
                                         <p class="card-text">{{number_format($val2->room_price)}}원</p>
                                         <p class="card-text">{{$val2->hanok_local}}</p>
                                         <p class="card-text">별점</p>
-                                        {{-- <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; color: #333;">
-                                            예약하기
-                                        </button> --}}
                                     </div>
                                 </div>
                             </div>
@@ -209,18 +202,18 @@
                 <span class="carousel-control-next-icon"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-</div>
+</div> --}}
 
 {{-- 최신숙소 --}}
 <div id="carouselExampleControls" class="carousel slide recent" data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
-                <h3>최신숙소</h3>
+                <h2>최신숙소</h2>
                 <div class="carousel-item active">
                     <div class="container d-block w-100">
                         <div class="row row-xxl-3">
                             @foreach($hanok as $val)
                             <div class="col d-flex justify-content-center">
-                                <div class="card" style="width: 20rem;">
+                                <div class="card" style="width: 20rem; border: none;">
                                     <a href="{{route('hanoks.detail', ['id' => $val->id])}}"><img src="{{asset($val->hanok_img1)}}" class="card-img-top" alt="..."></a>
                                     <div class="card-body">
                                         <h5 class="card-title">{{$val->hanok_name}}</h5>
@@ -247,27 +240,6 @@
                 <span class="visually-hidden">Next</span>
             </button> --}}
 </div>
-
-
-
- <!-- Modal -->
-    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                해당 상품을 장바구니에 담겠습니까?
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary">장바구니 담기</button>
-            </div>
-        </div>
-        </div>
-    </div> --}}
 
 
 </main>
