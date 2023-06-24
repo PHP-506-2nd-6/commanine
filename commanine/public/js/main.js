@@ -554,3 +554,11 @@
         }
     });
 })(jQuery);
+
+
+$(".myCarousel").split({
+    theme: "right-to-left ,right-to-left,right-to-left,right-to-left ,fade-in-out",
+    delay: "50",
+    height: "600",
+    infinite: "true",
+});

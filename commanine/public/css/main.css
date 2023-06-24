@@ -38,7 +38,7 @@ main {
 /* section 02*/
 .myCarousel {
     position: relative;
-    background-color: #222;
+    background-color: #efefef;
     height: 850px;
 }
 
@@ -59,7 +59,7 @@ main {
     position: relative;
     top: 10%;
     transform: translateY(-30%);
-    color: #fff;
+    color: #000;
 }
 
 .myCarousel .slides-wrapper .slides.content .bodytext .tag_01 {
@@ -108,17 +108,17 @@ font-weight: 800;
 }
 
 .myCarousel .slides-wrapper .slides.content .bodytext .tag_01:hover {
-    background-color: #decfb6;
+    /* background-color: #decfb6; */
     color: #555;
 }
 
 .myCarousel .slides-wrapper .slides.content .bodytext .tag_02:hover {
-    background-color: #a3af66;
+    /* background-color: #a3af66; */
     color: #555;
 }
 
 .myCarousel .slides-wrapper .slides.content .bodytext .tag_03:hover {
-    background-color: #ffb6c1;
+    /* background-color: #ffb6c1; */
     color: #555;
 }
 
@@ -194,15 +194,15 @@ font-weight: 800;
 }
 
 .myCarousel .slides-wrapper .slides.title .red {
-    background-color: #decfb6;
+    /* background-color: #decfb6; */
 }
 
 .myCarousel .slides-wrapper .slides.title .blue {
-    background-color: #a3af66;
+    /* background-color: #a3af66; */
 }
 
 .myCarousel .slides-wrapper .slides.title .green {
-    background-color: lightpink;
+    /* background-color: lightpink; */
 }
 
 .myCarousel .slides-wrapper .slides.counter {
@@ -231,7 +231,7 @@ font-weight: 800;
     font-size: 15px;
     line-height: 1;
     font-weight: bold;
-    color: #fff;
+    color: #000;
     padding: 0 5px;
 }
 
@@ -425,7 +425,7 @@ font-weight: 800;
 } */
 
 /* split.css */
-/* .split {
+.split {
     position: relative;
 }
 .split .split {
@@ -907,4 +907,4 @@ font-weight: 800;
 .theme-fade-in-out-slow > .slide.next {
     transform: translateY(100%);
     opacity: 0;
-} */
+}
