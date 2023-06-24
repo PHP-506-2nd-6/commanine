@@ -4,78 +4,68 @@
  * 파일명     : research.js
  * 이력       : 0621 KMH new
  * *********************************** */ 
+//가격 range
+$(function() {
 
+  function addSeparator(nStr) {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+    }
+    return x1 + x2;
+  }
 
-// 박스 생성해서 성인과 어린이 수를 체크한 박스의 값이 form의 hidden에 각각 value 값에 들어가야함
-// 확인 누르면 박스 display:none 
+  function updateRangeValues() {
+    var rangeGroup = $(this).attr('name'),
+      minBtn = $(this).parent().children('.min'),
+      maxBtn = $(this).parent().children('.max'),
+      range_min = $(this).parent().children('.range_min'),
+      range_max = $(this).parent().children('.range_max'),
+      minVal = parseInt($(minBtn).val()),
+      maxVal = parseInt($(maxBtn).val()),
+      origin = $(this).context.className;
 
+    if (origin === 'min' && minVal > maxVal - 5) {
+      $(minBtn).val(maxVal - 5);
+    }
+    minVal = parseInt($(minBtn).val());
+    $(range_min).html(addSeparator(minVal) + ' 원');
 
-// 가격 슬라이드 변수
-const inputLeft = document.getElementById("input-left");
-const inputRight = document.getElementById("input-right");
-const thumbLeft = document.querySelector(".slider > .thumb.left");
-const thumbRight = document.querySelector(".slider > .thumb.right");
-const range = document.querySelector(".slider > .range");
-const minVal = document.querySelector('.minVal');
-const maxVal = document.querySelector('.maxVal');
-// 가격 슬라이드 변수 end
-// 인원 박스 
-const countBox = document.querySelector('.countBox');
+    if (origin === 'max' && maxVal - 5 < minVal) {
+      $(maxBtn).val(5 + minVal);
+    }
+    maxVal = parseInt($(maxBtn).val());
+    $(range_max).html(addSeparator(maxVal) + ' 원');
+  }
+
+  $('input[type="range"]').on('input', updateRangeValues);
+});
+
+//가격 range end
+
+// 인원체크 박스
 const countInput = document.querySelector('.countInput');
+const countBox = document.querySelector('.countBox');
 const countChkBtn = document.querySelector('.countChkBtn');
 const adultsVal = document.querySelector('.adultsVal');
 const kidsVal = document.querySelector('.kidsVal');
-const adults = document.querySelector('#adults');
-const kids = document.querySelector('#kids');
-
-const pagination = document.querySelector(".page > nav > .d-none");
-const pages = document.querySelector(".pages");
-const pagesNav = document.querySelector(".pages > nav");
-
-pagesNav.style.display= "block";
-//가격 슬라이드 
-const setLeftValue = () => {
-  const _this = inputLeft;
-  const [min, max] = [parseInt(_this.min), parseInt(_this.max)];
-  // 교차되지 않게, 1을 빼준 건 완전히 겹치기보다는 어느 정도 간격을 남겨두기 위해.
-  _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
-  // input, thumb 같이 움직이도록
-  const percent = ((_this.value - min) / (max - min)) * 100;
-  thumbLeft.style.left = percent + "%";
-  range.style.left = percent + "%";
-};
-
-const setRightValue = () => {
-  const _this = inputRight;
-  const [min, max] = [parseInt(_this.min), parseInt(_this.max)];
-  // 교차되지 않게, 1을 더해준 건 완전히 겹치기보다는 어느 정도 간격을 남겨두기 위해.
-  _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
-  // input, thumb 같이 움직이도록
-  const percent = ((_this.value - min) / (max - min)) * 100;
-  thumbRight.style.right = 100 - percent + "%";
-  range.style.right = 100 - percent + "%";
-};
-
-inputLeft.addEventListener("input", setLeftValue);
-inputRight.addEventListener("input", setRightValue);
-
-inputLeft.addEventListener('input',function(e) {
-    minVal.innerHTML = e.target.value;
-});
-inputRight.addEventListener('input',function(e) {
-    maxVal.innerHTML = e.target.value;
-});
-
-// 인원을 클릭했을 때 성인, 어린이를 선택할 수 있는 박스 생성
-countInput.addEventListener('click',function(e){
+const adultsHide = document.querySelector('.adultsHide');
+const kidsHide = document.querySelector('.kidsHide');
+// 인원input을 눌렀을 때 
+countInput.addEventListener('click',function(){
   countBox.classList.toggle('active');
 })
 
-
-countChkBtn.addEventListener('click',function(e){
-  countBox.classList.toggle('active');
-  adults.setAttribute('value',adultsVal.value);
-  kids.setAttribute('value',kidsVal.value);
-  countInput.setAttribute('value', "성인 : "+adultsVal.value+" / 어린이 : "+kidsVal.value);
+countChkBtn.addEventListener('click',function(){
+    countBox.classList.toggle('active');
+    adultsHide.value = adultsVal.value;
+    kidsHide.value = kidsVal.value;
+    countInput.value="성인 : "+adultsVal.value+" / 어린이 : "+kidsVal.value;
 })
-
+// 성인, 어린이 선택하는 박스가 뜨고
+// 확인 버튼 누르면 박스 삭제
+// 값 이동

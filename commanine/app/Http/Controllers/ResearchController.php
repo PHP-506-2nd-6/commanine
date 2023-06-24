@@ -268,7 +268,7 @@ class ResearchController extends Controller
                 ,han.hanok_img1
                 ,room.room_price 
                 
-                order by room.room_price ";
+                order by room.room_price ;";
 
 
 

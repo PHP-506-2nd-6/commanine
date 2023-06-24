@@ -4,96 +4,76 @@
  * 파일명     : research.css
  * 이력       : 0621 KMH new
  * *********************************** */ 
- /* .container {
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 30px;
-} */
- .middle {
-    position: relative;
-    width: 50%;
-    max-width: 500px;
-  }
-  .slider {
-    position: relative;
-    z-index: 1;
-    height: 10px;
-    margin: 0 15px;
-}
-.slider > .track {
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    border-radius: 5px;
-    background-color: #e2e2e2;
-}
-.slider > .range {
-    position: absolute;
-    z-index: 2;
-    left: 0%;
-    right: 0%;
-    top: 0;
-    bottom: 0;
-    border-radius: 5px;
-    background-color: #000;
-}
-.slider > .thumb {
-    position: absolute;
-    z-index: 999;
-    width: 20px;
-    height: 20px;
-    background-color: #000;
-    border-radius: 50%;
-}     
 
+/* start input-range */
+body{
+    font-family: sans-serif;
+    font-size:14px;
+    }
+    input[type='range'] {
+      width: 210px;
+      height: 30px;
+      overflow: hidden;
+      cursor: pointer;
+        outline: none;
+    }
+    input[type='range'],
+    input[type='range']::-webkit-slider-runnable-track,
+    input[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none;
+        background: none;
+    }
+    input[type='range']::-webkit-slider-runnable-track {
+      width: 200px;
+      height: 1px;
+      background: #000;
+    }
+    
+    input[type='range']:nth-child(2)::-webkit-slider-runnable-track{
+      background: none;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      position: relative;
+      height: 15px;
+      width: 15px;
+      margin-top: -7px;
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: 25px;
+      z-index: 1;
+    }
+    
+    
+    input[type='range']:nth-child(1)::-webkit-slider-thumb{
+      z-index: 2;
+    }
+    
+    .rangeslider{
+        position: relative;
+        height: 60px;
+        width: 210px;
+        display: inline-block;
+        margin-top: -5px;
+        margin-left: 20px;
+    }
+    .rangeslider input{
+        position: absolute;
+    }
+    
+    .rangeslider span{
+        position: absolute;
+        margin-top: 30px;
+        left: 0;
+    }
+    
+    .rangeslider .right{
+       position: relative;
+       float: right;
+       margin-right: -5px;
+    }
+/* end input-range */
 
-.slider > .thumb.left {
-    left: 0%;
-    transform: translate(-15px, -10px);
-}    
-.slider > .thumb.right {
-    right: 0%;
-    transform: translate(15px, -10px);
-}    
-input[type="range"] {
-    position: absolute;
-    /* opacity로 가린 것을 이벤트도 비활성화하기 위해 */
-    pointer-events: none;
-    appearance: none;
-    z-index: 2;
-    height: 10px;
-    width: 100%;
-    opacity: 0;
-}    
-
-input[type="range"]::-webkit-slider-thumb {
-    /* 겹쳐진 두 thumb를 모두 활성화 */
-    pointer-events: all;
-    width: 20px;
-    height: 20px;
-    border-radius: 0;
-    border: 0 none;
-    background-color: #e2e2e2;
-    cursor: pointer;
-    /* appearance를 해야 위의 스타일들을 볼 수 있음 */
-    appearance: none;
-}    
-
-
-
-
-
-ul{
-    justify-content: center;
-}    
-
-.thumb{
-    position:absolute;
-    top:50%;
-}    
 .star{
     width:16px;
     height:16px;
@@ -103,66 +83,64 @@ ul{
     padding:20px;
     border:1px solid #000;
     margin:10px auto;
+    height: 200px;
 }    
 
-.searchList{
-    padding: 0;
-}    
 
-.poRelative{
-    position : relative;
+/* 인원Box start */
+.countWrap{
+    position:relative;
+    height:50px;
+    width:260px;
 }
-
-.poAbsolute{
+.countWrap>label{
+    padding-left:20px;
+}
+.countWrap>input{
     position:absolute;
-} 
-
-.countBox{
-    display: none;
-    top: 28px;
-    width:183px;
+    right:0;
+    /* padding-left: 20px; */
+}
+.countBox {
+    position: absolute;
+    top: 100%; 
+    right:0;
+    border: 1px solid #000;
     background-color: #fff;
-    border:1px solid #000;
-    padding:10px;
-    right:125px;
-    /* position:relative; */
+    width: 180px;
+    height: 150px;
+    display:none;
+    grid-template-rows: repeat(3,1fr);
 }
-
-.countBox > div {
-    display: grid;
-    grid-template-columns: repeat(2,auto);
-}
-
-.countBox > div > input {
-    width:100px;
-    position:absolute;
-    right:10px;
-    padding-left:40px;
-}
-
-.searchBtn{
-    width:200px;
-    height:40px;
-}
-
 
 .countBox.active{
-    display: inline-block;
-    top: 28px;
-    width:183px;
+    position: absolute;
+    top: 100%; 
+    right:0;
+    border: 1px solid #000;
     background-color: #fff;
-    border:1px solid #000;
-    padding:10px 10px 50px 10px;
-    right:125px;
-    /* position:relative; */
+    width: 180px;
+    height: 150px;
+    display:grid;
+    grid-template-rows: repeat(3,1fr);
 }
 
-.countChkBtn{
-    position : absolute;
-    bottom:10px;
-    left:50%;
-    transform: translateX(-50%);
+.countBox>div{
+    padding:10px;
 }
+.countBox>div>input{
+    position:absolute;
+    right:20px;
+    padding-left:20px;
+}
+
+.countBox>button{
+    width:150px;
+    margin:0 auto;
+    height:30px;
+}
+/* 인원Box end */
+
 .qtybtn{
     background-color: #fff;
     border:1px solid #000;
@@ -176,6 +154,93 @@ ul{
     transition:all 0.3s;
 }
 
-.pagination{
-    justify-items: center;
+
+
+.formBox{
+    height: 100%;
+    /* padding:20px; */
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    /* justify-items: center; */
+}
+.selectBox, .selectBox > option{
+    width:200px;
+    height:30px;
+}
+.searchFirstBox{
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+}
+.dayBox{
+    display:grid;
+    grid-template-columns: 2fr 2fr 1fr 2fr 2fr 1fr ;
+}
+.searchSecondBox{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    /* height:40px; */
+}
+.searchBtn{
+    justify-self:center;
+    width:180px;
+    height:40px;
+}
+.priceBox{
+    display:grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.priceGrid{
+    display:grid;
+    grid-template-rows: 2fr 1fr;
+}
+div>input{
+    height:30px;
+}
+.searchSecondBox>.countWrap{
+    padding-top:20px;
+}
+.countWrap>label{
+    padding-right:15px;
+}
+.searchSecondBox>select{
+    margin-top:20px;
+}
+.dayBox>label{
+    text-align: right;
+    padding-right:20px;
+}
+
+
+
+.searchList{
+    padding: 0;
+}    
+
+.text-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* 필요한 높이 설정 */
+    padding-top:20px;
+}
+  
+.centered-text {
+    text-align: center;
+}
+
+
+
+
+.ui-datepicker-trigger{
+    background-color: #000;
+    color:#fff;
+    border: none;
+}
+
+.ui-datepicker-trigger:hover{
+    background-color: #fff;
+    color:#000;
+    border: 1px solid #000;
+    transition:all 0.3s;
 }
