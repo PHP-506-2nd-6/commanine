@@ -104,7 +104,7 @@ class HanoksController extends Controller
                         // ->groupBy('r.rev_id')
                         ->get();
         // TODO 리턴값 확인용 
-        // return var_dump($amenities);
+        // return var_dump($reviews);
         // return view('detail')->with('hanok', $hanoks); // 0615 KMJ del
         return view('detail')->with('hanok', $hanoks)->with('rooms', $rooms)->with('likes', $likes[0])->with('amenities', $amenities)->with('reviews', $reviews); // 0615 KMJ new
     }

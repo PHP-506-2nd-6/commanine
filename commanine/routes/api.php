@@ -23,4 +23,4 @@ use App\Http\Controllers\Api\ApiWishlistsController;
 
 Route::get('/users/regist/{email}',[ApiUsersController::class,'getUserChk']);
 
-Route::get('/hanoks/wishlist/{hanok_id}', [ApiWishlistsController::class, 'getWishList']);
+Route::get('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'getWishList']);

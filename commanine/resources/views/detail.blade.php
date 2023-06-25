@@ -33,23 +33,17 @@
     </div>
     <div class="conBox">
         <div class="content active">
-            {{-- <div style="display:inline-block;width:130px;height:30px;text-align:center;border:1px #d6d6d6 solid;border-radius:2px">06-13 ~ 06-14</div>
-            <div style="display:inline-block;width:130px;height:30px;text-align:center;border:1px #d6d6d6 solid;border-radius:2px">투숙객 2명</div>
-            <div class="datePicker">
-                <input type="date" name="date" id="date">
-                <button>적용</button>
-            </div> --}}
             <form id="frm" method="get" action="">
                 <div class="search_form">
                     <div class="search_form2">
-                        <label for="chk_in">체크인</label>
+                        {{-- <label for="chkIn">체크인</label>
                         <input type="date" id="chkIn" name="chk_in" required>
+                        <label for="chkOut">체크아웃</label>
+                        <input type="date" id="chkOut" name="chk_out" value="{{old('chk_out')}}"> --}}
+                        <label for="chk_in">체크인</label>
+                        <input type="text" name="chk_in" class="datepicker" value="{{old('chk_in')}}">
                         <label for="chk_out">체크아웃</label>
-                        <input type="date" id="chkOut" name="chk_out">
-                        {{-- <label for="chk_in">체크인</label>
-                        <input type="text" name="chk_in" class="datepicker" value="{{old('chk_in')}}" required>
-                        <label for="chk_out">체크아웃</label>
-                        <input type="text" name="chk_out" class="datepicker2" value="{{old('chk_out')}}"> --}}
+                        <input type="text" name="chk_out" class="datepicker2" value="{{old('chk_out')}}">
                         <span>성인</span>
                         <input type="number" min="1" max="16" value="2" id="adult" name="reserve_adult">
                         <span>아동</span>
@@ -57,6 +51,7 @@
                     </div>
                     <button type="submit" class="searchBtn">검색</button>
                 </div>
+                <input type="hidden" name="room_id" class="room_id" disabled="true">
                 @php($i = 0)
                 @forelse($rooms as $val)
                 <div class="room" style="border:1px #d6d6d6 solid;">
@@ -65,14 +60,10 @@
                                 <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}">
                             </div>
                             <div style="width:100%">
-                            {{-- <input type="hidden" name="test{{$i}}" class="test" value="test"> --}}
-                            <input type="hidden" name="room_id" class="room_id" value="{{$val->id}}" disabled>
-                            <h5>{{$val->id}}</h5>
                             <h5>{{$val->room_name}}</h5>
                                 <span>가격 {{number_format($val->room_price)}} / 1박</span>
                                 <button type="button" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내 ></button>
-                                <button type="button" class="reserveBtn">예약하기</button>
-                                {{-- <button type="button" class="reserveBtn" onclick="return reserve()">예약하기</button> --}}
+                                <button type="button" class="reserveBtn" value="{{$val->id}}">예약하기</button>
                             </div>
                     </div>
                 </div>
@@ -133,10 +124,12 @@
             </div>
         </div>
         <div class="content">
+            <div>평균 별점이랑 리뷰 갯수 출력</div>
             @forelse($reviews as $val)
-                <div>평균 별점이랑 리뷰 갯수 출력</div>
                 <div>
-                    {!! nl2br($hanok->hanok_refund) !!}
+                    {!! nl2br($val->rev_content) !!}
+                    {!! nl2br($val->rate) !!}
+                    {!! nl2br(substr($val->created_at, 0, 10)) !!}
                 </div>
             @empty
             <div>아직 리뷰가 작성되지 않았습니다.</div>
@@ -206,10 +199,11 @@
     
 @endforelse
 {{-- {{var_dump(session('user_id'))}} --}}
-<form>
-    <input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}">
-    <input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}">
-</form>
+
+<input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}">
+<input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}">
+<input type="hidden" name="user_id" id="user_id" value="{{session("user_id")}}">
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script>
 <script src="{{asset('js/detail.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

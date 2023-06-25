@@ -4,6 +4,7 @@
  * 파일명     : detail.js
  * 이력       : 0615 KMJ new
  *              0619 KMJ add
+ *              0625 KMJ add
  * *********************************** */ 
 const tabs = document.querySelectorAll('.tabBtn');
 const contents = document.querySelectorAll('.content');
@@ -12,26 +13,58 @@ const latitude = document.querySelector('#latitude').value;
 
 const searchBtn = document.querySelector('.searchBtn');
 const reserveBtn = document.querySelectorAll('.reserveBtn');
-const room_id = document.querySelectorAll('.room_id');
+const room_id = document.querySelector('.room_id');
 
-const frm = document.querySelector('#frm')
+const frm = document.querySelector('#frm');
+const likeBtn = document.querySelector(".like");
 
+const hanokId = window.location.pathname.substring(15);
+
+likeBtn.addEventListener('click',userLike);
+
+const userLike = (hanokId) => {
+    const url = "/api/wishlist/"+hanokId;
+    const user_id = document.querySelector("#user_id");
+
+    fetch(url)
+    .then(data=>{
+        if (data.status !== 200) {
+            throw new Error(data.status + ' : API Response Error');
+        }
+    return data.json();
+    })
+    .then(apiData =>{
+        if (apiData["errcode"] === "E01") {
+            alert(apiData["msg"]);
+        } else {
+            alert(apiData["msg"]);
+        }
+    })
+    .catch(error => alert(error.message));
+}
+
+searchBtn.addEventListener('click', () => {
+    room_id.disabled = true;
+    frm.action="";
+})
+
+// 0625 KMJ add
 reserveBtn.forEach((btn, index)=> {
     btn.addEventListener('click', () => {
-        // reserveBtn.forEach(btn=>{btn.setAttribute('disabled','true')})
-        // btn.removeAttribute('disabled')
-        room_id.forEach(id => {id.setAttribute('disabled','true');});
-        room_id[index].removeAttribute('disabled')
+        // 폼 action 결제 페이지로 바꾸기
+        frm.action="http://localhost/users/payment";
+        // room_id활성화 시키고 버튼 value에 있는 객실 번호 전달
+        room_id.disabled = false;
+        room_id.value = reserveBtn[index].value;
         frm.submit();
     })
 })
 
 
-searchBtn.addEventListener('click', ()=>{
+// searchBtn.addEventListener('click', ()=>{
 
-    room_id.setAttribute('disabled','true');
-    // frm.action="http://localhost/users/login";
-})
+//     room_id.setAttribute('disabled','true');
+// })
 
 // function reserve() {
 //     // room_id.removeAttribute('disabled')
