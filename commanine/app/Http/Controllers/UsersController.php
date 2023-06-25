@@ -85,7 +85,7 @@ class UsersController extends Controller
             ,'name.max'         => '이름은 최대 30자 입니다.'
             ,'name.regex'       => '이름은 한글로 2~30자 입력해 주세요.'
             ,'password.same'    => '비밀번호 확인과 일치해야 합니다.'
-            ,'password.regex'   => '비밀번호는 8~20자 영어,숫자,특수문자를 포함해 주세요.'
+            ,'password.regex'   => '영어,숫자,특수문자를 8~20글자 입력하세요.'
             ,'phoneNumber.regex'    => '전화번호를 형식에 맞게 입력해 주세요.'
             ,'questAnswer.max'      =>  '답은 최대 30자 입니다.'
             ,'questAnswer.regex'    => '답은 한글,숫자,영어로 2~30자만 입력해주세요.'

@@ -16,7 +16,9 @@
     text-align: center;
     
 }
-
+h2{
+    padding-top:30px;
+}
 .registBox{
     position:absolute;
     width:400px;
@@ -39,19 +41,32 @@
 form>input,#email{
     padding:5px 10px;
     width:100%;
+    margin-right:0;
 }
-
+form{
+    padding:0;
+}
+#formBox>.emailBox,#formBox>select,#formBox>select>option{
+    width:100%;
+}
+#questAnswer{
+    margin-top:20px;
+}
+#pwChkAlert{
+    height:20px;
+}
 .emailBox{
     position:relative;
 }
-#email{
+/* #email{
     padding:5px 10px;
-}
+} */
 #emailChkBtn{
     position:absolute;
     z-index: 9999;
-    top:15%;
-    right:10px;
+    top:50%;
+    transform: translateY(-50%);
+    right:5px;
     width:70px;
     font-size: 12px;
     height: 30px;
@@ -87,4 +102,9 @@ form>input,#email{
     height:20px;
     font-size: 12px;
     color:#ff0000;
+}
+
+.btnGroup{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
 }
