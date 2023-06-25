@@ -84,6 +84,7 @@ body{
     border:1px solid #000;
     margin:10px auto;
     height: 200px;
+    border-radius:20px;
 }    
 
 
@@ -91,10 +92,11 @@ body{
 .countWrap{
     position:relative;
     height:50px;
-    width:260px;
+    width:290px;
 }
 .countWrap>label{
     padding-left:20px;
+    /* width:55px; */
 }
 .countWrap>input{
     position:absolute;
@@ -130,8 +132,10 @@ body{
 }
 .countBox>div>input{
     position:absolute;
-    right:20px;
-    padding-left:20px;
+    /* right:20px; */
+    right:10px;
+    width:100px;
+    text-align: center;
 }
 
 .countBox>button{
@@ -139,20 +143,40 @@ body{
     margin:0 auto;
     height:30px;
 }
+.adultsBox,.kidsBox{
+    display:grid;
+    grid-template-columns: repeat(2,auto);
+}
+.adultsBox>label,.kidsBox>label{
+    width:55px;
+}
+/* .adultsBox>div,.kidsBox>div{
+    position:relative;
+    width:100%;
+} */
+.adultsBox>div,.kidsBox>div{
+    display:grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+.minBtn,.plusBtn{
+    height:30px;
+    width:20px;
+    background-color: #fff;
+    border:none;
+}
+.adultsVal,.kidsVal{
+    text-align: center;
+    border:none;
+    outline: none;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 /* 인원Box end */
 
-.qtybtn{
-    background-color: #fff;
-    border:1px solid #000;
-    color: #000;
-}
 
-.qtybtn:hover{
-    background-color: #000;
-    border:1px solid #fff;
-    color: #fff;
-    transition:all 0.3s;
-}
 
 
 
@@ -197,7 +221,7 @@ body{
 div>input{
     height:30px;
 }
-.searchSecondBox>.countWrap{
+.searchSecondBox>div{
     padding-top:20px;
 }
 .countWrap>label{
@@ -213,8 +237,10 @@ div>input{
 
 
 
-.searchList{
-    padding: 0;
+.searchUl{
+    padding: 20px 40px;
+    margin-top:30px;
+    height: 100%;
 }    
 
 .text-box {
@@ -232,15 +258,59 @@ div>input{
 
 
 
-.ui-datepicker-trigger{
+.dayBox>.ui-datepicker-trigger{
     background-color: #000;
     color:#fff;
     border: none;
 }
 
-.ui-datepicker-trigger:hover{
+.dayBox>.ui-datepicker-trigger:hover,.countChkBtn:hover{
     background-color: #fff;
     color:#000;
     border: 1px solid #000;
     transition:all 0.3s;
+}
+
+
+.searchBtn,.countChkBtn{
+    background-color: #fff;
+    border:1px solid #000;
+    color: #000;
+}
+
+.searchBtn:hover,.countChkBtn:hover{
+    background-color: #000;
+    border:1px solid #fff;
+    color: #fff;
+    transition:all 0.3s;
+}
+
+.searchList{
+    border:1px solid #000;
+    width:100%;
+    height:15vh;
+    border-radius: 20px;
+}
+.searchList>a{
+    color:#000;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+.explainHanok{
+    display:grid;
+    grid-template-rows: repeat(4,1fr);
+    justify-content: right;
+}
+.nameHanok{
+    font-size: 24px;
+}
+.reviewHanok{
+    font-size:16px;
+}
+.priceHanok{
+    font-size:24px;
+}
+.noSearch{
+    text-align: center;
 }
