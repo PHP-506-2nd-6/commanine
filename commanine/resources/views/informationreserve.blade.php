@@ -39,7 +39,7 @@
                     {{-- <a id="writeButton" href="{{route('users.review')}}">리뷰 작성하기</a> --}}
 
                 {{-- <button id="writeButton" onclick="checkDataAndRedirect()">작성하기</button> --}}
-                <button onclick="location.href='{{ route('check-data-and-redirect') }}'">작성하기</button>
+                {{-- <button onclick="location.href='{{ route('check-data-and-redirect') }}'">작성하기</button> --}}
                 {{-- @endif --}}
             </div>
         @empty

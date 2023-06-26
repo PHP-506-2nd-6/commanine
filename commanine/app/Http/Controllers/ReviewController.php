@@ -19,34 +19,38 @@ use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     // 로그인 체크
+    //     if(auth()->guest()) {
+    //         return redirect()->route('users.login');
+    //     }
+    //     // $result = Reviews::select('rev_id', 'rev_content', 'hanok_id', 'rate', 'created_at', 'updated_at')
+    //     // ->selectRaw('DATE_ADD(deadline, INTERVAL 30 DAY) AS new_deadline')
+    //     // ->orderBy('created_at', 'desc')
+    //     // ->get();
+    //     // return view('reviewlist')->with('data', $result);
+    // }
+    public function checkDataAndRedirect()
     {
-        // 로그인 체크
-        if(auth()->guest()) {
-            return redirect()->route('users.login');
+        $dataExists = Reviews::select('rev_id')
+        ->from
+        ->get();
+        
+        if ($dataExists) {
+            // 데이터가 있는 경우
+            return redirect()->back()->with('message', '데이터가 이미 존재합니다.');
+        } else {
+            // 데이터가 없는 경우
+            return redirect()->route('/users/reviewinsert');
         }
-        // $result = Reviews::select('rev_id', 'rev_content', 'hanok_id', 'rate', 'created_at', 'updated_at')
-        // ->selectRaw('DATE_ADD(deadline, INTERVAL 30 DAY) AS new_deadline')
-        // ->orderBy('created_at', 'desc')
-        // ->get();
-        // return view('reviewlist')->with('data', $result);
+        
+        return view('reviewlist')->with('data', $dataExists);
     }
     public function reviewinsert() {
         
         return view('reviewinsert');
     } 
-    // public function checkDataAndRedirect()
-    // {
-    //     $dataExists = /* 데이터 존재 여부를 확인하는 로직 */;
-        
-    //     if ($dataExists) {
-    //         // 데이터가 있는 경우
-    //         return redirect()->back()->with('message', '데이터가 이미 존재합니다.');
-    //     } else {
-    //         // 데이터가 없는 경우
-    //         return redirect()->route('other-page');
-    //     }
-    // }
     
     public function reviewpost(Request $req)
     {
