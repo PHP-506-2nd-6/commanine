@@ -5,10 +5,36 @@
 </head>
 @section('contents')
     <div class="hanokInfo">
-        <div style="overflow:hidden;" class="imgBox">
+        <div style="overflow:hidden; width:450px;" class="imgBox">
             {{-- <div> --}}
-                <img src="{{asset($hanok->hanok_img1)}}" alt="{{$hanok->hanok_name}}" class="img">
+                {{-- <img src="{{asset($hanok->hanok_img1)}}" alt="{{$hanok->hanok_name}}" class="img"> --}}
             {{-- </div> --}}
+            <div id="carouselIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{asset($hanok->hanok_img1)}}" class="d-block w-100" alt="{{$hanok->hanok_name}}">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset($hanok->hanok_img2)}}" class="d-block w-100" alt="{{$hanok->hanok_name}}">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset($hanok->hanok_img3)}}" class="d-block w-100" alt="{{$hanok->hanok_name}}">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
         </div>
     <div style="border:1px black solid;">
         <h5>{{$hanok->hanok_name}}</h5>
@@ -27,8 +53,9 @@
     <div class="tabBox">
         <button type="button" class="tabBtn active">객실선택</button> {{-- TODO 탭 메뉴 기본적으로 객실선택 --}}
         <button type="button" class="tabBtn">위치</button>
-        <button type="button" class="tabBtn">서비스</button>
-        <button type="button" class="tabBtn">안내/정책</button>
+        <button type="button" class="tabBtn">숙소안내</button>
+        {{-- <button type="button" class="tabBtn">서비스</button>
+        <button type="button" class="tabBtn">안내/정책</button> --}}
         <button type="button" class="tabBtn">후기</button>
         <div class="line"></div>
     </div>
@@ -46,9 +73,9 @@
                         <label for="chk_out">체크아웃</label>
                         <input type="text" name="chk_out" class="datepicker2" value="{{$inpData['val_chkOut']}}">
                         <span>성인</span>
-                        <input type="number" min="1" max="16" value="{{$inpData['val_adult']}}" id="adult" name="adult">
+                        <input type="number" min="1" max="16" value="{{$inpData['val_adult']}}" id="adult" name="reserve_adult">
                         <span>아동</span>
-                        <input type="number" min="0" max="16" value="{{$inpData['val_child']}}" id="child" name="child">
+                        <input type="number" min="0" max="16" value="{{$inpData['val_child']}}" id="child" name="reserve_child">
                     </div>
                     <button type="submit" class="searchBtn">검색</button>
                 </div>
@@ -96,14 +123,14 @@
             @endforelse
         </div>
         <div class="content">
-            <div id="map"></div> {{-- TODO 카카오맵 api 가져오기 --}}
+            <div id="map"></div>
             <div class="addrBox">
                 <i class="bi bi-geo-alt-fill"></i>
                 <span class="addr">{{$hanok->hanok_addr}}</span>
                 <button type="button" class="copy">주소복사</button>
             </div>
         </div>
-        <div class="content">
+        {{-- <div class="content">
             <strong>서비스</strong>
             <br>
             <div class="serviceCon">
@@ -112,8 +139,8 @@
                     <span>{{$val->amenity_name}}</span>
                 @endforeach
             </div>
-        </div>
-        <div class="content">
+        </div> --}}
+        {{-- <div class="content">
             <strong>숙소 안내</strong>
             <div>
                 {!! nl2br($hanok->hanok_info) !!}
@@ -123,31 +150,81 @@
             <div>
                 {!! nl2br($hanok->hanok_refund) !!}
             </div>
+        </div> --}}
+        <div class="content">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        기본정보
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            {{-- <div class="serviceCon"> --}}
+                            
+                            {{-- </div> --}}
+                            <div>
+                            <strong>숙소 안내</strong>
+                            <div>
+                                {!! nl2br($hanok->hanok_info) !!}
+                            </div>
+                            <strong>환불정책</strong>
+                            <div>
+                                {!! nl2br($hanok->hanok_refund) !!}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        편의 시설 및 서비스
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        <div class="amenityInfo">
+                            @foreach($amenities as $val)
+                                <div class="amenityCon">
+                                    <img src="{{asset($val->icon_img)}}" alt="{{$val->amenity_name}}" class="amenities">
+                                    <p>{{$val->amenity_name}}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        
         <div class="content">
             <div>
+                <p>이용 후기({{$rate->rev_cnt}})</p>
+                <p>평균 별점</p>
                 <img src="/img/icon/big_star.png" alt="별점" style="width:36px; height:36px">
-                <span>평균 별점 : {{number_format($rate->rate, 1)}}</span>
-                <span>총 리뷰 수 : {{$rate->rev_cnt}}</span>
+                <span>{{number_format($rate->rate, 1)}}</span>
             </div>
-            @forelse($reviews as $val)
+            @forelse($reviews as $item)
                 <div style="border:1px #d6d6d6 solid;padding:10px;">
-                    <h5>{!! nl2br($val->rev_content) !!}</h5>
+                    <h5>{!! nl2br($item->rev_content) !!}</h5>
                     <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
-                    <span>{!! nl2br($val->rate) !!}</span>
-                    <span>{!! nl2br(substr($val->created_at, 0, 10)) !!}</span>
+                    <span>{!! nl2br($item->rate) !!}</span>
+                    <span>{!! nl2br(substr($item->created_at, 0, 10)) !!}</span>
                 </div>
             @empty
             <div>아직 리뷰가 작성되지 않았습니다.</div>
             @endforelse
+            {{ $reviews->links() }}
         </div>
     </div>
 </div>
 @php($j = 0)
-@forelse($rooms as $val)
+@forelse($rooms as $item)
 <!-- Modal -->
-<div class="modal fade" id="exampleModal{{$j++}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
+<div class="modal fade" id="exampleModal{{$j}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
     <div class="modal-content">
     <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">객실 이용 안내</h1>
@@ -155,47 +232,51 @@
     </div>
     <div class="modal-body">
     {{-- todo 객실 이미지 캐러셀 --}}
-        {{-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <div class="modalCon">
+            <div style="overflow:hidden; width:250px;" class="imgBox">
+                <div id="carouselExampleIndicators{{$j}}" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{asset($item->room_img1)}}" class="d-block w-100" alt="{{$item->room_name}}">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{asset($item->room_img2)}}" class="d-block w-100" alt="{{$item->room_name}}">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{asset($item->room_img3)}}" class="d-block w-100" alt="{{$item->room_name}}">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{$j++}}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
-            <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="..." class="d-block w-100" alt="...">
+                {{-- todo 객실 이미지 캐러셀 --}}
+            {{-- <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="img"> --}}
+            <div class="roomInfo">
+                <h3>{{$item->room_name}}</h3>
+                <div>체크인 {{$item->chk_in}} 체크아웃 {{$item->chk_out}}</div>
+                <div>기준 {{$item->room_min}}인 / 최대 {{$item->room_max}}인</div>
             </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-            </button>
-        </div> --}}
-    {{-- todo 객실 이미지 캐러셀 --}}
-        <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="img">
-        <div>
-            <h3>{{$val->room_name}}</h3>
-            <div>체크인 {{$val->chk_in}} 체크아웃 {{ $val->chk_out}}</div>
-            <div>기준 {{$val->room_min}}인 / 최대 {{$val->room_max}}인</div>
         </div>
         <hr>
             <div>
                 <strong>기본 정보</strong>
-                <div>{!! nl2br($val->room_content) !!}</div>
-                <div>{!! nl2br($val->room_detail) !!}</div>
+                <div>{!! nl2br($item->room_content) !!}</div>
+                <div>{!! nl2br($item->room_detail) !!}</div>
             <hr>
                 <strong>편의 시설</strong>
-                <div>{!! nl2br($val->room_facility) !!}</div>
+                <div>{!! nl2br($item->room_facility) !!}</div>
             </div>
         </div>
     </div>

@@ -63,8 +63,8 @@ class HanoksController extends Controller
         //                 ->get(); // 0620 KMJ del
         $val_count = $req->input('reserve_adult') + $req->input('reserve_child');
         $val_chkIn = $req->input('chk_in');
-        $val_adult = $req->input('adult');
-        $val_child = $req->input('child');
+        $val_adult = $req->input('reserve_adult');
+        $val_child = $req->input('reserve_child');
         $val_count = $val_adult + $val_child;
         if($val_adult === null) {
             $val_adult = 2;
@@ -95,22 +95,19 @@ class HanoksController extends Controller
         ." FROM rooms r "
         ." WHERE r.hanok_id = ".$id
 		."  AND r.room_max >= ".$val_count
-		."  AND r.id NOT IN( "
+		."  AND r.id NOT IN ( "
 						."  SELECT res.room_id "
 						."  FROM reservations res "
 						// ."  WHERE res.room_id = r.id "
 						// ."  AND res.chk_in <= '2023-06-22' "
 						// ."  AND res.chk_out >= '2023-06-23' "
-						."  WHERE NOT res.chk_in < ".$val_chkOut
-						."  OR res.chk_out > ".$val_chkIn
+						."  WHERE res.chk_in < ".$val_chkOut
+						."  AND res.chk_out > ".$val_chkIn
                         ." ) "
                         ;
                         
-                        // return var_dump($val_chkIn, $val_count, $req);
         $rooms = DB::select($query);
-        // $rooms = DB::table('rooms as r')
-        //             ->
-        //             ->where()
+        // return var_dump($rooms, $val_chkOut, $val_chkIn);
         // 0615 해당 숙소의 찜 갯수 가져오기 KMJ add
         $likes = DB::table('hanoks as h')
                         ->join('wishlists as w', 'h.id', '=', 'w.hanok_id')
@@ -128,8 +125,10 @@ class HanoksController extends Controller
                         ->select('r.*')
                         ->where('h.id', "=", $id)
                         ->where('r.deleted_at', '=', null)
+                        ->orderBy('rev_id', 'desc')
+                        ->paginate(5);
                         // ->groupBy('r.rev_id')
-                        ->get();
+                        // ->get();
         $rate = DB::table('reviews')
                         ->select(DB::raw("avg(rate) as 'rate', count(rev_id) as 'rev_cnt'"))
                         ->where('hanok_id', '=', $id)
@@ -139,6 +138,7 @@ class HanoksController extends Controller
         // return var_dump($reviews);
         // return view('detail')->with('hanok', $hanoks); // 0615 KMJ del
         return view('detail')
+        // return redirect()->route('hanoks.detail', [ 'id' => $id])
                 ->with('hanok', $hanoks)
                 ->with('rooms', $rooms)
                 ->with('likes', $likes[0])
@@ -152,23 +152,21 @@ class HanoksController extends Controller
     // 0619 BYJ new
     public function hanoksMain() {
         // 최신순
-        // $hanoks = DB::table('hanoks')
-        //             -> select('*')
-        //             -> orderBy('id','desc')
-        //             -> limit('6')
-        //             -> get();
-
-        $hanoks = DB::table('hanoks as han')
-        -> select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'))
-        -> join('rooms as ro', 'han.id', '=', 'ro.hanok_id')
-        //-> join('reviews AS re', 'han.id', '=', 're.hanok_id')
-        -> groupBy('han.id','han.hanok_name', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
-        // -> groupBy('han.hanok_img1')
-        // -> groupBy('han.hanok_local')
-        // -> groupBy('ro.room_price')
-        -> orderBy('han.id', 'DESC')
-        -> limit('6')
-        -> get();
+        // $hanoks = DB::table('hanoks as han')
+        // -> select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'))
+        // -> join('rooms as ro', 'han.id', '=', 'ro.hanok_id')
+        // -> groupBy('han.id','han.hanok_name', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+        // -> orderBy('han.id', 'DESC')
+        // -> limit('6')
+        // -> get();
+        
+        $hanoks = DB::table('hanoks AS han')
+    ->select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', 'MIN(ro.room_price) AS room_price', 'AVG(re.rate) AS review')
+    ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
+    ->join('reviews AS re', 're.hanok_id', '=', 'han.id')
+    ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+    ->orderBy('han.id', 'DESC')
+    ->limit(6);
 
 
         
@@ -230,9 +228,10 @@ $query = DB::table('hanoks AS han')
     ->orderBy('cnt', 'DESC')
     ->limit(3)
     ->get();
+
     
     return view('/main')->with('hanok', $hanoks)->with('wish', $query);
-}
 
+}
 
 }
