@@ -14,8 +14,8 @@
         </div>
         <div class="reserve_wrap">
             <h1>예약 내역</h1>
-            <div class="reserve_con">
                 @forelse($reserve as $data)
+            <div class="reserve_con">
                 <div class="con reserve_img">
                     <img src="{{asset($data->hanok_img1)}}" alt="#">
                 </div>
@@ -33,16 +33,21 @@
                     <div>인원</div>
                     <div><p>{{$data->reserve_adult}}</p></div>
                 </div>
+                
+                {{-- @if($val->room_id === 0) --}}
+                    
+                    {{-- <a id="writeButton" href="{{route('users.review')}}">리뷰 작성하기</a> --}}
 
-                <a href="{{route('users.review')}}">리뷰 작성하기</a>
+                {{-- <button id="writeButton" onclick="checkDataAndRedirect()">작성하기</button> --}}
+                <button onclick="location.href='{{ route('check-data-and-redirect') }}'">작성하기</button>
+                {{-- @endif --}}
+            </div>
         @empty
             <span>예약한 숙소가 없습니다.</span> 
         @endforelse
-            </div>
         </div>
     </div>
 
 
-
-
+<script src="{{asset('js/review.js')}}"></script>
 @endsection
