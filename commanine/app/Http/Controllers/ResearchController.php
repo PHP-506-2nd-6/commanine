@@ -86,7 +86,7 @@ class ResearchController extends Controller
 
     
     public function researchPageget(Request $req){
-        return var_dump($req->all());
+        // return var_dump($req->all());
         // 지역명/ 호텔명
         $val_local = $req->input('locOrHan');
         // 체크인

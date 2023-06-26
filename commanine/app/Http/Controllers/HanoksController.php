@@ -125,8 +125,10 @@ class HanoksController extends Controller
                         ->select('r.*')
                         ->where('h.id', "=", $id)
                         ->where('r.deleted_at', '=', null)
+                        ->orderBy('rev_id', 'desc')
+                        ->paginate(5);
                         // ->groupBy('r.rev_id')
-                        ->get();
+                        // ->get();
         $rate = DB::table('reviews')
                         ->select(DB::raw("avg(rate) as 'rate', count(rev_id) as 'rev_cnt'"))
                         ->where('hanok_id', '=', $id)
