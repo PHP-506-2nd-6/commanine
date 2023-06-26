@@ -17,12 +17,12 @@
     <div class="searchBox">
         <form action="{{route('research.page.get')}}" method="get" class="formBox">
             <div class="searchFirstBox" style="padding-bottom : 20px;">
-                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" class="" value="{{$local}}">
+                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" class="" value="{{isset($local) ? $local : ""}}">
                 <div class="search_form2 dayBox">
                     <label for="chkIn">체크인</label>
-                    <input type="text" class="datepicker" name="chkIn" value="{{$chkIn}}">
+                    <input type="text" class="datepicker" name="chkIn" value="{{isset($chkIn) ? $chkIn : ""}}">
                     <label for="chkOut">체크아웃</label>
-                    <input type="text" class="datepicker2" name="chkOut" value="{{$chkOut}}">
+                    <input type="text" class="datepicker2" name="chkOut" value="{{isset($chkOut) ? $chkOut : ""}}">
                 </div>
             </div>
             <div class="searchSecondBox" >
@@ -64,10 +64,10 @@
                     <div class="text-box">
                         <p class="centered-text">가격</p>
                         <div class="rangeslider">
-                            <input class="min" name="minPrice" type="range" min="0" max="500000" value="0" step="10000" />
-                            <input class="max" name="maxPrice" type="range" min="0" max="500000" value="500000" step="10000" />
-                            <span class="range_min light left">0 원</span>
-                            <span class="range_max light right">500000원</span>
+                            <input class="min" name="minPrice" type="range" min="0" max="500000" value="{{isset($minPrice) ? $minPrice : "0"}}" step="10000" />
+                            <input class="max" name="maxPrice" type="range" min="0" max="500000" value="{{isset($maxPrice) ? $maxPrice : "500000" }}" step="10000" />
+                            <span class="range_min light left">{{isset($minPrice) ? $minPrice : "0"}} 원</span>
+                            <span class="range_max light right">{{isset($maxPrice) ? $maxPrice : "500000" }} 원</span>
                         </div>
                     </div>
                     
@@ -91,7 +91,7 @@
     <div class="searchUl searchBox">
         @forelse($searches as $value)
             <div class="searchList">
-                <a href="{{route('hanoks.detail',$value->id)}}" class="">
+                <a href="{{route('hanoks.detail',$value->id)}}" class="listA">
                     <div class="">
                         <img src="{{asset($value->hanok_img1)}}" >
                     </div>
@@ -101,11 +101,11 @@
                             {{$value->hanok_name}}
                         </div>
                         <div class="reviewHanok">
-                        {{-- 리뷰 개수 --}}
                             <span><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
-                            <span>{{$value->cnt}}</span>
                         {{-- 별점 평균 --}}
-                            <span>{{isset($value->rate) ? $value->rate : "0"}}</span>
+                            <span>{{isset($value->rate) ? substr($value->rate,0,4) : "0"}}</span>
+                        {{-- 리뷰 개수 --}}
+                            <span>({{$value->cnt}})</span>
                         </div>
                         <div class="priceHanok">
                         {{-- 숙소 가격 --}}
@@ -124,7 +124,7 @@
 </div>
 
     
-    <script src="{{asset('js/research.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="{{asset('js/research.js')}}"></script>
 
 @endsection

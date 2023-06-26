@@ -162,31 +162,6 @@ class ResearchController extends Controller
         
         // 쿼리 작성
         //*********************** 쿼리
-        //     $result = DB::select("SELECT
-        //     han.hanok_name
-        //     ,han.hanok_img1
-        //     ,room.room_price
-        //     FROM hanoks han
-                // rooms테이블에 hanok_id와 최소가격 을 가져옴
-        //     JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
-        //             FROM rooms r
-                    // 수용가능 인원
-        //             WHERE r.room_min >= 2
-        //             AND r.room_max <= 2
-                    // 해당하는 체크인, 체크아웃 날짜가 예약 테이블에 존재하지 않는 데이터만 가져옴 
-        //             AND NOT EXISTS
-        //                 (SELECT 1
-        //                 FROM reservations res
-        //                 WHERE res.room_id = r.id
-        //                 AND res.chk_in >= 20230614
-        //                 AND res.chk_out <= 20230615)
-        //             GROUP BY r.hanok_id) room
-        //     ON han.id = room.hanok_id
-        //     LEFT JOIN wishlists wish ON room.hanok_id = wish.hanok_id
-        // WHERE han.hanok_name LIKE '%경주%'
-        // -- AND han.hanok_type = '0'
-        // ");
-        //****************************************************************** */
 //         SELECT
 //    han.id
 //    ,han.hanok_name
@@ -218,7 +193,7 @@ class ResearchController extends Controller
 //          ,han.hanok_img1
 //          ,room.room_price 
 // 		order by room.room_price;
-
+        //****************************************************************** */
 
         $query= "SELECT
         han.id
@@ -276,6 +251,12 @@ class ResearchController extends Controller
         $result = DB::select($query);
         // return var_dump($val_count);
         // return print_r($query);
+        // return var_dump($result);
+        
+        // for($i=0;$i<count($result);$i++){
+        //     $rate[] = substr( $result[$i]->rate, 0, 4 );
+        // }
+        // return var_dump($rate);
         $notices = $this->arrayPaginator($result, $req);
         return view('research')
                 ->with('searches', $notices)
@@ -286,13 +267,14 @@ class ResearchController extends Controller
                 ->with('minPrice',$val_minPrice)
                 ->with('maxPrice',$val_maxPrice);
 
+
     }
 
     //0620 KMH add
     // 페이지네이션
     public function arrayPaginator($array, $request) {
         $page = $request->input('page',1);
-        $perPage = 4;
+        $perPage = 8;
         $offset = ($page * $perPage) - $perPage;
 
         return new LengthAwarePaginator(

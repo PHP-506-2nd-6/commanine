@@ -101,3 +101,10 @@ plusBtn[1].addEventListener('click',function(){
 
 
 
+// const pageItem = document.querySelectorAll('.page-item');
+
+// for(let i = 0 ; i<pageItem.length ; i++){
+//   pageItem[i].addEventListener('mouseup',function(){
+//     pageItem
+//   })
+// }
