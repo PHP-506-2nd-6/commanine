@@ -7,7 +7,7 @@
 
     <div class="header_bg">
         <div class="fix">
-            <nav class="clearfix">
+            <nav>
                 <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav_right">
                     @guest()
                     <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
@@ -22,7 +22,7 @@
                 </ul>
             </nav>
             <div class="logo">
-                <a href="{{route('main')}}"><img src="{{asset('/img/logotest.png')}}" alt="#"></a>
+                <a href="{{route('main')}}"><img src="{{asset('/img/logologo.png')}}" alt="#"></a>
             </div>
             <input id="modalToggle" class="hide" type="checkbox">
             <div class="modal_search">
@@ -52,14 +52,35 @@
                                 <label for="chk_out">체크아웃</label>
                                 <input name="chkOut" type="text" class="datepicker2" autocomplete="off">
                             </div>
-                                {{-- <span>인원 : </span><span id='result'>0</span>
-                                <input type='button' onclick='count("plus")' value='+'/>
-                                <input class="nobtn" type='button' onclick='count("minus")' value='-'/> --}}
+                                {{-- <div class="countWrap">
+                        <label for="countP">인원</label>
+                        <input type="text" class="countInput" id="countP"/> --}}
+                        {{-- <div class="countBox poAbsolute">
+                            <div class="adultsBox">
+                                <label for="adults">성인</label>
+                                <div >
+                                    <button class="minBtn" type="button">-</button>
+                                    <input type="number" value="2" class="adultsVal" id="adults" min="0" max="99">
+                                    <button class="plusBtn" type="button">+</button>
+                                </div>
+                            </div>
+                            <div class="kidsBox">
+                                <label for="kids">어린이</label>
+                                <div>
+                                    <button class="minBtn" type="button">-</button>
+                                    <input type="number" value="0" class="kidsVal" id="kids" min="0" max="99">
+                                    <button class="plusBtn" type="button">+</button>
+                                </div>
+                            </div>
+                            <button type="button" class="countChkBtn">확인</button>
+                        </div> --}}
 
                             <div class="pro-qty row" style="margin: 0 5px">
+                            {{-- <label for="adults">성인</label> --}}
                                 <input type="number" name="adults" value="0" readonly="readonly">
                             </div>
                             <div class="pro-qty row" style="margin: 0 5px">
+                            {{-- <label for="kids">어린이</label> --}}
                                 <input type="number" name="kids" value="0" readonly="readonly">
                             </div>
 
