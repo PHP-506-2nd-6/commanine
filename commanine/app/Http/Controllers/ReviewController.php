@@ -35,18 +35,18 @@ class ReviewController extends Controller
         
         return view('reviewinsert');
     } 
-    public function checkDataAndRedirect()
-    {
-        $dataExists = /* 데이터 존재 여부를 확인하는 로직 */;
+    // public function checkDataAndRedirect()
+    // {
+    //     $dataExists = /* 데이터 존재 여부를 확인하는 로직 */;
         
-        if ($dataExists) {
-            // 데이터가 있는 경우
-            return redirect()->back()->with('message', '데이터가 이미 존재합니다.');
-        } else {
-            // 데이터가 없는 경우
-            return redirect()->route('other-page');
-        }
-    }
+    //     if ($dataExists) {
+    //         // 데이터가 있는 경우
+    //         return redirect()->back()->with('message', '데이터가 이미 존재합니다.');
+    //     } else {
+    //         // 데이터가 없는 경우
+    //         return redirect()->route('other-page');
+    //     }
+    // }
     
     public function reviewpost(Request $req)
     {
