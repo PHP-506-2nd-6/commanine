@@ -36,14 +36,14 @@
             <form id="frm" method="get" action="">
                 <div class="search_form">
                     <div class="search_form2">
-                        {{-- <label for="chkIn">체크인</label>
-                        <input type="date" id="chkIn" name="chk_in" required>
+                        <label for="chkIn">체크인</label>
+                        <input type="date" id="chkIn" name="chk_in">
                         <label for="chkOut">체크아웃</label>
-                        <input type="date" id="chkOut" name="chk_out" value="{{old('chk_out')}}"> --}}
-                        <label for="chk_in">체크인</label>
+                        <input type="date" id="chkOut" name="chk_out" value="{{old('chk_out')}}">
+                        {{-- <label for="chk_in">체크인</label>
                         <input type="text" name="chk_in" class="datepicker" value="{{old('chk_in')}}">
                         <label for="chk_out">체크아웃</label>
-                        <input type="text" name="chk_out" class="datepicker2" value="{{old('chk_out')}}">
+                        <input type="text" name="chk_out" class="datepicker2" value="{{old('chk_out')}}"> --}}
                         <span>성인</span>
                         <input type="number" min="1" max="16" value="2" id="adult" name="reserve_adult">
                         <span>아동</span>
@@ -126,10 +126,11 @@
         <div class="content">
             <div>평균 별점이랑 리뷰 갯수 출력</div>
             @forelse($reviews as $val)
-                <div>
-                    {!! nl2br($val->rev_content) !!}
-                    {!! nl2br($val->rate) !!}
-                    {!! nl2br(substr($val->created_at, 0, 10)) !!}
+                <div style="border:1px #d6d6d6 solid;padding:10px;">
+                    <h5>{!! nl2br($val->rev_content) !!}</h5>
+                    <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
+                    <span>{!! nl2br($val->rate) !!}</span>
+                    <span>{!! nl2br(substr($val->created_at, 0, 10)) !!}</span>
                 </div>
             @empty
             <div>아직 리뷰가 작성되지 않았습니다.</div>

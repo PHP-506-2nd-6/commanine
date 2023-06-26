@@ -79,3 +79,5 @@ Route::get('/users/reviewinsert',[ReviewController::class,'reviewinsert'])->name
 Route::post('/users/reviewpost',[ReviewController::class,'reviewpost'])->name('users.review.post');
 // 0620 BYJ
 Route::get('/users/logout', [UsersController::class, 'logout'])->name('users.logout');
+// 내 리뷰 페이지 0626 KMJ add
+Route::get('/users/myreview', [UsersInfoController::class, 'myreview'])->name('users.information.review');

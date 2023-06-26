@@ -20,28 +20,28 @@ const likeBtn = document.querySelector(".like");
 
 const hanokId = window.location.pathname.substring(15);
 
-likeBtn.addEventListener('click',userLike);
+// likeBtn.addEventListener('click',userLike);
 
-const userLike = (hanokId) => {
-    const url = "/api/wishlist/"+hanokId;
-    const user_id = document.querySelector("#user_id");
+// const userLike = (hanokId) => {
+//     const url = "/api/wishlist/"+hanokId;
+//     const user_id = document.querySelector("#user_id");
 
-    fetch(url)
-    .then(data=>{
-        if (data.status !== 200) {
-            throw new Error(data.status + ' : API Response Error');
-        }
-    return data.json();
-    })
-    .then(apiData =>{
-        if (apiData["errcode"] === "E01") {
-            alert(apiData["msg"]);
-        } else {
-            alert(apiData["msg"]);
-        }
-    })
-    .catch(error => alert(error.message));
-}
+//     fetch(url)
+//     .then(data=>{
+//         if (data.status !== 200) {
+//             throw new Error(data.status + ' : API Response Error');
+//         }
+//     return data.json();
+//     })
+//     .then(apiData =>{
+//         if (apiData["errcode"] === "E01") {
+//             alert(apiData["msg"]);
+//         } else {
+//             alert(apiData["msg"]);
+//         }
+//     })
+//     .catch(error => alert(error.message));
+// }
 
 searchBtn.addEventListener('click', () => {
     room_id.disabled = true;

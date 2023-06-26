@@ -172,4 +172,17 @@ class UsersInfoController extends Controller
 
     }
 
+    // 내 리뷰 페이지
+    public function myreview() {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
+        $user_id = Auth::User()->user_id;
+        $reviews = DB::table('hanoks as h')
+                        ->join('reviews as r', 'r.hanok_id', '=', 'h.id')
+                        ->select('r.*', 'h.hanok_name')
+                        ->where('r.user_id', '=', $user_id)
+                        ->get();
+        return view('myreview')->with('review', $reviews);
+    }
 }
