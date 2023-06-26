@@ -47,10 +47,10 @@
                                 <input class="nobtn" type='button' onclick='count("minus")' value='-'/> --}}
 
                             <div class="pro-qty row" style="margin: 0 5px">
-                                <input type="text" value="0" readonly="readonly">
+                                <input type="number" name="adults" value="0" readonly="readonly">
                             </div>
                             <div class="pro-qty row" style="margin: 0 5px">
-                                <input type="text" value="0" readonly="readonly">
+                                <input type="number" name="kids" value="0" readonly="readonly">
                             </div>
                             {{-- <div class="search_form2">
                             </div>
