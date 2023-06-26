@@ -174,8 +174,8 @@
                                         <h5 class="card-title">{{$val->hanok_name}}</h5>
                                         <p class="card-text">{{number_format($val->room_price)}}원</p>
                                         <p class="card-text">{{$val->hanok_local}}</p>
-                                        <p class="card-text">별점</p>
-                                        {{-- <span>{{isset($val->rate) ? substr($val->rate,0,4) : "0"}}</span> --}}
+                                        {{-- <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
+                                        <span>{{isset($val->review) ? substr($val->review,0,4) : "0"}}</span> --}}
                                         {{-- <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; color: #333;">
                                             예약하기
                                         </button> --}}

@@ -35,6 +35,10 @@ main {
     margin: 100px;
 }
 
+.ratestar img {
+    width: 20px;
+}
+
 /* section 02*/
 .myCarousel {
     position: relative;
