@@ -1,3 +1,12 @@
+.infoList{
+    font-weight: 900;
+    font-size:1.1em;
+}
+.infoList::before{
+    content:'\00B7';
+    padding-right:5px;
+}
+
 h2{
     padding:30px 0;
 }

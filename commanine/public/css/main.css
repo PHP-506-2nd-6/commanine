@@ -2,7 +2,7 @@ main {
     height: 3000px;
 }
 .bg {
-    height: 330px;
+    height: 300px;
     background-color: #f6f6f0;
 }
 
@@ -37,6 +37,10 @@ main {
 
 .ratestar img {
     width: 20px;
+}
+
+.cate p {
+    margin-top: 10px;
 }
 
 /* section 02*/

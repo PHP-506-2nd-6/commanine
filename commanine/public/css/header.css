@@ -28,7 +28,7 @@ nav {
 }
 .logo {
     width: 250px;
-    margin: 0 auto;
+    margin: 15px auto;
 }
 img {
     width: 250px;
@@ -41,7 +41,7 @@ img {
 .nav-a5,
 .nav-a6 {
     color: #434343;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .nav-a2::before,
@@ -103,16 +103,18 @@ img {
 
 .btn_search {
     position: absolute;
-    top: 20%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: inline-block;
     height: 3em;
     width: 18em;
-    line-height: 2em;
+    line-height: 3em;
     border-radius: 1em;
     box-shadow: 2px 3px 10px 3px #cfcfcf;
 
+    font-size: 20px;
+    color: #cfcfcf;
     font-weight: 700;
     background: #f6f6f0;
     cursor: pointer;
@@ -128,7 +130,7 @@ img {
     background-color: #f6f6f0;
     position: absolute;
     left: 0;
-    top: 30%;
+    top: 20%;
     width: 100%;
     height: 10%;
 
@@ -232,3 +234,4 @@ img {
     font-size: 20px;
     letter-spacing: 0.4px;
 }
+
