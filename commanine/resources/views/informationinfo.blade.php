@@ -1,6 +1,10 @@
-{{-- @section('contents') --}}
-    <div>
-        <div>
+@extends('layout.layout')
+<head>
+    <link rel="stylesheet" href="{{asset('css/informationinfo.css')}}">
+</head>
+@section('contents')
+    <div class="wrap wrapGrid">
+        <div class="listWrap">
             <ul>
                 <li><a href="{{route('users.information.reserve')}}">예약 내역</a></li>
                 {{-- <li><a href="{{route('users.information.dibs')}}">찜 목록</a></li> --}}
@@ -8,7 +12,7 @@
                 <li><a href="{{route('users.information.review')}}">내 리뷰</a></li>
             </ul>
         </div>
-        <div>
+        <div class="reserve_con reserve_wrap">
             <h1>회원 정보</h1>
             <div>이메일</div>
             <div>{{$data->user_email}}</div>
@@ -24,5 +28,6 @@
 
 
 
+    <script src="{{asset('js/informationinfo.js')}}"></script>
 
-{{-- @endsection --}}
+@endsection

@@ -30,7 +30,7 @@
                 <label class="btn_search btn-open" for="modalToggle">어디로 떠날까요?</label>
                 <div class="inside">
                     <label class="btn-close" for="modalToggle">X</label>
-                    <form method="get" action="{{route('research.page.get')}}" >
+                    <form method="get" action="{{route('research.page')}}" >
                         <div class="search_form">
                             <div class="search_form1">
                                 <label for="hanok_name">스테이/여행지</label>

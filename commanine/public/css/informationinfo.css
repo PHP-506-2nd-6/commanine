@@ -1,0 +1,25 @@
+.wrap {
+    width: 100%;
+}
+
+.wrapGrid{
+    display:grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.reserve_wrap {
+    width: 800px;
+    margin: 0 auto;
+}
+.reserve_con {
+    border: 1px solid #5c5c5c;
+    border-radius: 25px;
+}
+
+.reserve_con .con {
+    display: inline-block;
+}
+
+.reserve_con .reserve_img {
+    vertical-align: top;
+}

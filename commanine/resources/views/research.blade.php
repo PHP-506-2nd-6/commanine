@@ -17,12 +17,12 @@
     <div class="searchBox">
         <form action="{{route('research.page.get')}}" method="get" class="formBox">
             <div class="searchFirstBox" style="padding-bottom : 20px;">
-                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" class="" value="{{isset($local) ? $local : ""}}">
+                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" class="" value="{{isset($arr['local']) ? $arr['local'] : ""}}">
                 <div class="search_form2 dayBox">
                     <label for="chkIn">체크인</label>
-                    <input type="text" class="datepicker" name="chkIn" value="{{isset($chkIn) ? $chkIn : ""}}">
+                    <input type="text" class="datepicker" name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
                     <label for="chkOut">체크아웃</label>
-                    <input type="text" class="datepicker2" name="chkOut" value="{{isset($chkOut) ? $chkOut : ""}}">
+                    <input type="text" class="datepicker2" name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
                 </div>
             </div>
             <div class="searchSecondBox" >
@@ -66,8 +66,8 @@
                         <div class="rangeslider">
                             <input class="min" name="minPrice" type="range" min="0" max="500000" value="{{isset($minPrice) ? $minPrice : "0"}}" step="10000" />
                             <input class="max" name="maxPrice" type="range" min="0" max="500000" value="{{isset($maxPrice) ? $maxPrice : "500000" }}" step="10000" />
-                            <span class="range_min light left">{{isset($minPrice) ? $minPrice : "0"}} 원</span>
-                            <span class="range_max light right">{{isset($maxPrice) ? $maxPrice : "500000" }} 원</span>
+                            <span class="range_min light left">{{isset($arr['minPrice']) ? $arr['minPrice'] : "0"}} 원</span>
+                            <span class="range_max light right">{{isset($arr['maxPrice']) ? $arr['maxPrice'] : "500000" }} 원</span>
                         </div>
                     </div>
                     

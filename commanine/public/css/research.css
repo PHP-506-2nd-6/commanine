@@ -55,7 +55,8 @@ body{
         width: 210px;
         display: inline-block;
         margin-top: -5px;
-        margin-left: 20px;
+        margin-left: 30px;
+
     }
     .rangeslider input{
         position: absolute;
@@ -92,7 +93,7 @@ body{
 .countWrap{
     position:relative;
     height:50px;
-    width:290px;
+    width:365px;
 }
 .countWrap>label{
     padding-left:20px;
@@ -102,6 +103,9 @@ body{
     position:absolute;
     right:0;
     /* padding-left: 20px; */
+}
+.countInput{
+    width:280px;
 }
 .countBox {
     position: absolute;
@@ -188,7 +192,7 @@ input[type="number"]::-webkit-inner-spin-button {
     /* justify-items: center; */
 }
 .selectBox, .selectBox > option{
-    width:200px;
+    width:245px;
     height:30px;
 }
 .searchFirstBox{
@@ -327,9 +331,9 @@ div>input{
 .noSearch{
     text-align: center;
 }
-/* .listA{
-    padding:15px 30px;
-} */
+.listA:hover{
+    color:#000;
+}
 /* .explainHanok{
     padding-right:30px;
 } */
