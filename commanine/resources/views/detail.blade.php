@@ -37,18 +37,18 @@
             <form id="frm" method="get" action="">
                 <div class="search_form">
                     <div class="search_form2">
-                        <label for="chkIn">체크인</label>
-                        <input type="date" id="chkIn" name="chk_in">
+                        {{-- <label for="chkIn">체크인</label>
+                        <input type="date" id="chkIn" name="chk_in" value="{{$inpData['val_chkIn']}}">
                         <label for="chkOut">체크아웃</label>
-                        <input type="date" id="chkOut" name="chk_out" value="{{old('chk_out')}}">
-                        {{-- <label for="chk_in">체크인</label>
-                        <input type="text" name="chk_in" class="datepicker" value="{{old('chk_in')}}">
+                        <input type="date" id="chkOut" name="chk_out" value="{{$inpData['val_chkOut']}}"> --}}
+                        <label for="chk_in">체크인</label>
+                        <input type="text" name="chk_in" class="datepicker" value="{{$inpData['val_chkIn']}}" required>
                         <label for="chk_out">체크아웃</label>
-                        <input type="text" name="chk_out" class="datepicker2" value="{{old('chk_out')}}"> --}}
+                        <input type="text" name="chk_out" class="datepicker2" value="{{$inpData['val_chkOut']}}">
                         <span>성인</span>
-                        <input type="number" min="1" max="16" value="2" id="adult" name="reserve_adult">
+                        <input type="number" min="1" max="16" value="{{$inpData['val_adult']}}" id="adult" name="adult">
                         <span>아동</span>
-                        <input type="number" min="0" max="16" value="0" id="child" name="reserve_child">
+                        <input type="number" min="0" max="16" value="{{$inpData['val_child']}}" id="child" name="child">
                     </div>
                     <button type="submit" class="searchBtn">검색</button>
                 </div>

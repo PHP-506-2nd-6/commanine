@@ -78,7 +78,7 @@ const chkOut = document.querySelector('#chkOut');
 const adult = document.querySelector('#adult');
 const child = document.querySelector('#child');
 
-chkIn.value = new Date().toISOString().substring(0, 10);
+// chkIn.value = new Date().toISOString().substring(0, 10);
 
 // 탭 메뉴
 tabs.forEach((tab, index)=>{
