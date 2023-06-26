@@ -20,10 +20,10 @@
                     <img src="{{asset($hanok->hanok_img1)}}" class="d-block w-100" alt="{{$hanok->hanok_name}}">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{asset($hanok->hanok_img3)}}" class="d-block w-100" alt="{{$hanok->hanok_name}}">
+                    <img src="{{asset($hanok->hanok_img2)}}" class="d-block w-100" alt="{{$hanok->hanok_name}}">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{asset($hanok->hanok_img2)}}" class="d-block w-100" alt="{{$hanok->hanok_name}}">
+                    <img src="{{asset($hanok->hanok_img3)}}" class="d-block w-100" alt="{{$hanok->hanok_name}}">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
@@ -185,10 +185,14 @@
                     </h2>
                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                     <div class="accordion-body">
-                        @foreach($amenities as $val)
-                            <img src="{{asset($val->icon_img)}}" alt="{{$val->amenity_name}}" class="amenities">
-                            <span>{{$val->amenity_name}}</span>
-                        @endforeach
+                        <div class="amenityInfo">
+                            @foreach($amenities as $val)
+                                <div class="amenityCon">
+                                    <img src="{{asset($val->icon_img)}}" alt="{{$val->amenity_name}}" class="amenities">
+                                    <p>{{$val->amenity_name}}</p>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -197,28 +201,30 @@
         
         <div class="content">
             <div>
+                <p>이용 후기({{$rate->rev_cnt}})</p>
+                <p>평균 별점</p>
                 <img src="/img/icon/big_star.png" alt="별점" style="width:36px; height:36px">
-                <span>평균 별점 : {{number_format($rate->rate, 1)}}</span>
-                <span>총 리뷰 수 : {{$rate->rev_cnt}}</span>
+                <span>{{number_format($rate->rate, 1)}}</span>
             </div>
-            @forelse($reviews as $val)
+            @forelse($reviews as $item)
                 <div style="border:1px #d6d6d6 solid;padding:10px;">
-                    <h5>{!! nl2br($val->rev_content) !!}</h5>
+                    <h5>{!! nl2br($item->rev_content) !!}</h5>
                     <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
-                    <span>{!! nl2br($val->rate) !!}</span>
-                    <span>{!! nl2br(substr($val->created_at, 0, 10)) !!}</span>
+                    <span>{!! nl2br($item->rate) !!}</span>
+                    <span>{!! nl2br(substr($item->created_at, 0, 10)) !!}</span>
                 </div>
             @empty
             <div>아직 리뷰가 작성되지 않았습니다.</div>
             @endforelse
+            {{ $reviews->links() }}
         </div>
     </div>
 </div>
 @php($j = 0)
-@forelse($rooms as $val)
+@forelse($rooms as $item)
 <!-- Modal -->
 <div class="modal fade" id="exampleModal{{$j}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
     <div class="modal-content">
     <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">객실 이용 안내</h1>
@@ -226,47 +232,51 @@
     </div>
     <div class="modal-body">
     {{-- todo 객실 이미지 캐러셀 --}}
-        <div id="carouselExampleIndicators{{$j}}" class="carousel slide" data-bs-ride="true">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <div class="modalCon">
+            <div style="overflow:hidden; width:250px;" class="imgBox">
+                <div id="carouselExampleIndicators{{$j}}" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{asset($item->room_img1)}}" class="d-block w-100" alt="{{$item->room_name}}">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{asset($item->room_img2)}}" class="d-block w-100" alt="{{$item->room_name}}">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{asset($item->room_img3)}}" class="d-block w-100" alt="{{$item->room_name}}">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{$j++}}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{asset($val->room_img1)}}" class="d-block w-100" alt="{{$val->room_name}}">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset($val->room_img2)}}" class="d-block w-100" alt="{{$val->room_name}}">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset($val->room_img3)}}" class="d-block w-100" alt="{{$val->room_name}}">
-                </div>
+                {{-- todo 객실 이미지 캐러셀 --}}
+            {{-- <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="img"> --}}
+            <div class="roomInfo">
+                <h3>{{$item->room_name}}</h3>
+                <div>체크인 {{$item->chk_in}} 체크아웃 {{$item->chk_out}}</div>
+                <div>기준 {{$item->room_min}}인 / 최대 {{$item->room_max}}인</div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{$j}}" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{$j++}}" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    {{-- todo 객실 이미지 캐러셀 --}}
-        {{-- <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="img"> --}}
-        <div>
-            <h3>{{$val->room_name}}</h3>
-            <div>체크인 {{$val->chk_in}} 체크아웃 {{ $val->chk_out}}</div>
-            <div>기준 {{$val->room_min}}인 / 최대 {{$val->room_max}}인</div>
         </div>
         <hr>
             <div>
                 <strong>기본 정보</strong>
-                <div>{!! nl2br($val->room_content) !!}</div>
-                <div>{!! nl2br($val->room_detail) !!}</div>
+                <div>{!! nl2br($item->room_content) !!}</div>
+                <div>{!! nl2br($item->room_detail) !!}</div>
             <hr>
                 <strong>편의 시설</strong>
-                <div>{!! nl2br($val->room_facility) !!}</div>
+                <div>{!! nl2br($item->room_facility) !!}</div>
             </div>
         </div>
     </div>

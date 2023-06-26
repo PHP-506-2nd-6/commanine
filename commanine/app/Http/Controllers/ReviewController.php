@@ -161,7 +161,9 @@ class ReviewController extends Controller
                         ->select('r.*', 'h.hanok_name')
                         ->where('r.user_id', '=', $user_id)
                         ->where('r.deleted_at', '=', null)
-                        ->get();
+                        ->orderBy('r.rev_id', 'desc')
+                        ->paginate(5);
+                        // ->get();
         return view('myreview')->with('review', $reviews);
     }
 
