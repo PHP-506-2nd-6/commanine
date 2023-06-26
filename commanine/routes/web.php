@@ -82,3 +82,5 @@ Route::get('/users/logout', [UsersController::class, 'logout'])->name('users.log
 // 내 리뷰 페이지 0626 KMJ add
 Route::get('/users/myreview', [ReviewController::class, 'myReview'])->name('users.information.review');
 Route::post('/users/deletereview/{id}', [ReviewController::class, 'deleteReview'])->name('users.information.review.delete');
+
+Route::get('/checkDataAndRedirect', [ReviewController::class, 'checkDataAndRedirect'])->name('check-data-and-redirect');

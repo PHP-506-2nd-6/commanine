@@ -30,22 +30,25 @@
                 <label class="btn_search btn-open" for="modalToggle">어디로 떠날까요?</label>
                 <div class="inside">
                     <label class="btn-close" for="modalToggle">X</label>
-                    <form method="get" action="{{route('research.page')}}" >
+                    <form method="get" action="{{route('research.page.get')}}" >
                         <div class="search_form">
                             <div class="search_form1">
                                 <label for="hanok_name">스테이/여행지</label>
-                                <input type="text" name="hanok_name" id="hanok_name"  placeholder="스테이/여행지">
+                                <input type="text" name="locOrHan" id="hanok_name"  placeholder="스테이/여행지" >
                             </div>
                             <div class="search_form2">
                                 <label for="chk_in">체크인</label>
-                                <input type="text" class="datepicker">
+                                <input name="chkIn" type="text" class="datepicker">
                                 <label for="chk_out">체크아웃</label>
-                                <input type="text" class="datepicker2">
+                                <input name="chkOut" type="text" class="datepicker2">
                             </div>
                                 {{-- <span>인원 : </span><span id='result'>0</span>
                                 <input type='button' onclick='count("plus")' value='+'/>
                                 <input class="nobtn" type='button' onclick='count("minus")' value='-'/> --}}
 
+                            <div class="pro-qty row" style="margin: 0 5px">
+                                <input type="text" value="0" readonly="readonly">
+                            </div>
                             <div class="pro-qty row" style="margin: 0 5px">
                                 <input type="text" value="0" readonly="readonly">
                             </div>
