@@ -33,7 +33,7 @@
             </div>
             <div class=" emailBox">
                 <input type="text" name="email" id="email" placeholder="이메일" value="{{old('email')}}">
-                <button type="button" id="emailChkBtn"  class="btn1">확인하기</button>
+                <button type="button" id="emailChkBtn"  class="blackBtn">확인하기</button>
             </div>
             <div id="errMsgId" class="errmsg"></div>
             <input type="password" name="password" id="password" placeholder="비밀번호" class="errbox" >
@@ -66,8 +66,8 @@
                 @endif
             </div>
             <div class="btnGroup">
-                <button type="submit" class="registBtn col btn1" >회원가입</button>
-                <button type="button" class="col btn2">취소</button>
+                <button type="submit" class="registBtn col blackBtn" >회원가입</button>
+                <button type="button" class="col whiteBtn">취소</button>
             </div>
         </form>
     </div>
