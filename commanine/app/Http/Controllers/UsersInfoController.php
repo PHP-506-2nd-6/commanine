@@ -27,7 +27,6 @@ class UsersInfoController extends Controller
 
         // 0622 BYJ
         // $user_id = Reservations::find(Auth::User()->user_id);
-        // 예약 플래그 ??
         $user_id = Auth::User()->user_id;
         $query = DB::table('rooms as room')
         ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
@@ -36,6 +35,8 @@ class UsersInfoController extends Controller
         ->where('re.user_id', $user_id)
         ->orderBy('re.id', 'desc')
         ->get();
+
+        
         
         return view('informationreserve')->with('reserve', $query);
         

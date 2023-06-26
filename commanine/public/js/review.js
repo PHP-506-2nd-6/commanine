@@ -31,3 +31,14 @@ function printRatingResult(result, num = 0) {
 
 executeRating(ratingStars, ratingResult);
 var value = document.getElementById("rate");
+
+// function checkDataAndRedirect() {
+//     var data = /* 데이터 존재 여부를 확인하는 로직 */;
+
+//     if (data) {
+//       alert("데이터가 이미 존재합니다.");
+//       return;
+//     } else {
+//       window.location.href = "다른페이지URL";
+//     }
+//   }

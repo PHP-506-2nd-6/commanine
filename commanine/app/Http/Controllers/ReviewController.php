@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Validator;
 use App\Models\Reviews;
 use App\Models\Users;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class ReviewController extends Controller
 {
@@ -35,14 +35,22 @@ class ReviewController extends Controller
         
         return view('reviewinsert');
     } 
+    public function checkDataAndRedirect()
+    {
+        $dataExists = /* 데이터 존재 여부를 확인하는 로직 */;
+        
+        if ($dataExists) {
+            // 데이터가 있는 경우
+            return redirect()->back()->with('message', '데이터가 이미 존재합니다.');
+        } else {
+            // 데이터가 없는 경우
+            return redirect()->route('other-page');
+        }
+    }
     
     public function reviewpost(Request $req)
     {
 
-        // $req->validate([
-        //     'rate' => 'required'
-        //     ,'rev_contents' => 'required|max:1000'
-        // ])
         // $users = Users::find(Auth::User()->user_id);
         // $user_id = Auth::Hanok()->hanok_id;
         // 현재 로그인한 사용자를 가져옵니다.
@@ -69,6 +77,12 @@ class ReviewController extends Controller
     //     $hanokId = 0;
     // }
     
+
+    $req->validate([
+        'rate' => 'required'
+        ,'rev_contents' => 'required|max:1000'
+    ]);
+
     $deadline = date('Y-m-d', strtotime('+30 days'));
     
     // if ($deadline === null) {
@@ -129,6 +143,42 @@ class ReviewController extends Controller
         // return var_dump($req);
         $Review->save();
         
-        return redirect('/reviewinfo');
+        return redirect('/users/myreview');
+    }
+
+    // 내 리뷰 페이지
+    public function myReview() {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
+        $user_id = Auth::User()->user_id;
+        $reviews = DB::table('hanoks as h')
+                        ->join('reviews as r', 'r.hanok_id', '=', 'h.id')
+                        ->select('r.*', 'h.hanok_name')
+                        ->where('r.user_id', '=', $user_id)
+                        ->where('r.deleted_at', '=', null)
+                        ->get();
+        return view('myreview')->with('review', $reviews);
+    }
+
+    // 리뷰 삭제
+    public function deleteReview($rev_id) {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
+
+        // DB::table('reviews')
+        //     ->where('rev_id', '=', $rev_id)
+        //     ->delete();
+        // DB::table('reviews')
+        //     ->where('rev_id', '=', $rev_id)
+        //     ->delete();
+        // Reviews::destroy($id);
+        $date = Carbon::now();
+        DB::table('reviews')
+            ->where('rev_id', $rev_id)
+            ->update(['deleted_at' => $date]);
+        
+        return redirect('/users/myreview');
     }
 }

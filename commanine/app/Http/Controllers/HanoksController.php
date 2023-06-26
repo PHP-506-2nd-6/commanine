@@ -78,8 +78,8 @@ class HanoksController extends Controller
 						."  WHERE res.room_id = r.id "
 						// ."  AND res.chk_in <= '2023-06-22' "
 						// ."  AND res.chk_out >= '2023-06-23' "
-						."  AND res.chk_in <= ".$val_chkIn
-						."  AND res.chk_out >= ".$val_chkOut
+						."  AND res.chk_in >= ".$val_chkIn
+						."  AND res.chk_out <= ".$val_chkOut
                         ." ) "
                         ;
                         
@@ -101,12 +101,24 @@ class HanoksController extends Controller
                         ->join('reviews as r', 'h.id', '=', 'r.hanok_id')
                         ->select('r.*')
                         ->where('h.id', "=", $id)
+                        ->where('r.deleted_at', '=', null)
                         // ->groupBy('r.rev_id')
+                        ->get();
+        $rate = DB::table('reviews')
+                        ->select(DB::raw("avg(rate) as 'rate', count(rev_id) as 'rev_cnt'"))
+                        ->where('hanok_id', '=', $id)
+                        ->where('deleted_at', '=', null)
                         ->get();
         // TODO 리턴값 확인용 
         // return var_dump($reviews);
         // return view('detail')->with('hanok', $hanoks); // 0615 KMJ del
-        return view('detail')->with('hanok', $hanoks)->with('rooms', $rooms)->with('likes', $likes[0])->with('amenities', $amenities)->with('reviews', $reviews); // 0615 KMJ new
+        return view('detail')
+                ->with('hanok', $hanoks)
+                ->with('rooms', $rooms)
+                ->with('likes', $likes[0])
+                ->with('amenities', $amenities)
+                ->with('reviews', $reviews)
+                ->with('rate', $rate[0]); // 0615 KMJ new
     }
 
 

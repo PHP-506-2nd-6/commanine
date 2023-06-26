@@ -12,7 +12,8 @@
         </div>
     <div style="border:1px black solid;">
         <h5>{{$hanok->hanok_name}}</h5>
-        <span>평균별점</span>
+        <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
+        <span>{{number_format($rate->rate, 1)}}</span>
         <button type='button'>
             <img src="{{asset('img/icon/heart.png')}}" alt="찜" class="like">
         </button>
@@ -124,7 +125,11 @@
             </div>
         </div>
         <div class="content">
-            <div>평균 별점이랑 리뷰 갯수 출력</div>
+            <div>
+                <img src="/img/icon/big_star.png" alt="별점" style="width:36px; height:36px">
+                <span>평균 별점 : {{number_format($rate->rate, 1)}}</span>
+                <span>총 리뷰 수 : {{$rate->rev_cnt}}</span>
+            </div>
             @forelse($reviews as $val)
                 <div style="border:1px #d6d6d6 solid;padding:10px;">
                     <h5>{!! nl2br($val->rev_content) !!}</h5>
