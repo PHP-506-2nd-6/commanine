@@ -14,16 +14,33 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ResearchController extends Controller
 {
-    // public function researchPage(){
-    //     return view('research');
-    // }
-
+    
     // 0616 BYJ
     public function researchPage(Request $req) {
-       
+
+        // 유효성 검사 
+
+        // $req->validate([
+        //     'locOrHan' => 'required'
+        //     ,'chkIn' => 'required'
+        //     ,'chkOut' => 'required'
+        // ]);
+
+        $validator = Validator::make($req->all(), [
+            'locOrHan' => 'required'
+            ,'chkIn' => 'required'
+            ,'chkOut' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $errorMessage = $validator->errors()->first();
+            return redirect()->back()->with('error', $errorMessage)->withInput();
+        }
+
        // 지역명/ 호텔명
         $val_local = $req->input('locOrHan');
        // 체크인
@@ -67,7 +84,7 @@ class ResearchController extends Controller
                 han.id
                 ,han.hanok_name
                 ,han.hanok_img1
-                ,room.room_price 
+                ,room.room_price
                 
                 order by room.room_price ; ";
 
@@ -81,12 +98,12 @@ class ResearchController extends Controller
        return view('research')
                ->with('searches', $notices)
                ->with('arr',$arr);
+
     }
 
 
-    
     public function researchPageget(Request $req){
-        return var_dump($req->all());
+        // return var_dump($req->all());
         // 지역명/ 호텔명
         $val_local = $req->input('locOrHan');
         // 체크인
@@ -237,5 +254,10 @@ class ResearchController extends Controller
             ['path' => $request->url(), 'query' => $request->query()]
         );
 }
+
+    //0626 BYJ
+    // public function index(Request $req) {
+    //     $category =
+    // }
 
 }
