@@ -57,7 +57,7 @@ class ResearchController extends Controller
                     FROM reservations res
                     WHERE 
                     res.chk_out >  ".$val_chkIn.
-                    " or res.chk_in < ".$val_chkOut." ) 
+                    " AND res.chk_in < ".$val_chkOut." ) 
                     GROUP BY r.hanok_id) room
                     ON han.id = room.hanok_id
                     left JOIN reviews review ON han.id = review.hanok_id 
@@ -86,7 +86,6 @@ class ResearchController extends Controller
 
     
     public function researchPageget(Request $req){
-        return var_dump($req->all());
         // 지역명/ 호텔명
         $val_local = $req->input('locOrHan');
         // 체크인
@@ -177,7 +176,7 @@ class ResearchController extends Controller
                     FROM reservations res
                     WHERE 
                         res.chk_out >  ".$val_chkIn.
-                    " or res.chk_in < ".$val_chkOut." ) ";
+                    " AND res.chk_in < ".$val_chkOut." ) ";
         }
         $query .= " GROUP BY r.hanok_id) room
                     ON han.id = room.hanok_id
@@ -210,7 +209,7 @@ class ResearchController extends Controller
                 ,'maxPrice' => $val_maxPrice
         ];
         $notices = $this->arrayPaginator($result, $req);
-        return redirect()->route('research.page.get')
+        return view('research')
                 ->with('searches', $notices)
                 ->with('arr',$arr);
 

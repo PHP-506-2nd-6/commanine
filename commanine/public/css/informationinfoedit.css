@@ -1,0 +1,73 @@
+h2{
+    padding:30px;
+    text-align: center;
+}
+.msg{
+    font-size: 12px;
+    text-align: center;
+    color:#ff0000;
+}
+.updateBox{
+    margin:0 auto;
+    width:400px;
+    height:100%;
+    font-size:20px;
+}
+
+.infoBox{
+    display:grid;
+    grid-template-columns: 1fr 2fr
+}
+
+.infoBox>div{
+    padding-bottom:20px;
+}
+.infoVal{
+    text-align: center;
+}
+form>div{
+    position:relative;
+    padding-bottom:20px;
+}
+
+form>div>input{
+    position:absolute;
+    right:0;
+}
+
+.btnGroup{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 20px;
+}
+
+.btnGroup>button{
+    width:120px;
+}
+
+.blackBtn{
+    background-color: #000;
+    color:#fff;
+    border:1px solid #000;
+    padding: 5px;
+}
+.blackBtn:hover{
+    background-color: #fff;
+    color:#000;
+    border:1px solid #000;
+    transition: all 0.3s;
+    
+}
+
+.whiteBtn{
+    background-color: #fff;
+    color:#000;
+    border:1px solid #000;
+    padding: 5px;
+}
+.whiteBtn:hover{
+    background-color: #000;
+    color:#fff;
+    border:1px solid #000;
+    transition: all 0.3s;
+}
