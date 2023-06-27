@@ -1,7 +1,7 @@
 footer {
     position: relative;
     width: 100%;
-    height: 380px;
+    height: 280px;
     background-color: #f6f6f0;
     margin-top: 30px;
 }
@@ -17,7 +17,6 @@ footer .footer-top ul li::before {
     background-color: #444;
     margin: 0 10px;
 }
-
 footer .footer-top ul {
     padding: 10px;
 }
@@ -36,6 +35,13 @@ footer .footer-bottom {
 
 .footer-bottom > div {
     display: inline-block;
+}
+
+.bottom-left div {
+    display: inline-block;
+}
+.bottom-left .footer-logo {
+    vertical-align: top;
 }
 
 .bottom-left h4 {
