@@ -49,8 +49,8 @@ class ReviewController extends Controller
         return view('reviewlist')->with('data', $dataExists);
     }
     public function reviewinsert() {
-        
-        return view('reviewinsert');
+        $hanok_id=$_GET['hanok_id'];
+        return view('reviewinsert')->with('data',$hanok_id);
     } 
     
     public function reviewpost(Request $req)
@@ -83,9 +83,9 @@ class ReviewController extends Controller
     // }
     
     // $rating = 4;
-
+    // var_dump($req);
+    // exit;
     $rating = $req->input('rating');
-    
     $req->validate([
         'rate' => 'required'
         ,'rev_content' => 'required|max:1000'
@@ -107,18 +107,17 @@ class ReviewController extends Controller
 
     // 방 ID.
     // $roomId = $room->id;
-    // return var_dump($req);
-    $userId = Auth::User()->user_id;
-    $hanokId = DB::table('reservations')
-    ->join('rooms', 'rooms.id', '=', 'reservations.room_id')
-    ->join('hanoks', 'hanoks.id', '=', 'rooms.hanok_id')
-    ->where('reservations.user_id', $userId)
-    ->value('hanoks.id');
+    // $userId = Auth::User()->user_id;
+    // $hanokId = DB::table('reservations')
+    // ->join('rooms', 'rooms.id', '=', 'reservations.room_id')
+    // ->join('hanoks', 'hanoks.id', '=', 'rooms.hanok_id')
+    // ->where('reservations.user_id', $userId)
+    // ->value('hanoks.id');
     
 
     $Review = new Reviews([
         'user_id' => Auth::User()->user_id
-        ,'hanok_id' => $hanokId
+        ,'hanok_id' => $req->hanok_id
         ,'rate' => $req->input('rate')
         ,'rev_content' => $req->input('rev_content')
         ,'deadline' => $deadline

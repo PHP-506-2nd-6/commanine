@@ -28,11 +28,12 @@
                 <h4>COMPANY INFO</h4>
                 <div class="footer-logo">
                     <img src="image/dodot%20logo%20footer.png" alt="">
-                    <p> 콤마나인</p>
                 </div>
-                <p>대표:000 <span>사업자등록번호:000-00-0000</span></p>
-                <p>개인정보관리책임 000 이사:abc@defghi.co.kr</p>
-                <p>대구광역시 중구 중앙대로 394, 제일빌딩 5F</p>
+                <div class="footer-con">
+                    <p>대표:000 <span>사업자등록번호:000-00-0000</span></p>
+                    <p>개인정보관리책임 000 이사:abc@defghi.co.kr</p>
+                    <p>대구광역시 중구 중앙대로 394, 제일빌딩 5F</p>
+                </div>
             </div>
             <div class="bottom-right">
                 <p>고객센터:0000-0000</p>

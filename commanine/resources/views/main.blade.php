@@ -41,25 +41,25 @@
 <div class="nav-border">
     <ul class="gnb clearfix">
         <li class="cate hotel">
-            <a href="/research/pageget?value=0">
+            <a href="/research/pageget?hanokType=0">
                 <img src="/img/hotel.png" alt="hotel"></a>
             <p>호텔</p>
         </li>
 
         <li class="cate pension">
-            <a href="#">
+            <a href="/research/pageget?hanokType=1">
                 <img src="/img/pension.png" alt="pension"></a>
             <p>펜션</p>
         </li>
 
         <li class="cate guesthouse">
-            <a href="#">
+            <a href="/research/pageget?hanokType=2">
                 <img src="/img/guesthouse.png" alt="guesthouse"></a>
             <p>게스트하우스</p>
         </li>
 
         <li class="cate resort">
-            <a href="#">
+            <a href="/research/pageget?hanokType=3">
                 <img src="/img/resort.png" alt="resort"></a>
             <p>리조트</p>
         </li>
@@ -86,7 +86,8 @@
                                     <div class="bodytext">
                                         <h3 class="card-title">{{$val2->hanok_name}}</h3>
                                         <p class="card-text">{{$val2->hanok_local}}</p>
-                                        <p class="card-text">별점</p>
+                                        <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
+                                        <span>{{isset($val2->review) ? substr($val2->review,0,4) : "0"}}</span>
                                         <div class="tag">
                                             <p class="card-text">{{number_format($val2->room_price)}}원</p>
                                         </div>
@@ -175,8 +176,8 @@
                                         <h5 class="card-title">{{$val->hanok_name}}</h5>
                                         <p class="card-text">{{number_format($val->room_price)}}원</p>
                                         <p class="card-text">{{$val->hanok_local}}</p>
-                                        {{-- <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
-                                        <span>{{isset($val->review) ? substr($val->review,0,4) : "0"}}</span> --}}
+                                        <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
+                                        <span>{{isset($val->review) ? substr($val->review,0,4) : "0"}}</span>
                                         {{-- <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; color: #333;">
                                             예약하기
                                         </button> --}}
