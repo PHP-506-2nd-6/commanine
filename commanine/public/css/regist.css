@@ -58,9 +58,7 @@ form{
 .emailBox{
     position:relative;
 }
-/* #email{
-    padding:5px 10px;
-} */
+
 #emailChkBtn{
     position:absolute;
     z-index: 9999;
@@ -117,4 +115,12 @@ form{
 }
 .btnGroup > .whiteBtn{
     margin-left:5px;
+}
+form>input:focus,form>select:focus,#email:focus{
+    outline:none;
+    /* border:none; */
+}
+
+form>select{
+    padding:10px 0;
 }

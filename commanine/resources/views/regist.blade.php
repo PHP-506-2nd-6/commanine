@@ -51,7 +51,7 @@
                     {{$errors->first('birth')}}
                 @endif
             </div>
-            <select name="question" size="1" class="">
+            <select name="question" size="1" >
                 <option value="1">나의 보물1호는 무엇입니까?</option>
                 <option value="2">출생지는 어디 입니까?</option>
                 <option value="3">어머니의 성함은 무엇입니까?</option>

@@ -30,7 +30,7 @@ class ResearchController extends Controller
         //     ,'chkIn' => 'required'
         //     ,'chkOut' => 'required'
         // ]);
-
+        $errorMsg ="모든항목은 필수항목입니다.";
         $validator = Validator::make($req->all(), [
             'locOrHan' => 'required'
             ,'chkIn' => 'required'
@@ -39,7 +39,7 @@ class ResearchController extends Controller
 
         if ($validator->fails()) {
             $errorMessage = $validator->errors()->first();
-            return redirect()->back()->with('error', $errorMessage)->withInput();
+            return redirect()->back()->with('errormsg', $errorMsg)->withInput();
         }
 
        // 지역명/ 호텔명

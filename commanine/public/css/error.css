@@ -26,14 +26,14 @@ button{
     height:40px;
     background-color: #000;
     border:1px solid #000;
-    color:#fff;
+    /* color:#fff !important; */
     
     margin: 0 auto !important;
 }
 
 
 .mainLink{
-    color:#fff ;
+    color:#fff !important;
 }
 
 button:hover{
@@ -44,4 +44,5 @@ button:hover{
 button:hover .mainLink{
     color:#000 !important;
     transition:all 0.3s;
+    text-decoration: none;
 }

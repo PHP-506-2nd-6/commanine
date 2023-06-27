@@ -39,7 +39,7 @@ form>input{
     margin-bottom:10px;
     padding: 5px 10px;
     outline: none;
-    
+    border:1px solid #000;
 }
 
 .alertSuc{

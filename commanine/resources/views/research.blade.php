@@ -13,22 +13,24 @@
 </head>
 @section('contents')
 
-<div class=" containerBox container" style="margin-top : 40px;">
+<div class="containerBox" style="margin-top : 40px;">
     <div class="searchBox">
         <form action="{{route('research.page.get')}}" method="get" class="formBox">
             <div class="searchFirstBox" style="padding-bottom : 20px;">
-                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" class="" value="{{isset($arr['local']) ? $arr['local'] : ""}}">
-                <div class="search_form2 dayBox">
+                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" class="localInput searchWidth" value="{{isset($arr['local']) ? $arr['local'] : ""}}">
+                <div class="dayBox searchWidth">
                     <label for="chkIn">체크인</label>
                     <input type="text" class="datepicker" name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
+                </div>
+                <div class="dayBox searchWidth">
                     <label for="chkOut">체크아웃</label>
                     <input type="text" class="datepicker2" name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
                 </div>
             </div>
             <div class="searchSecondBox" >
-                    <div>
-                        <span> 숙소유형 </span>
-                        <select name="hanokType"  size="1" class="selectBox" >
+                    <div class="searchWidth selectBox">
+                        <span> 숙소 유형 </span>
+                        <select name="hanokType"  size="1" class="selectList">
                             <option disabled selected value="">숙소 유형</option>
                             <option value="0">호텔</option>
                             <option value="1">펜션</option>
@@ -36,9 +38,11 @@
                             <option value="3">리조트</option>
                         </select>
                     </div>
-                    <div class="countWrap">
-                        <label for="countP">인원</label>
-                        <input type="text" class="countInput" id="countP"/>
+                    <div class="countWrap searchWidth">
+                        <div class="countPeople">
+                            <label for="countP">인원</label>
+                            <input type="text" class="countInput" id="countP"/>
+                        </div>
                         <div class="countBox poAbsolute">
                             <div class="adultsBox">
                                 <label for="adults">성인</label>
@@ -61,7 +65,7 @@
                     </div>
 
                     {{-- range --}}
-                    <div class="text-box">
+                    <div class="text-box searchWidth">
                         <p class="centered-text">가격</p>
                         <div class="rangeslider">
                             <input class="min" name="minPrice" type="range" min="0" max="1000000" value="{{isset($minPrice) ? $minPrice : "0"}}" step="10000" />
@@ -92,7 +96,7 @@
         @forelse($searches as $value)
             <div class="searchList">
                 <a href="{{route('hanoks.detail',$value->id)}}" class="listA">
-                    <div class="">
+                    <div>
                         <img src="{{asset($value->hanok_img1)}}" >
                     </div>
                     <div class="explainHanok">
@@ -118,8 +122,8 @@
             <div class="searchList noSearch" >검색된 결과가 없습니다.</div>
         @endforelse
     </div>
-    <div class="d-flex justify-content-center"> 
-        {{$searches->onEachSide(3)->withQueryString()->links()}}
+    <div class="d-flex justify-content-center" > 
+        {{$searches->onEachSide(5)->withQueryString()->links()}}
     </div>
 </div>
 

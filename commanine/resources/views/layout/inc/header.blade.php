@@ -29,7 +29,7 @@
                 <label class="btn_search btn-open" for="modalToggle">어디로 떠날까요?</label>
                 <div class="inside" id="errorBox">
                     <label class="btn-close" for="modalToggle">X</label>
-                    @if (session('error'))
+                    @if (session('errormsg'))
                         <script>
                             function showAlert(message) {
                                 alert(message);
