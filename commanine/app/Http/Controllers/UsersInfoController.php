@@ -36,8 +36,7 @@ class UsersInfoController extends Controller
         ->orderBy('re.id', 'desc')
         ->get();
 
-        
-        
+
         return view('informationreserve')->with('reserve', $query);
         
 

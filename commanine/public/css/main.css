@@ -1,5 +1,5 @@
 main {
-    height: 3000px;
+    min-height: auto;
 }
 .bg {
     height: 300px;
@@ -29,6 +29,10 @@ main {
 }
 .gnb li:last-child {
     margin-right: 0;
+}
+
+.inner-wrapper h2 {
+    padding-top: 15px;
 }
 
 .recent {
@@ -200,8 +204,8 @@ main {
     content: "";
     width: 20px;
     height: 20px;
-    border-top: 3px solid #000;
-    border-right: 3px solid #000;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
     transform: rotate(225deg);
 }
 
@@ -212,8 +216,8 @@ main {
     content: "";
     width: 20px;
     height: 20px;
-    border-top: 3px solid #000;
-    border-right: 3px solid #000;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
     transform: rotate(-320deg);
 }
 
@@ -227,7 +231,6 @@ main {
     opacity: 0.5;
 }
 
-/* 
 @media screen and (max-width: 1400px) {
     .myCarousel .slides-wrapper .slides.content .title {
         font-size: 50px;
@@ -236,7 +239,7 @@ main {
     .myCarousel .slides-wrapper .slides.photo {
         height: 50%;
         left: 12%;
-        width: 650px;
+        width: 500px;
     }
 
     .myCarousel .slides-wrapper .slides.photo .image {
@@ -278,8 +281,8 @@ main {
     .myCarousel .slides-wrapper .slides.photo {
         height: 50%;
         top: 10%;
-        left: 10%;
-        width: 100%;
+        left: 30%;
+        width: 50%;
     }
 
     .myCarousel .slides-wrapper .slides.title {
@@ -294,15 +297,15 @@ main {
     }
 
     .myCarousel .slides-wrapper .slides.content {
-        height: 50%;
+        height: 30%;
         width: 60%;
-        top: 60%;
+        top: 65%;
         left: 20%;
     }
 
-    .myCarousel .slides-wrapper .slides.content .bodytext {
+    /* .myCarousel .slides-wrapper .slides.content .bodytext {
         transform: translateY(-20%);
-    }
+    } */
 
     .myCarousel #arrows {
         top: 60%;
@@ -316,6 +319,12 @@ main {
 }
 
 @media screen and (max-width: 830px) {
+    .myCarousel .slides-wrapper .slides.photo {
+        height: 50%;
+        top: 10%;
+        left: 20%;
+        width: 50%;
+    }
     .myCarousel .slides-wrapper .slides.content .title {
         font-size: 30px;
     }
@@ -330,16 +339,16 @@ main {
 
     .myCarousel #arrows .prev,
     .myCarousel #arrows .next {
-        font-size: 40px;
+        font-size: 20px;
     }
 
     .myCarousel #arrows .prev {
         margin-right: 30px;
     }
 
-    .myCarousel .slides-wrapper .slides.photo {
+    /* .myCarousel .slides-wrapper .slides.photo {
         left: 0;
-    }
+    } */
 
     .myCarousel .slides-wrapper .slides.photo .image {
         text-align: center;
@@ -353,7 +362,7 @@ main {
     .myCarousel #arrows {
         top: 60%;
     }
-} */
+}
 
 /* split.css */
 .split {

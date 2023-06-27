@@ -5,57 +5,77 @@
  * 파일명     : HanoksController.php
  * 이력       : 0614 new
  *              0619 add
+ *              0621 add
  * *********************************** */
 namespace App\Http\Controllers;
 
 use App\Models\Hanoks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 // 0614 KMJ new
 class HanoksController extends Controller
 {
     public function hanoksDetail($id, Request $req) {
         $hanoks = Hanoks::find($id);
-        // todo 예약이 이미 된 날짜엔 객실 정보가 뜨지 않거나, 예약하기 버튼이 예약마감으로 바뀌든 비활성화되든 해야함
+
         // $rooms = DB::table('hanoks as h')
         //                 ->join('rooms as r', 'h.id', '=', 'r.hanok_id')
         //                 ->select('r.*')
         //                 ->where('h.id', '=', $id)
         //                 ->get(); // 0620 KMJ del
+        // 유효성 검사
+        // $data = $req->only('chk_in', 'chk_out', 'reserve_adult', 'reserve_child');
+        // var_dump($data, $req->chk_in);
+        // $validate = Validator::make($data, [
+        //     'chk_in'    =>
+        // ])
         $val_count = $req->reserve_adult + $req->reserve_child;
         $val_chkIn = $req->chk_in;
         $val_adult = $req->reserve_adult;
         $val_child = $req->reserve_child;
-        // return var_dump($val_chkIn);
+        
         // $val_count = $req->input('reserve_adult') + $req->input('reserve_child');
         // $val_chkIn = $req->input('chk_in');
         // $val_adult = $req->input('reserve_adult');
         // $val_child = $req->input('reserve_child');
-        $val_count = $val_adult + $val_child;
-        if($val_adult === null) {
+
+        // 입력한 사람 수(성인)가 없거나 입력한 사람 수가 1미만 16초과될 때 기본값으로 돌린다
+        if($val_adult === null || $val_adult < 1 || $val_adult > 16) {
             $val_adult = 2;
         }
-        if($val_child === null) {
+        // 입력한 사람 수(아동)가 없거나 입력한 사람 수가 0이하 16초과될 때 기본값으로 돌린다
+        if($val_child === null || $val_child <= 0 || $val_child > 16) {
             $val_child = 0;
         }
-        // $val_chkIn = '2023-06-14';
+
+        $val_count = $val_adult + $val_child;
+        
+        // 입력한 날짜값이 없거나 오늘 날짜보다 이전 날짜일 때 오늘 날짜 넣어준다
         $val_chkOut = $req->input('chk_out');
-        if($val_chkIn === null) {
+        if($val_chkIn === null || $val_chkIn < date("Y-m-d")) {
             $val_chkIn = date("Y-m-d");
         }
-        if($val_chkOut === null) {
+        
+        // 입력한 날짜값이 없거나 체크인 날짜보다 이전 날짜일 때 오늘 날짜 넣어준다
+        if($val_chkOut === null || $val_chkOut < $val_chkIn) {
             $val_chkOut = date("Y-m-d", strtotime($val_chkIn."+1 day"));
         }
-        // if()
+
+        // 입력한 값 유지하기 위해서 배열로 담아서 view로 보내주기 위한 처리
         $inpData = [
             'val_chkIn' => $val_chkIn
             ,'val_chkOut' => $val_chkOut
             ,'val_adult' => $val_adult
             ,'val_child' => $val_child
         ];
-        // return var_dump($inpData);
-        // return var_dump($rooms);
-        // $val_chkOut = '2023-06-15';
+
+        // 쿼리문 날리기 위해서 날짜에서 '-' 빼주는 처리
+        $val_chkIn = str_replace('-','',$val_chkIn);
+        $val_chkOut = str_replace('-','',$val_chkOut);
+
+        // 해당 숙소의 예약 안 되어있는 객실 가져오기 0621 KMJ add
         $query =
         " SELECT * "
         ." FROM rooms r "
@@ -64,28 +84,27 @@ class HanoksController extends Controller
 		."  AND r.id NOT IN ( "
 						."  SELECT res.room_id "
 						."  FROM reservations res "
-						// ."  WHERE res.room_id = r.id "
-						// ."  AND res.chk_in <= '2023-06-22' "
-						// ."  AND res.chk_out >= '2023-06-23' "
 						."  WHERE res.chk_in < ".$val_chkOut
 						."  AND res.chk_out > ".$val_chkIn
                         ." ) "
                         ;
                         
         $rooms = DB::select($query);
-        // return var_dump($rooms, $val_chkOut, $val_chkIn);
-        // 0615 해당 숙소의 찜 갯수 가져오기 KMJ add
+        
+        // 해당 숙소의 찜 갯수 가져오기 0615 KMJ add
         $likes = DB::table('hanoks as h')
                         ->join('wishlists as w', 'h.id', '=', 'w.hanok_id')
                         ->select(DB::raw("count(w.user_id) as 'likes'"))
                         ->where('h.id', '=', $id)
                         ->get();
-        // 0622 해당 숙소의 어메니티 가져오기 KMJ add
+
+        // 해당 숙소의 어메니티 가져오기 0622 KMJ add
         $amenities = DB::table('amenities as a')
                             ->join('amenity_categories as ac', 'a.amenity_category', '=', 'ac.id')
                             ->where('hanok_id', '=', $id)
                             ->get();
-        // 0619 해당 숙소의 리뷰 가져오기 KMJ add
+
+        // 해당 숙소의 리뷰 가져오기 0619 KMJ add
         $reviews = DB::table('hanoks as h')
                         ->join('reviews as r', 'h.id', '=', 'r.hanok_id')
                         ->select('r.*')
@@ -95,23 +114,23 @@ class HanoksController extends Controller
                         ->paginate(5);
                         // ->groupBy('r.rev_id')
                         // ->get();
+        // 해당 숙소의 평균 별점 가져오기 0626 KMJ add
         $rate = DB::table('reviews')
                         ->select(DB::raw("avg(rate) as 'rate', count(rev_id) as 'rev_cnt'"))
                         ->where('hanok_id', '=', $id)
                         ->where('deleted_at', '=', null)
                         ->get();
-        // TODO 리턴값 확인용 
-        // return var_dump($reviews);
+
+
         // return view('detail')->with('hanok', $hanoks); // 0615 KMJ del
         return view('detail')
-        // return redirect()->route('hanoks.detail', [ 'id' => $id])
                 ->with('hanok', $hanoks)
                 ->with('rooms', $rooms)
                 ->with('likes', $likes[0])
                 ->with('amenities', $amenities)
                 ->with('reviews', $reviews)
                 ->with('rate', $rate[0])
-                ->with('inpData', $inpData); // 0615 KMJ new
+                ->with('inpData', $inpData); // 0615 KMJ add
     }
 
 
