@@ -42,8 +42,12 @@ form>div{
 form>div>input{
     position:absolute;
     right:0;
+    padding-left:10px;
 }
 
+input:focus{
+    outline:none;
+}
 .btnGroup{
     display: grid;
     grid-template-columns: repeat(3,1fr);

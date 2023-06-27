@@ -41,7 +41,7 @@
                     <div class="countWrap searchWidth">
                         <div class="countPeople">
                             <label for="countP">인원</label>
-                            <input type="text" class="countInput" id="countP"/>
+                            <input type="text" class="countInput" id="countP" value="성인 : {{$arr['adults']}} / 어린이 : {{$arr['kids']}}"/>
                         </div>
                         <div class="countBox poAbsolute">
                             <div class="adultsBox">
@@ -68,8 +68,8 @@
                     <div class="text-box searchWidth">
                         <p class="centered-text">가격</p>
                         <div class="rangeslider">
-                            <input class="min" name="minPrice" type="range" min="0" max="1000000" value="{{isset($minPrice) ? $minPrice : "0"}}" step="10000" />
-                            <input class="max" name="maxPrice" type="range" min="0" max="1000000" value="{{isset($maxPrice) ? $maxPrice : "1000000" }}" step="10000" />
+                            <input class="min" name="minPrice" type="range" min="0" max="1000000" value="{{isset($arr['minPrice']) ? $arr['minPrice'] : "0"}}" step="10000" />
+                            <input class="max" name="maxPrice" type="range" min="0" max="1000000" value="{{isset($arr['maxPrice']) ? $arr['maxPrice'] : "1000000" }}" step="10000" />
                             <span class="range_min light left">{{isset($arr['minPrice']) ? $arr['minPrice'] : "0"}} 원</span>
                             <span class="range_max light right">{{isset($arr['maxPrice']) ? $arr['maxPrice'] : "1000000" }} 원</span>
                         </div>

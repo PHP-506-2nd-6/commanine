@@ -43,6 +43,31 @@ $(function() {
   }
 
   $('input[type="range"]').on('input', updateRangeValues);
+
+  function updateRangeThumb() {
+    var minRange = 0; // input range의 최소 값
+    var maxRange = 1000000; // input range의 최대 값
+
+    // 검색한 min과 max 값을 input range의 값으로 설정
+
+
+    // min과 max 값에 따라 동그라미의 위치 업데이트
+    var range_min = $('.range_min');
+    var range_max = $('.range_max');
+    var minVal = parseInt($('.min').val());
+    var maxVal = parseInt($('.max').val());
+
+    // min 동그라미의 위치 업데이트
+    var minPercentage = ((minVal - minRange) / (maxRange - minRange)) * 100;
+    $('.min').css('background-size', minPercentage + '% 100%');
+    $(range_min).html(addSeparator(minVal) + ' 원');
+
+    // max 동그라미의 위치 업데이트
+    var maxPercentage = ((maxVal - minRange) / (maxRange - minRange)) * 100;
+    $('.max').css('background-size', maxPercentage + '% 100%');
+    $(range_max).html(addSeparator(maxVal) + ' 원');
+  }
+  updateRangeThumb();
 });
 
 //가격 range end

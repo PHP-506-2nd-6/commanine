@@ -262,7 +262,10 @@ Log::debug('인원',[$val_count]);
                 ,'chkOut' => $val_chkOut
                 ,'minPrice' => $val_minPrice
                 ,'maxPrice' => $val_maxPrice
+                ,'adults' => $req->adults
+                ,'kids' => $req->kids
         ];
+        Log::debug("값 확인", [$arr['maxPrice']]);
         $notices = $this->arrayPaginator($result, $req);
         return view('research')
                 ->with('searches', $notices)

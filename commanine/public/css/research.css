@@ -9,10 +9,10 @@
     margin:0 auto;
 }
 /* start input-range */
-body{
+/* body{
     font-family: sans-serif;
     font-size:14px;
-    }
+    } */
     input[type='range'] {
       width: 210px;
       height: 30px;
@@ -76,6 +76,8 @@ body{
        float: right;
        margin-right: -5px;
     }
+
+    
 /* end input-range */
 
 .star{
