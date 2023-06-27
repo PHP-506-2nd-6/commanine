@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class ResearchController extends Controller
@@ -56,8 +57,7 @@ class ResearchController extends Controller
         }
        // 인원
         $val_count = $req->input('adults')+$req->input('kids');
-
-        
+       
         $query= "SELECT
         han.id
         ,han.hanok_name
@@ -122,13 +122,17 @@ class ResearchController extends Controller
         // }
         
         // 숙소유형
-        $val_type = $req->hanokType;
+        $val_type = $req->input('hanokType');
         // 인원
         $val_count = $req->input('adults')+$req->input('kids');
         // return var_dump($val_count);
         // 가격
         $val_minPrice = $req->input('minPrice');
         $val_maxPrice = $req->input('maxPrice');
+        Log::debug('성인',[$req->input('adults')]);
+Log::debug('키즈',[$req->input('kids')]);
+
+Log::debug('인원',[$val_count]);
         
         // 쿼리 작성
         //*********************** 쿼리
@@ -170,54 +174,86 @@ class ResearchController extends Controller
         ,han.hanok_name
         ,han.hanok_img1
         ,room.room_price
-        ,COUNT(review.hanok_id ) AS cnt
+        ,COUNT(review.user_id ) AS cnt
         ,AVG(review.rate) AS rate
         FROM hanoks han
-           JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
-                   FROM rooms r ";
-        if($val_maxPrice){
-            $query .= " WHERE r.room_price <= ".$val_maxPrice; 
+            JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
+                FROM rooms r ";
+
+        if($val_maxPrice === null && $val_minPrice === null){
+            $query .= " WHERE r.room_price >= 0";
+        }else{
+            $query .= " WHERE r.room_price >= ".$val_minPrice
+                        ." AND r.room_price <= ".$val_maxPrice;
         }
-        // 최소가격
-        if($val_minPrice){
-            $query .= " AND r.room_price >= ".$val_minPrice;
-        }
+        // Log::debug("최대가격", [$val_maxPrice]);
+        // if(isset($val_maxPrice)){
+        // Log::debug("최대가격 확인", [$val_maxPrice]);
+            
+        //     $query .= " WHERE r.room_price >= ".$val_minPrice;
+        // }else{
+        // Log::debug("가격세팅 안하고 넘어갔을 때", [$val_minPrice]);
+        //     $query .= " WHERE r.room_price >= 0";
+        // }
+        // // 최소가격
+        // Log::debug("최소가격 ", [$val_minPrice]);
+
+        // if(isset($val_minPrice)){
+        // Log::debug("최소가격 확인", [$val_minPrice]);
+        //     $query .= " AND r.room_price <= ".$val_maxPrice; 
+        // }
         // 인원
-        if($val_count){
+        Log::debug("인원 ", [$val_count]);
+        if(isset($val_count)){
+        Log::debug("인원 확인", [$val_count]);
             $query .= " AND r.room_max >= ".$val_count;
         }
         // 체크인 / 체크아웃
-        if($val_chkIn){
+        Log::debug("체크인 ", [$val_chkIn]);
+        if(isset($val_chkIn)){
+        Log::debug("체크인 확인", [$val_chkIn,$val_chkOut]);
         $query .= " AND r.id NOT IN      
                     (SELECT res.room_id
                     FROM reservations res
                     WHERE 
                         res.chk_out >  ".$val_chkIn.
-                    " AND res.chk_in < ".$val_chkOut." ) ";
+                    " OR res.chk_in < ".$val_chkOut." ) ";
         }
         $query .= " GROUP BY r.hanok_id) room
                     ON han.id = room.hanok_id
-                    left JOIN reviews review ON han.id = review.hanok_id ";
+                    LEFT JOIN reviews review ON han.id = review.hanok_id ";
 
-        if($val_local){
-                $query .= " WHERE ( han.hanok_name like "."'%$val_local%'"
-                ." OR han.hanok_addr LIKE "."'%$val_local%'"." ) ";
-                }
-            // 호텔 유형
-        if($val_type){
-                $query .= " AND han.hanok_type = "."'$val_type'  ";
+        // Log::debug("지역이름", [$val_local]);
+        if(isset($val_local)){
+        Log::debug("지역이름이 존재할 때", [$val_local]);
+            $query .= " WHERE ( han.hanok_name like "."'%$val_local%'"
+            ." OR han.hanok_addr LIKE "."'%$val_local%'"." ) ";
+            if(isset($val_type)){
+        Log::debug("지역이름이 존재하고, 유형이 존재할 때", [$val_local]);
+                $query .= " AND han.hanok_type = "."'".$val_type."'";
+            }
+        }else{
+            if(isset($val_type)){
+                Log::debug("지역검색하지 않고, 유형이 존재할 때", [$val_local]);
+                $query .= " WHERE han.hanok_type = "."'".$val_type."'";
+            }
         }
+            // 호텔 유형
+        Log::debug("한옥유형", [$val_type]);
+        // if(isset($val_type)){
+        // Log::debug("한옥유형", [$val_type]);
+        //         $query .= " WHERE han.hanok_type = "."'".$val_type."'";
+        // }
                 $query .=" GROUP BY 
                 han.id
                 ,han.hanok_name
                 ,han.hanok_img1
                 ,room.room_price 
                 
-                order by room.room_price ;";
-
-
-
-
+                order by room.room_price;";
+        
+        Log::debug("쿼리", [$query]);
+                
         $result = DB::select($query);
         $arr = ['local' => $val_local
                 ,'chkIn' => $val_chkIn

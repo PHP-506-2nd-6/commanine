@@ -64,10 +64,10 @@
                     <div class="text-box">
                         <p class="centered-text">가격</p>
                         <div class="rangeslider">
-                            <input class="min" name="minPrice" type="range" min="0" max="500000" value="{{isset($minPrice) ? $minPrice : "0"}}" step="10000" />
-                            <input class="max" name="maxPrice" type="range" min="0" max="500000" value="{{isset($maxPrice) ? $maxPrice : "500000" }}" step="10000" />
+                            <input class="min" name="minPrice" type="range" min="0" max="1000000" value="{{isset($minPrice) ? $minPrice : "0"}}" step="10000" />
+                            <input class="max" name="maxPrice" type="range" min="0" max="1000000" value="{{isset($maxPrice) ? $maxPrice : "1000000" }}" step="10000" />
                             <span class="range_min light left">{{isset($arr['minPrice']) ? $arr['minPrice'] : "0"}} 원</span>
-                            <span class="range_max light right">{{isset($arr['maxPrice']) ? $arr['maxPrice'] : "500000" }} 원</span>
+                            <span class="range_max light right">{{isset($arr['maxPrice']) ? $arr['maxPrice'] : "1000000" }} 원</span>
                         </div>
                     </div>
                     

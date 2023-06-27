@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lang="ko">
+{{-- /**************************************
+ * 프로젝트명 : commanine
+ * 디렉토리   : resources/views/errors
+ * 파일명     : 404.blade.php
+ * 이력       : 0625 KMH new
+ * *********************************** */ --}}
+
+@extends('layout.layout')
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{asset('css/error.css')}}">
 </head>
-<body>
-    <div>페이지를 잘못 접근하셨습니다.</div>
-    <a href="{{route('main')}}">메인으로</a>
-</body>
-</html>
+@section('contents')
+    <div class="wrap">
+        <div class="msgBox">
+            <div class="msg">페이지를 잘못 접근하셨습니다.</div>
+            <button type="button"><a href="{{route('main')}}" class="mainLink">메인으로</a></button>
+        </div>
+    </div>
+@endsection
