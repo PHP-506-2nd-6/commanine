@@ -1,11 +1,4 @@
 $(function () {
-    $(".datepicker").datepicker({ minDate: 0 });
-});
-$(function () {
-    $(".datepicker2").datepicker({ minDate: 0 });
-});
-
-$(function () {
     //input을 datepicker로 선언
     $(".datepicker").datepicker({
         dateFormat: "yy-mm-dd", //달력 날짜 형태
@@ -56,8 +49,8 @@ $(function () {
             "금요일",
             "토요일",
         ], //달력의 요일 Tooltip
-        minDate: "-5Y", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
         maxDate: "+5y", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        minDate: 0,
     });
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     // $('.datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
@@ -114,8 +107,8 @@ $(function () {
             "금요일",
             "토요일",
         ], //달력의 요일 Tooltip
-        minDate: "-5Y", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
         maxDate: "+5y", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        minDate: 0,
     });
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     // $(".datepicker").datepicker("setDate", "today"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
@@ -168,12 +161,11 @@ $(document).ready(function () {
     });
 });
 
-
 // function showCountBox() {
 //     var countBox = document.querySelector('.countBox');
 //     countBox.style.display = 'block';
 //   }
-  
+
 //   // 인원 상자 요소
 //   var countP = document.getElementById('countP');
 //   countP.addEventListener('click', showCountBox);
