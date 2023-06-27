@@ -25,9 +25,9 @@
         <hr>
         <div class="footer-bottom">
             <div class="bottom-left">
-                <h4>COMPANY INFO</h4>
+                <h5>COMPANY INFO</h5>
                 <div class="footer-logo">
-                    <img src="image/dodot%20logo%20footer.png" alt="">
+                    <img src="{{asset('/img/logologo.png')}}" alt="">
                 </div>
                 <div class="footer-con">
                     <p>대표:000 <span>사업자등록번호:000-00-0000</span></p>

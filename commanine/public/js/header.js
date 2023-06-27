@@ -6,10 +6,10 @@ $(function () {
         showMonthAfterYear: true, // 월- 년 순서가아닌 년도 - 월 순서
         changeYear: true, //option값 년 선택 가능
         changeMonth: true, //option값  월 선택 가능
-        showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+        //showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
         // ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
         //,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
-        buttonText: "선택", //버튼 호버 텍스트
+        // buttonText: "선택", //버튼 호버 텍스트
         yearSuffix: "년", //달력의 년도 부분 뒤 텍스트
         monthNamesShort: [
             "1월",
@@ -64,10 +64,10 @@ $(function () {
         showMonthAfterYear: true, // 월- 년 순서가아닌 년도 - 월 순서
         changeYear: true, //option값 년 선택 가능
         changeMonth: true, //option값  월 선택 가능
-        showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+        // showOn: "both", //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
         // ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
         //,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
-        buttonText: "선택", //버튼 호버 텍스트
+        // buttonText: "선택", //버튼 호버 텍스트
         yearSuffix: "년", //달력의 년도 부분 뒤 텍스트
         monthNamesShort: [
             "1월",
@@ -128,7 +128,6 @@ function count(type) {
         number = parseInt(number) - 1;
     }
 
-    // 결과 출력
     resultElement.innerText = number;
 }
 
@@ -162,10 +161,10 @@ $(document).ready(function () {
 });
 
 // function showCountBox() {
-//     var countBox = document.querySelector('.countBox');
-//     countBox.style.display = 'block';
-//   }
+//     var countBox = document.querySelector(".countBox");
+//     countBox.style.display = "block";
+// }
 
-//   // 인원 상자 요소
-//   var countP = document.getElementById('countP');
-//   countP.addEventListener('click', showCountBox);
+// // 인원 상자 요소
+// var countP = document.getElementById("countP");
+// countP.addEventListener("click", showCountBox);

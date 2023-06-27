@@ -48,44 +48,27 @@
                             </div>
                             <div class="search_form2">
                                 <label for="chk_in">체크인</label>
-                                <input name="chkIn" type="text" class="datepicker" autocomplete="off">
+                                <input name="chkIn" type="text" class="datepicker" placeholder="가는 날짜" autocomplete="off">
                                 <label for="chk_out">체크아웃</label>
-                                <input name="chkOut" type="text" class="datepicker2" autocomplete="off">
+                                <input name="chkOut" type="text" class="datepicker2" placeholder="오는 날짜" autocomplete="off">
                             </div>
-                                {{-- <div class="countWrap">
-                        <label for="countP">인원</label>
-                        <input type="text" class="countInput" id="countP"/> --}}
-                        {{-- <div class="countBox poAbsolute">
+                        <div class="countBox poAbsolute">
                             <div class="adultsBox">
                                 <label for="adults">성인</label>
-                                <div >
-                                    <button class="minBtn" type="button">-</button>
-                                    <input type="number" value="2" class="adultsVal" id="adults" min="0" max="99">
-                                    <button class="plusBtn" type="button">+</button>
+                                <div class="pro-qty row" style="margin: 0 2px">
+                                    <input type="number" name="adults" value="2" readonly="readonly">
                                 </div>
                             </div>
                             <div class="kidsBox">
                                 <label for="kids">어린이</label>
-                                <div>
-                                    <button class="minBtn" type="button">-</button>
-                                    <input type="number" value="0" class="kidsVal" id="kids" min="0" max="99">
-                                    <button class="plusBtn" type="button">+</button>
-                                </div>
+                                <div class="pro-qty row" style="margin: 0 2px">
+                                    <input type="number" name="kids" value="0" readonly="readonly">
+                                </div> 
                             </div>
-                            <button type="button" class="countChkBtn">확인</button>
-                        </div> --}}
-
-                            <div class="pro-qty row" style="margin: 0 5px">
-                            {{-- <label for="adults">성인</label> --}}
-                                <input type="number" name="adults" value="0" readonly="readonly">
-                            </div>
-                            <div class="pro-qty row" style="margin: 0 5px">
-                            {{-- <label for="kids">어린이</label> --}}
-                                <input type="number" name="kids" value="0" readonly="readonly">
-                            </div>
+                        </div>
 
 
-                            <button id="mainsearch" type="submit">검색</button>
+                            <button id="mainsearch" class="main_btn" type="submit">검색</button>
                             
                         </div>
                     </form>

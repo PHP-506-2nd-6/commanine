@@ -92,6 +92,8 @@ class ResearchController extends Controller
        $arr = ['local' => $val_local
                 ,'chkIn' => $val_chkIn
                 ,'chkOut' => $val_chkOut
+                ,'adults' => $req->adults
+                ,'kids' => $req->kids
         ];
 
        $notices = $this->arrayPaginator($result, $req);

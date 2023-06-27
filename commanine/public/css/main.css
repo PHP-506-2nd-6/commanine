@@ -31,8 +31,20 @@ main {
     margin-right: 0;
 }
 
-.inner-wrapper h2 {
-    padding-top: 15px;
+.inner-wrapper h4 {
+    font-family: "Roboto", sans-serif;
+    padding-top: 20px;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    color: #e1e0e0;
+}
+
+.carousel-inner h4 {
+    font-family: "Roboto", sans-serif;
+    padding: 20px 0;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    color: #979696;
 }
 
 .recent {

@@ -33,7 +33,7 @@
 
                         <form action="{{route('users.review')}}" method="get">
                             <input type="hidden" name="hanok_id" value="{{$data->id}}">
-                            <button type="submit">리뷰 작성하기</button>
+                            <button class="review_btn" type="submit">리뷰 작성하기</button>
                         </form>
                         {{-- <a id="writeButton" href="{{route('users.review')}}">리뷰 작성하기</a> --}}
 
