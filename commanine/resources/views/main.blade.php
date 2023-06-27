@@ -7,6 +7,7 @@
 @extends('layout.layout')
 <head>
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('css/commom.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"/>
 </head>
 
@@ -39,25 +40,25 @@
 {{-- 카테고리 --}}
 <div class="nav-border">
     <ul class="gnb clearfix">
-        <li class="hotel">
+        <li class="cate hotel">
             <a href="/research/pageget?value=0">
                 <img src="/img/hotel.png" alt="hotel"></a>
             <p>호텔</p>
         </li>
 
-        <li class="pension">
+        <li class="cate pension">
             <a href="#">
                 <img src="/img/pension.png" alt="pension"></a>
             <p>펜션</p>
         </li>
 
-        <li class="guesthouse">
+        <li class="cate guesthouse">
             <a href="#">
                 <img src="/img/guesthouse.png" alt="guesthouse"></a>
             <p>게스트하우스</p>
         </li>
 
-        <li class="resort">
+        <li class="cate resort">
             <a href="#">
                 <img src="/img/resort.png" alt="resort"></a>
             <p>리조트</p>

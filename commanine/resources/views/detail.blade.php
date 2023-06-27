@@ -41,9 +41,10 @@
         <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
         <span>{{number_format($rate->rate, 1)}}</span>
         <button type='button'>
-            <img src="{{asset('img/icon/heart.png')}}" alt="찜" class="like">
+            <img src="{{asset('img/icon/heart.png')}}" alt="찜" class="heart">
         </button>
-        <span>{{$likes->likes}}</span>
+        <span class="likeCnt"></span>
+        {{-- <span>{{$likes->likes}}</span> --}}
         <br>
         <span>{{$hanok->hanok_addr}}</span>
         <div style="border:1px black solid;"><span>{!! nl2br($hanok->hanok_comment) !!}</span></div>
@@ -51,23 +52,19 @@
 </div>
 <div class="detailCon">
     <div class="tabBox">
-        <button type="button" class="tabBtn active">객실선택</button> {{-- TODO 탭 메뉴 기본적으로 객실선택 --}}
+        {{-- <button type="button" class="tabBtn btn1 active">객실선택</button> --}}
+        <button type="button" class="tabBtn roomBtn">객실선택</button>
         <button type="button" class="tabBtn">위치</button>
         <button type="button" class="tabBtn">숙소안내</button>
-        {{-- <button type="button" class="tabBtn">서비스</button>
-        <button type="button" class="tabBtn">안내/정책</button> --}}
-        <button type="button" class="tabBtn">후기</button>
+        <button type="button" class="tabBtn revBtn">후기</button>
         <div class="line"></div>
     </div>
     <div class="conBox">
-        <div class="content active">
+        {{-- <div class="content con1 active"> --}}
+        <div class="content roomCon">
             <form id="frm" method="get" action="">
                 <div class="search_form">
                     <div class="search_form2">
-                        {{-- <label for="chkIn">체크인</label>
-                        <input type="date" id="chkIn" name="chk_in" value="{{$inpData['val_chkIn']}}">
-                        <label for="chkOut">체크아웃</label>
-                        <input type="date" id="chkOut" name="chk_out" value="{{$inpData['val_chkOut']}}"> --}}
                         <label for="chk_in">체크인</label>
                         <input type="text" name="chk_in" class="datepicker" value="{{$inpData['val_chkIn']}}" required>
                         <label for="chk_out">체크아웃</label>
@@ -199,7 +196,7 @@
             </div>
         </div>
         
-        <div class="content">
+        <div class="content revCon">
             <div>
                 <p>이용 후기({{$rate->rev_cnt}})</p>
                 <p>평균 별점</p>
@@ -216,7 +213,8 @@
             @empty
             <div>아직 리뷰가 작성되지 않았습니다.</div>
             @endforelse
-            {{ $reviews->links() }}
+            {{-- {{ $reviews->links() }} --}}
+            {{ $reviews->onEachSide(2)->withQueryString()->links() }}
         </div>
     </div>
 </div>

@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main_container {
+    width: 1200px;
+    margin: 0 auto;
+}
+.size_container {
+    font-size: 18px;
+    text-align: center;
+    padding-top: 3vh;
+}
+.font_size1 {
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+.font_size2 {
+    font-size: 0.7em;
+    font-weight: bolder;
+}
+.flex_container {
+    display: flex;
+    width: 70vh;
+    height: auto;
+    margin: auto;
+    font-size: 16px;
+    padding-bottom: 3vh;
+}
+.items {
+    width: 35vh;
+    height: 180px;
+}
+.flex_items2 {
+    padding: 6% 5% 6% 5%;
+}
+.flex_img {
+    width: 35vh;
+    height: 180px;
+}
+.flex_size1 {
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+.flex_size2 {
+    font-size: 0.75em;
+}
+.flex_size3 {
+    font-size: 0.88em;
+}
+.flex_container2 {
+    display: flex;
+    /* width: 70vw; */
+    height: 15vh;
+    font-size: 16px;
+    border: 1px solid black;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    /* line-height: 7.5vh; */
+}
+.flex2_circle {
+    width: 2vw;
+    padding: 5.5% 0 5.5% 0;
+    position: absolute;
+    left: 30.3vw;
+    top: -2vh;
+}
+.circle_item {
+    width: 2vw;
+    height: 2vw;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: white;
+}
+.items2 {
+    width: 35vw;
+    height: 15vh;
+    padding: 3% 0 3% 0;
+}
+.flex2_size1 {
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+.flex2_size2 {
+    border-right: 1px solid black;
+}
+.pay_container {
+    font-size: 16px;
+    width: 60vw;
+    margin: 0 auto;
+    padding-top: 3vh;
+}
+.pay_font_size1 {
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+.pay_font_size2 {
+    font-weight: bolder;
+    padding-left: 90%
+}
+.grid_container1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.pay_font_size3 {
+    padding-left: 88%
+}
+.pay_color {
+    color: #ff0000;
+}
+.btn_group{
+    height: 5vh;
+    /* padding: 0 10% 0 10% auto; */
+    margin: 0 auto;
+    text-align: center;
+}
+.btn1 {
+    border: none;
+    background-color: #000;
+    color: #fff;
+    width: 8vw;
+    padding: 0.5vh 0 0.5vh 0;
+}
+.btn1:hover{
+    border:1px solid #000;
+    background-color:#fff;
+    color:#000;
+    transition: all 0.4s;
+}
+.btn2 {
+    border:1px solid #000;
+    background-color: #fff;
+    color: #000000;
+    width: 8vw;
+    padding: 0.5vh 0 0.5vh 0;
+}
+.btn2:hover{
+    border:1px solid #fff;
+    background-color:#000;
+    color:#fff;
+    transition: all 0.4s;
+}

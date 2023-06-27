@@ -20,9 +20,19 @@ const likeBtn = document.querySelector(".like");
 
 const hanokId = window.location.pathname.substring(15);
 
+const pageLink = document.querySelector('.page-link');
+
+
+// likeBtn.addEventListener('click', ()=>{
+//     let likeCnt = document.querySelector(".likeCnt");
+//     let heart = document.querySelector(".heart");
+
+// })
 // likeBtn.addEventListener('click',userLike);
 
 // const userLike = (hanokId) => {
+//     const likeCnt = document.querySelector(".likeCnt");
+//     const heart = document.querySelector(".heart");
 //     const url = "/api/wishlist/"+hanokId;
 //     const user_id = document.querySelector("#user_id");
 
@@ -60,25 +70,32 @@ reserveBtn.forEach((btn, index)=> {
     })
 })
 
-
-// searchBtn.addEventListener('click', ()=>{
-
-//     room_id.setAttribute('disabled','true');
-// })
-
-// function reserve() {
-//     // room_id.removeAttribute('disabled')
-//     // frm.action="http://localhost/users/payment";
-//     frm.submit();
-//     // return true;
-// }
-
 const chkIn = document.querySelector('#chkIn');
 const chkOut = document.querySelector('#chkOut');
 const adult = document.querySelector('#adult');
 const child = document.querySelector('#child');
 
-// chkIn.value = new Date().toISOString().substring(0, 10);
+const queryStr = document.location.search;
+const param = new URL(location).searchParams;
+const page = param.get("page");
+const roomBtn = document.querySelector(".roomBtn");
+const revBtn = document.querySelector(".revBtn");
+const roomCon = document.querySelector(".roomCon");
+const revCon = document.querySelector(".revCon");
+const line = document.querySelector('.line');
+
+// 후기페이지 눌렀을 때 페이지 넘어가면 탭 유지
+if (page !== null) {
+    roomBtn.classList.remove('active');
+    revBtn.classList.add('active');
+    roomCon.classList.remove('active');
+    revCon.classList.add('active');
+    line.style.width = revBtn.offsetWidth + "px";
+    line.style.left = revBtn.offsetLeft + "px";
+} else {
+    roomBtn.classList.add('active');
+    roomCon.classList.add('active');
+}
 
 // 탭 메뉴
 tabs.forEach((tab, index)=>{
@@ -86,7 +103,6 @@ tabs.forEach((tab, index)=>{
         tabs.forEach(tab=>{tab.classList.remove('active')})
         tab.classList.add('active');
         // 탭 메뉴 밑줄
-        let line = document.querySelector('.line');
         line.style.width = e.target.offsetWidth + "px";
         line.style.left = e.target.offsetLeft + "px";
         // 탭 누르면 해당 콘텐츠 보이기
@@ -97,15 +113,7 @@ tabs.forEach((tab, index)=>{
     })
 })
 
-// reserveBtn.forEach((btn, index)=> {
-//     btn.addEventListener('click', () => {
-//         // reserveBtn.forEach(btn=>{btn.setAttribute('disabled','true')})
-//         // btn.removeAttribute('disabled')
-//         room_id.forEach(id => {id.setAttribute('disabled','true');});
-//         room_id[index].removeAttribute('disabled')
-//     })
-// })
-
+// 카카오맵
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표

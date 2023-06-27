@@ -13,7 +13,7 @@
             <form action="{{route('users.unregist.pwchk.post')}}" method="post">
                 @csrf
                 <input type="hidden" name="pw_flg" value="{{$data}}">
-                <input type="text" name="user_pw" placeholder="비밀번호를 적어주세요" class="pwInput">
+                <input type="password" name="user_pw" placeholder="비밀번호를 적어주세요" class="pwInput">
                 <div class="btnGroup">
                     <button type="submit" class="blackBtn">확인</button>
                     <button type="button" class="whiteBtn" onclick="location.href='{{route('users.information.info')}}'">취소</button>

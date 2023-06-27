@@ -36,8 +36,7 @@ class UsersInfoController extends Controller
         ->orderBy('re.id', 'desc')
         ->get();
 
-        
-        
+
         return view('informationreserve')->with('reserve', $query);
         
 
@@ -147,7 +146,7 @@ class UsersInfoController extends Controller
                 $error = '비밀번호를 다시한번 확인해 주세요.';
                 return redirect()->back()->with('error',$error);
             }
-            return view('informationunregist');
+            return redirect()->route('users.information.unregist');
         }
         // 회원 정보 페이지 이동
         if($req->pw_flg === "0") {
@@ -162,6 +161,9 @@ class UsersInfoController extends Controller
             // return view('informationinfo')->with('data', $baseUser);
             return redirect()->route('users.information.info.edit')->with('data', $baseUser);
         }
+    }
+    public function unregist(){
+        return view('informationunregist');
     }
     // 탈퇴 완료후 메인 페이지 이동
     public function unregistComp() {

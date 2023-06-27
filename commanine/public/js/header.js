@@ -1,11 +1,4 @@
 $(function () {
-    $(".datepicker").datepicker({ minDate: 0 });
-});
-$(function () {
-    $(".datepicker2").datepicker({ minDate: 0 });
-});
-
-$(function () {
     //input을 datepicker로 선언
     $(".datepicker").datepicker({
         dateFormat: "yy-mm-dd", //달력 날짜 형태
@@ -56,8 +49,8 @@ $(function () {
             "금요일",
             "토요일",
         ], //달력의 요일 Tooltip
-        minDate: "-5Y", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
         maxDate: "+5y", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        minDate: 0,
     });
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     // $('.datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
@@ -114,8 +107,8 @@ $(function () {
             "금요일",
             "토요일",
         ], //달력의 요일 Tooltip
-        minDate: "-5Y", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
         maxDate: "+5y", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        minDate: 0,
     });
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     // $(".datepicker").datepicker("setDate", "today"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
@@ -168,60 +161,11 @@ $(document).ready(function () {
     });
 });
 
-// 유효성 검사
-// document.getElementById("mainsearch").addEventListener("submit", function () {
-//     var isValid = performValidation();
+// function showCountBox() {
+//     var countBox = document.querySelector('.countBox');
+//     countBox.style.display = 'block';
+//   }
 
-//     if (!isValid) {
-//         showAlert("모든 항목을 설정하여 주세요");
-//     }
-// });
-
-// document
-//     .getElementById("mainsearch")
-//     .addEventListener("submit", function (event) {
-//         event.preventDefault(); // 폼의 기본 제출 동작 중단
-
-//         var isValid = performValidation();
-
-//         if (!isValid) {
-//             showAlert("모든 항목을 설정하여 주세요");
-//         } else {
-//             // 유효성 검사 통과한 경우 폼 제출
-//             this.submit();
-//         }
-//     });
-
-// function performValidation() {
-//     var nameField = document.getElementById("hanok_name");
-//     if (nameField.value === "") {
-//         return false;
-//     }
-
-//     // 추가적인 유효성 검사 로직을 구현합니다.
-
-//     return true;
-// }
-
-// function showAlert(message) {
-//     alert(message);
-// }
-
-// var errorBox = document.getElementById("errorBox");
-// var errorMessages = document.querySelectorAll('.error-message');
-
-// 에러 메시지가 있는 경우 박스를 보이도록 설정
-// if (errorMessages.length > 0) {
-//     errorBox.style.display = "block";
-// } else {
-//     errorBox.style.display = "none";
-// }
-
-// function showAlert(message) {
-//     alert(message);
-// }
-
-// // 버튼 클릭 시 팝업 창 호출
-// document.getElementById("mainsearch").addEventListener("click", function () {
-//     showAlert("팝업 창에 표시할 메시지");
-// });
+//   // 인원 상자 요소
+//   var countP = document.getElementById('countP');
+//   countP.addEventListener('click', showCountBox);
