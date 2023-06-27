@@ -26,7 +26,7 @@ class HanoksController extends Controller
         $val_chkIn = $req->chk_in;
         $val_adult = $req->reserve_adult;
         $val_child = $req->reserve_child;
-        // return var_dump($val_chkIn);
+        // return var_dump(date("Ymd"));
         // $val_count = $req->input('reserve_adult') + $req->input('reserve_child');
         // $val_chkIn = $req->input('chk_in');
         // $val_adult = $req->input('reserve_adult');
@@ -56,6 +56,8 @@ class HanoksController extends Controller
         // return var_dump($inpData);
         // return var_dump($rooms);
         // $val_chkOut = '2023-06-15';
+        $val_chkIn = str_replace('-','',$val_chkIn);
+        $val_chkOut = str_replace('-','',$val_chkOut);
         $query =
         " SELECT * "
         ." FROM rooms r "
@@ -64,9 +66,6 @@ class HanoksController extends Controller
 		."  AND r.id NOT IN ( "
 						."  SELECT res.room_id "
 						."  FROM reservations res "
-						// ."  WHERE res.room_id = r.id "
-						// ."  AND res.chk_in <= '2023-06-22' "
-						// ."  AND res.chk_out >= '2023-06-23' "
 						."  WHERE res.chk_in < ".$val_chkOut
 						."  AND res.chk_out > ".$val_chkIn
                         ." ) "
