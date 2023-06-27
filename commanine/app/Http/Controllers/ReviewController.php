@@ -10,12 +10,13 @@ namespace App\Http\Controllers;
 use App\Models\Hanoks;
 use App\Models\Reservations;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Reviews;
 use App\Models\Users;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class ReviewController extends Controller
 {
@@ -81,10 +82,13 @@ class ReviewController extends Controller
     //     $hanokId = 0;
     // }
     
+    // $rating = 4;
 
+    $rating = $req->input('rating');
+    
     $req->validate([
         'rate' => 'required'
-        ,'rev_contents' => 'required|max:1000'
+        ,'rev_content' => 'required|max:1000'
     ]);
 
     $deadline = date('Y-m-d', strtotime('+30 days'));
@@ -119,9 +123,12 @@ class ReviewController extends Controller
         ,'deadline' => $deadline
     ]);
         
+//test
+    // $rating = $req->input('rating');
+
+    // return response()->json(['success' => true]);
 
 
-    
         // $Review = new Reviews([
         //     'user_id' => Auth::User()->user_id
         //     ,'room_id' => Reservations::find(Auth::User()->room_id)
@@ -144,10 +151,8 @@ class ReviewController extends Controller
         
 
         // dd(Users::find(Auth::User()->user_id));
-        // return var_dump($req);
         $Review->save();
-        
-        return redirect('/users/myreview');
+        return redirect('/users/myreview')->with('rating', $rating);
     }
 
     // 내 리뷰 페이지
@@ -187,4 +192,5 @@ class ReviewController extends Controller
         
         return redirect('/users/myreview');
     }
+
 }

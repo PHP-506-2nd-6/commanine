@@ -1,0 +1,28 @@
+*{
+    box-sizing: border-box;
+}
+.wrap {
+    width: 1300px;
+    margin:20px auto;
+    height:100%;
+
+}
+
+.wrapGrid{
+    display:grid;
+    grid-template-columns: 2fr 10fr;
+}
+.listWrap{
+    border-right:1px solid #e2e2e2;
+}
+.list{
+    margin:40px;
+}
+.list>a{
+    color:#000 ;
+    text-decoration: none;
+
+}
+.list>a:hover{
+    color:#000 ;
+}

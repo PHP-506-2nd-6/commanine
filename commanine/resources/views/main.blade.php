@@ -7,6 +7,7 @@
 @extends('layout.layout')
 <head>
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('css/commom.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"/>
 </head>
 
@@ -39,25 +40,25 @@
 {{-- 카테고리 --}}
 <div class="nav-border">
     <ul class="gnb clearfix">
-        <li class="hotel">
-            <a href="#">
+        <li class="cate hotel">
+            <a href="/research/pageget?value=0">
                 <img src="/img/hotel.png" alt="hotel"></a>
             <p>호텔</p>
         </li>
 
-        <li class="pension">
+        <li class="cate pension">
             <a href="#">
                 <img src="/img/pension.png" alt="pension"></a>
             <p>펜션</p>
         </li>
 
-        <li class="guesthouse">
+        <li class="cate guesthouse">
             <a href="#">
                 <img src="/img/guesthouse.png" alt="guesthouse"></a>
             <p>게스트하우스</p>
         </li>
 
-        <li class="resort">
+        <li class="cate resort">
             <a href="#">
                 <img src="/img/resort.png" alt="resort"></a>
             <p>리조트</p>
@@ -159,51 +160,6 @@
                 </div>
             </section>
 
-
-
-
-
-
-
-
-
-
-
-
-{{-- 인기숙소 --}}
-{{-- <div id="carouselExample" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-            <div class="carousel-inner">
-                <h3>인 기 숙 소</h3>
-                <div class="carousel-item active">
-                    <div class="container d-block w-100">
-                        <div class="row row-xxl-3">
-                            @foreach($wish as $val2)
-                            <div class="col d-flex justify-content-center">
-                                <div class="card" style="width: 20rem;">
-                                    <a href="{{route('hanoks.detail', ['id' => $val2->id])}}"><img src="{{asset($val2->hanok_img1)}}" class="card-img-top" alt="..."></a>
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{$val2->hanok_name}}</h5>
-                                        <p class="card-text">{{number_format($val2->room_price)}}원</p>
-                                        <p class="card-text">{{$val2->hanok_local}}</p>
-                                        <p class="card-text">별점</p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev" style="width: 10%;">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next" style="width: 10%;">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-</div> --}}
-
 {{-- 최신숙소 --}}
 <div id="carouselExampleControls" class="carousel slide recent" data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
@@ -219,7 +175,8 @@
                                         <h5 class="card-title">{{$val->hanok_name}}</h5>
                                         <p class="card-text">{{number_format($val->room_price)}}원</p>
                                         <p class="card-text">{{$val->hanok_local}}</p>
-                                        <p class="card-text">별점</p>
+                                        {{-- <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
+                                        <span>{{isset($val->review) ? substr($val->review,0,4) : "0"}}</span> --}}
                                         {{-- <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; color: #333;">
                                             예약하기
                                         </button> --}}

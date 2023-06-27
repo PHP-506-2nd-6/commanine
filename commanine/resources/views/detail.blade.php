@@ -41,9 +41,10 @@
         <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
         <span>{{number_format($rate->rate, 1)}}</span>
         <button type='button'>
-            <img src="{{asset('img/icon/heart.png')}}" alt="찜" class="like">
+            <img src="{{asset('img/icon/heart.png')}}" alt="찜" class="heart">
         </button>
-        <span>{{$likes->likes}}</span>
+        <span class="likeCnt"></span>
+        {{-- <span>{{$likes->likes}}</span> --}}
         <br>
         <span>{{$hanok->hanok_addr}}</span>
         <div style="border:1px black solid;"><span>{!! nl2br($hanok->hanok_comment) !!}</span></div>
@@ -217,6 +218,7 @@
             <div>아직 리뷰가 작성되지 않았습니다.</div>
             @endforelse
             {{ $reviews->links() }}
+            {{-- {{ $reviews->onEachSide(3)->withQueryString()->links() }} --}}
         </div>
     </div>
 </div>

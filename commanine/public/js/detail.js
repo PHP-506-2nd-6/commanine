@@ -20,9 +20,16 @@ const likeBtn = document.querySelector(".like");
 
 const hanokId = window.location.pathname.substring(15);
 
+// likeBtn.addEventListener('click', ()=>{
+//     let likeCnt = document.querySelector(".likeCnt");
+//     let heart = document.querySelector(".heart");
+
+// })
 // likeBtn.addEventListener('click',userLike);
 
 // const userLike = (hanokId) => {
+//     const likeCnt = document.querySelector(".likeCnt");
+//     const heart = document.querySelector(".heart");
 //     const url = "/api/wishlist/"+hanokId;
 //     const user_id = document.querySelector("#user_id");
 

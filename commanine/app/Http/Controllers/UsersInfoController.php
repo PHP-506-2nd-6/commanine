@@ -160,7 +160,7 @@ class UsersInfoController extends Controller
                 return redirect()->back()->with('error',$error);
             }
             // return view('informationinfo')->with('data', $baseUser);
-            return view('informationinfoedit')->with('data', $baseUser);
+            return redirect()->route('users.information.info.edit')->with('data', $baseUser);
         }
     }
     // 탈퇴 완료후 메인 페이지 이동

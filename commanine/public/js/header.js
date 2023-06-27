@@ -1,6 +1,9 @@
-// $(function () {
-//     $("#datepicker").datepicker();
-// });
+$(function () {
+    $(".datepicker").datepicker({ minDate: 0 });
+});
+$(function () {
+    $(".datepicker2").datepicker({ minDate: 0 });
+});
 
 $(function () {
     //input을 datepicker로 선언
@@ -165,3 +168,12 @@ $(document).ready(function () {
     });
 });
 
+
+// function showCountBox() {
+//     var countBox = document.querySelector('.countBox');
+//     countBox.style.display = 'block';
+//   }
+  
+//   // 인원 상자 요소
+//   var countP = document.getElementById('countP');
+//   countP.addEventListener('click', showCountBox);

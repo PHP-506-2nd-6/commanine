@@ -1,0 +1,60 @@
+.infoList{
+    font-weight: 900;
+    font-size:1.1em;
+}
+.infoList::before{
+    content:'\00B7';
+    padding-right:5px;
+}
+h2{
+    padding:30px 0;
+}
+.withdrawBox{
+    margin:40px auto 0;
+    width:500px;
+    height:400px;
+    border:1px solid #000;
+    text-align: center;
+    display:grid;
+    grid-template-rows: repeat(3,1fr);
+}
+
+.unregistmsg{
+    color:#ff0000;
+    padding-top:30px;
+}
+.btnGroup{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.btnGroup > button, form>button{
+    width:200px;
+    margin:40px auto 0;
+    height:40px;
+}
+
+.blackBtn{
+    background-color: #000;
+    color:#fff;
+    border:1px solid #000;
+}
+.blackBtn:hover{
+    background-color: #fff;
+    color:#000;
+    border:1px solid #000;
+    transition: all 0.3s;
+    
+}
+
+.whiteBtn{
+    background-color: #fff;
+    color:#000;
+    border:1px solid #000;
+}
+.whiteBtn:hover{
+    background-color: #000;
+    color:#fff;
+    border:1px solid #000;
+    transition: all 0.3s;
+}

@@ -118,23 +118,22 @@ class HanoksController extends Controller
     // 0619 BYJ new
     public function hanoksMain() {
         // 최신순
-        // $hanoks = DB::table('hanoks')
-        //             -> select('*')
-        //             -> orderBy('id','desc')
-        //             -> limit('6')
-        //             -> get();
-
         $hanoks = DB::table('hanoks as han')
         -> select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'))
         -> join('rooms as ro', 'han.id', '=', 'ro.hanok_id')
-        //-> join('reviews AS re', 'han.id', '=', 're.hanok_id')
-        -> groupBy('han.id','han.hanok_name', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
-        // -> groupBy('han.hanok_img1')
-        // -> groupBy('han.hanok_local')
-        // -> groupBy('ro.room_price')
+        -> groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
         -> orderBy('han.id', 'DESC')
         -> limit('6')
         -> get();
+        
+    //     $hanoks = DB::table('hanoks AS han')
+    // ->select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'), DB::raw('AVG(re.rate) AS review'))
+    // ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
+    // ->join('reviews AS re', 're.hanok_id', '=', 'han.id')
+    // ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+    // ->orderBy('han.id', 'DESC')
+    // ->limit(6)
+    // ->get();
 
 
         
@@ -196,9 +195,10 @@ $query = DB::table('hanoks AS han')
     ->orderBy('cnt', 'DESC')
     ->limit(3)
     ->get();
+
     
     return view('/main')->with('hanok', $hanoks)->with('wish', $query);
-}
 
+}
 
 }

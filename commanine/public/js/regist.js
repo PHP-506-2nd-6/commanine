@@ -82,10 +82,10 @@ emailBtn.addEventListener('click',throttle(certification));
 registBtn.addEventListener('click', function(event) {
     if (btnChk !== true) {
       event.preventDefault(); // 기본 동작 중지
-      idSpan.innerHTML = "사용 가능한 아이디인지 확인해 주세요.";
-      idSpan.style.color = "red";
+    idSpan.innerHTML = "사용 가능한 이메일인지 확인해 주세요.";
+    idSpan.style.color = "red";
     }
-  });
+});
 
 // ! 비밀번호 체크 
 const checkPasswordMatch = () => {
@@ -103,3 +103,4 @@ const checkPasswordMatch = () => {
 };
 
 pwChk.addEventListener('input', checkPasswordMatch);
+
