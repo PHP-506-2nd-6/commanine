@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\VarDumper\VarDumper;
+use Illuminate\Pagination\Paginator;
 
 class UsersInfoController extends Controller
 {
@@ -34,7 +35,7 @@ class UsersInfoController extends Controller
         ->select('han.id','han.hanok_name', 'han.hanok_img1', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id')
         ->where('re.user_id', $user_id)
         ->orderBy('re.id', 'desc')
-        ->get();
+        ->paginate(2);
 
         // var_dump($query);
         // exit;

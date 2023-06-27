@@ -33,6 +33,6 @@
     margin-top: 50px;
 }
 
-.con .contit {
-    font-weight: bold;
+.text-muted {
+    display: none;
 }
