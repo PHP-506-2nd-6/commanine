@@ -31,12 +31,13 @@ class UsersInfoController extends Controller
         $query = DB::table('rooms as room')
         ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
         ->join('reservations as re', 're.room_id', '=', 'room.id')
-        ->select('han.hanok_name', 'han.hanok_img1', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id')
+        ->select('han.id','han.hanok_name', 'han.hanok_img1', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id')
         ->where('re.user_id', $user_id)
         ->orderBy('re.id', 'desc')
         ->get();
 
-
+        // var_dump($query);
+        // exit;
         return view('informationreserve')->with('reserve', $query);
         
 

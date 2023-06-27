@@ -137,22 +137,22 @@ class HanoksController extends Controller
     // 0619 BYJ new
     public function hanoksMain() {
         // 최신순
-        $hanoks = DB::table('hanoks as han')
-        -> select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'))
-        -> join('rooms as ro', 'han.id', '=', 'ro.hanok_id')
-        -> groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
-        -> orderBy('han.id', 'DESC')
-        -> limit('6')
-        -> get();
+        // $hanoks = DB::table('hanoks as han')
+        // -> select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'))
+        // -> join('rooms as ro', 'han.id', '=', 'ro.hanok_id')
+        // -> groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+        // -> orderBy('han.id', 'DESC')
+        // -> limit('6')
+        // -> get();
         
-    //     $hanoks = DB::table('hanoks AS han')
-    // ->select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'), DB::raw('AVG(re.rate) AS review'))
-    // ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
-    // ->join('reviews AS re', 're.hanok_id', '=', 'han.id')
-    // ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
-    // ->orderBy('han.id', 'DESC')
-    // ->limit(6)
-    // ->get();
+        $hanoks = DB::table('hanoks AS han')
+    ->select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'), DB::raw('AVG(re.rate) AS review'))
+    ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
+    ->join('reviews AS re', 're.hanok_id', '=', 'han.id')
+    ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+    ->orderBy('han.id', 'DESC')
+    ->limit(6)
+    ->get();
 
 
         
@@ -203,13 +203,15 @@ class HanoksController extends Controller
 //     ,room.room_price 
 // ORDER BY cnt DESC LIMIT 3;";
 
+// 인기순
 $query = DB::table('hanoks AS han')
     ->join(DB::raw('(SELECT r.hanok_id, MIN(r.room_price) AS room_price
                     FROM rooms r
                     WHERE r.room_price
                     GROUP BY r.hanok_id) AS room'), 'han.id', '=', 'room.hanok_id')
     ->leftJoin('wishlists AS wish', 'room.hanok_id', '=', 'wish.hanok_id')
-    ->select('han.id', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local', 'room.room_price', DB::raw('COUNT(wish.hanok_id) AS cnt'))
+    ->join('reviews AS re', 're.hanok_id', '=', 'han.id')
+    ->select('han.id', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local', 'room.room_price', DB::raw('COUNT(wish.hanok_id) AS cnt'), DB::raw('AVG(re.rate) AS review'))
     ->groupBy('han.id', 'han.hanok_name', 'han.hanok_img1', 'room.room_price','han.hanok_local')
     ->orderBy('cnt', 'DESC')
     ->limit(3)

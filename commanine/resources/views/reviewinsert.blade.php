@@ -19,6 +19,7 @@
         <div class="review_wrap">
             <form action="{{route('users.review.post')}}" method="post">
                 @csrf
+                <input type="hidden" id="hanok_id" name="hanok_id" value="{{$data}}">
                 <span>별점</span>
                 <input type="hidden" id="ratingInput" class="rating__result" name="rate" value="{{ old('rating') }}">
                 <div class="rating">
