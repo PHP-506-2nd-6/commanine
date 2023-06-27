@@ -1,18 +1,39 @@
 @font-face {
-  font-family: 'JejuMyeongjo';
-  font-weight: normal;
-  font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.eot');
-  src: url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.eot?#iefix') format('embedded-opentype'),
-      url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.woff2') format('woff2'),
-      url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.woff') format('woff'),
-      url('https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.ttf') format("truetype");
-  font-display: swap;
+    font-family: "JejuMyeongjo";
+    font-weight: normal;
+    font-style: normal;
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.eot");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.eot?#iefix")
+            format("embedded-opentype"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.woff2")
+            format("woff2"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.woff")
+            format("woff"),
+        url("https://cdn.jsdelivr.net/gh/webfontworld/jeju/JejuMyeongjo.ttf")
+            format("truetype");
+    font-display: swap;
 }
 * {
-  font-family: 'JejuMyeongjo';
-  font-weight: normal;
+    font-family: "JejuMyeongjo";
+    font-weight: normal;
 }
-a:link { color: black; text-decoration: none;}
- a:visited { color: black; text-decoration: none;}
- a:hover { color: black; text-decoration: underline;}
+a:link {
+    color: black;
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+#id,
+#password,
+#user_pw,
+#user_pwchk,
+#passwordChk {
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
