@@ -37,3 +37,7 @@ a:hover {
 #passwordChk {
     font-family: Georgia, "Times New Roman", Times, serif;
 }
+
+body {
+    max-width: 1900px;
+}
