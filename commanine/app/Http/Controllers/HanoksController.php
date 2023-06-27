@@ -58,8 +58,8 @@ class HanoksController extends Controller
             $val_chkIn = date("Y-m-d");
         }
         
-        // 입력한 날짜값이 없거나 체크인 날짜보다 이전 날짜일 때 오늘 날짜 넣어준다
-        if($val_chkOut === null || $val_chkOut < $val_chkIn) {
+        // 입력한 날짜값이 없거나 체크인 날짜보다 이전 날짜이거나 체크인 날짜와 똑같을 때 오늘 날짜 넣어준다
+        if($val_chkOut === null || $val_chkOut < $val_chkIn || $val_chkOut === $val_chkIn) {
             $val_chkOut = date("Y-m-d", strtotime($val_chkIn."+1 day"));
         }
 

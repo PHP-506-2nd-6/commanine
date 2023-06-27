@@ -5,7 +5,7 @@
 </head>
 @section('contents')
     <div class="con">
-        <div class="hanokInfo">
+        <div class="hanok">
             <div class="imgBox">
                 <div id="carouselIndicators" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
@@ -34,7 +34,7 @@
                 </button>
                 </div>
             </div>
-        <div style="border:1px black solid;">
+        <div class="hanokInfo">
             <h5>{{$hanok->hanok_name}}</h5>
             <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
             <span>{{number_format($rate->rate, 1)}}</span>
@@ -44,7 +44,7 @@
             <span class="likeCnt"></span>
             <br>
             <span>{{$hanok->hanok_addr}}</span>
-            <div style="border:1px black solid;"><span>{!! nl2br($hanok->hanok_comment) !!}</span></div>
+            <div class="hanokComment"><span>{!! nl2br($hanok->hanok_comment) !!}</span></div>
         </div>
         </div>
         <div class="detailCon">
@@ -74,13 +74,13 @@
                     <input type="hidden" name="room_id" class="room_id" disabled="true">
                     @php($i = 0)
                     @forelse($rooms as $val)
-                    <div class="room" style="border:1px #d6d6d6 solid;">
-                        <div style="overflow:hidden" class="roomBox">
-                                <div style="display:inline-block;">
-                                    <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}">
+                    <div class="room">
+                        <div class="roomBox">
+                                <div>
+                                    <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="roomImg">
                                 </div>
-                                <div style="width:100%">
-                                <h5>{{$val->room_name}}</h5>
+                                <div class="room2">
+                                    <h5>{{$val->room_name}}</h5>
                                     <span>가격 {{number_format($val->room_price)}} / 1박</span>
                                     <button type="button" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내 ></button>
                                     <button type="button" class="reserveBtn" value="{{$val->id}}">예약하기</button>

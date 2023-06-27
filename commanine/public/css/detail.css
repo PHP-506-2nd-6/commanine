@@ -10,6 +10,17 @@ button{
     background: none;
 }
 
+.hanokInfo{
+    padding: 20px;
+}
+
+.hanokComment{
+    /* border:1px black solid; */
+    width: 100%;
+    padding: 20px;
+    background-color: #f3f3f3;
+}
+
 .roomInfoBtn{
     width: 100%;
     height: 50px;
@@ -33,7 +44,7 @@ button{
     margin: auto;
 }
 
-.hanokInfo {
+.hanok {
     width: 960px;
     margin: auto;
     display: flex;
@@ -45,6 +56,7 @@ button{
 } */
 
 .imgBox {
+    min-width: 450px;
     width: 450px;
     overflow:hidden;
     /* margin-right: 10px; */
@@ -181,29 +193,34 @@ strong {
 }
 
 .serviceCon {
-    /* text-align: center; */
     display: flex;
 }
 
-/* .copyAlert {
-    background-color: rgb(255, 255, 255);
-    width: 300px;
-    height: 3em;
-    border-radius: 10px;
-    text-align: center;
-    line-height: 3em;
-    box-shadow: 0px 0px 15px #666;
-} */
+.room {
+    border:1px #d6d6d6 solid;
+}
+
+.room2 {
+    width: 100%;
+}
+
+.roomImg {
+    margin-right: 20px;
+}
+.text-muted {
+    display: none;
+}
 @media(max-width: 991px) {
     .con {
         width: 100%;
     }
-    .hanokInfo
+    .hanok
     , .roomBox{
         flex-direction: column;
     }
     .imgBox
     , .roomImg {
         width: 100%;
+        margin-bottom: 10px;
     }
 }
