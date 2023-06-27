@@ -7,6 +7,7 @@
 @section('contents')
 <div class="wrap wrapGrid">
         @include('layout.sidebar')
+        <div>
         <div class="reserve_box">
             <h2>예약 내역</h2>
             <div class="reserve_cont">
@@ -40,6 +41,10 @@
             @empty
                 <span>예약한 숙소가 없습니다.</span> 
             @endforelse
+            <div class="d-flex justify-content-center"> 
+                {{$reserve->onEachSide(3)->withQueryString()->links()}}
+            </div>
+            </div>
         </div>
     </div>
 
