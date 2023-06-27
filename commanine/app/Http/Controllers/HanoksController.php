@@ -27,7 +27,7 @@ class HanoksController extends Controller
         //                 ->get(); // 0620 KMJ del
         // 유효성 검사
         // $data = $req->only('chk_in', 'chk_out', 'reserve_adult', 'reserve_child');
-        // var_dump($data, $req->chk_in);
+        // var_dump($req);
         // $validate = Validator::make($data, [
         //     'chk_in'    =>
         // ])

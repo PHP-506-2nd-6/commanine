@@ -149,5 +149,14 @@ function copyClipboard() {
     })
 }
 
-const userId = sessionStorage.getItem('user_id');
-console.log(userId);
+const rateComment = document.querySelector('.rateComment');
+const rate = parseFloat(document.querySelector('.rate').innerText);
+if (rate > 4.8) {
+    rateComment.textContent = "최고에요";
+} else if (rate > 4.5) {
+    rateComment.textContent = "추천해요";
+} else if(rate > 4.2) {
+    rateComment.textContent = "만족해요";
+} else {
+    rateComment.textContent = "좋아요";
+}

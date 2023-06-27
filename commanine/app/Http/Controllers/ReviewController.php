@@ -107,6 +107,7 @@ class ReviewController extends Controller
 
     // 방 ID.
     // $roomId = $room->id;
+    // return var_dump($req);
     $userId = Auth::User()->user_id;
     $hanokId = DB::table('reservations')
     ->join('rooms', 'rooms.id', '=', 'reservations.room_id')
@@ -184,7 +185,7 @@ class ReviewController extends Controller
         // DB::table('reviews')
         //     ->where('rev_id', '=', $rev_id)
         //     ->delete();
-        // Reviews::destroy($id);
+        // Reviews::destroy($rev_id);
         $date = Carbon::now();
         DB::table('reviews')
             ->where('rev_id', $rev_id)
