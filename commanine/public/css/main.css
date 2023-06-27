@@ -860,3 +860,12 @@ main {
     transform: translateY(100%);
     opacity: 0;
 }
+
+
+.bannerevent {
+    width: 100%;
+    height: 200px;
+    background-image: url('http://thesilla.kr/data/file/gallery/3732218746_iKW2bktV_32eb3ef54620bbaa23b9322ad09956d61cda7699.jpg');
+    background-attachment:fixed;
+    filter: grayscale(100%);
+}

@@ -108,7 +108,7 @@
             </section>
 
 <div class="bannerevent">
-<img src="{{asset('/img/hanok2.jpg')}}" alt="#">
+{{-- <img src="{{asset('/img/hanok2.jpg')}}" alt="#"> --}}
 </div>
 
 {{-- 최신숙소 --}}
