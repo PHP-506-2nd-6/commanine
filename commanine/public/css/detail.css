@@ -89,15 +89,10 @@ button{
     margin-top: 30px;
 }
 
-/* .carousel-inner > .item > img {
-    min-width: 450px
-} */
-
 .imgBox {
     min-width: 450px;
     width: 450px;
     overflow:hidden;
-    /* margin-right: 10px; */
 }
 
 .img{
@@ -172,6 +167,7 @@ strong {
 
 .heart {
     font-size: 20px;
+    color: #dd4b68;
 }
 
 .addrBox{
@@ -380,8 +376,8 @@ input[type="number"]::-webkit-inner-spin-button {
     /* padding: 10px; */
 }
 
-.roomInfo {
-    /* line-height: 319.59px; */
+.roomCom > div {
+    margin-bottom: 8px;
 }
 
 .filter_form {

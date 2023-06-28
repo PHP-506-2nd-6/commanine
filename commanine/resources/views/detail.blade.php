@@ -39,7 +39,7 @@
             <i class="fa-solid fa-star star"></i>
             <span class="rate">{{number_format($rate->rate, 1)}}</span>
             <button type='button'>
-                <i class="fa-regular fa-heart heart"></i>
+                <i class="fa-solid fa-heart heart"></i>
             </button>
             <span class="rate">{{$likes->likes}}</span>
             <br>
@@ -161,7 +161,7 @@
                         </h2>
                         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                             <div class="accordion-body">
-                                <div>
+                                <div class="roomCom">
                                     <h5>숙소 안내</h5>
                                     <div>
                                         {!! nl2br($hanok->hanok_info) !!}
@@ -203,7 +203,6 @@
                 <div class="msg">아직 리뷰가 작성되지 않았습니다.</div>
                 @endforelse
                 <div class="d-flex justify-content-center pageCon" > 
-                    {{-- {{$reviews->withQueryString()->links()}} --}}
                     {{ $reviews->withQueryString()->links('vendor.pagination.custom') }}
                 </div>
             </div>
@@ -273,12 +272,12 @@
         @endforelse
     </div>
 
-<input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}" disabled>
-<input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}" disabled>
+    <input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}" disabled>
+    <input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}" disabled>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script>
-<script src="https://kit.fontawesome.com/da11601548.js" crossorigin="anonymous"></script>
-<script src="https://use.fontawesome.com/05d390fd09.js"></script>
-<script src="{{asset('js/detail.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script>
+    <script src="https://kit.fontawesome.com/da11601548.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/05d390fd09.js"></script>
+    <script src="{{asset('js/detail.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 @endsection

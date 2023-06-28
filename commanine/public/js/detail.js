@@ -20,39 +20,6 @@ const likeBtn = document.querySelector(".like");
 
 const hanokId = window.location.pathname.substring(15);
 
-const pageLink = document.querySelector('.page-link');
-
-
-// likeBtn.addEventListener('click', ()=>{
-//     let likeCnt = document.querySelector(".likeCnt");
-//     let heart = document.querySelector(".heart");
-
-// })
-// likeBtn.addEventListener('click',userLike);
-
-// const userLike = (hanokId) => {
-//     const likeCnt = document.querySelector(".likeCnt");
-//     const heart = document.querySelector(".heart");
-//     const url = "/api/wishlist/"+hanokId;
-//     const user_id = document.querySelector("#user_id");
-
-//     fetch(url)
-//     .then(data=>{
-//         if (data.status !== 200) {
-//             throw new Error(data.status + ' : API Response Error');
-//         }
-//     return data.json();
-//     })
-//     .then(apiData =>{
-//         if (apiData["errcode"] === "E01") {
-//             alert(apiData["msg"]);
-//         } else {
-//             alert(apiData["msg"]);
-//         }
-//     })
-//     .catch(error => alert(error.message));
-// }
-
 searchBtn.addEventListener('click', () => {
     room_id.disabled = true;
     frm.action="";
@@ -69,11 +36,6 @@ reserveBtn.forEach((btn, index)=> {
         frm.submit();
     })
 })
-
-// const chkIn = document.querySelector('#chkIn');
-// const chkOut = document.querySelector('#chkOut');
-// const adult = document.querySelector('#adult');
-// const child = document.querySelector('#child');
 
 // 인원체크 박스
 const countInput = document.querySelector('.countInput');
@@ -202,6 +164,7 @@ function copyClipboard() {
     })
 }
 
+// 평균 별점마다 코멘트
 const rateComment = document.querySelector('.rateComment');
 const rate = parseFloat(document.querySelector('.rate').innerText);
 if (rate > 4.8) {
@@ -210,10 +173,10 @@ if (rate > 4.8) {
     rateComment.textContent = "추천해요";
 } else if(rate > 4.0) {
     rateComment.textContent = "만족해요";
-} else if(rate === 0){
-    rateComment.textContent = "";
-} else {
+} else if (rate > 3.5) {
     rateComment.textContent = "좋아요";
+} else {
+    rateComment.textContent = "";
 }
 
 // 리뷰 탭 별점 그래프

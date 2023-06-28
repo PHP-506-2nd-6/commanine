@@ -1,3 +1,10 @@
+.review{
+    border-bottom: 1px solid #d6d6d6;
+    padding: 30px 20px;
+}
+.review:nth-child(1) {
+    border-top: 1px solid #d6d6d6;
+}
 .reviewList {
     font-weight: 900;
     font-size: 1.1em;
@@ -9,9 +16,43 @@
 h2 {
     padding: 30px 0;
 }
+.star {
+    color: #f8ce0b;
+}
 .myreview_wrap {
     margin-left: 150px;
 }
 form {
     display: inline-block;
+}
+.pageCon {
+    margin-top: 20px;
+}
+.btnCon {
+    text-align: right;
+}
+button{
+    display: inline-block;
+    padding: 5px 10px;
+    font-weight: 900;
+}
+.editBtn {
+    background-color: #fff;
+    color:#000;
+    border: 1px solid #000;
+}
+.editBtn:hover {
+    background-color: #000;
+    color:#fff;
+    transition:.2s;
+}
+.delBtn {
+    background-color: #b82525;
+    color:#fff;
+    border: 1px solid #000;
+}
+.delBtn:hover{
+    background-color: #e05f5f;
+    color:#fff;
+    transition:.2s;
 }
