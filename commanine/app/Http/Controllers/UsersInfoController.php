@@ -22,6 +22,10 @@ class UsersInfoController extends Controller
 {
     // 내 예약 정보 출력 페이지
     public function reserveInfo() {
+        // 로그인 안되었을 시 로그인 페이지 리다이렉트
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         // $users = Users::find(Auth::User()->id); // 로그인된 id의 레코드 가져오는 방법
         // $users = Reservations::find(Auth::User()->user_id);
         // return view('informationreserve')->with('data', $users);
@@ -42,49 +46,48 @@ class UsersInfoController extends Controller
         return view('informationreserve')->with('reserve', $query);
         
 
-        // 로그인 안되었을 시 로그인 페이지 리다이렉트
-        if(auth()->guest()) {
-            return redirect()->route('users.login');
-        }
     }
     
     // 내 찜 정보 출력 페이지
     public function dibsInfo() {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         $users = Reservations::find(Auth::User()->user_id);
         return view('informationdibs')->with('data', $users);
 
-        if(auth()->guest()) {
-            return redirect()->route('users.login');
-        }
     }
     // 내 회원 정보 출력 페이지
     public function info() {
-        $users = Users::find(Auth::User()->user_id);
-        return view('informationinfo')->with('data', $users);
         if(auth()->guest()) {
             return redirect()->route('users.login');
         }
+        $users = Users::find(Auth::User()->user_id);
+        return view('informationinfo')->with('data', $users);
     }
     // 내 리뷰 정보 출력 페이지
     public function reviewInfo() {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         $users = Users::find(Auth::User()->user_id);
         return view('informationreview')->with('data', $users);
 
-        if(auth()->guest()) {
-            return redirect()->route('users.login');
-        }
     }
     // 회원 정보 수정 페이지 출력
     public function infoedit() {
-        $users = Users::find(Auth::User()->user_id);
-        return view('informationinfoedit')->with('data', $users);
-
         if(auth()->guest()) {
             return redirect()->route('users.login');
         }
+        $users = Users::find(Auth::User()->user_id);
+        return view('informationinfoedit')->with('data', $users);
+
     }
     // 회원 정보 업데이트
     public function infoeditpost(Request $req) {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         $arrKey = [];
         $baseUser = Users::find(Auth::User()->user_id);
         if($req->user_num !== $baseUser->user_num) {
@@ -115,7 +118,8 @@ class UsersInfoController extends Controller
             if(in_array('user_pw',$arrKey)) {
                 Session::flush();
                 Auth::logout();
-                return redirect()->route('users.login');
+                // echo "<script>alert('비밀번호가 변경이 완료 되었습니다. 변경한 비밀번호로 다시 로그인 해주세요');</script>";
+                return redirect()->route('users.login')->with('success', '변경한 비밀번호로 재로그인 해주세요');
             }
             return redirect()->route('users.information.info');
         }
@@ -128,6 +132,9 @@ class UsersInfoController extends Controller
     }
     // 회원 탈퇴 시 비밀번호 재확인 페이지
     public function unregistPwChk() {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         return view('pwcert')->with('data',1);
     }
     // 회원 정보페이지 갈 때 비밀번호 재확인
@@ -139,6 +146,9 @@ class UsersInfoController extends Controller
     }
     // 비밀번호 재확인->회원 탈퇴 페이지 이동
     public function unregistPwChkpost(Request $req) {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         if($req->pw_flg === "1") {
             $req->validate([
                 'user_pw' => 'regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
@@ -165,10 +175,16 @@ class UsersInfoController extends Controller
         }
     }
     public function unregist(){
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         return view('informationunregist');
     }
     // 탈퇴 완료후 메인 페이지 이동
     public function unregistComp() {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         $baseUser = Users::find(Auth::User()->user_id);
         $baseUser->delete();
         Session::flush();

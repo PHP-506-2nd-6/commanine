@@ -47,11 +47,11 @@ $yoil = array("일","월","화","수","목","금","토");
         <p class="pay_font_size1">결제 정보</p>
         <div class="grid_container1">
             <p>상품가격</p>
-            <p class="pay_font_size2">{{$data[0]->pay_price}}</p>
+            <p class="pay_font_size2">{{number_format($data[0]->pay_price)}}</p>
         </div>
         <div class="grid_container1">
             <p>실 결제 금액</p>
-            <p class="pay_font_size2 pay_color">{{$data[0]->pay_price}}</p>
+            <p class="pay_font_size2 pay_color">{{number_format($data[0]->pay_price)}}</p>
         </div>
         <div class="grid_container1">
             <p>결제 수단</p>
@@ -60,7 +60,7 @@ $yoil = array("일","월","화","수","목","금","토");
     </div>
     <div class="btn_group">
     <button type="button" class="btn1" onclick="location.href='{{route('main')}}'">결제 확인</button>
-    <button type="button" class="btn2" onclick="location.href='{{route('users.information.reserve')}}">예약 내역 보기</button>
+    <button type="button" class="btn2" onclick="location.href='{{route('users.information.reserve')}}'">예약 내역 보기</button>
     </div>
 </div>
 @endsection
