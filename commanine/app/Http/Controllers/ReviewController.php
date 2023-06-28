@@ -20,34 +20,24 @@ use Illuminate\Support\Facades\Route;
 
 class ReviewController extends Controller
 {
-    // public function index()
+    // public function checkDataAndRedirect()
     // {
-    //     // 로그인 체크
-    //     if(auth()->guest()) {
-    //         return redirect()->route('users.login');
+    //     $dataExists = Reviews::select('rev_id')
+    //     ->from
+    //     ->get();
+        
+    //     if ($dataExists) {
+    //         // 데이터가 있는 경우
+    //         return redirect()->back()->with('message', '데이터가 이미 존재합니다.');
+    //     } else {
+    //         // 데이터가 없는 경우
+    //         return redirect()->route('/users/reviewinsert');
     //     }
-    //     // $result = Reviews::select('rev_id', 'rev_content', 'hanok_id', 'rate', 'created_at', 'updated_at')
-    //     // ->selectRaw('DATE_ADD(deadline, INTERVAL 30 DAY) AS new_deadline')
-    //     // ->orderBy('created_at', 'desc')
-    //     // ->get();
-    //     // return view('reviewlist')->with('data', $result);
+        
+    //     return view('reviewlist')->with('data', $dataExists);
     // }
-    public function checkDataAndRedirect()
-    {
-        $dataExists = Reviews::select('rev_id')
-        ->from
-        ->get();
-        
-        if ($dataExists) {
-            // 데이터가 있는 경우
-            return redirect()->back()->with('message', '데이터가 이미 존재합니다.');
-        } else {
-            // 데이터가 없는 경우
-            return redirect()->route('/users/reviewinsert');
-        }
-        
-        return view('reviewlist')->with('data', $dataExists);
-    }
+
+    // 리뷰작성
     public function reviewinsert() {
         $hanok_id=$_GET['hanok_id'];
         return view('reviewinsert')->with('data',$hanok_id);
@@ -55,41 +45,25 @@ class ReviewController extends Controller
     
     public function reviewpost(Request $req)
     {
-
-        // $users = Users::find(Auth::User()->user_id);
-        // $user_id = Auth::Hanok()->hanok_id;
-        // 현재 로그인한 사용자를 가져옵니다.
-    // $user = Auth::user()->user_id;
-
-    // 예약정보
-    // $reserve = Reservations::Reserve()->id;
-    // $roomId = DB::table('reservations')->where('id')->value('room_id');
-    // $hanokId = DB::table('rooms')->where('id', $roomId)->value('hanok_id');
-    // $result = Reviews::select(['rev_id','rev_content', 'rate', 'created_at', 'updated_at'])
-    //                     ->orderBy('created_at', 'desc')
-    //                     ->get();
-    // $reservation = Reservations::find($result); 
-
-    // $reservationId = $reservation->room_id;
-    // $roomId = DB::table('reservations')->where('id')->value('room_id');
-    // $hanoks = Hanoks::pluck('hanok_name', 'id');
-
-    // 객실 테이블을 통해 숙소 테이블의 ID 값.
-    // $hanokId = DB::table('rooms')->where('id', $roomId)->value('hanok_id');
-
-
-    // if ($hanokId === null) {
-    //     $hanokId = 0;
-    // }
-    
-    // $rating = 4;
+        $rating = $req->input('rating');
     // var_dump($req);
     // exit;
-    $rating = $req->input('rating');
-    $req->validate([
-        'rate' => 'required'
-        ,'rev_content' => 'required|max:1000'
-    ]);
+        $error = '별점과 리뷰를 작성해 주세요.';
+        // 유효성 검사
+        $validator = Validator::make(
+            $req->only('rate','rev_content')
+            ,[
+                'rate' => 'required'
+                ,'rev_content' => 'required|max:1000'
+            ]);
+        if($validator->fails()){
+            return redirect()->back()->with('error',$error);
+        }
+
+    // $req->validate([
+    //     'rate' => 'required'
+    //     ,'rev_content' => 'required|max:1000'
+    // ]);
 
     $deadline = date('Y-m-d', strtotime('+30 days'));
     

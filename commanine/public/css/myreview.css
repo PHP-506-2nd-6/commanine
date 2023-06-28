@@ -9,7 +9,9 @@
 h2 {
     padding: 30px 0;
 }
-
+.myreview_wrap {
+    margin-left: 150px;
+}
 form {
     display: inline-block;
 }

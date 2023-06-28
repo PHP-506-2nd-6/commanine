@@ -7,7 +7,7 @@
 @section('contents')
     <div class="wrap wrapGrid">
         @include('layout.sidebar')
-        <div>
+        <div class="myreview_wrap">
         <h2>내 리뷰</h2>
             <div class="reserve_con reserve_wrap">
                 @forelse($review as $val)
