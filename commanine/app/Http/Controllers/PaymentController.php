@@ -90,7 +90,7 @@ class PaymentController extends Controller
                     ->join('payments', 'payments.reserve_id', '=', 'reservations.id')
                     ->where('reservations.id', '=', $reservation->id)
                     ->get();
-        echo "<script>alert('결제가 완료 되었습니다.');</script>";
+        echo "<script>alert('예약이 완료 되었습니다.');</script>";
         return view('payCompInfo')->with('data', $result);
     }
     // 결제가 취소되었을 때 결제 페이지 재실행

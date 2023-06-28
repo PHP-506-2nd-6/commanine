@@ -77,7 +77,7 @@
     <br>
     
     <div class="btn_group">
-    <button type="submit" class="btn1">결제하기</button>
+    <button type="submit" class="btn1">예약하기</button>
     <button type="button" class="btn2" onclick="location.href='{{route('hanoks.detail', ['id' => $data->hanok_id])}}'">취소</button>
     </div>
     </form>

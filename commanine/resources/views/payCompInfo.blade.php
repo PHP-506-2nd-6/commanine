@@ -59,7 +59,7 @@ $yoil = array("일","월","화","수","목","금","토");
         </div>
     </div>
     <div class="btn_group">
-    <button type="button" class="btn1" onclick="location.href='{{route('main')}}'">결제 확인</button>
+    <button type="button" class="btn1" onclick="location.href='{{route('main')}}'">예약 확인</button>
     <button type="button" class="btn2" onclick="location.href='{{route('users.information.reserve')}}'">예약 내역 보기</button>
     </div>
 </div>
