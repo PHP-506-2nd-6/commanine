@@ -101,6 +101,16 @@ main {
     padding: 60px 0;
 }
 
+.myCarousel .slides-wrapper .slides.content .bodytext .comment {
+    padding-top: 30px;
+    font-size: 15px;
+}
+.myCarousel .slides-wrapper .slides.content .bodytext .more {
+    color: #979696;
+}
+.myCarousel .slides-wrapper .slides.content .bodytext .more:hover {
+    opacity: 50%;
+}
 .myCarousel .slides-wrapper .slides.content .title {
     margin: 0;
     margin-bottom: 40px;
