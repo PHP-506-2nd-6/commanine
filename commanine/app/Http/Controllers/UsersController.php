@@ -29,7 +29,7 @@ class UsersController extends Controller
     //0613 KMH new
     public function loginpost(Request $request){
         $error = '아이디와 비밀번호를 확인해주세요.';
-        // 유효성 검사 
+        // 유효성 검사
         $validator = Validator::make(
             $request->only('email','password')
             ,[

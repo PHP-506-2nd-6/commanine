@@ -5,21 +5,11 @@
 <footer>
         <div class="footer-top">
             <ul>
-                <a href="#">
-                    <li>고객센터</li>
-                </a>
-                <a href="#">
-                    <li>개인정보취급방침</li>
-                </a>
-                <a href="#">
-                    <li>이용약관</li>
-                </a>
-                <a href="#">
-                    <li>이용안내</li>
-                </a>
-                <a href="#">
-                    <li>회사소개</li>
-                </a>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">개인정보취급방침</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">이용안내</a></li>
+                    <li><a href="#">회사소개</a></li>
             </ul>
         </div>
         <hr>
@@ -40,6 +30,9 @@
                 <p>국민은행 367201-04-073607</p>
                 <p>기업은행 233-050895-01-021</p>
 
+                <div class="copyright">
+                    <p>Copyright©COMMA,NINE</p>
+                </div>
 
             </div>
             {{-- <div class="footer-sns">
@@ -49,9 +42,7 @@
                 <a href="#">
                     <i class="fab fa-facebook fa-2x"></i></a>
             </div> --}}
-            <div class="copyright">
-                <p>Copyright©COMMA,NINE</p>
-            </div>
+
 
 
         </div>

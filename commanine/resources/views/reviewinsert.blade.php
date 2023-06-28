@@ -15,8 +15,9 @@
     @include('layout.sidebar')
     <div class="reviewBox">
         <h2>리뷰 작성</h2>
-        @include('layout.errors_validate')
         <div class="review_wrap">
+        @include('layout.errors_validate')
+        <div class="alertSuc">{!! session()->has('success') ? session('success') : "" !!}</div>
             <form action="{{route('users.review.post')}}" method="post">
                 @csrf
                 <input type="hidden" id="hanok_id" name="hanok_id" value="{{$data}}">

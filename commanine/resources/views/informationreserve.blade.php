@@ -7,8 +7,7 @@
 @section('contents')
 <div class="wrap wrapGrid">
         @include('layout.sidebar')
-        <div>
-        <div class="reserve_box">
+        <div class="reserve_box" style="margin-left: 150px;">
             <h2>예약 내역</h2>
             <div class="reserve_cont">
                 @forelse($reserve as $data)
@@ -41,13 +40,12 @@
                     {{-- <button onclick="location.href='{{ route('check-data-and-redirect') }}'">작성하기</button> --}}
                     {{-- @endif --}}
                 </div>
-            </div>
             @empty
                 <span>예약한 숙소가 없습니다.</span> 
             @endforelse
+            </div>
             <div class="d-flex justify-content-center"> 
                 {{$reserve->onEachSide(3)->withQueryString()->links()}}
-            </div>
             </div>
         </div>
     </div>
