@@ -125,11 +125,13 @@
                                 <div class="card" style="width: 20rem; border: none;">
                                     <a href="{{route('hanoks.detail', ['id' => $val->id])}}"><img src="{{asset($val->hanok_img1)}}" class="card-img-top" alt="..."></a>
                                     <div class="card-body">
-                                        <h5 class="card-title">{{$val->hanok_name}}
-                                        <p class="card-text" style="font-size:15px">/{{$val->hanok_local}}</p></h5>
-                                        <div class="card_bottom">
-                                            <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
+                                        <div class="card_top">
+                                            <h5 class="card-title">{{$val->hanok_name}}
+                                            <p class="card-text" style="font-size:15px">/{{$val->hanok_local}}
                                             <span>{{isset($val->review) ? substr($val->review,0,4) : "0"}}</span>
+                                            <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span></p></h5>
+                                        </div>
+                                        <div class="card_bottom">
                                             <p class="card-text">{{number_format($val->room_price)}}원</p>
                                         </div>
                                     </div>
