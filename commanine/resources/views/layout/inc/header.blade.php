@@ -8,11 +8,19 @@
     <div class="header_bg">
         <div class="fix">
             <nav>
-                <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav_right">
+                <ol class="menu">
+                    <li class="menuactive"><a href="#menu1">category</a></li>
+                    <li><a href="#menu2">popularity</a></li>
+                    <li><a href="#menu3">recent</a></li>
+                </ol>
+                <div class="logo">
+                    <a href="{{route('main')}}"><img src="{{asset('/img/logologo.png')}}" alt="#"></a>
+                </div>
+                <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                     @guest()
                     <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
                     <li class="nav-a2"><a href="{{route('users.regist')}}">회원가입</a></li>
-                    <li class="nav-a3"><a href="#">예약내역</a></li>
+                    {{-- <li class="nav-a3"><a href="">예약내역</a></li> --}}
                     @endguest
 
                     @auth()
@@ -21,9 +29,6 @@
                     @endauth
                 </ul>
             </nav>
-            <div class="logo">
-                <a href="{{route('main')}}"><img src="{{asset('/img/logologo.png')}}" alt="#"></a>
-            </div>
             <input id="modalToggle" class="hide" type="checkbox">
             <div class="modal_search">
                 <label class="btn_search btn-open" for="modalToggle">어디로 떠날까요?</label>
@@ -48,9 +53,9 @@
                             </div>
                             <div class="search_form2">
                                 <label for="chk_in">체크인</label>
-                                <input name="chkIn" type="text" class="datepicker" placeholder="가는 날짜" autocomplete="off">
+                                <input name="chkIn" type="text" class="datepicker" placeholder="가는 날짜" autocomplete="off" readonly>
                                 <label for="chk_out">체크아웃</label>
-                                <input name="chkOut" type="text" class="datepicker2" placeholder="오는 날짜" autocomplete="off">
+                                <input name="chkOut" type="text" class="datepicker2" placeholder="오는 날짜" autocomplete="off" readonly>
                             </div>
                         <div class="headercountBox poAbsolute">
                             <div class="header_adults">
