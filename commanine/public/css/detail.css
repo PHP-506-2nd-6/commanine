@@ -74,7 +74,9 @@ strong {
 .rateCon {
     /* vertical-align: middle; */
     line-height: 36px;
-    margin-bottom: 10px;
+    border-bottom:1px #d6d6d6 solid;
+    padding-bottom: 20px;
+    /* margin-bottom: 10px; */
 }
 
 .detailCon {
@@ -91,6 +93,7 @@ strong {
     align-items: center;
     border-bottom: 1px solid #c5c5c5;
     position: relative;
+    /* margin-bottom: 20px; */
 }
 
 .tabBox .tabBtn{
@@ -104,6 +107,11 @@ strong {
 
 .content {
     min-height: 100vh;
+    margin-top: 20px;
+}
+
+.content:nth-child(2) {
+    margin-top: 0;
 }
 
 .conBox .content{
@@ -183,6 +191,10 @@ strong {
     /* line-height: 319.59px; */
 }
 
+.search_form {
+    margin-bottom: 20px;
+}
+
 #map {
     width:100%;
     height:350px;
@@ -198,6 +210,10 @@ strong {
 
 .room {
     border:1px #d6d6d6 solid;
+    display: flex;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 
 .room2 {
@@ -207,9 +223,78 @@ strong {
 .roomImg {
     margin-right: 20px;
 }
+
+.revInfo{
+    text-align: center;
+}
+
+.review {
+    border-bottom:1px #d6d6d6 solid;
+    padding:30px 20px;
+}
+
 .text-muted {
     display: none;
 }
+
+.stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+}
+
+.stars-outer::before {
+    letter-spacing: 12px;
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #e2e2e2;
+    font-size: 28px;
+}
+
+.stars-inner {
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    transition: width 2s;
+}
+
+.stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-size:28px;
+    color: #f8ce0b;
+    letter-spacing: 12px;
+}  
+
+.pageCon {
+    margin-top: 50px;
+}
+
+.page-item > .page-link{
+    font-weight: 900;
+    background-color: #fff !important;
+    color:#8f8e8e !important;
+    border:none !important;
+}
+
+.page-item.active .page-link{
+    font-weight: 900;
+    /* background-color: #000 !important; */
+    color:#000 !important;
+    border:none !important;
+}
+div>input{
+    padding-left:10px;
+}
+div>input:focus{
+    outline:none;
+}
+a:hover{
+    text-decoration: none !important ;
+}
+
 @media(max-width: 991px) {
     .con {
         width: 100%;

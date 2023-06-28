@@ -160,3 +160,10 @@ if (rate > 4.8) {
 } else {
     rateComment.textContent = "좋아요";
 }
+
+// 리뷰 탭 별점 그래프
+const rating = document.querySelector('.rate').innerText;
+const starTotal = 5;
+const starPercentage = ((rating/starTotal)*100)
+
+var tr=document.getElementById("stars-inner").style.width = `${starPercentage - 2.8}%`;
