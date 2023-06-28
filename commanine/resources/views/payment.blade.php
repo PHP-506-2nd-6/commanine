@@ -34,11 +34,13 @@
         @include('layout.errors_validate')
         <label for="reserve_name">예약자 이름</label>
         <br>
-        <input type="text" name="reserve_name" id="reserve_name">
+        <input type="text" name="reserve_name" id="reserve_name" placeholder="성명을 입력해주세요" autocomplete="off"'>
+        <div id="reserve_name_inner"></div>
         <br>
         <label for="reserve_num">예약자 전화 번호</label>
         <br>
-        <input type="text" name="reserve_num" id="reserve_num">
+        <input type="text" name="reserve_num" id="reserve_num" placeholder="전화번호를 입력해주세요" autocomplete="off">
+        <div id="reserve_num_inner"></div>
     </div>
     <div class="reservetitle pay_padding">
         <p>결제 금액</p>
@@ -51,10 +53,12 @@
         </div>
     </div>
     <div class="reservetitle pay_padding">
-        <p>결제 수단</p>
-        <select name="pay_type" class="pay_type">
-            <option value="신용카드">신용카드</option>
-        </select>
+        <span>결제 수단</span>
+        <span class="pay_padding_select">
+            <select name="pay_type" class="pay_type">
+                <option value="신용카드">신용카드</option>
+            </select>
+        </span>
     </div>
     <div class="pay_padding">
         <input type='checkbox' name='selectall' value='selectall' onclick='selectAll(this)' required />
