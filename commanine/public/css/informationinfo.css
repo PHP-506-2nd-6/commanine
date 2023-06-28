@@ -10,9 +10,9 @@ h2 {
     padding: 30px 0;
 }
 .infoBox {
-    margin: 0 auto;
-    width: 500px;
-    height: 400px;
+    margin-left:150px;
+    width: 600px;
+    height: 443px;
 }
 .infoBox > div {
     font-size: 20px;

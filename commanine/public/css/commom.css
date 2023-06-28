@@ -50,7 +50,7 @@ a:hover {
 } */
 
 body {
-    /* max-width: 1900px; */
+    max-width: 100%;
     min-width: 800px;
     min-height: auto;
 }

@@ -29,7 +29,7 @@
     input[type='range']::-webkit-slider-runnable-track {
       width: 200px;
       height: 1px;
-      background: #000;
+      background: #b3b3b3;
     }
     
     input[type='range']:nth-child(2)::-webkit-slider-runnable-track{
@@ -87,22 +87,44 @@
 
 .searchBox{
     padding:20px;
-    border:1px solid #000;
+    border-bottom:2px solid #000;
     margin:10px auto;
     height: 200px;
-    border-radius:20px;
+    /* border-radius:20px; */
 }    
 
+.datepicker,.datepicker2{
+    position:relative;
+    z-index:999;
+}
+select{
+    border:none;
+    border-bottom:1px solid #b3b3b3;
+}
+/* option{
+    border:none;
+    background-color: #fff;
+} */
 
-
-
-
+select:focus{
+    outline:none;
+}
 
 
 input{
     text-align: center;
+    /* border-radius: 10px; */
+    border:none;
+    border-bottom:1px solid #b3b3b3;
 }
-
+input:focus{
+    /* border-bottom:1px solid #000; */
+    font-size:17px;
+    transition: all 0.5s;
+}
+input[type="range"]{
+    border:none;
+}
 
 /* 검색창*/
 .formBox{
@@ -122,10 +144,7 @@ input{
 .selectList{
     height:30px;
 }
-/* .dayBox{
-    display:grid;
-    grid-template-columns: 2fr auto;
-} */
+
 
 .selectBox,.countPeople,.dayBox{
     display:grid;
@@ -140,9 +159,10 @@ input{
 
 
 .searchBtn{
-    width:350px;
+    width:300px;
     margin:0 auto;
-    padding: 5px 0;
+    padding: 3px 0;
+    z-index:100;
 }
 
 
@@ -150,27 +170,34 @@ input{
 
 .countBox {
     position: absolute;
-    top: 80%; 
+    top: 70%; 
     right:0;
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #fff;
     width: 262.5px;
     height: 150px;
-    display:none;
+    /* display:none; */
+    opacity: 0;
     grid-template-rows: repeat(3,1fr);
+    /* transition:all 1s; */
 }
 
 .countBox.active{
     position: absolute;
     top: 80%; 
     right:0;
+    
     border: 1px solid #000;
+    border-radius: 10px;
     background-color: #fff;
     width: 262.5px;
     height: 150px;
     display:grid;
+    opacity: 1;
+    z-index:200;
     grid-template-rows: repeat(3,1fr);
+    transition:all 0.3s;
 }
 .countWrap{
     position:relative;
@@ -200,6 +227,9 @@ input{
     /* width:55px; */
     text-align: center;
 }
+.adultsBox>label{
+    padding-left:15px;
+}
 
 .adultsBox>div,.kidsBox>div{
     display:grid;
@@ -224,7 +254,9 @@ input[type="number"]::-webkit-inner-spin-button {
 /* 인원Box end */
 /* 검색창 end */
 
-
+/* .searchFirstBox{
+    border-bottom:1px solid #e2e2e2;
+} */
 
 .priceBox{
     display:grid;
@@ -253,11 +285,11 @@ div>input{
 }
 
 
-
+/* 검색 출력 박스 */
 .searchUl{
     padding: 20px 40px;
     margin-top:30px;
-    height: 950px;
+    min-height:300px;
     display:grid;
     grid-template-columns: 1fr 1fr;
     /* justify-items: center; */
@@ -307,7 +339,7 @@ div>input{
 }
 
 .searchList{
-    border:1px solid #000;
+    border:2px solid #b3b3b3;
     width:95%;
     height:220px;
     border-radius: 20px;

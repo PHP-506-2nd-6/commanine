@@ -51,6 +51,11 @@ $(function () {
         ], //달력의 요일 Tooltip
         maxDate: "+5y", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
         minDate: 0,
+        onClose: function( selectedDate ) {    
+            //시작일(startDate) datepicker가 닫힐때
+            //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+           $(".datepicker").datepicker( "option", "minDate", selectedDate );
+       }  
     });
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     // $('.datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
@@ -108,7 +113,12 @@ $(function () {
             "토요일",
         ], //달력의 요일 Tooltip
         maxDate: "+5y", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
-        minDate: 0,
+        minDate: "+1d",
+        onClose: function( selectedDate ) {    
+            // 종료일(endDate) datepicker가 닫힐때
+            // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+            $(".datepicker2").datepicker( "option", "minDate", selectedDate );
+        } 
     });
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     // $(".datepicker").datepicker("setDate", "today"); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)

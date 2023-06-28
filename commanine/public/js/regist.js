@@ -66,12 +66,13 @@ const certification = ()=>{
 
 const throttle = () =>{
     let timer;
+    // undefined (false)
     return() => {
         if (!timer){
             timer = setTimeout(()=>{
                 timer = null;
-            },1000); 
-            certification(); 
+            },1000); // 1초뒤에 timer를 null로 바꿔주는 setTimeout 콜백함수를 호출하는걸 timer에 넣어주고
+            certification(); // certification()실행  => 1초동안은 timer가 null이 아니기 때문에 실행이 안됨. 
         }
     }
 }
