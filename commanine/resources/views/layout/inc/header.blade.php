@@ -52,14 +52,14 @@
                                 <label for="chk_out">체크아웃</label>
                                 <input name="chkOut" type="text" class="datepicker2" placeholder="오는 날짜" autocomplete="off">
                             </div>
-                        <div class="countBox poAbsolute">
-                            <div class="adultsBox">
+                        <div class="headercountBox poAbsolute">
+                            <div class="header_adults">
                                 <label for="adults">성인</label>
                                 <div class="pro-qty row" style="margin: 0 2px">
                                     <input type="number" name="adults" value="2" readonly="readonly">
                                 </div>
                             </div>
-                            <div class="kidsBox">
+                            <div class="header_kids">
                                 <label for="kids">어린이</label>
                                 <div class="pro-qty row" style="margin: 0 2px">
                                     <input type="number" name="kids" value="0" readonly="readonly">
