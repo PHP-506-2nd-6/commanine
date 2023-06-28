@@ -18,7 +18,7 @@
         <div class="alertSuc">{!! session()->has('success') ? session('success') : "" !!}</div>
         <form action="{{route('users.login.post')}}" method="post" class="formBox">
             @csrf
-            <input type="text" name="email" id="email" placeholder="아이디" autocomplete="off">
+            <input type="text" name="email" id="email" placeholder="이메일" autocomplete="off">
             <input type="password" name="password" id="password" placeholder="비밀번호" autocomplete="off">
             <button type="submit" class="loginBtn">Log in</button>
         </form>

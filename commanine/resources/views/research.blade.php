@@ -16,15 +16,15 @@
 <div class="containerBox" style="margin-top : 40px;">
     <div class="searchBox">
         <form action="{{route('research.page.get')}}" method="get" class="formBox">
-            <div class="searchFirstBox" style="padding-bottom : 20px;">
+            <div class="searchFirstBox" style="padding-bottom : 10px;">
                 <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth" value="{{isset($arr['local']) ? $arr['local'] : ""}}">
                 <div class="dayBox searchWidth">
                     <label for="chkIn">체크인</label>
-                    <input type="text" class="datepicker" autocomplete="off" name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
+                    <input type="text" class="datepicker" autocomplete="off" readonly name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
                 </div>
                 <div class="dayBox searchWidth">
                     <label for="chkOut">체크아웃</label>
-                    <input type="text" class="datepicker2" autocomplete="off" name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
+                    <input type="text" class="datepicker2" autocomplete="off" readonly name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
                 </div>
             </div>
             <div class="searchSecondBox" >
@@ -41,14 +41,14 @@
                     <div class="countWrap searchWidth">
                         <div class="countPeople">
                             <label for="countP">인원</label>
-                            <input type="text" class="countInput" autocomplete="off" id="countP" value="성인 : {{isset($arr['adults']) ? $arr['adults'] : "" }} / 어린이 : {{isset($arr['kids']) ? $arr['kids'] : "" }}"/>
+                            <input type="text" class="countInput" autocomplete="off" readonly id="countP" value="성인 : {{isset($arr['adults']) ? $arr['adults'] : "" }} / 어린이 : {{isset($arr['kids']) ? $arr['kids'] : "" }}"/>
                         </div>
                         <div class="countBox poAbsolute">
                             <div class="adultsBox">
                                 <label for="adults">성인</label>
                                 <div >
                                     <button class="minBtn" type="button">-</button>
-                                    <input type="number" value="2" class="adultsVal" autocomplete="off" id="adults" min="0" max="99">
+                                    <input type="number" value="2" class="adultsVal" autocomplete="off" id="adults" min="0" max="16">
                                     <button class="plusBtn" type="button">+</button>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                 <label for="kids">어린이</label>
                                 <div>
                                     <button class="minBtn" type="button">-</button>
-                                    <input type="number" value="0" class="kidsVal" autocomplete="off" id="kids" min="0" max="99">
+                                    <input type="number" value="0" class="kidsVal" autocomplete="off" id="kids" min="0" max="16">
                                     <button class="plusBtn" type="button">+</button>
                                 </div>
                             </div>
@@ -70,8 +70,8 @@
                         <div class="rangeslider">
                             <input class="min" name="minPrice" type="range" min="0" max="1000000" value="{{isset($arr['minPrice']) ? $arr['minPrice'] : "0"}}" step="10000" />
                             <input class="max" name="maxPrice" type="range" min="0" max="1000000" value="{{isset($arr['maxPrice']) ? $arr['maxPrice'] : "1000000" }}" step="10000" />
-                            <span class="range_min light left">{{isset($arr['minPrice']) ? $arr['minPrice'] : "0"}} 원</span>
-                            <span class="range_max light right">{{isset($arr['maxPrice']) ? $arr['maxPrice'] : "1000000" }} 원</span>
+                            <span class="range_min light left">{{isset($arr['minPrice']) ? number_format($arr['minPrice']) : "0"}} 원</span>
+                            <span class="range_max light right">{{isset($arr['maxPrice']) ? number_format($arr['maxPrice']) : "1000000" }} 원</span>
                         </div>
                     </div>
                     
@@ -92,7 +92,7 @@
         <li>별점 순</li>
         <li>찜 많은 순</li>
     </ul> --}}
-    <div class="searchUl searchBox">
+    <div class="searchUl">
         @forelse($searches as $value)
             <div class="searchList">
                 <a href="{{route('hanoks.detail',$value->id)}}" class="listA">
@@ -113,7 +113,7 @@
                         </div>
                         <div class="priceHanok">
                         {{-- 숙소 가격 --}}
-                            {{$value->room_price}} / 1박
+                            {{number_format($value->room_price)}} / 1박
                         </div>
                     </div>
                 </a>

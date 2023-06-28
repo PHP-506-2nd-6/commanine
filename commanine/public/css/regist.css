@@ -25,7 +25,7 @@ h2{
     position:absolute;
     width:400px;
     height: 700px;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     border:1px solid #000;
@@ -37,7 +37,7 @@ h2{
     height: 100px;
 }
 .msg{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 form>input,#email{
@@ -68,7 +68,7 @@ form{
     transform: translateY(-50%);
     right:5px;
     width:70px;
-    font-size: 12px;
+    font-size: 14px;
     height: 30px;
     padding: 5px 0;
     
@@ -100,7 +100,7 @@ form{
 
 .errmsg{
     height:20px;
-    font-size: 12px;
+    font-size: 14px;
     color:#ff0000;
 }
 
