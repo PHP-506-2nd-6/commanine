@@ -46,6 +46,9 @@ nav {
 .logo img {
     width: 260px;
 }
+img {
+    width: 250px;
+}
 
 .nav-a1,
 .nav-a2,
