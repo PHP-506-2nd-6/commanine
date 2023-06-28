@@ -60,10 +60,8 @@ class PaymentController extends Controller
         'reserve_adult' => $req->reserve_adult
         , 'reserve_child' => $req->reserve_child
         // 값 제대로 넘겨오면 주석 해제하기(체크인 체크아웃 날짜)
-        // , 'chk_in' => $req->chk_in_date
-        // , 'chk_out' => $req->chk_out_date
-        , 'chk_in' => date("Ymd")
-        , 'chk_out' => date("Ymd")
+        , 'chk_in' => $req->chk_in_date
+        , 'chk_out' => $req->chk_out_date
         // , 'reserve_flg' => 0
         , 'reserve_name' => $req->reserve_name
         , 'reserve_num' => $req->reserve_num
