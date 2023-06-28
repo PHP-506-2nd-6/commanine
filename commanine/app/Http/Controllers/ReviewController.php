@@ -136,12 +136,13 @@ class ReviewController extends Controller
         }
         $user_id = Auth::User()->user_id;
         $reviews = DB::table('hanoks as h')
-                        ->join('reviews as r', 'r.hanok_id', '=', 'h.id')
-                        ->select('r.*', 'h.hanok_name')
-                        ->where('r.user_id', '=', $user_id)
-                        ->where('r.deleted_at', '=', null)
-                        ->orderBy('r.rev_id', 'desc')
-                        ->paginate(5);
+                    ->join('reviews as rev', 'h.id', '=', 'rev.hanok_id')
+                    ->join('rooms as r', 'h.id', '=', 'r.hanok_id')
+                    ->select('rev.*', 'h.hanok_name', 'r.room_name')
+                    ->where('rev.user_id', '=', $user_id)
+                    ->where('rev.deleted_at', '=', null)
+                    ->orderBy('rev.rev_id', 'desc')
+                    ->paginate(5);
                         // ->get();
         return view('myreview')->with('review', $reviews);
     }

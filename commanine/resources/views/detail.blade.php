@@ -61,9 +61,9 @@
                     <div class="search_form">
                         <div class="search_form2">
                             <label for="chk_in">체크인</label>
-                            <input type="text" name="chk_in" class="datepicker" value="{{$inpData['val_chkIn']}}" required>
+                            <input type="text" name="chk_in" class="datepicker" value="{{$inpData['val_chkIn']}}" autocomplete="off" required>
                             <label for="chk_out">체크아웃</label>
-                            <input type="text" name="chk_out" class="datepicker2" value="{{$inpData['val_chkOut']}}">
+                            <input type="text" name="chk_out" class="datepicker2" value="{{$inpData['val_chkOut']}}" autocomplete="off">
                             <span>성인</span>
                             <input type="number" min="1" max="16" value="{{$inpData['val_adult']}}" id="adult" name="reserve_adult">
                             <span>아동</span>
@@ -74,8 +74,8 @@
                     <input type="hidden" name="room_id" class="room_id" disabled="true">
                     @php($i = 0)
                     @forelse($rooms as $val)
-                    <div class="room">
-                        <div class="roomBox">
+                    {{-- <div class="room"> --}}
+                        <div class="room">
                                 <div>
                                     <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="roomImg">
                                 </div>
@@ -86,7 +86,7 @@
                                     <button type="button" class="reserveBtn" value="{{$val->id}}">예약하기</button>
                                 </div>
                         </div>
-                    </div>
+                    {{-- </div> --}}
                 </form>
                 @empty
                 <div class="msg">선택하신 날짜에 예약 가능한 객실이 없습니다. 날짜를 다시 선택해주세요</div>
@@ -100,7 +100,6 @@
                     <button type="button" class="copy">주소복사</button>
                 </div>
             </div>
-
             <div class="content">
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">
@@ -146,17 +145,22 @@
                 </div>
             </div>
             <div class="content revCon">
-                <div>
+                <div class="revInfo">
                     <strong>이용 후기({{$rate->rev_cnt}})</strong>
                     <div class="rateCon">
-                        <strong class="rateComment"></strong>
-                        <img src="/img/icon/big_star.png" alt="별점" style="width:36px; height:36px">
-                        <strong class="rate">{{number_format($rate->rate, 1)}} / 5</strong>
+                        <div class="product-review-stars-container">
+                            <strong class="rateComment"></strong>
+                            <div class="stars-outer">
+                                <div class="stars-inner" id="stars-inner"></div>
+                            </div>
+                        <strong class="rate">{{number_format($rate->rate, 1)}}</strong>
+                        <span> / 5</span>
+                        </div>
                         <span>누적 평균 점수</span>
                     </div>
                 </div>
                 @forelse($reviews as $item)
-                    <div style="border:1px #d6d6d6 solid;padding:10px;">
+                    <div class="review">
                         <h5>{!! nl2br($item->rev_content) !!}</h5>
                         <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
                         <span>{!! nl2br($item->rate) !!}</span>
@@ -165,7 +169,9 @@
                 @empty
                 <div class="msg">아직 리뷰가 작성되지 않았습니다.</div>
                 @endforelse
-                {{ $reviews->onEachSide(2)->withQueryString()->links() }}
+                <div class="d-flex justify-content-center pageCon" > 
+                    {{$reviews->onEachSide(5)->withQueryString()->links()}}
+                </div>
             </div>
         </div>
         </div>
@@ -238,6 +244,8 @@
 <input type="hidden" name="user_id" id="user_id" value="{{session("user_id")}}">
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script>
+<script src="https://kit.fontawesome.com/da11601548.js" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/05d390fd09.js"></script>
 <script src="{{asset('js/detail.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 @endsection

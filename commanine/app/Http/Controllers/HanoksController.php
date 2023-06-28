@@ -105,6 +105,16 @@ class HanoksController extends Controller
                             ->get();
 
         // 해당 숙소의 리뷰 가져오기 0619 KMJ add
+        // $reviews = DB::table('hanoks as h')
+        //                 ->join('reviews as rev', 'h.id', '=', 'rev.hanok_id')
+        //                 ->join('rooms as r', 'h.id', '=', 'r.hanok_id')
+        //                 ->select('rev.rev_content', 'r.room_name', 'rev.created_at', 'rev.rate')
+        //                 ->where('h.id', "=", $id)
+        //                 ->where('rev.deleted_at', '=', null)
+        //                 ->orderBy('rev_id', 'desc')
+        //                 ->paginate(5);
+                        
+
         $reviews = DB::table('hanoks as h')
                         ->join('reviews as r', 'h.id', '=', 'r.hanok_id')
                         ->select('r.*')
