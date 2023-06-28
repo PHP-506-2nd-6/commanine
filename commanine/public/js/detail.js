@@ -70,10 +70,63 @@ reserveBtn.forEach((btn, index)=> {
     })
 })
 
-const chkIn = document.querySelector('#chkIn');
-const chkOut = document.querySelector('#chkOut');
-const adult = document.querySelector('#adult');
-const child = document.querySelector('#child');
+// const chkIn = document.querySelector('#chkIn');
+// const chkOut = document.querySelector('#chkOut');
+// const adult = document.querySelector('#adult');
+// const child = document.querySelector('#child');
+
+// 인원체크 박스
+const countInput = document.querySelector('.countInput');
+const countBox = document.querySelector('.countBox');
+const countChkBtn = document.querySelector('.countChkBtn');
+const adultsVal = document.querySelector('.adultsVal');
+const kidsVal = document.querySelector('.kidsVal');
+const adultsHide = document.querySelector('.adultsHide');
+const kidsHide = document.querySelector('.kidsHide');
+// 인원input을 눌렀을 때 
+// 성인, 어린이 선택하는 박스가 뜨고
+countInput.addEventListener('click',function(){
+    countBox.classList.toggle('active');
+})
+
+// 확인 버튼 누르면 박스 삭제
+countChkBtn.addEventListener('click',function(){
+    countBox.classList.toggle('active');
+    // 값 이동
+    adultsHide.value = adultsVal.value;
+    kidsHide.value = kidsVal.value;
+    countInput.value="성인 : "+adultsVal.value+" / 어린이 : "+kidsVal.value;
+})
+// min 버튼 누르면 input number 숫자 감소,
+// plus 버튼 누르면 input number 숫자 증가,
+const minBtn = document.querySelectorAll('.minBtn');
+const plusBtn = document.querySelectorAll('.plusBtn');
+
+
+minBtn[0].addEventListener('click',function(){
+    if( adultsVal.value > 1 ){
+    return adultsVal.value = Number(adultsVal.value) - 1;
+    }
+})
+
+minBtn[1].addEventListener('click',function(){
+    if( kidsVal.value > 0 ){
+    return kidsVal.value = Number(kidsVal.value) - 1;
+    }
+})
+
+plusBtn[0].addEventListener('click',function(){
+    if( adultsVal.value < 16 ){
+    return adultsVal.value = Number(adultsVal.value) + 1;
+    }
+})
+
+plusBtn[1].addEventListener('click',function(){
+    if( kidsVal.value < 16 ){
+    return kidsVal.value = Number(kidsVal.value) + 1;
+    }
+})
+
 
 const queryStr = document.location.search;
 const param = new URL(location).searchParams;

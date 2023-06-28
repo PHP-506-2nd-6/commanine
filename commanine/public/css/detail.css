@@ -39,6 +39,13 @@ button{
     margin: 3px;
 }
 
+.reserveBtn:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: .1s;
+}
+
 .con {
     width: 960px;
     margin: auto;
@@ -138,6 +145,8 @@ strong {
 }
 
 .addrBox{
+    position: relative;
+    padding: 0 20px;
     height: 4em;
     border-top: 1px solid #c5c5c5;
     border-bottom: 1px solid #c5c5c5;
@@ -145,9 +154,151 @@ strong {
 }
 
 .copy {
+    position: absolute;
+    right: 25px;
     color: #2677ce;
     font-weight: 600;
 }
+/* 인원Box start */
+
+.countBox {
+    /* position: absolute;
+    top: 100%; 
+    right:0;
+    border: 1px solid #000;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 179px;
+    height: 150px; */
+    display:none;
+    /* grid-template-rows: repeat(3,1fr); */
+}
+
+.countBox.active{
+    position: absolute;
+    top: 0; 
+    right:0;
+    border: 1px solid #000;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 190px;
+    height: 150px;
+    display:grid;
+    grid-template-rows: repeat(3,1fr);
+}
+.countWrap{
+    position:relative;
+    display: inline-block;
+}
+
+.countBox>div{
+    padding:10px;
+}
+.countBox>div>input{
+    position:absolute;
+    /* right:20px; */
+    right:10px;
+    width:100px;
+    text-align: center;
+}
+
+.countBox>button{
+    width:150px;
+    margin:0 auto;
+    height:30px;
+}
+.adultsBox,.kidsBox{
+    display:grid;
+    grid-template-columns: repeat(2,auto);
+}
+.adultsBox>label,.kidsBox>label{
+    /* width:55px; */
+    text-align: center;
+}
+
+.adultsBox>div,.kidsBox>div{
+    display:grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+.minBtn,.plusBtn{
+    height:30px;
+    width:20px;
+    background-color: #fff;
+    border:none;
+}
+.adultsVal,.kidsVal{
+    text-align: center;
+    border:none;
+    outline: none;
+}
+.dayBox>.ui-datepicker-trigger:hover,.countChkBtn:hover{
+    background-color: #fff;
+    color:#000;
+    border: 1px solid #000;
+    transition:all 0.3s;
+}
+
+
+.searchBtn,.countChkBtn{
+    background-color: #fff;
+    border:1px solid #000;
+    color: #000;
+}
+
+.searchBtn {
+    padding: 1px 5px;
+    font-weight: 900;
+}
+
+.searchBtn:hover,.countChkBtn:hover{
+    background-color: #000;
+    color: #fff;
+    transition:all 0.1s;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.inpDate {
+    padding-left: 25px;
+    width: 125px;
+}
+
+.dateCon{
+    display: inline-block;
+    position: relative;
+}
+
+.countInput {
+    width: 190px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.icon1
+,.icon2
+,.icon3 {
+    position: absolute;
+    top:20%;
+}
+.icon1{
+    left:32.5%;
+}
+
+.icon2 {
+    left:37.5%;
+}
+
+.icon3 {
+    left:17.5%;
+}
+
+.countBox label {
+    width: 55.72px
+}
+/* 인원Box end */
 
 .roomBox{
     display: flex;
@@ -171,8 +322,17 @@ strong {
     width: 960px;
 }
 .msg {
-    margin: 0 auto;
+    padding-top: 80px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #464646;
     display: inline-block;
+}
+
+.pin{
+    color: #b80a0a;
+    padding-right: 5px;
 }
 
 .amenityInfo{
@@ -191,7 +351,7 @@ strong {
     /* line-height: 319.59px; */
 }
 
-.search_form {
+.filter_form {
     margin-bottom: 20px;
 }
 
@@ -272,29 +432,18 @@ strong {
     margin-top: 50px;
 }
 
-.page-item > .page-link{
-    font-weight: 900;
+.accordion-button {
+    color: #8f8e8e !important;
+}
+.accordion-button:not(.collapsed) {
+    /* border-bottom: 1px solid #e2e2e2; */
+    color: #000 !important;
     background-color: #fff !important;
-    color:#8f8e8e !important;
+}
+.accordion-button:focus {
     border:none !important;
+    box-shadow:none !important;
 }
-
-.page-item.active .page-link{
-    font-weight: 900;
-    /* background-color: #000 !important; */
-    color:#000 !important;
-    border:none !important;
-}
-div>input{
-    padding-left:10px;
-}
-div>input:focus{
-    outline:none;
-}
-a:hover{
-    text-decoration: none !important ;
-}
-
 @media(max-width: 991px) {
     .con {
         width: 100%;

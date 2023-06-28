@@ -58,17 +58,45 @@
         <div class="conBox">
             <div class="content roomCon">
                 <form id="frm" method="get" action="">
-                    <div class="search_form">
-                        <div class="search_form2">
-                            <label for="chk_in">체크인</label>
-                            <input type="text" name="chk_in" class="datepicker" value="{{$inpData['val_chkIn']}}" autocomplete="off" required>
-                            <label for="chk_out">체크아웃</label>
-                            <input type="text" name="chk_out" class="datepicker2" value="{{$inpData['val_chkOut']}}" autocomplete="off">
-                            <span>성인</span>
-                            <input type="number" min="1" max="16" value="{{$inpData['val_adult']}}" id="adult" name="reserve_adult">
-                            <span>아동</span>
-                            <input type="number" min="0" max="16" value="{{$inpData['val_child']}}" id="child" name="reserve_child">
-                        </div>
+                    <div class="filter_form">
+                        {{-- <div class="search_form2"> --}}
+                            <div class="dateCon">
+                                <i class="fa-regular fa-calendar-check icon1"></i>
+                                <label for="chk_in">체크인</label>
+                                <input type="text" name="chk_in" class="datepicker inpDate" value="{{$inpData['val_chkIn']}}" autocomplete="off" required>
+                            </div>
+                            <div class="dateCon">
+                                <i class="fa-regular fa-calendar-check icon2"></i>
+                                <label for="chk_out">체크아웃</label>
+                                <input type="text" name="chk_out" class="datepicker2 inpDate" value="{{$inpData['val_chkOut']}}" autocomplete="off">
+                            </div>
+                            <div class="countWrap searchWidth">
+                                <i class="fa-solid fa-user icon3"></i>
+                                <div class="countPeople">
+                                    <label for="countP">인원</label>
+                                    <input type="text" class="countInput" id="countP" value="성인 : {{$inpData['val_adult']}} / 어린이 : {{$inpData['val_child']}}"/>
+                                </div>
+                                <div class="countBox poAbsolute">
+                                    <div class="adultsBox">
+                                        <label for="adults">성인</label>
+                                        <div >
+                                            <button class="minBtn" type="button">-</button>
+                                            <input type="number" value="{{$inpData['val_adult']}}" class="adultsVal" id="adults" min="1" max="16">
+                                            <button class="plusBtn" type="button">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="kidsBox">
+                                        <label for="kids">어린이</label>
+                                        <div>
+                                            <button class="minBtn" type="button">-</button>
+                                            <input type="number" value="{{$inpData['val_child']}}" class="kidsVal" id="kids" min="0" max="16">
+                                            <button class="plusBtn" type="button">+</button>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="countChkBtn">확인</button>
+                                </div>
+                            </div>
+                        {{-- </div> --}}
                         <button type="submit" class="searchBtn">검색</button>
                     </div>
                     <input type="hidden" name="room_id" class="room_id" disabled="true">
@@ -86,7 +114,8 @@
                                     <button type="button" class="reserveBtn" value="{{$val->id}}">예약하기</button>
                                 </div>
                         </div>
-                    {{-- </div> --}}
+                    <input type="hidden" placeholder="성인" name="reserve_adult" id="adults" class="adultsHide" value="{{$inpData['val_adult']}}">
+                    <input type="hidden" placeholder="아동" name="reserve_child" id="kids" class="kidsHide" value="{{$inpData['val_child']}}">
                 </form>
                 @empty
                 <div class="msg">선택하신 날짜에 예약 가능한 객실이 없습니다. 날짜를 다시 선택해주세요</div>
@@ -95,7 +124,7 @@
             <div class="content">
                 <div id="map"></div>
                 <div class="addrBox">
-                    <i class="bi bi-geo-alt-fill"></i>
+                    <i class="fa-solid fa-location-pin pin"></i>
                     <span class="addr">{{$hanok->hanok_addr}}</span>
                     <button type="button" class="copy">주소복사</button>
                 </div>
@@ -105,10 +134,29 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            <strong>기본정보</strong>
+                            <strong>편의 시설 및 서비스</strong>
                         </button>
                         </h2>
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body">
+                                <div class="amenityInfo">
+                                @foreach($amenities as $val)
+                                    <div class="amenityCon">
+                                        <img src="{{asset($val->icon_img)}}" alt="{{$val->amenity_name}}" class="amenities">
+                                        <p>{{$val->amenity_name}}</p>
+                                    </div>
+                                @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <strong>기본정보</strong>
+                        </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                             <div class="accordion-body">
                                 <div>
                                     <h5>숙소 안내</h5>
@@ -121,25 +169,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            <strong>편의 시설 및 서비스</strong>
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                        <div class="accordion-body">
-                            <div class="amenityInfo">
-                                @foreach($amenities as $val)
-                                    <div class="amenityCon">
-                                        <img src="{{asset($val->icon_img)}}" alt="{{$val->amenity_name}}" class="amenities">
-                                        <p>{{$val->amenity_name}}</p>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -170,7 +199,8 @@
                 <div class="msg">아직 리뷰가 작성되지 않았습니다.</div>
                 @endforelse
                 <div class="d-flex justify-content-center pageCon" > 
-                    {{$reviews->onEachSide(5)->withQueryString()->links()}}
+                    {{-- {{$reviews->withQueryString()->links()}} --}}
+                    {{ $reviews->withQueryString()->links('vendor.pagination.custom') }}
                 </div>
             </div>
         </div>
@@ -239,9 +269,8 @@
         @endforelse
     </div>
 
-<input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}">
-<input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}">
-<input type="hidden" name="user_id" id="user_id" value="{{session("user_id")}}">
+<input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}" disabled>
+<input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}" disabled>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script>
 <script src="https://kit.fontawesome.com/da11601548.js" crossorigin="anonymous"></script>
