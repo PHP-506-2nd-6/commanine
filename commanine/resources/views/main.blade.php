@@ -79,7 +79,7 @@
                                 <div class="slide">
                                     <div class="bodytext">
                                         <h3 class="card-title">{{$val2->hanok_name}}
-                                        <p class="card-text" style="padding-top:5px;">/{{$val2->hanok_local}}</p></h3>
+                                        <p class="card-text" style="padding-top:5px;">{{$val2->hanok_local}}</p></h3>
                                         <p class="card-text comment">{{$val2->hanok_comment}}</p>
                                         {{-- <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
                                         <span>{{isset($val2->review) ? substr($val2->review,0,4) : "0"}}</span> --}}
@@ -130,7 +130,7 @@
                                     <div class="card-body">
                                         <div class="card_top">
                                             <h5 class="card-title">{{$val->hanok_name}}
-                                            <p class="card-text" style="font-size:15px">/{{$val->hanok_local}}
+                                            <p class="card-text" style="font-size:15px">{{$val->hanok_local}}
                                             <span>{{isset($val->review) ? substr($val->review,0,4) : "0"}}</span>
                                             <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span></p></h5>
                                         </div>
