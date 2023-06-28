@@ -35,13 +35,13 @@
                 </div>
             </div>
         <div class="hanokInfo">
-            <h5>{{$hanok->hanok_name}}</h5>
-            <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
-            <span>{{number_format($rate->rate, 1)}}</span>
+            <p class="hanok_name">{{$hanok->hanok_name}}</p>
+            <i class="fa-solid fa-star star"></i>
+            <span class="rate">{{number_format($rate->rate, 1)}}</span>
             <button type='button'>
-                <img src="{{asset('img/icon/heart.png')}}" alt="찜" class="heart">
+                <i class="fa-regular fa-heart heart"></i>
             </button>
-            <span class="likeCnt"></span>
+            <span class="rate">{{$likes->likes}}</span>
             <br>
             <span>{{$hanok->hanok_addr}}</span>
             <div class="hanokComment"><span>{!! nl2br($hanok->hanok_comment) !!}</span></div>
@@ -63,12 +63,12 @@
                             <div class="dateCon">
                                 <i class="fa-regular fa-calendar-check icon1"></i>
                                 <label for="chk_in">체크인</label>
-                                <input type="text" name="chk_in" class="datepicker inpDate" value="{{$inpData['val_chkIn']}}" autocomplete="off" required>
+                                <input type="text" name="chk_in" class="datepicker inpDate" value="{{$inpData['val_chkIn']}}" autocomplete="off" readonly>
                             </div>
                             <div class="dateCon">
                                 <i class="fa-regular fa-calendar-check icon2"></i>
                                 <label for="chk_out">체크아웃</label>
-                                <input type="text" name="chk_out" class="datepicker2 inpDate" value="{{$inpData['val_chkOut']}}" autocomplete="off">
+                                <input type="text" name="chk_out" class="datepicker2 inpDate" value="{{$inpData['val_chkOut']}}" autocomplete="off" readonly>
                             </div>
                             <div class="countWrap searchWidth">
                                 <i class="fa-solid fa-user icon3"></i>
@@ -102,15 +102,18 @@
                     <input type="hidden" name="room_id" class="room_id" disabled="true">
                     @php($i = 0)
                     @forelse($rooms as $val)
-                    {{-- <div class="room"> --}}
                         <div class="room">
                                 <div>
                                     <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="roomImg">
                                 </div>
                                 <div class="room2">
-                                    <h5>{{$val->room_name}}</h5>
-                                    <span>가격 {{number_format($val->room_price)}} / 1박</span>
-                                    <button type="button" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내 ></button>
+                                    <div class="room3">
+                                        <h4>{{$val->room_name}}</h4>
+                                        <span>가격 {{number_format($val->room_price)}} / 1박</span>
+                                    </div>
+                                    <button type="button" class="roomInfoBtn"data-bs-toggle="modal" data-bs-target="#exampleModal{{$i++}}">객실 이용 안내
+                                        <i class="fa-solid fa-chevron-right chevron"></i>
+                                    </button>
                                     <button type="button" class="reserveBtn" value="{{$val->id}}">예약하기</button>
                                 </div>
                         </div>
@@ -191,7 +194,8 @@
                 @forelse($reviews as $item)
                     <div class="review">
                         <h5>{!! nl2br($item->rev_content) !!}</h5>
-                        <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px">
+                        <i class="fa-solid fa-star revStar"></i>
+                        {{-- <img src="/img/icon/star.png" alt="별점" style="width:16px; height:16px"> --}}
                         <span>{!! nl2br($item->rate) !!}</span>
                         <span>{!! nl2br(substr($item->created_at, 0, 10)) !!}</span>
                     </div>

@@ -11,23 +11,54 @@ button{
 }
 
 .hanokInfo{
+    width: 100%;
     padding: 20px;
 }
+.hanok_name{
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 2px;
+}
+.star
+,.revStar {
+    color: #f8ce0b;
+}
 
+.star{
+    font-size:20px;
+}
+.rate {
+    font-size: 20px;
+}
+.hanokInfo>button {
+    margin-left: 10px;
+}
 .hanokComment{
     /* border:1px black solid; */
     width: 100%;
+    margin-top: 10px;
     padding: 20px;
     background-color: #f3f3f3;
 }
+.room3 {
+    margin: 10px 0px;
+}
 
 .roomInfoBtn{
+    position: relative;
     width: 100%;
     height: 50px;
     border-top: 1px solid #c5c5c5;
     text-align: left;
+    padding: 0 5px;
 }
-
+.chevron {
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    transform: translate(-50%, -50%);
+    color: #8f8e8e;
+}
 .reserveBtn {
     background-color: #000;
     color: #fff;
@@ -140,8 +171,7 @@ strong {
 }
 
 .heart {
-    width: 28px;
-    height: 28px;
+    font-size: 20px;
 }
 
 .addrBox{
@@ -320,6 +350,9 @@ input[type="number"]::-webkit-inner-spin-button {
 .modal-content{
     padding: 30px;
     width: 960px;
+}
+.modalImg {
+    margin-bottom: 10px;
 }
 .msg {
     padding-top: 80px;

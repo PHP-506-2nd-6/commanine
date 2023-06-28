@@ -208,8 +208,10 @@ if (rate > 4.8) {
     rateComment.textContent = "최고에요";
 } else if (rate > 4.5) {
     rateComment.textContent = "추천해요";
-} else if(rate > 4.2) {
+} else if(rate > 4.0) {
     rateComment.textContent = "만족해요";
+} else if(rate === 0){
+    rateComment.textContent = "";
 } else {
     rateComment.textContent = "좋아요";
 }
