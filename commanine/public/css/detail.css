@@ -369,6 +369,10 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-wrap: wrap;
     /* justify-content: left; */
 }
+.amenityInfo
+,.roomCom {
+    padding: 20px;
+}
 
 .amenityCon {
     text-align: center;
@@ -461,18 +465,34 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-top: 50px;
 }
 
-.accordion-button {
+.amenityInfo
+,.roomCom {
+    border-bottom:1px #d6d6d6 solid;
+}
+
+.serv
+,.serv2 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.serv2 {
+    margin-top: 1em;
+}
+
+/* .accordion-button {
     color: #8f8e8e !important;
 }
 .accordion-button:not(.collapsed) {
-    /* border-bottom: 1px solid #e2e2e2; */
+    border-bottom: 1px solid #e2e2e2;
     color: #000 !important;
     background-color: #fff !important;
 }
 .accordion-button:focus {
     border:none !important;
     box-shadow:none !important;
-}
+} */
 @media(max-width: 991px) {
     .con {
         width: 100%;
