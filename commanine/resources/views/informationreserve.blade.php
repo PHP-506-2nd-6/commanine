@@ -26,6 +26,16 @@
                         <p>{{$data->chk_in}} ~ {{$data->chk_out}}</p></div>
                         <div class="contit">인원
                         <p>{{$data->reserve_adult}}</p></div>
+
+                        <div class="reserve_flg">
+                            <span>예약상태 : </span>
+                            @if($data->reserve_flg === '1')
+                                <span>예약완료</span>
+                            @else
+                                <span>결제대기</span>
+                            @endif
+                        </div>
+                        
                     </div>
 
                     {{-- @if($val->room_id === 0) --}}

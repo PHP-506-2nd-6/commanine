@@ -36,7 +36,7 @@ class UsersInfoController extends Controller
         $query = DB::table('rooms as room')
         ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
         ->join('reservations as re', 're.room_id', '=', 'room.id')
-        ->select('han.id','han.hanok_name', 'han.hanok_img1', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id')
+        ->select('han.id','han.hanok_name', 'han.hanok_img1', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg')
         ->where('re.user_id', $user_id)
         ->orderBy('re.id', 'desc')
         ->paginate(2);
