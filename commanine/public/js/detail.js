@@ -20,12 +20,14 @@ const likeBtn = document.querySelector(".like");
 
 const hanokId = window.location.pathname.substring(15);
 
+// 검색했을 때 hanok_id sumbit 안 되도록 막는 기능
 searchBtn.addEventListener('click', () => {
     room_id.disabled = true;
     frm.action="";
 })
 
 // 0625 KMJ add
+// 예약하기 누르면 hanok_id 전달되도록 하는 기능
 reserveBtn.forEach((btn, index)=> {
     btn.addEventListener('click', () => {
         // 폼 action 결제 페이지로 바꾸기
@@ -132,7 +134,7 @@ tabs.forEach((tab, index)=>{
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-        level: 2 // 지도의 확대 레벨
+        level: 2 // 지도의 확대 레벨(30m)
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -179,7 +181,7 @@ if (rate > 4.8) {
     rateComment.textContent = "";
 }
 
-// 리뷰 탭 별점 그래프
+// 리뷰 탭 평균 별점 그래프
 const rating = document.querySelector('.rate').innerText;
 const starTotal = 5;
 const starPercentage = ((rating/starTotal)*100)
