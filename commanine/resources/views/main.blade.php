@@ -38,7 +38,8 @@
     </div>
 
 {{-- 카테고리 --}}
-<div class="nav-border">
+<section id="menu1" class="nav-border">
+{{-- <div class="nav-border"> --}}
     <ul class="gnb clearfix">
         <li class="cate hotel">
             <a href="/research/pageget?hanokType=0">
@@ -64,7 +65,8 @@
             <p>리조트</p>
         </li>
     </ul>
-</div>
+{{-- </div> --}}
+</section>
 
 {{-- 인기숙소 --}}
 <section id="menu2" class="content02">
@@ -114,6 +116,7 @@
 </div>
 
 {{-- 최신숙소 --}}
+<section id="menu3" class="content03">
 <div id="carouselExampleControls" class="carousel slide recent" data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
                 <h4>recent</h4>
@@ -143,6 +146,7 @@
                 </div>
             </div>
 </div>
+</section>
 
 
 </main>
