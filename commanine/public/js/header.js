@@ -1,43 +1,3 @@
-// 네비이동
-// function checkScrollPosition() {
-//     let navBlock = $(".menu");
-//     let scrollPos = $(document).scrollTop();
-//     navBlock.find("a").each(function () {
-//         let block = $($(this).attr("href"));
-//         if (
-//             block.position().top <= scrollPos + 100 &&
-//             block.position().top + block.outerHeight() > scrollPos
-//         ) {
-//             navBlock.find("li").removeClass("menuactive");
-//             $(this).parent("li").addClass("menuactive");
-//         } else {
-//             $(this).parent("li").removeClass("menuactive");
-//         }
-//     });
-// }
-
-// $(document).ready(function () {
-//     let navBlock = $(".menu");
-//     navBlock.find("a").on("click", function (e) {
-//         e.preventDefault();
-//         $(document).off("scroll");
-//         let block = $(this).attr("href");
-//         let blockPosition = $(block).offset().top;
-//         $("html, body").animate(
-//             {
-//                 scrollTop: blockPosition - 350,
-//             },
-//             100,
-//             function () {
-//                 checkScrollPosition();
-//             }
-//         );
-//     });
-// });
-// $(window).on("scroll", function () {
-//     checkScrollPosition();
-// });
-
 $(function () {
     //input을 datepicker로 선언
     $(".datepicker").datepicker({
@@ -182,7 +142,7 @@ $(document).ready(function () {
         // qtybtn 의 부모중 input 태그의 value 값을 저장합니다.
         if ($button.hasClass("inc")) {
             // inc 속성을 가지고 있는 경우
-            if (oldValue > 17) {
+            if (oldValue > 10) {
                 // 10일 경우 더이상 증가하지 않고 리턴
                 return;
             }

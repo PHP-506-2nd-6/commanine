@@ -11,7 +11,9 @@
             <div class="reserve_con reserve_wrap">
                 @forelse($review as $val)
                     <div class="review">
-                        <h4>{{$val->hanok_name}}</h4>
+                        <a href="{{route('hanoks.detail', ['id' => $val->hanok_id])}}">
+                            <h4>{{$val->hanok_name}}</h4>
+                        </a>
                         <i class="fa-solid fa-star star"></i>
                         <span>{{$val->rate}}</span>
                         <div>{!! nl2br($val->rev_content)!!}</div>
