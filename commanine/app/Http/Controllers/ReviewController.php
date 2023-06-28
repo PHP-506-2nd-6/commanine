@@ -167,4 +167,14 @@ class ReviewController extends Controller
         return redirect('/users/myreview');
     }
 
+    // 중복 리뷰
+    // function checkDuplicateReview($user_id, $hanok_id)
+    //     {
+    //         $review = Reviews::where('user_id', $user_id)
+    //                         ->where('hanok_id', $hanok_id)
+    //                         ->first();
+            
+    //         return $review !== null; // 리뷰가 이미 존재하는지 여부 반환
+    //     }
+
 }

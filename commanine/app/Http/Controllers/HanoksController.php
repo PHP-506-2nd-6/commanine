@@ -223,8 +223,8 @@ class HanoksController extends Controller
                     WHERE r.room_price
                     GROUP BY r.hanok_id) AS room'), 'han.id', '=', 'room.hanok_id')
     ->leftJoin('wishlists AS wish', 'room.hanok_id', '=', 'wish.hanok_id')
-    ->select('han.id', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local', 'room.room_price', DB::raw('COUNT(wish.hanok_id) AS cnt'))
-    ->groupBy('han.id', 'han.hanok_name', 'han.hanok_img1', 'room.room_price','han.hanok_local')
+    ->select('han.id', 'han.hanok_name', 'han.hanok_img1', 'han.hanok_local', 'han.hanok_comment', 'room.room_price', DB::raw('COUNT(wish.hanok_id) AS cnt'))
+    ->groupBy('han.id', 'han.hanok_name', 'han.hanok_img1', 'room.room_price','han.hanok_local', 'han.hanok_comment')
     ->orderBy('cnt', 'DESC')
     ->limit(3)
     ->get();

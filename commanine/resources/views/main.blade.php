@@ -66,7 +66,7 @@
     </ul>
 </div>
 
-
+{{-- 인기숙소 --}}
 <section id="menu2" class="content02">
                 <div class="split myCarousel">
                     <div class="inner-wrapper">
@@ -76,10 +76,12 @@
                                 @foreach($wish as $val2)
                                 <div class="slide">
                                     <div class="bodytext">
-                                        <h3 class="card-title">{{$val2->hanok_name}}</h3>
-                                        <p class="card-text">{{$val2->hanok_local}}</p>
+                                        <h3 class="card-title">{{$val2->hanok_name}}
+                                        <p class="card-text" style="padding-top:5px;">/{{$val2->hanok_local}}</p></h3>
+                                        <p class="card-text comment">{{$val2->hanok_comment}}</p>
                                         {{-- <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
                                         <span>{{isset($val2->review) ? substr($val2->review,0,4) : "0"}}</span> --}}
+                                            <a class="more" href="{{route('hanoks.detail', ['id' => $val2->id])}}">자세히보기</a>
                                         <div class="tag">
                                             <p class="card-text">{{number_format($val2->room_price)}}원</p>
                                         </div>
