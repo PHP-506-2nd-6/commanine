@@ -1,3 +1,43 @@
+// 네비이동
+function checkScrollPosition() {
+    let navBlock = $(".menu");
+    let scrollPos = $(document).scrollTop();
+    navBlock.find("a").each(function () {
+        let block = $($(this).attr("href"));
+        if (
+            block.position().top <= scrollPos + 100 &&
+            block.position().top + block.outerHeight() > scrollPos
+        ) {
+            navBlock.find("li").removeClass("menuactive");
+            $(this).parent("li").addClass("menuactive");
+        } else {
+            $(this).parent("li").removeClass("menuactive");
+        }
+    });
+}
+
+$(document).ready(function () {
+    let navBlock = $(".menu");
+    navBlock.find("a").on("click", function (e) {
+        e.preventDefault();
+        $(document).off("scroll");
+        let block = $(this).attr("href");
+        let blockPosition = $(block).offset().top;
+        $("html, body").animate(
+            {
+                scrollTop: blockPosition - 350,
+            },
+            100,
+            function () {
+                checkScrollPosition();
+            }
+        );
+    });
+});
+$(window).on("scroll", function () {
+    checkScrollPosition();
+});
+
 (function ($) {
     $.fn.split = function (options) {
         if ($(this).hasClass("split")) {
