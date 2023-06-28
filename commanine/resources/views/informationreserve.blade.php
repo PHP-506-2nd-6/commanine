@@ -44,7 +44,7 @@
                 <span>예약한 숙소가 없습니다.</span> 
             @endforelse
             </div>
-            <div class="d-flex justify-content-center"> 
+            <div class="d-flex justify-content-center" style="width:750px"> 
                 {{-- {{$reserve->onEachSide(1)->withQueryString()->links()}} --}}
                 {{ $reserve->withQueryString()->links('vendor.pagination.custom') }}
             </div>
