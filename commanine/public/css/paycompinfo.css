@@ -63,8 +63,9 @@
     width: 2vw;
     padding: 5.5% 0 5.5% 0;
     position: absolute;
-    left: 30.3vw;
-    top: -2vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 .circle_item {
     width: 2vw;
@@ -72,6 +73,7 @@
     border: 1px solid black;
     border-radius: 50%;
     background-color: white;
+    line-height: 2vw;
 }
 .items2 {
     width: 35vw;

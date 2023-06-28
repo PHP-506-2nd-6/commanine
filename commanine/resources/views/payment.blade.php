@@ -44,10 +44,10 @@
         <p>결제 금액</p>
         <div class="pay_sum">
             <span>상품 금액 :</span>
-            <span class="span_padding_1">{{$data->room_price}}</span>
+            <span class="span_padding_1">{{number_format($data->room_price)}}</span>
             <br>
             <span>총 결제 금액 :</span>
-            <span class="span_padding_2">{{$data->room_price}}</span>
+            <span class="span_padding_2">{{number_format($data->room_price)}}</span>
         </div>
     </div>
     <div class="reservetitle pay_padding">
