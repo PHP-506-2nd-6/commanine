@@ -30,7 +30,7 @@ const certification = ()=>{
     const url = "/api/users/regist/"+email.value;
     const regex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
     if (email.value === '') { 
-        idSpan.innerHTML = "아이디를 입력해 주세요.";
+        idSpan.innerHTML = "이메일을 입력해 주세요.";
         idSpan.style.color = "red";
         return;
     }

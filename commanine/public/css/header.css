@@ -251,3 +251,12 @@ img {
     font-size: 20px;
     letter-spacing: 0.4px;
 }
+
+.pagePadding{
+    padding:5px;
+    color:#a3a3a3 !important;
+}
+
+.pagePadding:hover{
+    color:#000 !important;
+}

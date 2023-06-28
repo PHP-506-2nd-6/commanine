@@ -17,14 +17,14 @@
     <div class="searchBox">
         <form action="{{route('research.page.get')}}" method="get" class="formBox">
             <div class="searchFirstBox" style="padding-bottom : 20px;">
-                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" class="localInput searchWidth" value="{{isset($arr['local']) ? $arr['local'] : ""}}">
+                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth" value="{{isset($arr['local']) ? $arr['local'] : ""}}">
                 <div class="dayBox searchWidth">
                     <label for="chkIn">체크인</label>
-                    <input type="text" class="datepicker" name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
+                    <input type="text" class="datepicker" autocomplete="off" name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
                 </div>
                 <div class="dayBox searchWidth">
                     <label for="chkOut">체크아웃</label>
-                    <input type="text" class="datepicker2" name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
+                    <input type="text" class="datepicker2" autocomplete="off" name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
                 </div>
             </div>
             <div class="searchSecondBox" >
@@ -41,14 +41,14 @@
                     <div class="countWrap searchWidth">
                         <div class="countPeople">
                             <label for="countP">인원</label>
-                            <input type="text" class="countInput" id="countP" value="성인 : {{$arr['adults']}} / 어린이 : {{$arr['kids']}}"/>
+                            <input type="text" class="countInput" autocomplete="off" id="countP" value="성인 : {{isset($arr['adults']) ? $arr['adults'] : "" }} / 어린이 : {{isset($arr['kids']) ? $arr['kids'] : "" }}"/>
                         </div>
                         <div class="countBox poAbsolute">
                             <div class="adultsBox">
                                 <label for="adults">성인</label>
                                 <div >
                                     <button class="minBtn" type="button">-</button>
-                                    <input type="number" value="2" class="adultsVal" id="adults" min="0" max="99">
+                                    <input type="number" value="2" class="adultsVal" autocomplete="off" id="adults" min="0" max="99">
                                     <button class="plusBtn" type="button">+</button>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                 <label for="kids">어린이</label>
                                 <div>
                                     <button class="minBtn" type="button">-</button>
-                                    <input type="number" value="0" class="kidsVal" id="kids" min="0" max="99">
+                                    <input type="number" value="0" class="kidsVal" autocomplete="off" id="kids" min="0" max="99">
                                     <button class="plusBtn" type="button">+</button>
                                 </div>
                             </div>
@@ -77,9 +77,9 @@
                     
                 {{-- range end --}}
             </div>
-            {{-- 인원 클릭했을 때 밑에 창 나타나면서 type number로 바꾸고 설정 가능 할 수 있게 해야 함. --}}
-                <input type="hidden" placeholder="성인" name="adults" id="adults" class="adultsHide" value="">
-                <input type="hidden" placeholder="아동" name="kids" id="kids" class="kidsHide" value="">
+            
+                <input type="hidden" placeholder="성인" name="adults" id="adults" class="adultsHide" value="{{isset($arr['adults']) ? $arr['adults'] : "" }}">
+                <input type="hidden" placeholder="아동" name="kids" id="kids" class="kidsHide" value="{{isset($arr['kids']) ? $arr['kids'] : "" }}">
             
             <button type="submit" class="searchBtn qtybtn" >Search</button>
 
@@ -123,7 +123,8 @@
         @endforelse
     </div>
     <div class="d-flex justify-content-center" > 
-        {{$searches->onEachSide(5)->withQueryString()->links()}}
+        {{-- {{$searches->onEachSide(5)->withQueryString()->links()}} --}}
+        {{ $searches->withQueryString()->links('vendor.pagination.custom') }}
     </div>
 </div>
 

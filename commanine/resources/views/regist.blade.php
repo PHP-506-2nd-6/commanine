@@ -16,7 +16,7 @@
         <h2 class="title">회원가입</h2>
         <form action="{{route('users.regist.post')}}" method="post" class="container text-center" id="formBox">
             @csrf
-            <input type="text" name="name" id="name" class="errbox" placeholder="이름" value="{{old('name')}}">
+            <input type="text" name="name" id="name" autocomplete="off" class="errbox" placeholder="이름" value="{{old('name')}}">
             <div class="errmsg">
                 @if($errors->has('name'))
                     {{$errors->first('name')}}
@@ -25,26 +25,26 @@
             
             
 
-            <input type="text" name="phoneNumber" id="phoneNumber" class="errbox" placeholder="전화번호는 숫자만 입력해 주세요." value="{{old('phoneNumber')}}">
+            <input type="text" name="phoneNumber" autocomplete="off" id="phoneNumber" class="errbox" placeholder="전화번호는 숫자만 입력해 주세요." value="{{old('phoneNumber')}}">
             <div class="errmsg">
                 @if($errors->has('phoneNumber'))
                     {{$errors->first('phoneNumber')}}
                 @endif
             </div>
             <div class=" emailBox">
-                <input type="text" name="email" id="email" placeholder="이메일" value="{{old('email')}}">
+                <input type="text" name="email" autocomplete="off" id="email" placeholder="이메일" value="{{old('email')}}">
                 <button type="button" id="emailChkBtn"  class="blackBtn">확인하기</button>
             </div>
             <div id="errMsgId" class="errmsg"></div>
-            <input type="password" name="password" id="password" placeholder="비밀번호" class="errbox" >
+            <input type="password" name="password" autocomplete="off" id="password" placeholder="비밀번호" class="errbox" >
             <div class="errmsg">
                 @if($errors->has('password'))
                     {{$errors->first('password')}}
                 @endif
             </div>
-            <input type="password" name="passwordChk" id="passwordChk" placeholder="비밀번호 확인" class="errbox">
+            <input type="password" name="passwordChk" autocomplete="off" id="passwordChk" placeholder="비밀번호 확인" class="errbox">
             <div id="pwChkAlert" class="errmsg"></div>
-            <input type="date" name="birth" id="birth" class="errbox" value="{{old('birth')}}">
+            <input type="date" name="birth" id="birth" autocomplete="off" class="errbox" value="{{old('birth')}}">
 
             <div class="errmsg">
                 @if($errors->has('birth'))
@@ -59,7 +59,7 @@
                 <option value="5">졸업한 초등학교 이름은 무엇입니까?</option>
             </select>
             
-            <input type="text" name="questAnswer" id="questAnswer" placeholder="질문의 답" class="errbox" value="{{old('questAnswer')}}">
+            <input type="text" name="questAnswer" autocomplete="off" id="questAnswer" placeholder="질문의 답" class="errbox" value="{{old('questAnswer')}}">
             <div class="errmsg">
                 @if($errors->has('questAnswer'))
                     {{$errors->first('questAnswer')}}

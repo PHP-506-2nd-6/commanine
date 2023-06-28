@@ -45,7 +45,8 @@
             @endforelse
             </div>
             <div class="d-flex justify-content-center"> 
-                {{$reserve->onEachSide(3)->withQueryString()->links()}}
+                {{-- {{$reserve->onEachSide(1)->withQueryString()->links()}} --}}
+                {{ $reserve->withQueryString()->links('vendor.pagination.custom') }}
             </div>
         </div>
     </div>

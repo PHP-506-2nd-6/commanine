@@ -122,12 +122,12 @@ input{
 .selectList{
     height:30px;
 }
-.dayBox{
+/* .dayBox{
     display:grid;
-    grid-template-columns: 2fr auto 1fr;
-}
+    grid-template-columns: 2fr auto;
+} */
 
-.selectBox,.countPeople{
+.selectBox,.countPeople,.dayBox{
     display:grid;
     grid-template-columns: 3fr 9fr;
     height:30px;

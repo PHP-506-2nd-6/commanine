@@ -21,7 +21,7 @@ class ApiUsersController extends Controller
     // 유저가 있을 경우
         if($user){
             $arr['errorcode']="E01";
-            $arr['msg'] = "이미 사용중인 아이디 입니다.";
+            $arr['msg'] = "이미 사용중인 이메일 입니다.";
         }
         return response()->json($arr,Response::HTTP_OK);
         // return $arr;
