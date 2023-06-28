@@ -80,6 +80,7 @@ const adultsVal = document.querySelector('.adultsVal');
 const kidsVal = document.querySelector('.kidsVal');
 const adultsHide = document.querySelector('.adultsHide');
 const kidsHide = document.querySelector('.kidsHide');
+const searchBtn = document.getElementById('searchBtn');
 // 인원input을 눌렀을 때 
 // 성인, 어린이 선택하는 박스가 뜨고
 countInput.addEventListener('click',function(){

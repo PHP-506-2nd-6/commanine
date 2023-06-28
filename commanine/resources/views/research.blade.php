@@ -81,7 +81,7 @@
                 <input type="hidden" placeholder="성인" name="adults" id="adults" class="adultsHide" value="{{isset($arr['adults']) ? $arr['adults'] : "" }}">
                 <input type="hidden" placeholder="아동" name="kids" id="kids" class="kidsHide" value="{{isset($arr['kids']) ? $arr['kids'] : "" }}">
             
-            <button type="submit" class="searchBtn qtybtn" >Search</button>
+            <button type="submit" id="searchBtn" class="searchBtn qtybtn" >Search</button>
 
         </form>
     </div>

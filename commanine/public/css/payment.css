@@ -63,6 +63,7 @@ ul.join_box{border: 1px solid #ddd;background-color: #fff;}
 }
 .reservetitle>input, label{
     font-size: 18px;
+    width: 100%;
 }
 .pay_sum {
     font-size: 18px; 
@@ -71,6 +72,8 @@ ul.join_box{border: 1px solid #ddd;background-color: #fff;}
 .pay_type {
     font-size: 16px; 
     font-weight: normal;
+    height: 3.5vh;
+    border-radius: 0.5vw 0.5vw / 0.5vw 0.5vw;
 }
 .pay_padding {
     padding-top: 3%;
@@ -79,11 +82,11 @@ span{
     padding-right: 14vw;
 }
 .span_padding_1{
-    padding-left: 13.3vw; 
+    padding-left: 17.1vw; 
     padding-right: 0;
 }
 .span_padding_2{
-    padding-left: 12.2vw; 
+    padding-left: 16vw; 
     padding-right: 0; 
     color: red;
 }
@@ -127,4 +130,55 @@ span{
 .border_line {
     border-top: 2px groove #dcdcdc;
     padding-top: 1%;
+}
+#reserve_name{
+    color: rgb(134, 134, 134);
+    border-left-width:0;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:1;
+    font-size: 0.7em;
+
+}
+#reserve_num{
+    color: rgb(134, 134, 134);
+    border-left-width:0;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:1;
+    font-size: 0.7em;
+
+}
+#reserve_name:focus{
+    outline: none;
+    color: black;
+    border: 1px solid rgba(255, 0, 0, 0.719);
+    border-left-width:0;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:1;
+    font-size: 0.7em;
+}
+#reserve_num:focus{
+    outline: none;
+    color: black;
+    border: 1px solid rgba(255, 0, 0, 0.719);
+    border-left-width:0;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:1;
+    font-size: 0.7em;
+
+}
+.pay_padding_select{
+    padding-left: 15vw;
+    padding-right: 0;
+}
+#reserve_name_inner {
+    font-size: 14px;
+    color: red;
+}
+#reserve_num_inner {
+    font-size: 14px;
+    color: red;
 }
