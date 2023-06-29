@@ -125,9 +125,14 @@ class ResearchController extends Controller
         
         // 숙소유형
         $val_type = $req->input('hanokType');
+        if($val_type === "0"||$val_type === "1"||$val_type === "2"||$val_type === "3"){
+            $val_type = $req->input('hanokType');
+        }else{
+            $val_type =null;
+        }
         // 인원
         $val_count = $req->input('adults')+$req->input('kids');
-        // return var_dump($val_count);
+
         // 가격
         $val_minPrice = $req->input('minPrice');
         $val_maxPrice = $req->input('maxPrice');
@@ -262,6 +267,7 @@ Log::debug('인원',[$val_count]);
                 ,'chkOut' => $val_chkOut
                 ,'minPrice' => $val_minPrice
                 ,'maxPrice' => $val_maxPrice
+                ,'hanoktype'    =>$val_type
                 ,'adults' => $req->adults
                 ,'kids' => $req->kids
         ];
