@@ -148,7 +148,6 @@
 </div>
 </section>
 
-
 </main>
 
 <script src="{{asset('js/main.js')}}"></script>

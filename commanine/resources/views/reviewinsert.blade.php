@@ -46,7 +46,7 @@
                 <br>
                 <div class="con_box">
                     <label for="rev_content">리뷰 작성하기</label>
-                    <textarea name="rev_content" id="rev_content" spellcheck="false" cols="50" rows="12"></textarea>
+                    <textarea name="rev_content" id="rev_content" spellcheck="false" cols="50" rows="10"></textarea>
                     
                 </div>
                 <br>
