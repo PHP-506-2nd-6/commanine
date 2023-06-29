@@ -17,6 +17,7 @@
     height: 500px;
 }
 .review_wrap {
+    height: 400px;
     border: 1px solid #5c5c5c;
     border-radius: 25px;
     padding: 50px;
@@ -24,6 +25,7 @@
 }
 .con_box textarea {
     border: none;
+    resize: none;
 }
 .rating {
     position: relative;
@@ -57,7 +59,7 @@
 .updateBtn {
     /* grid-column: 3/3; */
     position: absolute;
-    bottom: 5%;
+    bottom: 15%;
     right: 39%;
     width: 200px;
     height: 40px;
