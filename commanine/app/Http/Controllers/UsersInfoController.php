@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservations;
+use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,8 +42,6 @@ class UsersInfoController extends Controller
         ->orderBy('re.id', 'desc')
         ->paginate(2);
 
-        // var_dump($query);
-        // exit;
         return view('informationreserve')->with('reserve', $query);
         
 
@@ -103,8 +102,6 @@ class UsersInfoController extends Controller
         foreach($arrKey as $val) {
             $arrChk[$val] = $chkList[$val];
         }
-        // var_dump($req, $arrKey, $arrChk, $chkList);
-        // exit;
         if(isset($arrChk)) {
             $req->validate($arrChk);
             foreach($arrKey as $val) {

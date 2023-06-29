@@ -50,14 +50,13 @@ class UsersController extends Controller
         }
         Auth::login($user);
         if(Auth::check()){
-            session($user->only('user_id')); 
+            session($user->only('user_id','user_name')); 
             return redirect()->intended(route('main'));
         }else{
             $error = '유저 인증 작업 에러. 잠시 후에 다시 입력해 주세요';
             return redirect()->back()->with('error',$error);
         }
     }
-    
 
 
     //0613 KMH new

@@ -1,4 +1,10 @@
 @extends('layout.layout')
+<?php
+    {{-- 체크인 체크아웃 계산 --}}
+    $from = new Datetime($data->chk_in);
+    $to = new Datetime($data->chk_out);
+    $gap = date_diff( $from, $to )->days;
+?>
 <head>
     <link rel="stylesheet" href="{{asset('css/payment.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"/>
@@ -31,6 +37,8 @@
         <input type="hidden" name="room_id" id="room_id" value="{{$data->room_id}}">
         <input type="hidden" name="reserve_adult" id="reserve_adult" value="{{$data->reserve_adult}}">
         <input type="hidden" name="reserve_child" id="reserve_child" value="{{$data->reserve_child}}">
+        {{-- 0629 ysh 시간되면 css 바꾸기 --}}
+        <input type="hidden" name="reserve_price" value="{{number_format($gap * (int)$data->room_price)}}">
         @include('layout.errors_validate')
         <label for="reserve_name">예약자 이름</label>
         <br>
@@ -46,10 +54,12 @@
         <p>결제 금액</p>
         <div class="pay_sum">
             <span>상품 금액 :</span>
-            <span class="span_padding_1">{{number_format($data->room_price)}}</span>
+            <span class="span_padding_1">{{number_format($gap * (int)$data->room_price)}}</span>
             <br>
             <span>총 결제 금액 :</span>
-            <span class="span_padding_2">{{number_format($data->room_price)}}</span>
+            <span class="span_padding_2">{{number_format($gap * (int)$data->room_price)}}</span>
+            {{-- 0629 ysh 시간되면 span 대신 input 넣어서 교체 --}}
+            {{-- <input type="text" name="reserve_price" value="{{number_format($gap * (int)$data->room_price)}}"> --}}
         </div>
     </div>
     <div class="reservetitle pay_padding">
@@ -77,7 +87,7 @@
     <br>
     
     <div class="btn_group">
-    <button type="submit" class="btn1">결제하기</button>
+    <button type="submit" class="btn1">예약하기</button>
     <button type="button" class="btn2" onclick="location.href='{{route('hanoks.detail', ['id' => $data->hanok_id])}}'">취소</button>
     </div>
     </form>

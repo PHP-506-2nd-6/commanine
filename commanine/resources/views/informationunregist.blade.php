@@ -16,9 +16,7 @@
                     @csrf
                     <button type="submit" class="blackBtn" onclick="alert('탈퇴가 완료되었습니다')">탈퇴하기</button>
                 </form>
-                {{-- <form action="{{route('users.information.info')}}" method="get"> --}}
                 <button type="button" class="whiteBtn" onclick="location.href='{{route('users.information.info')}}'">취소</button>
-                {{-- </form> --}}
             </div>
         </div>
     </div>
