@@ -42,12 +42,12 @@
         @include('layout.errors_validate')
         <label for="reserve_name">예약자 이름</label>
         <br>
-        <input type="text" name="reserve_name" id="reserve_name" placeholder="성명을 입력해주세요" autocomplete="off"'>
+        <input type="text" name="reserve_name" id="reserve_name" placeholder="한글로 성명을 입력해주세요" autocomplete="off"'>
         <div id="reserve_name_inner"></div>
         <br>
         <label for="reserve_num">예약자 전화 번호</label>
         <br>
-        <input type="text" name="reserve_num" id="reserve_num" placeholder="전화번호를 입력해주세요" autocomplete="off">
+        <input type="text" name="reserve_num" id="reserve_num" placeholder="'-' 없이 숫자로 전화번호를 입력해주세요" autocomplete="off">
         <div id="reserve_num_inner"></div>
     </div>
     <div class="reservetitle pay_padding">
