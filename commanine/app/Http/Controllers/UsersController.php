@@ -106,7 +106,7 @@ class UsersController extends Controller
         $data['user_que'] = $request->input('question');
         $data['user_an'] = $request->input('questAnswer');
 
-        // return var_dump($data);
+
 
         $user = Users::create($data);   // insert 
         if(!$user){
@@ -153,7 +153,6 @@ class UsersController extends Controller
                 // 에러 메세지 출력하면서 redirect->back();
                 return redirect()->back()->with('error',$error);
             }else{
-                // todo: 비밀번호 변경 페이지로 이동
                 return redirect()->route('users.login');
             }
         
@@ -184,7 +183,7 @@ class UsersController extends Controller
                     ->where('user_que',$request->question)
                     ->where('user_an',$request->questAnswer)
                     ->first();
-        // return var_dump($user);
+
         // email, phoneNumber,question, questAnswer이 유저 테이블의 user_email, user_num, user_que,user_an 과 일치하지 않을 경우
         if((!($user->name === $request->name)&&
             ($user->user_num === $request->phoneNumber)&&
