@@ -1,3 +1,7 @@
+.wrap {
+    min-height: 410px;
+}
+
 .reviewList {
     font-weight: 900;
     font-size: 1.1em;
@@ -6,61 +10,67 @@
     content: "\00B7";
     padding-right: 5px;
 }
-.msg {
-    font-size: 12px;
-    color: red;
-    text-align: center;
+h2 {
+    padding: 30px 0;
+}
+.star {
+    color: #f8ce0b;
 }
 .reviewBox {
-    margin: 40px auto;
+    margin-left: 150px;
+}
+.review {
     width: 700px;
-    height: 500px;
-}
-.review_wrap {
-    height: 400px;
-    border: 1px solid #5c5c5c;
-    border-radius: 25px;
-    padding: 30px;
-    margin-top: 30px;
-}
-.con_box textarea {
-    border: none;
-    resize: none;
+    border-radius: 10px;
+    padding: 0 30px;
 }
 
-.con_box label {
-    vertical-align: top;
+.rev_date {
+    position: relative;
+    left: 510px;
+}
+
+.btnCon {
+    margin-top: 30px;
+    text-align: center;
 }
 
 .updateBtn
 ,.cancelBtn {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    bottom: 11.5%;
-    width: 150px;
+    display: inline-block;
+    font-weight: 900;
+    width: 120px;
     height: 40px;
     margin: 10px auto;
     border: none;
-    color: #fff;
 }
 .updateBtn {
-    left: 50%;
+    margin-right: 70px;
     background-color: #000;
+    color: #fff;
 }
 .cancelBtn {
-    left: 60%;
-    background-color: #b33636;
+    border: 1px solid #000;
+    background-color: #fff;
+}
+.updateBtn:hover
+,.cancelBtn:hover {
+    border: 1px solid #000;
+    transition: all 0.3s;
 }
 .updateBtn:hover {
     background-color: #fff;
     color: #000;
-    border: 1px solid #000;
-    transition: all 0.3s;
 }
-textarea {
+.cancelBtn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+#rev_content {
+    margin-top: 10px;
     width: 100%;
-    height: 85%;
     border: 1px solid #000;
-    /* border: none; */
     resize: none;
+    padding: 30px;
 }

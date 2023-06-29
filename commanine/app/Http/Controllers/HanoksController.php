@@ -20,26 +20,10 @@ class HanoksController extends Controller
     public function hanoksDetail($id, Request $req) {
         $hanoks = Hanoks::find($id);
 
-        // $rooms = DB::table('hanoks as h')
-        //                 ->join('rooms as r', 'h.id', '=', 'r.hanok_id')
-        //                 ->select('r.*')
-        //                 ->where('h.id', '=', $id)
-        //                 ->get(); // 0620 KMJ del
-        // 유효성 검사
-        // $data = $req->only('chk_in', 'chk_out', 'reserve_adult', 'reserve_child');
-        // var_dump($req);
-        // $validate = Validator::make($data, [
-        //     'chk_in'    =>
-        // ])
         $val_count = $req->reserve_adult + $req->reserve_child;
         $val_chkIn = $req->chk_in;
         $val_adult = $req->reserve_adult;
         $val_child = $req->reserve_child;
-        
-        // $val_count = $req->input('reserve_adult') + $req->input('reserve_child');
-        // $val_chkIn = $req->input('chk_in');
-        // $val_adult = $req->input('reserve_adult');
-        // $val_child = $req->input('reserve_child');
 
         // 입력한 사람 수(성인)가 없거나 입력한 사람 수가 1미만 16초과될 때 기본값으로 돌린다
         if($val_adult === null || $val_adult < 1 || $val_adult > 16) {
@@ -105,16 +89,6 @@ class HanoksController extends Controller
                             ->get();
 
         // 해당 숙소의 리뷰 가져오기 0619 KMJ add
-        // $reviews = DB::table('hanoks as h')
-        //                 ->join('reviews as rev', 'h.id', '=', 'rev.hanok_id')
-        //                 ->join('rooms as r', 'h.id', '=', 'r.hanok_id')
-        //                 ->select('rev.rev_content', 'r.room_name', 'rev.created_at', 'rev.rate')
-        //                 ->where('h.id', "=", $id)
-        //                 ->where('rev.deleted_at', '=', null)
-        //                 ->orderBy('rev_id', 'desc')
-        //                 ->paginate(5);
-                        
-
         $reviews = DB::table('hanoks as h')
                         ->join('reviews as r', 'h.id', '=', 'r.hanok_id')
                         ->select('r.*')
@@ -122,8 +96,7 @@ class HanoksController extends Controller
                         ->where('r.deleted_at', '=', null)
                         ->orderBy('rev_id', 'desc')
                         ->paginate(5);
-                        // ->groupBy('r.rev_id')
-                        // ->get();
+
         // 해당 숙소의 평균 별점 가져오기 0626 KMJ add
         $rate = DB::table('reviews')
                         ->select(DB::raw("avg(rate) as 'rate', count(rev_id) as 'rev_cnt'"))
