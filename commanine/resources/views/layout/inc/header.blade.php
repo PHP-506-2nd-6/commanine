@@ -18,13 +18,13 @@
                 </div>
                 <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                     @guest()
-                    {{-- <p>안녕하세요!<strong>{{($val->review)}}</strong></p> --}}
                     <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
                     <li class="nav-a2"><a href="{{route('users.regist')}}">회원가입</a></li>
                     {{-- <li class="nav-a3"><a href="">예약내역</a></li> --}}
                     @endguest
 
                     @auth()
+                    <p style="color:#333; margin-right:30px;">안녕하세요! <strong>{{session('user_name') }}</strong>님</p>
                     <li class="nav-a1"><a href="{{route('users.logout')}}">로그아웃</a></li>
                     <li class="nav-a2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
                     @endauth

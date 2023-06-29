@@ -40,8 +40,9 @@ nav {
     margin-top: 20px;
 }
 .logo {
-    width: 250px;
-    margin: 10px auto;
+    /* position: relative;
+    right: 0; */
+    margin-left: 320px;
 }
 .logo img {
     width: 260px;
@@ -262,6 +263,13 @@ img {
     height: 30px;
     text-align: center;
     color: #333;
+}
+.search_form1 input:focus,
+.search_form2 input:focus {
+    outline: none;
+}
+.pro-qty input:focus {
+    outline: none;
 }
 .pro-qty div {
     /* pro-qty 클래스안에있는 div 태그에 적용되는 CSS  */

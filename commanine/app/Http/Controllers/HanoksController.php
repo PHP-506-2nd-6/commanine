@@ -10,7 +10,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hanoks;
+use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -146,6 +148,20 @@ class HanoksController extends Controller
 
     // 0619 BYJ new
     public function hanoksMain() {
+
+    // 로그인 후 헤더 유저 이름 출력 
+    // if(auth()->guest()) {
+    //     return redirect()->route('users.login');
+    // }
+    
+    // $users = Users::find(Auth::User()->user_id);
+    // $users = DB::table('users')
+    // ->select('user_name')
+    // ->where('user_id' , "=", $id)
+    // ->get();
+
+
+        
         // 최신순
         // $hanoks = DB::table('hanoks as han')
         // -> select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'))
