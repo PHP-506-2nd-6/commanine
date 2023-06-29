@@ -36,7 +36,7 @@
                 <button type="button" id="emailChkBtn"  class="blackBtn">확인하기</button>
             </div>
             <div id="errMsgId" class="errmsg"></div>
-            <input type="password" name="password" autocomplete="off" id="password" placeholder="비밀번호" class="errbox" >
+            <input type="password" name="password" autocomplete="off" id="password" placeholder="비밀번호 8~20자" class="errbox" >
             <div class="errmsg">
                 @if($errors->has('password'))
                     {{$errors->first('password')}}
