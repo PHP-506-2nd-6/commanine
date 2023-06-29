@@ -54,9 +54,19 @@ main {
 .ratestar img {
     width: 16px;
 }
-
+.cate {
+    width: 160px;
+    height: 160px;
+    /* background-color: #f8f8f8; */
+    /* padding: 15px; */
+    border-radius: 50%;
+    border: 4px solid #f8f8f8;
+}
+.cate img {
+    margin-top: 15px;
+}
 .cate p {
-    margin-top: 10px;
+    padding-top: 10px;
 }
 .card-body {
     padding: 10px;
