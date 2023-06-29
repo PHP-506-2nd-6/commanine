@@ -17,7 +17,7 @@ footer .footer-top ul li::after {
     margin-left: 10px;
 }
 
-footer .footer-top ul .last:last-child::after {
+footer .footer-top ul li:last-child::after {
     content: none;
     width: 0;
     margin: 0;
@@ -114,7 +114,7 @@ footer .footer-bottom {
     .footer-bottom .bottom-left {
         padding: 0 50px;
     }
-    .footer-bottom .bottom-right{
+    .footer-bottom .bottom-right {
         padding: 0 50px;
     }
     .footer-top {
