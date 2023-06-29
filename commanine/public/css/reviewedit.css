@@ -1,0 +1,76 @@
+.wrap {
+    min-height: 410px;
+}
+
+.reviewList {
+    font-weight: 900;
+    font-size: 1.1em;
+}
+.reviewList::before {
+    content: "\00B7";
+    padding-right: 5px;
+}
+h2 {
+    padding: 30px 0;
+}
+.star {
+    color: #f8ce0b;
+}
+.reviewBox {
+    margin-left: 150px;
+}
+.review {
+    width: 700px;
+    border-radius: 10px;
+    padding: 0 30px;
+}
+
+.rev_date {
+    position: relative;
+    left: 510px;
+}
+
+.btnCon {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.updateBtn
+,.cancelBtn {
+    display: inline-block;
+    font-weight: 900;
+    width: 120px;
+    height: 40px;
+    margin: 10px auto;
+    border: none;
+}
+.updateBtn {
+    margin-right: 70px;
+    background-color: #000;
+    color: #fff;
+}
+.cancelBtn {
+    border: 1px solid #000;
+    background-color: #fff;
+}
+.updateBtn:hover
+,.cancelBtn:hover {
+    border: 1px solid #000;
+    transition: all 0.3s;
+}
+.updateBtn:hover {
+    background-color: #fff;
+    color: #000;
+}
+.cancelBtn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+#rev_content {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #000;
+    resize: none;
+    padding: 30px;
+}

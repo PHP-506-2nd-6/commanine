@@ -174,8 +174,8 @@
                     <div class="review">
                         <h5>{!! nl2br($item->rev_content) !!}</h5>
                         <i class="fa-solid fa-star revStar"></i>
-                        <span>{!! nl2br($item->rate) !!}</span>
-                        <span>{!! nl2br(substr($item->created_at, 0, 10)) !!}</span>
+                        <span>{{$item->rate}}</span>
+                        <span>{{(substr($item->created_at, 0, 10))}}</span>
                     </div>
                 @empty
                 <div class="msg">아직 리뷰가 작성되지 않았습니다.</div>

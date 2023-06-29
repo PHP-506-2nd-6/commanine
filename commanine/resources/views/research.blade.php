@@ -20,35 +20,70 @@
                 <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth" value="{{isset($arr['local']) ? $arr['local'] : ""}}">
                 <div class="dayBox searchWidth">
                     <label for="chkIn">체크인</label>
-                    <input type="text" class="datepicker" autocomplete="off" readonly name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
+                    <input type="text" class="datepicker searchDate" autocomplete="off" readonly name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
                 </div>
                 <div class="dayBox searchWidth">
                     <label for="chkOut">체크아웃</label>
-                    <input type="text" class="datepicker2" autocomplete="off" readonly name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
+                    <input type="text" class="datepicker2 searchDate" autocomplete="off" readonly name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
                 </div>
             </div>
             <div class="searchSecondBox" >
                     <div class="searchWidth selectBox">
                         <span> 숙소 유형 </span>
-                        <select name="hanokType"  size="1" class="selectList">
-                            <option disabled selected value="">숙소 유형</option>
-                            <option value="0">호텔</option>
+                        @if(!isset($arr['hanoktype']))
+                        <select name="hanokType" size="1" class="selectList">
+                            <option  selected>숙소 유형</option>
+                            <option value="0" >호텔</option>
+                            <option value="1" >펜션</option>
+                            <option value="2">게스트 하우스</option>
+                            <option value="3">리조트</option>
+                        </select>
+                        @elseif($arr['hanoktype'] === "0")
+                        <select name="hanokType" size="1" class="selectList">
+                            <option  >숙소 유형</option>
+                            <option value="0" selected >호텔</option>
                             <option value="1">펜션</option>
                             <option value="2">게스트 하우스</option>
                             <option value="3">리조트</option>
                         </select>
+                        @elseif($arr['hanoktype'] === "1")
+                        <select name="hanokType" size="1" class="selectList">
+                            <option >숙소 유형</option>
+                            <option value="0" >호텔</option>
+                            <option value="1" selected>펜션</option>
+                            <option value="2">게스트 하우스</option>
+                            <option value="3">리조트</option>
+                        </select>
+                        @elseif($arr['hanoktype'] === "2")
+                        <select name="hanokType" size="1" class="selectList">
+                            <option >숙소 유형</option>
+                            <option value="0" >호텔</option>
+                            <option value="1" >펜션</option>
+                            <option value="2" selected>게스트 하우스</option>
+                            <option value="3">리조트</option>
+                        </select>
+                        @else
+                        <select name="hanokType" size="1" class="selectList">
+                            <option >숙소 유형</option>
+                            <option value="0" >호텔</option>
+                            <option value="1" >펜션</option>
+                            <option value="2" >게스트 하우스</option>
+                            <option value="3" selected>리조트</option>
+                        </select>
+                        @endif
+
                     </div>
                     <div class="countWrap searchWidth">
                         <div class="countPeople">
                             <label for="countP">인원</label>
-                            <input type="text" class="countInput" autocomplete="off" readonly id="countP" value="성인 : {{isset($arr['adults']) ? $arr['adults'] : "" }} / 어린이 : {{isset($arr['kids']) ? $arr['kids'] : "" }}"/>
+                            <input type="text" class="countInput" autocomplete="off" readonly id="countP" value="성인 : {{isset($arr['adults']) ? $arr['adults'] : "0" }} / 어린이 : {{isset($arr['kids']) ? $arr['kids'] : "0" }}"/>
                         </div>
                         <div class="countBox poAbsolute">
                             <div class="adultsBox">
                                 <label for="adults">성인</label>
                                 <div >
                                     <button class="minBtn" type="button">-</button>
-                                    <input type="number" value="2" class="adultsVal" autocomplete="off" id="adults" min="0" max="16">
+                                    <input type="number" value="{{isset($arr['adults']) ? $arr['adults'] : "2" }}" class="adultsVal" autocomplete="off" id="adults" min="0" max="16">
                                     <button class="plusBtn" type="button">+</button>
                                 </div>
                             </div>
@@ -56,7 +91,7 @@
                                 <label for="kids">어린이</label>
                                 <div>
                                     <button class="minBtn" type="button">-</button>
-                                    <input type="number" value="0" class="kidsVal" autocomplete="off" id="kids" min="0" max="16">
+                                    <input type="number" value="{{isset($arr['kids']) ? $arr['kids'] : "0" }}" class="kidsVal" autocomplete="off" id="kids" min="0" max="16">
                                     <button class="plusBtn" type="button">+</button>
                                 </div>
                             </div>
@@ -78,8 +113,8 @@
                 {{-- range end --}}
             </div>
             
-                <input type="hidden" placeholder="성인" name="adults" id="adults" class="adultsHide" value="{{isset($arr['adults']) ? $arr['adults'] : "" }}">
-                <input type="hidden" placeholder="아동" name="kids" id="kids" class="kidsHide" value="{{isset($arr['kids']) ? $arr['kids'] : "" }}">
+                <input type="hidden" placeholder="성인" name="adults" id="adults" class="adultsHide" value="{{isset($arr['adults']) ? $arr['adults'] : "2" }}">
+                <input type="hidden" placeholder="아동" name="kids" id="kids" class="kidsHide" value="{{isset($arr['kids']) ? $arr['kids'] : "0" }}">
             
             <button type="submit" id="searchBtn" class="searchBtn qtybtn" >Search</button>
 

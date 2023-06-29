@@ -4,6 +4,8 @@
  * 디렉토리   : Controller
  * 파일명     : ReviewController.php
  * 이력       : 0615 new BYJ
+ *             0627 add KMJ
+ *             0629 add KMJ
  * *********************************** */
 namespace App\Http\Controllers;
 
@@ -20,23 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 class ReviewController extends Controller
 {
-    // public function checkDataAndRedirect()
-    // {
-    //     $dataExists = Reviews::select('rev_id')
-    //     ->from
-    //     ->get();
-        
-    //     if ($dataExists) {
-    //         // 데이터가 있는 경우
-    //         return redirect()->back()->with('message', '데이터가 이미 존재합니다.');
-    //     } else {
-    //         // 데이터가 없는 경우
-    //         return redirect()->route('/users/reviewinsert');
-    //     }
-        
-    //     return view('reviewlist')->with('data', $dataExists);
-    // }
-
     // 리뷰작성
     public function reviewinsert() {
         $hanok_id=$_GET['hanok_id'];
@@ -46,8 +31,7 @@ class ReviewController extends Controller
     public function reviewpost(Request $req)
     {
         $rating = $req->input('rating');
-    // var_dump($req);
-    // exit;
+
         $error = '별점과 리뷰를 작성해 주세요.';
         // 유효성 검사
         $validator = Validator::make(
@@ -60,34 +44,7 @@ class ReviewController extends Controller
             return redirect()->back()->with('error',$error);
         }
 
-    // $req->validate([
-    //     'rate' => 'required'
-    //     ,'rev_content' => 'required|max:1000'
-    // ]);
-
     $deadline = date('Y-m-d', strtotime('+30 days'));
-    
-    // if ($deadline === null) {
-    //     $deadline = 'date';
-    // }
-    // 사용자와 관련된 모든 예약
-    // $reservations = $user->reservations;
-
-    // 첫 번째 예약 정보
-    // $firstReservation = $reservations->first();
-
-    // 첫 번째 예약된 방
-    // $room = $firstReservation->room_id;
-
-    // 방 ID.
-    // $roomId = $room->id;
-    // $userId = Auth::User()->user_id;
-    // $hanokId = DB::table('reservations')
-    // ->join('rooms', 'rooms.id', '=', 'reservations.room_id')
-    // ->join('hanoks', 'hanoks.id', '=', 'rooms.hanok_id')
-    // ->where('reservations.user_id', $userId)
-    // ->value('hanoks.id');
-    
 
     $Review = new Reviews([
         'user_id' => Auth::User()->user_id
@@ -96,41 +53,13 @@ class ReviewController extends Controller
         ,'rev_content' => $req->input('rev_content')
         ,'deadline' => $deadline
     ]);
-        
-//test
-    // $rating = $req->input('rating');
 
-    // return response()->json(['success' => true]);
-
-
-        // $Review = new Reviews([
-        //     'user_id' => Auth::User()->user_id
-        //     ,'room_id' => Reservations::find(Auth::User()->room_id)
-        //     ,'rate' => $req->input('rate')
-        //     ,'rev_content' => $req->input('rev_content')
-        // ]);
-
-        // $userId = Auth::user()->id;
-        // $roomId = Auth::user()->room_id;
-        
-        // $user = Users::find($userId);
-        // $room = Reservations::find($roomId);
-        
-        // $Review = new Reviews([
-        //     'user_id' => $user->user_id,
-        //     'room_id' => $room->id,
-        //     'rate' => $req->input('rate'),
-        //     'rev_content' => $req->input('rev_content')
-        // ]);
-        
-
-        // dd(Users::find(Auth::User()->user_id));
         $Review->save();
-        return redirect('/users/myreview')->with('rating', $rating);
+        return redirect('/users/review')->with('rating', $rating);
     }
 
-    // 내 리뷰 페이지
-    public function myReview() {
+    // 내 리뷰 페이지 0627 add KMJ
+    public function review() {
         if(auth()->guest()) {
             return redirect()->route('users.login');
         }
@@ -142,39 +71,51 @@ class ReviewController extends Controller
                     ->where('r.deleted_at', '=', null)
                     ->orderBy('r.rev_id', 'desc')
                     ->paginate(5);
-                        // ->get();
-        return view('myreview')->with('review', $reviews);
+        
+        return view('review')->with('review', $reviews);
     }
 
-    // 리뷰 삭제
-    public function deleteReview($rev_id) {
+    // 리뷰 수정 0629 add KMJ
+    public function reviewEdit($rev_id) {
+
+        $sql = 
+        " select r.*, h.hanok_name "
+        ." from hanoks h "
+        ." inner join reviews r "
+        ."  on h.id = r.hanok_id "
+        ." where r.rev_id = ".$rev_id
+        ;
+
+        $review = DB::select($sql);
+
+        return view('reviewedit')->with('review', $review[0]);
+    }
+    
+    public function reviewEditPost($rev_id,Request $req) {
         if(auth()->guest()) {
             return redirect()->route('users.login');
         }
 
-        // DB::table('reviews')
-        //     ->where('rev_id', '=', $rev_id)
-        //     ->delete();
-        // DB::table('reviews')
-        //     ->where('rev_id', '=', $rev_id)
-        //     ->delete();
-        // Reviews::destroy($rev_id);
-        $date = Carbon::now();
-        DB::table('reviews')
-            ->where('rev_id', $rev_id)
-            ->update(['deleted_at' => $date]);
+        $arr = ['rev_id' => $rev_id];
+        $req->request->add($arr);
         
-        return redirect('/users/myreview');
+        $req->validate([
+            'rev_id'        => 'required|integer'
+            ,'rev_content'  => 'required|max:1000'
+        ]);
+        
+        $review = Reviews::findOrFail($rev_id);
+        $review->rev_content = $req->rev_content;
+        $review->save();
+        return redirect('/users/review');
     }
 
-    // 중복 리뷰
-    // function checkDuplicateReview($user_id, $hanok_id)
-    //     {
-    //         $review = Reviews::where('user_id', $user_id)
-    //                         ->where('hanok_id', $hanok_id)
-    //                         ->first();
-            
-    //         return $review !== null; // 리뷰가 이미 존재하는지 여부 반환
-    //     }
-
+    // 리뷰 삭제 0627 add KMJ
+    public function deleteReview($rev_id) {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
+        Reviews::destroy($rev_id);
+        return redirect('/users/review');
+    }
 }
