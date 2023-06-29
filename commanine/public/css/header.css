@@ -221,6 +221,11 @@ img {
         opacity: 1;
     }
 }
+#hanok_name,
+.hasDatepicker {
+    background-color: transparent;
+    border: 1px solid #333;
+}
 
 .main_btn {
     grid-column: 1/3;
