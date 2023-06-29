@@ -19,8 +19,8 @@
                         <div>{!! nl2br($val->rev_content)!!}</div>
                         <div>{{substr($val->created_at, 0, 10)}}</div>
                         <div class="btnCon">
-                            <button type="button" class="editBtn">수정</button>
-                            <form class="frm" action="{{route('users.information.review.delete', ['id' => $val->rev_id])}}" method="POST" onsubmit="return confirm('리뷰를 정말로 삭제하시겠습니까?');">
+                            <button type="button" class="editBtn" onclick="location.href='{{route('users.review.edit', ['rev_id' => $val->rev_id])}}'">수정</button>
+                            <form class="frm" action="{{route('users.information.review.delete', ['rev_id' => $val->rev_id])}}" method="POST" onsubmit="return confirm('리뷰를 정말로 삭제하시겠습니까?');">
                                 @csrf
                                 <button type="submit" class="delBtn">삭제</button>
                             </form>

@@ -126,11 +126,11 @@ class ReviewController extends Controller
 
         // dd(Users::find(Auth::User()->user_id));
         $Review->save();
-        return redirect('/users/myreview')->with('rating', $rating);
+        return redirect('/users/review')->with('rating', $rating);
     }
 
     // 내 리뷰 페이지
-    public function myReview() {
+    public function review() {
         if(auth()->guest()) {
             return redirect()->route('users.login');
         }
@@ -143,7 +143,36 @@ class ReviewController extends Controller
                     ->orderBy('r.rev_id', 'desc')
                     ->paginate(5);
                         // ->get();
-        return view('myreview')->with('review', $reviews);
+        return view('review')->with('review', $reviews);
+    }
+
+    // 리뷰 수정
+    public function reviewEdit($rev_id) {
+        $review = DB::table('reviews')
+                ->where('rev_id', $rev_id)
+                ->get();
+        // return var_dump($review);
+        return view('reviewedit')->with('review', $review[0]);
+    }
+    
+    public function reviewEditPost($rev_id,Request $req) {
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
+
+        $arr = ['rev_id' => $rev_id];
+        $req->request->add($arr);
+        $req->validate([
+            'rev_id'        => 'required|integer'
+            ,'rev_content'  => 'required|max:1000'
+        ]);
+        
+        // $review = Reviews::findOrFail($rev_id);
+        $review = DB::table('reviews')
+                ->where('rev_id', $rev_id)
+                ->update(['rev_content' => $req->rev_content]);
+
+        return redirect('/users/review');
     }
 
     // 리뷰 삭제
@@ -164,7 +193,7 @@ class ReviewController extends Controller
             ->where('rev_id', $rev_id)
             ->update(['deleted_at' => $date]);
         
-        return redirect('/users/myreview');
+        return redirect('/users/review');
     }
 
     // 중복 리뷰
