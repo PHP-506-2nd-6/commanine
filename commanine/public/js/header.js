@@ -51,11 +51,7 @@ $(function () {
         ], //달력의 요일 Tooltip
         maxDate: "+5y", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
         minDate: 0,
-        //     onClose: function( selectedDate ) {
-        //         //시작일(startDate) datepicker가 닫힐때
-        //         //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-        //        $(".datepicker").datepicker( "option", "minDate", selectedDate );
-        //    }
+
         onClose: function (selectedDate) {
             var nextDay = new Date(selectedDate);
             nextDay.setDate(nextDay.getDate() + 1);
@@ -174,12 +170,3 @@ $(document).ready(function () {
         // input 태그에 newVal값을 저장합니다.
     });
 });
-
-// function showCountBox() {
-//     var countBox = document.querySelector(".countBox");
-//     countBox.style.display = "block";
-// }
-
-// // 인원 상자 요소
-// var countP = document.getElementById("countP");
-// countP.addEventListener("click", showCountBox);

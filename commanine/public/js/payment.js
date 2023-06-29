@@ -48,9 +48,5 @@ function reserveNumName() {
     }
 }
 
-// function reserve_num() {
-
-// }
-
 nameInput.addEventListener('blur',reserve_name);
 numInput.addEventListener('blur',reserveNumName);

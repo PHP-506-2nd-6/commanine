@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Reviews extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $primaryKey = 'rev_id';
     protected $dates = ['deleted_at'];
     protected $table = 'reviews';
     protected $guarded = [
