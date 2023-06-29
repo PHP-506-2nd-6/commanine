@@ -23,9 +23,9 @@
                         <div class="contit">가격
                         <p>{{$data->room_price}}</p></div>
                         <div class="contit">예약 날짜
-                        <p>{{$data->chk_in}} ~ {{$data->chk_out}}</p></div>
+                        <p>{{substr($data->chk_in,0,10)}} ~ {{substr($data->chk_out,0,10)}}</p></div>
                         <div class="contit">인원
-                        <p>{{$data->reserve_adult}}</p></div>
+                        <p>{{$data->reserve_adult}} 명</p></div>
 
                         <div class="reserve_flg">
                             <span>예약상태 : </span>

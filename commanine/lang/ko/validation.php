@@ -115,7 +115,7 @@ return [
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
-    'same' => 'The :attribute and :other must match.',
+    'same' => ':attribute와 :other이(/가) 일치하지 않습니다',
     'size' => [
         'numeric' => 'The :attribute must be :size.',
         'file' => 'The :attribute must be :size kilobytes.',
@@ -168,6 +168,8 @@ return [
         ,'phoneNumber'  => '전화번호'
         ,'question' => '질문'
         ,'questAnswer'  =>'질문과 답변'
+        , 'user_pw' => '새 비밀번호'
+        , 'user_pwchk' => '새 비밀번호 확인'
     ],
 
 ];
