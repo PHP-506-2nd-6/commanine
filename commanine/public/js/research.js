@@ -86,7 +86,9 @@ const searchBtn = document.getElementById('searchBtn');
 countInput.addEventListener('click',function(){
   countBox.classList.toggle('active');
 })
-
+countInput.addEventListener('blur',function(){
+  countBox.classList.remove('active');
+})
 // 확인 버튼 누르면 박스 삭제
 countChkBtn.addEventListener('click',function(){
     countBox.classList.toggle('active');
