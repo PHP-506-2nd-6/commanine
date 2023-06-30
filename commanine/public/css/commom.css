@@ -25,18 +25,19 @@
 }
 a {
     text-decoration: none;
+    color:black;
 }
 li {
     list-style: none;
 }
-a:link {
+/* a:link {
     color: black;
     text-decoration: none;
-}
-a:visited {
+} */
+/* a:visited {
     color: black;
     text-decoration: none;
-}
+} */
 a:hover {
     color: black;
 }

@@ -36,7 +36,11 @@
 {{-- 페이징 --}}
 {{-- range() : 지정된 범위의 숫자를 생성하여 배열로 반환 --}}
 @foreach(range($startPage, $endPage) as $i)
+    @if($i === $paginator->currentPage())
+    <span  class="pagePadding currentLink" >{{$i}}</span>
+    @else
     <a href="{{$paginator->url($i)}}" class="pagePadding">{{$i}}</a>
+    @endif
 @endforeach
 
 {{-- 다음 블럭 버튼 --}}

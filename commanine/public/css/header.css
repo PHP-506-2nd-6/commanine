@@ -281,15 +281,97 @@ img {
     letter-spacing: 0.4px;
 }
 
+/* a:hover {
+    color: #000;
+} */
+a{
+    color:#000;
+}
 .pagePadding {
     padding: 5px;
-    color: #a3a3a3 !important;
+    color: #a3a3a3;
+}
+.currentLink{
+    color: #000;
+    text-decoration: underline;
 }
 
 .pagePadding:hover {
-    color: #000 !important;
-}
-a:hover {
-    color: #000;
+    color: #000 ;
 }
 
+/* 햄버거 */
+.mobile-bar .bar-btn {
+    z-index: 999999999;
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    display: none;
+}
+
+.bar-btn span {
+    width: 30px;
+    height: 3px;
+    background-color: #444;
+    display: block;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.bar-btn .bar2 {
+    margin: 5px 0;
+}
+
+.on .bar1 {
+    transform: rotate(40deg) translateY(11px);
+}
+
+.on .bar2 {
+    opacity: 0;
+}
+
+.on .bar3 {
+    transform: rotate(-40deg) translateY(-10px);
+}
+
+.mobile-bar .bar-slide {
+    display: none;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    transition: 0.4s;
+    background-color: rgba(250, 200, 200, 0.68);
+    z-index: 99999999;
+}
+
+.slide-menu li {
+    float: right;
+}
+
+.nav-a2::before,
+.nav-a3::before,
+.nav-a4::before {
+    content: "";
+}
+.bar-slide {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+}
+
+/* 반응형 */
+@media screen and (max-width: 830px) {
+    header {
+        height: 800px;
+    }
+
+    .d-inline-flex {
+        display: none;
+    }
+
+    .mobile-bar .bar-btn {
+        display: block;
+    }
+}
