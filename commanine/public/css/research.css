@@ -187,7 +187,6 @@ input[type="range"]{
     position: absolute;
     top: 80%; 
     right:0;
-    
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #fff;
@@ -416,3 +415,5 @@ div>input:focus{
 a:hover{
     text-decoration: none !important ;
 }
+
+
