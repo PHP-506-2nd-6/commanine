@@ -61,9 +61,9 @@ class HanoksController extends Controller
         $val_chkIn = str_replace('-','',$val_chkIn);
         $val_chkOut = str_replace('-','',$val_chkOut);
 
-        // 해당 숙소의 예약 안 되어있는 객실 가져오기 0621 KMJ add
+        // 해당 숙소의 예약 안 되어있는 객실 가격순대로 가져오기 0621 KMJ add
         $query =
-        " SELECT * "
+        " SELECT r.* "
         ." FROM rooms r "
         ." WHERE r.hanok_id = ".$id
 		."  AND r.room_max >= ".$val_count
@@ -73,6 +73,7 @@ class HanoksController extends Controller
 						."  WHERE res.chk_in < ".$val_chkOut
 						."  AND res.chk_out > ".$val_chkIn
                         ." ) "
+        ." ORDER BY r.room_price "
                         ;
                         
         $rooms = DB::select($query);
