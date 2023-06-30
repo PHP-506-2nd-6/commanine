@@ -19,7 +19,9 @@
         <p class="font_size2">숙소 예약 번호 : {{$data[0]->id}}</p>
     </div>
     <div class="flex_container">
-        <div class="flex_container1"><img src="{{asset($data[0]->room_img1)}}" alt="{{asset($data[0]->hanok_name)}}" class="flex_img"></div>
+        <div class="flex_container1">
+            <img src="{{asset($data[0]->room_img1)}}" alt="{{asset($data[0]->hanok_name)}}" class="flex_img">
+        </div>
         <div class="items flex_items2">
             <div class="flex_size1">{{$data[0]->hanok_name}}</div>
             <div class="flex_size2">{{$data[0]->hanok_addr}}</div>
