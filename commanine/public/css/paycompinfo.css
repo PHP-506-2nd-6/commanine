@@ -21,14 +21,18 @@
 }
 .flex_container {
     display: flex;
-    width: 70vh;
+    width: 100vh;
     height: auto;
     margin: auto;
     font-size: 16px;
     padding-bottom: 3vh;
 }
+.flex_container1 {
+    width: 40vh;
+    height: 180px;
+}
 .items {
-    width: 35vh;
+    width: 30vh;
     height: 180px;
 }
 .flex_items2 {
@@ -37,6 +41,7 @@
 .flex_img {
     width: 35vh;
     height: 180px;
+    object-fit: cover;
 }
 .flex_size1 {
     font-size: 1.5em;
