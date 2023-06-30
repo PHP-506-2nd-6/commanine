@@ -1,8 +1,8 @@
 @extends('layout.layout')
 {{-- 요일 변환 해주는 변수 지정 --}}
+{{-- 체크인 체크아웃 계산 --}}
 <?php
     $yoil = array("일","월","화","수","목","금","토");
-    {{-- 체크인 체크아웃 계산 --}}
     $from = new Datetime(substr($data[0]->chk_in_date,0,10));
     $to = new Datetime(substr($data[0]->chk_out_date,0,10));
     $gap = date_diff( $from, $to )->days;
@@ -19,7 +19,9 @@
         <p class="font_size2">숙소 예약 번호 : {{$data[0]->id}}</p>
     </div>
     <div class="flex_container">
-        <div class="items"><img src="{{asset($data[0]->room_img1)}}" alt="{{asset($data[0]->hanok_name)}}" class="flex_img"></div>
+        <div class="flex_container1">
+            <img src="{{asset($data[0]->room_img1)}}" alt="{{asset($data[0]->hanok_name)}}" class="flex_img">
+        </div>
         <div class="items flex_items2">
             <div class="flex_size1">{{$data[0]->hanok_name}}</div>
             <div class="flex_size2">{{$data[0]->hanok_addr}}</div>

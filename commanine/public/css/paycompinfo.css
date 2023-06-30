@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
@@ -21,23 +21,30 @@
 }
 .flex_container {
     display: flex;
-    width: 70vh;
+    width: 100vh;
     height: auto;
     margin: auto;
     font-size: 16px;
     padding-bottom: 3vh;
 }
+.flex_container1 {
+    width: 40vh;
+    height: 180px;
+    overflow: hidden;
+}
 .items {
-    width: 35vh;
+    width: 30vh;
     height: 180px;
 }
 .flex_items2 {
     padding: 6% 5% 6% 5%;
 }
 .flex_img {
-    width: 35vh;
-    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    transform: translate(0px, -25px);
 }
+
 .flex_size1 {
     font-size: 1.5em;
     font-weight: bolder;
@@ -65,7 +72,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 .circle_item {
     width: 2vw;
@@ -99,19 +106,19 @@
 }
 .pay_font_size2 {
     font-weight: bolder;
-    padding-left: 90%
+    padding-left: 90%;
 }
 .grid_container1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 .pay_font_size3 {
-    padding-left: 88%
+    padding-left: 88%;
 }
 .pay_color {
     color: #ff0000;
 }
-.btn_group{
+.btn_group {
     height: 5vh;
     /* padding: 0 10% 0 10% auto; */
     margin: 0 auto;
@@ -124,23 +131,23 @@
     width: 8vw;
     padding: 0.5vh 0 0.5vh 0;
 }
-.btn1:hover{
-    border:1px solid #000;
-    background-color:#fff;
-    color:#000;
+.btn1:hover {
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
     transition: all 0.4s;
 }
 .btn2 {
-    border:1px solid #000;
+    border: 1px solid #000;
     background-color: #fff;
     color: #000000;
     width: 8vw;
     padding: 0.5vh 0 0.5vh 0;
 }
-.btn2:hover{
-    border:1px solid #fff;
-    background-color:#000;
-    color:#fff;
+.btn2:hover {
+    border: 1px solid #fff;
+    background-color: #000;
+    color: #fff;
     transition: all 0.4s;
 }
  
