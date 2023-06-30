@@ -26,23 +26,26 @@
     margin: auto;
     font-size: 16px;
     padding-bottom: 3vh;
+    padding-top: 1vh;
 }
 .flex_container1 {
     width: 40vh;
     height: 180px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .items {
-    width: 30vh;
+    width: 60vh;
     height: 180px;
 }
 .flex_items2 {
-    padding: 6% 5% 6% 5%;
+    padding: 4% 5% 5% 18%;
 }
 .flex_img {
     width: 100%;
     object-fit: cover;
-    transform: translate(0px, -25px);
+    height: 180px;
+    border-radius: 2vw;
+    /* transform: translate(0px, -25px); */
 }
 
 .flex_size1 {
