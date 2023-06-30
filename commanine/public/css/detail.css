@@ -326,7 +326,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 /* 인원Box end */
 
-.roomBox{
+.room{
     display: flex;
     padding: 20px;
 }
@@ -494,11 +494,12 @@ input[type="number"]::-webkit-inner-spin-button {
     box-shadow:none !important;
 } */
 @media(max-width: 991px) {
-    .con {
+    .con
+    ,.hanok {
         width: 100%;
     }
     .hanok
-    , .roomBox{
+    , .room{
         flex-direction: column;
     }
     .imgBox
