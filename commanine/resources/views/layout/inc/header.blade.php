@@ -30,6 +30,29 @@
                     @endauth
                 </ul>
             </nav>
+            {{-- 햄버거메뉴 --}}
+            <div class="mobile-bar">
+                <div class="bar-btn">
+                    <span class="bar1"></span>
+                    <span class="bar2"></span>
+                    <span class="bar3"></span>
+                </div>
+                <div class="bar-slide">
+                    <ul class="slide-menu">
+                        @guest()
+                        <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
+                        <li class="nav-a2"><a href="{{route('users.regist')}}">회원가입</a></li>
+                        {{-- <li class="nav-a3"><a href="">예약내역</a></li> --}}
+                        @endguest
+    
+                        @auth()
+                        <p style="color:#333; margin:7px 30px 0 0;">안녕하세요! <strong>{{session('user_name') }}</strong>님</p>
+                        <li class="nav-a1"><a href="{{route('users.logout')}}">로그아웃</a></li>
+                        <li class="nav-a2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
+                        @endauth
+                    </ul>
+                </div>
+            </div>
             <input id="modalToggle" class="hide" type="checkbox">
             <div class="modal_search">
                 <label class="btn_search btn-open" for="modalToggle">어디로 떠날까요?</label>
