@@ -1,6 +1,6 @@
 @extends('layout.layout')
-<?php
     {{-- 체크인 체크아웃 계산 --}}
+<?php
     $from = new Datetime($data->chk_in);
     $to = new Datetime($data->chk_out);
     $gap = date_diff( $from, $to )->days;
