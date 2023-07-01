@@ -17,19 +17,22 @@
     <div class="searchBox">
         <form action="{{route('research.page.get')}}" method="get" class="formBox">
             <div class="searchFirstBox" style="padding-bottom : 10px;">
-                <input type="text" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth" value="{{isset($arr['local']) ? $arr['local'] : ""}}">
+                <div class="searchWidth">
+                    <label for="locOrHan">지역명 / 숙소명</label>
+                    <input type="text" id="locOrHan" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth " value="{{isset($arr['local']) ? $arr['local'] : ""}}">
+                </div>
                 <div class="dayBox searchWidth">
                     <label for="chkIn">체크인</label>
-                    <input type="text" class="datepicker searchDate " autocomplete="off" readonly name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
+                    <input type="text" id="chkIn" class="datepicker searchDate " autocomplete="off" readonly name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
                 </div>
                 <div class="dayBox searchWidth ">
                     <label for="chkOut">체크아웃</label>
-                    <input type="text" class="datepicker2 searchDate " autocomplete="off" readonly name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
+                    <input type="text" id="chkOut" class="datepicker2 searchDate " autocomplete="off" readonly name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
                 </div>
             </div>
             <div class="searchSecondBox" >
                     <div class="searchWidth selectBox">
-                        <span> 숙소 유형 </span>
+                        <span>숙소 유형</span>
                         @if(!isset($arr['hanoktype']))
                         <select name="hanokType" size="1" class="selectList">
                             <option  selected>숙소 유형</option>
