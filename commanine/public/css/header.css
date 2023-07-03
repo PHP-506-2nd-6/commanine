@@ -29,7 +29,7 @@ nav {
     display: flex;
 }
 .menu {
-    width: 500px;
+    width: 25%;
 }
 .menu li {
     font-family: "Roboto", sans-serif;
@@ -40,15 +40,17 @@ nav {
     margin-top: 20px;
 }
 .logo {
-    /* position: relative;
-    right: 0; */
-    margin-left: 320px;
+    width: 50%;
+    text-align: center;
 }
 .logo img {
     width: 260px;
 }
 img {
     width: 250px;
+}
+.d-inline-flex {
+    width: 25%;
 }
 
 .nav-a1,

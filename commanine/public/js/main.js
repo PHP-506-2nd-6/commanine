@@ -37,7 +37,7 @@ $(document).ready(function () {
 $(window).on("scroll", function () {
     checkScrollPosition();
 });
-
+// 슬라이드 부트스트랩
 (function ($) {
     $.fn.split = function (options) {
         if ($(this).hasClass("split")) {
