@@ -8,7 +8,7 @@
  @media all and (min-width:768px) and (max-width:1023px) { /*스타일입력*/}
  @media all and (max-width:830px) { /*스타일입력*/}
 .containerBox{
-    width:95%;
+    width:90%;
     margin:0 auto;
 }
 .hidden-button {
@@ -172,11 +172,11 @@ input[type="range"]{
 .countBox {
     position: absolute;
     top: 70%; 
-    right:0;
+    right:25%;
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #fff;
-    width: 262.5px;
+    width: 200px;
     height: 150px;
     opacity: 0;
     z-index:3;
@@ -186,11 +186,11 @@ input[type="range"]{
 .countBox.active{
     position: absolute;
     top: 80%; 
-    right:0;
+    right:25%;
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #fff;
-    width: 262.5px;
+    width: 200px;
     height: 150px;
     display:grid;
     opacity: 1;
@@ -503,5 +503,34 @@ input:focus label{
     .priceHanok{
         grid-column: 2/3;
         grid-row:2;
+    }
+    .countBox {
+        position: absolute;
+        top: 70%; 
+        right:6%;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #fff;
+        width: 200px;
+        height: 150px;
+        opacity: 0;
+        z-index:3;
+        grid-template-rows: repeat(3,1fr);
+    }
+    
+    .countBox.active{
+        position: absolute;
+        top: 100%; 
+        right:6%;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #fff;
+        width: 200px;
+        height: 150px;
+        display:grid;
+        opacity: 1;
+        z-index:5;
+        grid-template-rows: repeat(3,1fr);
+        transition:all 0.3s;
     }
 }

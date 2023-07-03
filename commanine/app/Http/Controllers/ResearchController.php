@@ -224,7 +224,7 @@ Log::debug('인원',[$val_count]);
                     FROM reservations res
                     WHERE 
                         res.chk_out >  ".$val_chkIn.
-                    " OR res.chk_in < ".$val_chkOut." ) ";
+                    " AND res.chk_in < ".$val_chkOut." ) ";
         }
         $query .= " GROUP BY r.hanok_id) room
                     ON han.id = room.hanok_id
