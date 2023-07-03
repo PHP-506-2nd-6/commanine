@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Models\Hanoks;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -40,15 +41,16 @@ class HanoksController extends Controller
         
         // 입력한 날짜값이 없거나 오늘 날짜보다 이전 날짜일 때 오늘 날짜 넣어준다
         $val_chkOut = $req->input('chk_out');
-        if($val_chkIn === null || $val_chkIn < date("Y-m-d")) {
-            $val_chkIn = date("Y-m-d");
+        $nowDate = Carbon::now();
+
+        if($val_chkIn === null || $val_chkIn < $nowDate) {
+            $val_chkIn = $nowDate->format("Y-m-d");
         }
-        
         // 입력한 날짜값이 없거나 체크인 날짜보다 이전 날짜이거나 똑같을 때 오늘 날짜 넣어준다
         if($val_chkOut === null || $val_chkOut <= $val_chkIn) {
-            $val_chkOut = date("Y-m-d", strtotime($val_chkIn."+1 day"));
+            $val_chkOut = $nowDate->addDay()->format("Y-m-d");
         }
-
+        // return var_dump($val_chkOut);
         // 입력한 값 유지하기 위해서 배열로 담아서 view로 보내주기 위한 처리
         $inpData = [
             'val_chkIn' => $val_chkIn
@@ -82,7 +84,7 @@ class HanoksController extends Controller
         $likes = DB::table('hanoks as h')
                         ->join('wishlists as w', 'h.id', '=', 'w.hanok_id')
                         ->select(DB::raw("count(w.user_id) as 'likes'"))
-                        ->where('h.id', '=', $id)
+                        ->where('h.id', '=', $id) // 체이닝 메소드는 자동으로 prepared statement 적용(Raw는 불가능)
                         ->get();
 
         // 해당 숙소의 어메니티 가져오기 0622 KMJ add
@@ -109,6 +111,7 @@ class HanoksController extends Controller
 
 
         // return view('detail')->with('hanok', $hanoks); // 0615 KMJ del
+        // return view('detail', [])
         return view('detail')
                 ->with('hanok', $hanoks)
                 ->with('rooms', $rooms)
@@ -150,6 +153,7 @@ class HanoksController extends Controller
     ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
     ->join('reviews AS re', 're.hanok_id', '=', 'han.id')
     ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+    ->where('re.deleted_at', '=', null)
     ->orderBy('han.id', 'DESC')
     ->limit(6)
     ->get();

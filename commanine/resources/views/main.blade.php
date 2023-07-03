@@ -131,7 +131,7 @@
                                         <div class="card_top">
                                             <h5 class="card-title">{{$val->hanok_name}}
                                             <p class="card-text" style="font-size:15px">{{$val->hanok_local}}
-                                            <span>{{isset($val->review) ? substr($val->review,0,4) : "0"}}</span>
+                                            <span>{{isset($val->review) ? number_format($val->review,1) : "0"}}</span>
                                             <span class="ratestar"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span></p></h5>
                                         </div>
                                         <div class="card_bottom">
