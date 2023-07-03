@@ -98,6 +98,8 @@
                         <button type="submit" class="searchBtn">검색</button>
                     </div>
                     <input type="hidden" name="room_id" class="room_id" disabled="true">
+                    <input type="hidden" placeholder="성인" name="reserve_adult" id="adults" class="adultsHide" value="{{$inpData['val_adult']}}">
+                    <input type="hidden" placeholder="아동" name="reserve_child" id="kids" class="kidsHide" value="{{$inpData['val_child']}}">
                     @php($i = 0)
                     @forelse($rooms as $val)
                         <div class="room">
@@ -115,8 +117,6 @@
                                 <button type="button" class="reserveBtn" value="{{$val->id}}">예약하기</button>
                             </div>
                         </div>
-                    <input type="hidden" placeholder="성인" name="reserve_adult" id="adults" class="adultsHide" value="{{$inpData['val_adult']}}">
-                    <input type="hidden" placeholder="아동" name="reserve_child" id="kids" class="kidsHide" value="{{$inpData['val_child']}}">
                 </form>
                 @empty
                 <div class="msg">선택하신 날짜에 예약 가능한 객실이 없습니다. 날짜를 다시 선택해주세요</div>

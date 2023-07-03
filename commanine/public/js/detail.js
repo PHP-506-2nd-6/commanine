@@ -47,16 +47,19 @@ const adultsVal = document.querySelector('.adultsVal');
 const kidsVal = document.querySelector('.kidsVal');
 const adultsHide = document.querySelector('.adultsHide');
 const kidsHide = document.querySelector('.kidsHide');
+
 // 인원input을 눌렀을 때 
 // 성인, 어린이 선택하는 박스가 뜨고
 countInput.addEventListener('click',function(){
     countBox.classList.toggle('active');
 })
-
+countInput.addEventListener('change',function(){
+    countBox.classList.remove('active');
+})
 // 확인 버튼 누르면 박스 삭제
 countChkBtn.addEventListener('click',function(){
-    countBox.classList.toggle('active');
     // 값 이동
+    countBox.classList.toggle('active');
     adultsHide.value = adultsVal.value;
     kidsHide.value = kidsVal.value;
     countInput.value="성인 : "+adultsVal.value+" / 어린이 : "+kidsVal.value;
@@ -68,7 +71,7 @@ const plusBtn = document.querySelectorAll('.plusBtn');
 
 
 minBtn[0].addEventListener('click',function(){
-    if( adultsVal.value > 1 ){
+    if( adultsVal.value > 0 ){
     return adultsVal.value = Number(adultsVal.value) - 1;
     }
 })
@@ -80,13 +83,13 @@ minBtn[1].addEventListener('click',function(){
 })
 
 plusBtn[0].addEventListener('click',function(){
-    if( adultsVal.value < 16 ){
+    if( adultsVal.value < 99 ){
     return adultsVal.value = Number(adultsVal.value) + 1;
     }
 })
 
 plusBtn[1].addEventListener('click',function(){
-    if( kidsVal.value < 16 ){
+    if( kidsVal.value < 99 ){
     return kidsVal.value = Number(kidsVal.value) + 1;
     }
 })
