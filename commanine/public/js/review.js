@@ -25,7 +25,7 @@ function executeRating(stars) {
 
             // 폼에 별점 값을 설정하여 서버로 전송
             document.getElementById("ratingInput").value = rating;
-            ratingForm.submit();
+            // ratingForm.submit();
         };
     });
 }
