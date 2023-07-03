@@ -46,11 +46,15 @@
                 <br>
                 <div class="con_box">
                     <label for="rev_content">리뷰 작성하기</label>
-                    <textarea name="rev_content" id="rev_content" spellcheck="false" cols="50" rows="10"></textarea>
+                    <br>
+                    <textarea name="rev_content" id="rev_content" spellcheck="false" cols="50" rows="12"></textarea>
                     
                 </div>
                 <br>
-                <button class="updateBtn" type="submit">작성</button>
+                <div class="btnCon">
+                    <button class="updateBtn" type="submit">작성</button>
+                    <button class="cancelBtn" type="button" onclick="location.href='{{route('users.information.reserve')}}'">취 소</button>
+                </div>
             </form>
         </div>
     </div>

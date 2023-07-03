@@ -27,8 +27,12 @@ button {
     color: #f8ce0b;
 }
 
-.star {
-    font-size: 20px;
+.editRev {
+    color: #8f8e8e;
+}
+
+.star{
+    font-size:20px;
 }
 .rate {
     font-size: 20px;
@@ -138,6 +142,8 @@ strong {
 }
 
 .tabBox .tabBtn.active {
+    /* border-bottom: 4px solid #000; */
+    box-shadow: inset 0 -4px 0 #000;
     font-weight: 600;
 }
 
@@ -159,14 +165,14 @@ strong {
     display: block;
 }
 
-.line {
+/* .line {
     position: absolute;
     top: 60px;
     left: 0;
     width: 100.61px;
     height: 4px;
     background-color: #000;
-}
+} */
 
 .heart {
     font-size: 20px;
@@ -518,4 +524,14 @@ input[type="number"]::-webkit-inner-spin-button {
         width: 100%;
         margin-bottom: 10px;
     }
+    .tabBox .tabBtn{
+        flex: 1 0 auto;
+        padding: 18px 2px;
+    }
+    /* .roomBtn {
+        border-bottom: 4px solid black;
+    } */
+    /* .line {
+        width: 28.6%;
+    } */
 }

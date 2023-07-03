@@ -83,13 +83,13 @@ minBtn[1].addEventListener('click',function(){
 })
 
 plusBtn[0].addEventListener('click',function(){
-    if( adultsVal.value < 99 ){
+    if( adultsVal.value < 16 ){
     return adultsVal.value = Number(adultsVal.value) + 1;
     }
 })
 
 plusBtn[1].addEventListener('click',function(){
-    if( kidsVal.value < 99 ){
+    if( kidsVal.value < 16 ){
     return kidsVal.value = Number(kidsVal.value) + 1;
     }
 })
@@ -102,7 +102,10 @@ const roomBtn = document.querySelector(".roomBtn");
 const revBtn = document.querySelector(".revBtn");
 const roomCon = document.querySelector(".roomCon");
 const revCon = document.querySelector(".revCon");
-const line = document.querySelector('.line');
+// const line = document.querySelector('.line');
+
+// line.style.width = roomBtn.offsetWidth + "px";
+// line.style.left = roomBtn.offsetLeft + "px";
 
 // 후기페이지 눌렀을 때 페이지 넘어가면 탭 유지
 if (page !== null) {
@@ -110,8 +113,8 @@ if (page !== null) {
     revBtn.classList.add('active');
     roomCon.classList.remove('active');
     revCon.classList.add('active');
-    line.style.width = revBtn.offsetWidth + "px";
-    line.style.left = revBtn.offsetLeft + "px";
+    // line.style.width = revBtn.offsetWidth + "px";
+    // line.style.left = revBtn.offsetLeft + "px";
 } else {
     roomBtn.classList.add('active');
     roomCon.classList.add('active');
@@ -123,8 +126,8 @@ tabs.forEach((tab, index)=>{
         tabs.forEach(tab=>{tab.classList.remove('active')})
         tab.classList.add('active');
         // 탭 메뉴 밑줄
-        line.style.width = e.target.offsetWidth + "px";
-        line.style.left = e.target.offsetLeft + "px";
+        // line.style.width = e.target.offsetWidth + "px";
+        // line.style.left = e.target.offsetLeft + "px";
         // 탭 누르면 해당 콘텐츠 보이기
         contents.forEach(content=>{content.classList.remove('active')});
         contents[index].classList.add('active');

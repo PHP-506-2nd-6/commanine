@@ -53,7 +53,7 @@
             <button type="button" class="tabBtn">위치</button>
             <button type="button" class="tabBtn">숙소안내</button>
             <button type="button" class="tabBtn revBtn">후기</button>
-            <div class="line"></div>
+            {{-- <div class="line"></div> --}}
         </div>
         <div class="conBox">
             <div class="content roomCon">
@@ -176,6 +176,7 @@
                         <i class="fa-solid fa-star revStar"></i>
                         <span>{{$item->rate}}</span>
                         <span>{{(substr($item->created_at, 0, 10))}}</span>
+                        <span class="editRev">{{$item->created_at !== $item->updated_at? "(수정됨)" : ""}}</span>
                     </div>
                 @empty
                 <div class="msg">아직 리뷰가 작성되지 않았습니다.</div>

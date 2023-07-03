@@ -120,7 +120,7 @@ class ResearchController extends Controller
         // if($val_chkOut === null ){
         //     $val_chkOut = date('Y-m-d', strtotime($val_chkIn . ' +1 day'));
         // }else{
-            $val_chkOut = $req->input('chkOut');
+            // $val_chkOut = $req->input('chkOut');
         // }
         
         // 숙소유형
