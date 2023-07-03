@@ -35,7 +35,7 @@
                         <span>숙소 유형</span>
                         @if(!isset($arr['hanoktype']))
                         <select name="hanokType" size="1" class="selectList">
-                            <option  selected>숙소 유형</option>
+                            <option  selected>전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
                             <option value="2">게스트 하우스</option>
@@ -43,7 +43,7 @@
                         </select>
                         @elseif($arr['hanoktype'] === "0")
                         <select name="hanokType" size="1" class="selectList">
-                            <option  >숙소 유형</option>
+                            <option  >전체</option>
                             <option value="0" selected >호텔</option>
                             <option value="1">펜션</option>
                             <option value="2">게스트 하우스</option>
@@ -51,7 +51,7 @@
                         </select>
                         @elseif($arr['hanoktype'] === "1")
                         <select name="hanokType" size="1" class="selectList">
-                            <option >숙소 유형</option>
+                            <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" selected>펜션</option>
                             <option value="2">게스트 하우스</option>
@@ -59,7 +59,7 @@
                         </select>
                         @elseif($arr['hanoktype'] === "2")
                         <select name="hanokType" size="1" class="selectList">
-                            <option >숙소 유형</option>
+                            <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
                             <option value="2" selected>게스트 하우스</option>
@@ -67,7 +67,7 @@
                         </select>
                         @else
                         <select name="hanokType" size="1" class="selectList">
-                            <option >숙소 유형</option>
+                            <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
                             <option value="2" >게스트 하우스</option>
@@ -134,7 +134,7 @@
         @forelse($searches as $value)
             <div class="searchList">
                 <a href="{{route('hanoks.detail',$value->id)}}" class="listA">
-                    <div>
+                    <div class="imgBox">
                         <img src="{{asset($value->hanok_img1)}}" >
                     </div>
                     <div class="explainHanok">
@@ -145,7 +145,7 @@
                         <div class="reviewHanok">
                             <span><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
                         {{-- 별점 평균 --}}
-                            <span>{{isset($value->rate) ? substr($value->rate,0,4) : "0"}}</span>
+                            <span>{{isset($value->rate) ? substr($value->rate,0,3) : "0"}}</span>
                         {{-- 리뷰 개수 --}}
                             <span>({{$value->cnt}})</span>
                         </div>
