@@ -24,7 +24,7 @@
                     @endguest
 
                     @auth()
-                    <p style="color:#333; margin:7px 30px 0 0;">안녕하세요! <strong>{{session('user_name') }}</strong>님</p>
+                    <p style="color:#333; margin:7px 30px 0 0;">안녕하세요! <span class="user_name">{{session('user_name') }}</span>님</p>
                     <li class="nav-a1"><a href="{{route('users.logout')}}">로그아웃</a></li>
                     <li class="nav-a2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
                     @endauth
