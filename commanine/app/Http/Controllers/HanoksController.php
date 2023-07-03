@@ -64,21 +64,38 @@ class HanoksController extends Controller
         $val_chkOut = str_replace('-','',$val_chkOut);
 
         // 해당 숙소의 예약 안 되어있는 객실 가격순대로 가져오기 0621 KMJ add
+        // $query =
+        // " SELECT r.* "
+        // ." FROM rooms r "
+        // ." WHERE r.hanok_id = ".$id
+		// ."  AND r.room_max >= ".$val_count
+		// ."  AND r.id NOT IN ( "
+		// 				."  SELECT res.room_id "
+		// 				."  FROM reservations res "
+		// 				."  WHERE res.chk_in < ".$val_chkOut
+		// 				."  AND res.chk_out > ".$val_chkIn
+        //                 ." ) "
+        // ." ORDER BY r.room_price "
+        //                 ;
+                        
+        // $rooms = DB::select($query); // sql injection 방지 위해서 파기 0703 KMJ del
+        
+        // prepared statements로 수정 0703 KMJ add
         $query =
         " SELECT r.* "
         ." FROM rooms r "
-        ." WHERE r.hanok_id = ".$id
-		."  AND r.room_max >= ".$val_count
+        ." WHERE r.hanok_id = ? "
+		."  AND r.room_max >= ? "
 		."  AND r.id NOT IN ( "
 						."  SELECT res.room_id "
 						."  FROM reservations res "
-						."  WHERE res.chk_in < ".$val_chkOut
-						."  AND res.chk_out > ".$val_chkIn
+						."  WHERE res.chk_in < ? "
+						."  AND res.chk_out > ? "
                         ." ) "
         ." ORDER BY r.room_price "
                         ;
-                        
-        $rooms = DB::select($query);
+        $arr = [$id, $val_count, $val_chkOut, $val_chkIn];
+        $rooms = DB::select($query, $arr);
         
         // 해당 숙소의 찜 갯수 가져오기 0615 KMJ add
         $likes = DB::table('hanoks as h')
@@ -153,7 +170,6 @@ class HanoksController extends Controller
     ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
     ->join('reviews AS re', 're.hanok_id', '=', 'han.id')
     ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
-    ->where('re.deleted_at', '=', null)
     ->orderBy('han.id', 'DESC')
     ->limit(6)
     ->get();
