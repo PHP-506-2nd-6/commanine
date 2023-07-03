@@ -414,7 +414,7 @@ input:focus label{
 
 
 
-@media all and (max-width:850px) { 
+@media all and (max-width:767px) { 
     .searchWidth{
         width:100%;
     }
@@ -456,6 +456,52 @@ input:focus label{
     input[type='range'] {
         width: 100%;
     }
-  
-
+    
+    .searchUl{
+        width:100%;
+        padding: 10px 20px;
+        margin-top:20px;
+        min-height:300px;
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows:1fr;
+        /* justify-items: center; */
+        place-items: center; 
+    }    
+    .searchList{
+        width:100%;
+        padding: 20px 10px;
+        min-height:280px;
+    }
+    .searchList > a{
+        display:grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: auto;
+    }
+    .explainHanok{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin:10px;
+    }
+    .imgBox{
+        text-align: center;
+    }
+    /* img{
+        width:270px;
+    } */
+    .nameHanok{
+        text-align: left;
+        padding-left:20px;
+    }
+    .reviewHanok,.priceHanok{
+        padding-right:20px;
+    }
+    .nameHanok,.priceHanok{
+        font-size: 0.9em;
+    }
+    .priceHanok{
+        grid-column: 2/3;
+        grid-row:2;
+    }
 }

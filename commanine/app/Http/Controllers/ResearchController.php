@@ -276,7 +276,9 @@ Log::debug('인원',[$val_count]);
         return view('research')
                 ->with('searches', $notices)
                 ->with('arr',$arr);
-
+        // return view('research')
+        // ->with('searches', $result)
+        // ->with('arr',$arr);
 
     }
 
