@@ -96,8 +96,8 @@ class UsersInfoController extends Controller
             $arrKey[] = 'user_pw';
         }
         $chkList = [
-            'user_num' => 'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
-            , 'user_pw' => 'same:user_pwchk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+            'user_num' => 'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/u'
+            , 'user_pw' => 'same:user_pwchk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u'
         ];
         foreach($arrKey as $val) {
             $arrChk[$val] = $chkList[$val];
@@ -148,7 +148,7 @@ class UsersInfoController extends Controller
         }
         if($req->pw_flg === "1") {
             $req->validate([
-                'user_pw' => 'regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+                'user_pw' => 'regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u'
             ]);
             $baseUser = Users::find(Auth::User()->user_id);
             if(!$baseUser || !(Hash::check($req->user_pw, $baseUser->user_pw))) {
@@ -160,7 +160,7 @@ class UsersInfoController extends Controller
         // 회원 정보 페이지 이동
         if($req->pw_flg === "0") {
             $req->validate([
-                'user_pw' => 'regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+                'user_pw' => 'regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u'
             ]);
             $baseUser = Users::find(Auth::User()->user_id);
             if(!$baseUser || !(Hash::check($req->user_pw, $baseUser->user_pw))) {

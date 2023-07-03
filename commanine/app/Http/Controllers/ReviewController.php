@@ -83,10 +83,10 @@ class ReviewController extends Controller
         ." from hanoks h "
         ." inner join reviews r "
         ."  on h.id = r.hanok_id "
-        ." where r.rev_id = ".$rev_id
+        ." where r.rev_id = ? "
         ;
 
-        $review = DB::select($sql);
+        $review = DB::select($sql, [$rev_id]);
 
         return view('reviewedit')->with('review', $review[0]);
     }

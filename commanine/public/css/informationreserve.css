@@ -1,3 +1,6 @@
+.hidden-button {
+    visibility: hidden;
+}
 .wrap {
     min-height: 410px;
 }

@@ -120,7 +120,7 @@ class ResearchController extends Controller
         // if($val_chkOut === null ){
         //     $val_chkOut = date('Y-m-d', strtotime($val_chkIn . ' +1 day'));
         // }else{
-            $val_chkOut = $req->input('chkOut');
+            // $val_chkOut = $req->input('chkOut');
         // }
         
         // 숙소유형
@@ -224,7 +224,7 @@ Log::debug('인원',[$val_count]);
                     FROM reservations res
                     WHERE 
                         res.chk_out >  ".$val_chkIn.
-                    " OR res.chk_in < ".$val_chkOut." ) ";
+                    " AND res.chk_in < ".$val_chkOut." ) ";
         }
         $query .= " GROUP BY r.hanok_id) room
                     ON han.id = room.hanok_id

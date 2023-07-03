@@ -83,13 +83,13 @@ minBtn[1].addEventListener('click',function(){
 })
 
 plusBtn[0].addEventListener('click',function(){
-    if( adultsVal.value < 99 ){
+    if( adultsVal.value < 16 ){
     return adultsVal.value = Number(adultsVal.value) + 1;
     }
 })
 
 plusBtn[1].addEventListener('click',function(){
-    if( kidsVal.value < 99 ){
+    if( kidsVal.value < 16 ){
     return kidsVal.value = Number(kidsVal.value) + 1;
     }
 })
@@ -102,7 +102,10 @@ const roomBtn = document.querySelector(".roomBtn");
 const revBtn = document.querySelector(".revBtn");
 const roomCon = document.querySelector(".roomCon");
 const revCon = document.querySelector(".revCon");
-const line = document.querySelector('.line');
+// const line = document.querySelector('.line');
+
+// line.style.width = roomBtn.offsetWidth + "px";
+// line.style.left = roomBtn.offsetLeft + "px";
 
 // 후기페이지 눌렀을 때 페이지 넘어가면 탭 유지
 if (page !== null) {
@@ -110,8 +113,8 @@ if (page !== null) {
     revBtn.classList.add('active');
     roomCon.classList.remove('active');
     revCon.classList.add('active');
-    line.style.width = revBtn.offsetWidth + "px";
-    line.style.left = revBtn.offsetLeft + "px";
+    // line.style.width = revBtn.offsetWidth + "px";
+    // line.style.left = revBtn.offsetLeft + "px";
 } else {
     roomBtn.classList.add('active');
     roomCon.classList.add('active');
@@ -123,8 +126,8 @@ tabs.forEach((tab, index)=>{
         tabs.forEach(tab=>{tab.classList.remove('active')})
         tab.classList.add('active');
         // 탭 메뉴 밑줄
-        line.style.width = e.target.offsetWidth + "px";
-        line.style.left = e.target.offsetLeft + "px";
+        // line.style.width = e.target.offsetWidth + "px";
+        // line.style.left = e.target.offsetLeft + "px";
         // 탭 누르면 해당 콘텐츠 보이기
         contents.forEach(content=>{content.classList.remove('active')});
         contents[index].classList.add('active');
@@ -160,14 +163,31 @@ var marker = new kakao.maps.Marker({
 marker.setMap(map);  
 
 // 클립보드에 숙소 주소 복사
+// 시연위해서 execCommand로 구현  0703 KMJ add
 const addr = document.querySelector('.addr').textContent;
 const copy = document.querySelector('.copy');
 copy.addEventListener('click', copyClipboard)
 function copyClipboard() {
-    window.navigator.clipboard.writeText(addr).then(()=>{
-        alert("클립보드에 주소가 복사되었습니다.");
-    })
+    const copyTA = document.createElement('textarea');
+    copyTA.style.position = "fixed";
+    copyTA.style.opacity = "0";
+    copyTA.textContent = addr;
+    
+    document.body.appendChild(copyTA);
+    copyTA.select();
+    document.execCommand("copy");
+    document.body.removeChild(copyTA);
+    alert("클립보드에 주소가 복사되었습니다.");
 }
+
+// const addr = document.querySelector('.addr').textContent;
+// const copy = document.querySelector('.copy');
+// copy.addEventListener('click', copyClipboard)
+// function copyClipboard() {
+//     window.navigator.clipboard.writeText(addr).then(()=>{
+//         alert("클립보드에 주소가 복사되었습니다.");
+//     })
+// } // https 접속에서만 사용 가능하기 때문에 삭제 0703 KMJ del
 
 // 평균 별점마다 코멘트
 const rateComment = document.querySelector('.rateComment');

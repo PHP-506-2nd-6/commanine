@@ -4,7 +4,11 @@
  * 파일명     : login.css
  * 이력       : 0616 KMH new
  * *********************************** */ 
- 
+ /* add 0703 byj */
+ .hidden-button {
+    visibility: hidden;
+} 
+
  .box{
      position:relative;
      width:100%;

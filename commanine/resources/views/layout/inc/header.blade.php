@@ -2,14 +2,15 @@
 <head>
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
 </head>
 <header>
 
     <div class="header_bg">
         <div class="fix">
             <nav>
-                <ol class="menu">
-                    <li class="menuactive"><a href="#menu1">category</a></li>
+                <ol class="menu hidden-button">
+                    <li class="menuactive hidden-button"><a href="#menu1">category</a></li>
                     <li><a href="#menu2">popularity</a></li>
                     <li><a href="#menu3">recent</a></li>
                 </ol>
@@ -18,13 +19,12 @@
                 </div>
                 <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                     @guest()
-                    <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
+                    <li class="nav-a1"><a href="{{route('users.login')}}"><i class="fa-sharp fa-light fa-right-to-bracket"></i>로그인</a></li>
                     <li class="nav-a2"><a href="{{route('users.regist')}}">회원가입</a></li>
-                    {{-- <li class="nav-a3"><a href="">예약내역</a></li> --}}
                     @endguest
 
                     @auth()
-                    <p style="color:#333; margin:7px 30px 0 0;">안녕하세요! <strong>{{session('user_name') }}</strong>님</p>
+                    <p style="color:#333; margin:7px 30px 0 0;">안녕하세요! <span class="user_name">{{session('user_name') }}</span>님</p>
                     <li class="nav-a1"><a href="{{route('users.logout')}}">로그아웃</a></li>
                     <li class="nav-a2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
                     @endauth
@@ -46,7 +46,7 @@
                         @endguest
     
                         @auth()
-                        <p style="color:#333; margin:7px 30px 0 0;">안녕하세요! <strong>{{session('user_name') }}</strong>님</p>
+                        <p style="color:#333; margin:7px 30px 0 0;">안녕하세요! <span class="user_name">{{session('user_name') }}</span>님</p>
                         <li class="nav-a1"><a href="{{route('users.logout')}}">로그아웃</a></li>
                         <li class="nav-a2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
                         @endauth

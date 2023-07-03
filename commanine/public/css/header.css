@@ -23,6 +23,9 @@ header {
     height: 215px;
     background-color: #f6f6f0;
 }
+.user_name {
+    font-weight: bold;
+}
 nav {
     width: 100%;
     margin: 0 auto;
@@ -49,8 +52,12 @@ nav {
 img {
     width: 250px;
 }
-.d-inline-flex {
-    width: 25%;
+.d-inline {
+    width: 20%;
+    /* padding-right: 50px; */
+}
+.d-inline-flex li {
+    display: inline-block;
 }
 
 .nav-a1,
@@ -365,9 +372,9 @@ a {
 
 /* 반응형 */
 @media screen and (max-width: 830px) {
-    header {
+    /* header {
         height: 800px;
-    }
+    } */
 
     .d-inline-flex {
         display: none;

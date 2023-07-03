@@ -38,7 +38,7 @@
         <input type="hidden" name="reserve_adult" id="reserve_adult" value="{{$data->reserve_adult}}">
         <input type="hidden" name="reserve_child" id="reserve_child" value="{{$data->reserve_child}}">
         {{-- 0629 ysh 시간되면 css 바꾸기 --}}
-        <input type="hidden" name="reserve_price" value="{{number_format($gap * (int)$data->room_price)}}">
+        <input type="hidden" name="reserve_price" value="{{$gap * (int)$data->room_price}}">
         @include('layout.errors_validate')
         <label for="reserve_name">예약자 이름</label>
         <br>
@@ -53,17 +53,17 @@
     <div class="reservetitle pay_padding">
         <p>결제 금액</p>
         <div class="pay_sum">
-            <span>상품 금액 :</span>
+            <span class="span_r">상품 금액 :</span>
             <span class="span_padding_1">{{number_format($gap * (int)$data->room_price)}}</span>
             <br>
-            <span>총 결제 금액 :</span>
+            <span class="span_r">총 결제 금액 :</span>
             <span class="span_padding_2">{{number_format($gap * (int)$data->room_price)}}</span>
             {{-- 0629 ysh 시간되면 span 대신 input 넣어서 교체 --}}
             {{-- <input type="text" name="reserve_price" value="{{number_format($gap * (int)$data->room_price)}}"> --}}
         </div>
     </div>
     <div class="reservetitle pay_padding">
-        <span>결제 수단</span>
+        <span class="span_r">결제 수단</span>
         <span class="pay_padding_select">
             <select name="pay_type" class="pay_type">
                 <option value="신용카드">신용카드</option>

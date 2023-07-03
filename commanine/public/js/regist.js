@@ -95,6 +95,7 @@ const throttle = () =>{
 
 // birthInput.addEventListener('click',throttleBirth());
 emailBtn.addEventListener('click',throttle(certification));
+
 //이메일 확인하기 버튼을 누르지 않고 회원가입을 누를 경우 
 registBtn.addEventListener('click', function(event) {
     if (btnChk !== true) {
@@ -103,6 +104,7 @@ registBtn.addEventListener('click', function(event) {
     idSpan.style.color = "red";
     }
 });
+
 
 // ! 비밀번호 체크 
 const checkPasswordMatch = () => {

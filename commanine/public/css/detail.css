@@ -3,25 +3,32 @@
     padding: 0;
     box-sizing: border-box;
 }
+.hidden-button {
+    visibility: hidden;
+}
 
-button{
+button {
     display: inline-block;
     border: none;
     background: none;
 }
 
-.hanokInfo{
+.hanokInfo {
     width: 100%;
     padding: 20px;
 }
-.hanok_name{
+.hanok_name {
     font-size: 28px;
     font-weight: 900;
     margin-bottom: 2px;
 }
-.star
-,.revStar {
+.star,
+.revStar {
     color: #f8ce0b;
+}
+
+.editRev {
+    color: #8f8e8e;
 }
 
 .star{
@@ -30,10 +37,10 @@ button{
 .rate {
     font-size: 20px;
 }
-.hanokInfo>button {
+.hanokInfo > button {
     margin-left: 10px;
 }
-.hanokComment{
+.hanokComment {
     /* border:1px black solid; */
     width: 100%;
     margin-top: 10px;
@@ -44,7 +51,7 @@ button{
     margin: 10px 0px;
 }
 
-.roomInfoBtn{
+.roomInfoBtn {
     position: relative;
     width: 100%;
     height: 50px;
@@ -74,7 +81,7 @@ button{
     background-color: #fff;
     color: #000;
     border: 1px solid #000;
-    transition: .1s;
+    transition: 0.1s;
 }
 
 .con {
@@ -92,10 +99,10 @@ button{
 .imgBox {
     min-width: 450px;
     width: 450px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-.img{
+.img {
     width: 100%;
     object-fit: cover;
 }
@@ -107,7 +114,7 @@ strong {
 .rateCon {
     /* vertical-align: middle; */
     line-height: 36px;
-    border-bottom:1px #d6d6d6 solid;
+    border-bottom: 1px #d6d6d6 solid;
     padding-bottom: 20px;
     /* margin-bottom: 10px; */
 }
@@ -129,12 +136,14 @@ strong {
     /* margin-bottom: 20px; */
 }
 
-.tabBox .tabBtn{
+.tabBox .tabBtn {
     font-size: 18px;
     padding: 18px;
 }
 
 .tabBox .tabBtn.active {
+    /* border-bottom: 4px solid #000; */
+    box-shadow: inset 0 -4px 0 #000;
     font-weight: 600;
 }
 
@@ -147,30 +156,30 @@ strong {
     margin-top: 0;
 }
 
-.conBox .content{
+.conBox .content {
     display: none;
     margin-bottom: 10px;
 }
 
-.conBox .content.active{
+.conBox .content.active {
     display: block;
 }
 
-.line {
+/* .line {
     position: absolute;
     top: 60px;
     left: 0;
     width: 100.61px;
     height: 4px;
     background-color: #000;
-}
+} */
 
 .heart {
     font-size: 20px;
     color: #dd4b68;
 }
 
-.addrBox{
+.addrBox {
     position: relative;
     padding: 0 20px;
     height: 4em;
@@ -196,78 +205,84 @@ strong {
     background-color: #fff;
     width: 179px;
     height: 150px; */
-    display:none;
+    display: none;
     /* grid-template-rows: repeat(3,1fr); */
 }
 
-.countBox.active{
+.countBox.active {
     position: absolute;
-    top: 0; 
-    right:0;
+    top: 0;
+    right: 0;
     border: 1px solid #000;
     border-radius: 3px;
     background-color: #fff;
     width: 190px;
     height: 150px;
-    display:grid;
-    grid-template-rows: repeat(3,1fr);
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
 }
-.countWrap{
-    position:relative;
+.countWrap {
+    position: relative;
     display: inline-block;
 }
 
-.countBox>div{
-    padding:10px;
+.countBox > div {
+    padding: 10px;
 }
-.countBox>div>input{
-    position:absolute;
+.countBox > div > input {
+    position: absolute;
     /* right:20px; */
-    right:10px;
-    width:100px;
+    right: 10px;
+    width: 100px;
     text-align: center;
 }
 
-.countBox>button{
-    width:150px;
-    margin:0 auto;
-    height:30px;
+.countBox > button {
+    width: 150px;
+    margin: 0 auto;
+    height: 30px;
 }
-.adultsBox,.kidsBox{
-    display:grid;
-    grid-template-columns: repeat(2,auto);
+.adultsBox,
+.kidsBox {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
 }
-.adultsBox>label,.kidsBox>label{
+.adultsBox > label,
+.kidsBox > label {
     /* width:55px; */
     text-align: center;
 }
 
-.adultsBox>div,.kidsBox>div{
-    display:grid;
+.adultsBox > div,
+.kidsBox > div {
+    display: grid;
     grid-template-columns: 1fr 3fr 1fr;
 }
-.minBtn,.plusBtn{
-    height:30px;
-    width:20px;
+.minBtn,
+.plusBtn {
+    height: 30px;
+    width: 20px;
     background-color: #fff;
-    border:none;
+    border: none;
 }
-.adultsVal,.kidsVal{
+.adultsVal,
+.kidsVal {
     text-align: center;
-    border:none;
+    border: none;
     outline: none;
 }
-.dayBox>.ui-datepicker-trigger:hover,.countChkBtn:hover{
+.dayBox > .ui-datepicker-trigger:hover,
+.countChkBtn:hover {
     background-color: #fff;
-    color:#000;
+    color: #000;
     border: 1px solid #000;
-    transition:all 0.3s;
+    transition: all 0.3s;
 }
 
-
-.searchBtn,.countChkBtn{
+.searchBtn,
+.countChkBtn {
     background-color: #fff;
-    border:1px solid #000;
+    border: 1px solid #000;
     color: #000;
 }
 
@@ -276,10 +291,11 @@ strong {
     font-weight: 900;
 }
 
-.searchBtn:hover,.countChkBtn:hover{
+.searchBtn:hover,
+.countChkBtn:hover {
     background-color: #000;
     color: #fff;
-    transition:all 0.1s;
+    transition: all 0.1s;
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -292,7 +308,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 125px;
 }
 
-.dateCon{
+.dateCon {
     display: inline-block;
     position: relative;
 }
@@ -303,30 +319,30 @@ input[type="number"]::-webkit-inner-spin-button {
     text-align: right;
 }
 
-.icon1
-,.icon2
-,.icon3 {
+.icon1,
+.icon2,
+.icon3 {
     position: absolute;
-    top:20%;
+    top: 20%;
 }
-.icon1{
-    left:32.5%;
+.icon1 {
+    left: 32.5%;
 }
 
 .icon2 {
-    left:37.5%;
+    left: 37.5%;
 }
 
 .icon3 {
-    left:17.5%;
+    left: 17.5%;
 }
 
 .countBox label {
-    width: 55.72px
+    width: 55.72px;
 }
 /* 인원Box end */
 
-.room{
+.room {
     display: flex;
     padding: 20px;
 }
@@ -343,7 +359,7 @@ input[type="number"]::-webkit-inner-spin-button {
     transform: translate(-50%, -50%);
 }
 
-.modal-content{
+.modal-content {
     padding: 30px;
     width: 960px;
 }
@@ -359,18 +375,18 @@ input[type="number"]::-webkit-inner-spin-button {
     display: inline-block;
 }
 
-.pin{
+.pin {
     color: #b80a0a;
     padding-right: 5px;
 }
 
-.amenityInfo{
+.amenityInfo {
     display: flex;
     flex-wrap: wrap;
     /* justify-content: left; */
 }
-.amenityInfo
-,.roomCom {
+.amenityInfo,
+.roomCom {
     padding: 20px;
 }
 
@@ -389,8 +405,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 #map {
-    width:100%;
-    height:350px;
+    width: 100%;
+    height: 350px;
 }
 .amenities {
     width: 64px;
@@ -402,7 +418,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .room {
-    border:1px #d6d6d6 solid;
+    border: 1px #d6d6d6 solid;
     display: flex;
     padding: 20px;
     margin-bottom: 20px;
@@ -417,13 +433,13 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-right: 20px;
 }
 
-.revInfo{
+.revInfo {
     text-align: center;
 }
 
 .review {
-    border-bottom:1px #d6d6d6 solid;
-    padding:30px 20px;
+    border-bottom: 1px #d6d6d6 solid;
+    padding: 30px 20px;
 }
 
 .text-muted {
@@ -456,22 +472,22 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .stars-inner::before {
     content: "\f005 \f005 \f005 \f005 \f005";
-    font-size:28px;
+    font-size: 28px;
     color: #f8ce0b;
     letter-spacing: 12px;
-}  
+}
 
 .pageCon {
     margin-top: 50px;
 }
 
-.amenityInfo
-,.roomCom {
-    border-bottom:1px #d6d6d6 solid;
+.amenityInfo,
+.roomCom {
+    border-bottom: 1px #d6d6d6 solid;
 }
 
-.serv
-,.serv2 {
+.serv,
+.serv2 {
     font-size: 1.3em;
     font-weight: 600;
     margin-bottom: 0;
@@ -493,19 +509,29 @@ input[type="number"]::-webkit-inner-spin-button {
     border:none !important;
     box-shadow:none !important;
 } */
-@media(max-width: 991px) {
-    .con
-    ,.hanok {
+@media (max-width: 991px) {
+    .con,
+    .hanok {
         width: 100%;
     }
-    .hanok
-    , .room{
+    .hanok,
+    .room {
         flex-direction: column;
     }
-    .imgBox
-    , .roomImg {
+    .imgBox,
+    .roomImg {
         min-width: 100%;
         width: 100%;
         margin-bottom: 10px;
     }
+    .tabBox .tabBtn{
+        flex: 1 0 auto;
+        padding: 18px 2px;
+    }
+    /* .roomBtn {
+        border-bottom: 4px solid black;
+    } */
+    /* .line {
+        width: 28.6%;
+    } */
 }
