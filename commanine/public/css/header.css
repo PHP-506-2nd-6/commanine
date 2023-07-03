@@ -23,6 +23,9 @@ header {
     height: 215px;
     background-color: #f6f6f0;
 }
+.user_name {
+    font-weight: bold;
+}
 nav {
     width: 100%;
     margin: 0 auto;
