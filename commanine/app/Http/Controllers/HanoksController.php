@@ -153,6 +153,7 @@ class HanoksController extends Controller
     ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
     ->join('reviews AS re', 're.hanok_id', '=', 'han.id')
     ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+    ->where('re.deleted_at', '=', null)
     ->orderBy('han.id', 'DESC')
     ->limit(6)
     ->get();
