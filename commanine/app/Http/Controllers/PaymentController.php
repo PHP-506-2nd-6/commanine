@@ -41,8 +41,8 @@ class PaymentController extends Controller
         }
         $user_id = Auth::User()->user_id;
         $req->validate([
-            'reserve_name' => 'required|max:30|regex:/^[가-힣]{2,30}$/'
-            , 'reserve_num' => 'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+            'reserve_name' => 'required|max:30|regex:/^[가-힣]{2,30}$/u'
+            , 'reserve_num' => 'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/u'
         ]);
         $result = DB::table('rooms')->select('room_name', 'room_price', 'chk_in', 'chk_out', 'room_img1', 'hanok_name')
         ->join('hanoks', 'rooms.hanok_id', '=', 'hanoks.id')

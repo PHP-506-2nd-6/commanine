@@ -33,8 +33,8 @@ class UsersController extends Controller
         $validator = Validator::make(
             $request->only('email','password')
             ,[
-                'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
-                ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+                'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/u'
+                ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u'
             ]);
         if($validator->fails()){
             return redirect()->back()->with('error',$error);
@@ -70,14 +70,14 @@ class UsersController extends Controller
         $validator = Validator::make(
             $request->only('name','phoneNumber','email','password','passwordChk','birth','question','questAnswer')
             ,[
-                'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
-                ,'email'     =>  'required|email|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
-                ,'password'  =>  'required_with:passwordchk|same:passwordChk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
-                ,'passwordChk' => 'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/'
+                'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/u'
+                ,'email'     =>  'required|email|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/u'
+                ,'password'  =>  'required_with:passwordchk|same:passwordChk|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u'
+                ,'passwordChk' => 'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u'
                 ,'birth'    =>['required',new birthcase]
-                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/u'
                 ,'question' =>'required'
-                ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]{2,30}$/'
+                ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]{2,30}$/u'
             ]
         ,$message =[
             'required'          => ':attribute은(는) 필수항목 입니다.'
@@ -132,11 +132,11 @@ class UsersController extends Controller
             $request->only('email','phoneNumber','question','questAnswer')
             ,[
                 
-                'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/'
-                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+                'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/u'
+                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/u'
                 ,'question' =>'required'
                 // 질문의 답 
-                ,'questAnswer'=>'required|max:30|/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/'
+                ,'questAnswer'=>'required|max:30|/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/u'
             ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
@@ -167,11 +167,11 @@ class UsersController extends Controller
         $validator = Validator::make(
             $request->only('name','phoneNumber','question','questAnswer')
             ,[
-                'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/'
-                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/'
+                'name'     => 'required|max:30|regex:/^[가-힣]{2,30}$/u'
+                ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/u'
                 ,'question' =>'required'
                 // 질문의 답 
-                ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/'
+                ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/u'
             ]);
         if($validator->fails()){
             return redirect()->back()->with('error',$error);
