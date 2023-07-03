@@ -1,3 +1,6 @@
+.hidden-button {
+    visibility: hidden;
+} 
 .reviewList {
     font-weight: 900;
     font-size: 1.1em;

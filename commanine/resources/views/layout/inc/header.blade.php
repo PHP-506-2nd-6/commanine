@@ -8,8 +8,8 @@
     <div class="header_bg">
         <div class="fix">
             <nav>
-                <ol class="menu">
-                    <li class="menuactive"><a href="#menu1">category</a></li>
+                <ol class="menu hidden-button">
+                    <li class="menuactive hidden-button"><a href="#menu1">category</a></li>
                     <li><a href="#menu2">popularity</a></li>
                     <li><a href="#menu3">recent</a></li>
                 </ol>
@@ -17,6 +17,7 @@
                     <a href="{{route('main')}}"><img src="{{asset('/img/logologo.png')}}" alt="#"></a>
                 </div>
                 <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                {{-- <ul class="menu2"> --}}
                     @guest()
                     <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
                     <li class="nav-a2"><a href="{{route('users.regist')}}">회원가입</a></li>
