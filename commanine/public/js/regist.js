@@ -4,6 +4,21 @@
  * 파일명     : regist.js
  * 이력       : 0614 KMH new
  * *********************************** */ 
+// 이름 input, alert
+// const nameInput = document.querySelector('.nameInput');
+// const nameAlert = document.querySelector('.nameAlert');
+// 전화번호 input, alert
+// const numInput = document.querySelector('.numInput');
+// const numAlert = document.querySelector('.numAlert');
+// 이메일 input, alert
+// const emailInput = document.querySelector('.emailInput');
+// const emailAlert = document.querySelector('.emailAlert');
+// 비밀번호 input, alert
+// const pwInput = document.querySelector('.pwInput');
+// const pwAlert = document.querySelector('.pwAlert');
+// 질문의 답 input, alert
+// const answerInput = document.querySelector('.answerInput');
+// const answerAlert = document.querySelector('.answerAlert');
 // EMAIL 체크 변수
 const emailBtn = document.getElementById('emailChkBtn');
 const idSpan = document.getElementById('errMsgId');
@@ -17,6 +32,7 @@ const pw = document.getElementById('password');
 const pwChk = document.getElementById('passwordChk');
 const pwChkAlert = document.getElementById('pwChkAlert');
 // password 체크 변수 end *********************
+
 // errbox 
 const errmsg = document.querySelectorAll('.errmsg');
 const errbox = document.querySelectorAll('.errbox');
@@ -105,3 +121,151 @@ const checkPasswordMatch = () => {
 
 pwChk.addEventListener('input', checkPasswordMatch);
 
+
+// 실시간 유효성 체크
+
+// function joinformCheck(){
+//     // 이름 input, alert
+// const nameInput = document.querySelector('.nameInput');
+// const nameAlert = document.querySelector('.nameAlert');
+// // 전화번호 input, alert
+// const numInput = document.querySelector('.numInput');
+// const numAlert = document.querySelector('.numAlert');
+// // 이메일 input, alert
+// const emailInput = document.querySelector('.emailInput');
+// const emailAlert = document.querySelector('.emailAlert');
+// // 비밀번호 input, alert
+// // const pwInput = document.querySelector('.pwInput');
+// const pwAlert = document.querySelector('.pwAlert');
+// // 질문의 답 input, alert
+// const answerInput = document.querySelector('.answerInput');
+// const answerAlert = document.querySelector('.answerAlert');
+// // EMAIL 체크 변수
+// const emailBtn = document.getElementById('emailChkBtn');
+// const idSpan = document.getElementById('errMsgId');
+//     const nameRegex = /^[가-힣]{2,30}$/;
+//     if(nameInput.vale === ""){
+//             nameAlert.innerHTML = '이름을 입력하세요.';
+//             nameAlert.style.color = 'red';
+//     }else if(nameRegex.test(nameInput) === false){
+//         nameAlert.innerHTML = '이름은 한글로 2~30자 입력해 주세요.';
+//         nameAlert.style.color = 'red';
+//     }else{
+//         nameAlert.innerHTML = '사용 가능한 이름입니다.';
+//         nameAlert.style.color = 'red';
+//     }
+// }
+
+function checkName(){
+    const nameInput = document.querySelector('.nameInput');
+    const nameAlert = document.querySelector('.nameAlert');
+    const nameRegex = /^[가-힣]{2,30}$/u;
+    
+    if(nameRegex.test(nameInput.value) === true){
+        nameAlert.innerHTML = '사용 가능한 이름입니다.';
+        nameAlert.style.color = 'green';
+    }
+    else{
+        nameAlert.innerHTML = '이름은 한글로 2~30자 입력해 주세요.';
+        nameAlert.style.color = 'red';
+    }
+}
+
+function checkNum(){
+    const numInput = document.querySelector('.numInput');
+    const numAlert = document.querySelector('.numAlert');
+    const numRegex = /^[0-9]{3}[0-9]{4}[0-9]{4}$/u;
+    
+    if(numRegex.test(numInput.value) === true){
+        numAlert.innerHTML = '사용 가능한 전화번호입니다.';
+        numAlert.style.color = 'green';
+    }
+    else{
+        numAlert.innerHTML = '전화번호는 숫자로만 입력해 주세요.';
+        numAlert.style.color = 'red';
+    }
+}
+function checkPw(){
+    const pwInput = document.querySelector('.pwInput');
+    const pwAlert = document.querySelector('.pwAlert');
+    const pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u;
+    
+    if(pwRegex.test(pwInput.value) === true){
+        pwAlert.innerHTML = '사용 가능한 비밀번호입니다.';
+        pwAlert.style.color = 'green';
+    }
+    else{
+        pwAlert.innerHTML = '영어, 숫자, 특수문자 포함 8~20 입력해 주세요.';
+        pwAlert.style.color = 'red';
+    }
+}
+
+function checkAnswer(){
+    const answerInput = document.querySelector('.answerInput');
+    const answerAlert = document.querySelector('.answerAlert');
+    const answerRegex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{2,30}$/u;
+    
+    if(answerRegex.test(answerInput.value) === true){
+        answerAlert.innerHTML = '사용 가능한 답입니다.';
+        answerAlert.style.color = 'green';
+    }
+    else{
+        answerAlert.innerHTML = '한글,영어,숫자로 2~30자 입력해 주세요.';
+        answerAlert.style.color = 'red';
+    }
+}
+
+function checkEmail(){
+    const emailInput = document.querySelector('.emailInput');
+    const emailAlert = document.querySelector('.emailAlert');
+    const emailRegex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+    
+    if(emailRegex.test(emailInput.value) === true){
+        emailAlert.innerHTML = '이메일 중복확인을 해주세요.';
+        emailAlert.style.color = 'red';
+    }
+    else{
+        emailAlert.innerHTML = '이메일 형식에 맞게 입력해 주세요.';
+        emailAlert.style.color = 'red';
+    }
+}
+
+function checkEmail(){
+    const emailInput = document.querySelector('.emailInput');
+    const emailAlert = document.querySelector('.emailAlert');
+    const emailRegex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+    
+    if(emailRegex.test(emailInput.value) === true){
+        emailAlert.innerHTML = '이메일 중복확인을 해주세요.';
+        emailAlert.style.color = 'red';
+    }
+    else{
+        emailAlert.innerHTML = '이메일 형식에 맞게 입력해 주세요.';
+        emailAlert.style.color = 'red';
+    }
+}
+
+function checkBirth(){
+    const birthInput = document.querySelector('.birthInput');
+    const birthAlert = document.querySelector('.birthAlert');
+    const today = new Date();
+
+    const birthDay = new Date(birthInput.value);
+
+    let age = 0;
+
+    age = today.getFullYear() - birthDay.getFullYear();
+
+    birthDay.setFullYear(today.getFullYear());
+
+    if (today.getTime() < birthDay.getTime()) {
+    age--;
+    }
+    if(age<18){
+        birthAlert.innerHTML = '만 18세 이상만 가입이 가능합니다.';
+        birthAlert.style.color = 'red';
+    }else{
+        birthAlert.innerHTML = '가입이 가능한 나이입니다.';
+        birthAlert.style.color = 'green';
+    }
+};

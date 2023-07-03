@@ -16,8 +16,8 @@
         <h2 class="title">회원가입</h2>
         <form action="{{route('users.regist.post')}}" method="post" class="container text-center" id="formBox">
             @csrf
-            <input type="text" name="name" id="name" autocomplete="off" class="errbox" placeholder="이름" value="{{old('name')}}">
-            <div class="errmsg">
+            <input type="text" oninput="checkName()" name="name" id="name" autocomplete="off" class="errbox nameInput" placeholder="이름" value="{{old('name')}}">
+            <div class="errmsg nameAlert">
                 @if($errors->has('name'))
                     {{$errors->first('name')}}
                 @endif
@@ -25,28 +25,28 @@
             
             
 
-            <input type="text" name="phoneNumber" autocomplete="off" id="phoneNumber" class="errbox" placeholder="전화번호는 숫자만 입력해 주세요." value="{{old('phoneNumber')}}">
-            <div class="errmsg">
+            <input type="text" oninput="checkNum()" name="phoneNumber" autocomplete="off" id="phoneNumber" class="errbox numInput" placeholder="전화번호는 숫자만 입력해 주세요." value="{{old('phoneNumber')}}">
+            <div class="errmsg numAlert">
                 @if($errors->has('phoneNumber'))
                     {{$errors->first('phoneNumber')}}
                 @endif
             </div>
-            <div class=" emailBox">
-                <input type="text" name="email" autocomplete="off" id="email" placeholder="이메일" value="{{old('email')}}">
+            <div class="emailBox">
+                <input type="text" name="email" oninput="checkEmail()"  class="emailInput" autocomplete="off" id="email" placeholder="이메일" value="{{old('email')}}" >
                 <button type="button" id="emailChkBtn"  class="blackBtn">확인하기</button>
             </div>
-            <div id="errMsgId" class="errmsg"></div>
-            <input type="password" name="password" autocomplete="off" id="password" placeholder="비밀번호 8~20자" class="errbox" >
-            <div class="errmsg">
+            <div id="errMsgId" class="errmsg emailAlert"></div>
+            <input type="password" name="password" oninput="checkPw()" autocomplete="off" id="password" placeholder="비밀번호 8~20자" class="errbox pwInput" >
+            <div class="errmsg pwAlert">
                 @if($errors->has('password'))
                     {{$errors->first('password')}}
                 @endif
             </div>
             <input type="password" name="passwordChk" autocomplete="off" id="passwordChk" placeholder="비밀번호 확인" class="errbox">
             <div id="pwChkAlert" class="errmsg"></div>
-            <input type="date" name="birth" id="birth" autocomplete="off" class="errbox" value="{{old('birth')}}">
+            <input type="date" name="birth" id="birth" oninput="checkBirth()" autocomplete="off" class="errbox birthInput" value="{{old('birth')}}">
 
-            <div class="errmsg">
+            <div class="errmsg birthAlert">
                 @if($errors->has('birth'))
                     {{$errors->first('birth')}}
                 @endif
@@ -59,8 +59,8 @@
                 <option value="5">졸업한 초등학교 이름은 무엇입니까?</option>
             </select>
             
-            <input type="text" name="questAnswer" autocomplete="off" id="questAnswer" placeholder="질문의 답" class="errbox" value="{{old('questAnswer')}}">
-            <div class="errmsg">
+            <input type="text" name="questAnswer" oninput="checkAnswer()" autocomplete="off" id="questAnswer" placeholder="질문의 답" class="errbox answerInput" value="{{old('questAnswer')}}">
+            <div class="errmsg answerAlert">
                 @if($errors->has('questAnswer'))
                     {{$errors->first('questAnswer')}}
                 @endif
