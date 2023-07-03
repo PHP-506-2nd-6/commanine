@@ -38,7 +38,7 @@
         <input type="hidden" name="reserve_adult" id="reserve_adult" value="{{$data->reserve_adult}}">
         <input type="hidden" name="reserve_child" id="reserve_child" value="{{$data->reserve_child}}">
         {{-- 0629 ysh 시간되면 css 바꾸기 --}}
-        <input type="hidden" name="reserve_price" value="{{number_format($gap * (int)$data->room_price)}}">
+        <input type="hidden" name="reserve_price" value="{{$gap * (int)$data->room_price}}">
         @include('layout.errors_validate')
         <label for="reserve_name">예약자 이름</label>
         <br>

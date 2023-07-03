@@ -11,7 +11,9 @@
     width:95%;
     margin:0 auto;
 }
-
+.hidden-button {
+    visibility: hidden;
+} 
 /* start input-range */
 
     input[type='range'] {

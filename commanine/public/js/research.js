@@ -116,13 +116,13 @@ minBtn[1].addEventListener('click',function(){
 })
 
 plusBtn[0].addEventListener('click',function(){
-  if( adultsVal.value < 99 ){
+  if( adultsVal.value <= 15 ){
   return adultsVal.value = Number(adultsVal.value) + 1;
   }
 })
 
 plusBtn[1].addEventListener('click',function(){
-  if( kidsVal.value < 99 ){
+  if( kidsVal.value <= 15 ){
   return kidsVal.value = Number(kidsVal.value) + 1;
   }
 })

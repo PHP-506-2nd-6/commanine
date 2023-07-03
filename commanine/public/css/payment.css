@@ -16,6 +16,9 @@ ul.join_box{border: 1px solid #ddd;background-color: #fff;}
 .fpmgBt1{background-color: #fff;color:#888}
 .fpmgBt2{background-color: lightsalmon;color: #fff}
 
+.hidden-button {
+    visibility: hidden;
+} 
 .p{
     margin-bottom: 0px;
 }

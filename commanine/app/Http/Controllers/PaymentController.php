@@ -51,7 +51,8 @@ class PaymentController extends Controller
         $arr = ['room_name' => $result[0]->room_name
         // , 'room_price' => $result[0]->room_price
         // 가격에 , 제거후 저장
-        , 'room_price' => str_replace(',','',$req->reserve_price)
+        // , 'room_price' => str_replace(',','',$req->reserve_price)
+        , 'room_price' => $req->reserve_price
         // 체크인 체크아웃 시간
         , 'chk_in' => $result[0]->chk_in
         , 'chk_out' => $result[0]->chk_out
