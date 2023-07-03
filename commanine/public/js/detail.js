@@ -163,14 +163,31 @@ var marker = new kakao.maps.Marker({
 marker.setMap(map);  
 
 // 클립보드에 숙소 주소 복사
+// 시연위해서 execCommand로 구현  0703 KMJ add
 const addr = document.querySelector('.addr').textContent;
 const copy = document.querySelector('.copy');
 copy.addEventListener('click', copyClipboard)
 function copyClipboard() {
-    window.navigator.clipboard.writeText(addr).then(()=>{
-        alert("클립보드에 주소가 복사되었습니다.");
-    })
+    const copyTA = document.createElement('textarea');
+    copyTA.style.position = "fixed";
+    copyTA.style.opacity = "0";
+    copyTA.textContent = addr;
+    
+    document.body.appendChild(copyTA);
+    copyTA.select();
+    document.execCommand("copy");
+    document.body.removeChild(copyTA);
+    alert("클립보드에 주소가 복사되었습니다.");
 }
+
+// const addr = document.querySelector('.addr').textContent;
+// const copy = document.querySelector('.copy');
+// copy.addEventListener('click', copyClipboard)
+// function copyClipboard() {
+//     window.navigator.clipboard.writeText(addr).then(()=>{
+//         alert("클립보드에 주소가 복사되었습니다.");
+//     })
+// } // https 접속에서만 사용 가능하기 때문에 삭제 0703 KMJ del
 
 // 평균 별점마다 코멘트
 const rateComment = document.querySelector('.rateComment');
