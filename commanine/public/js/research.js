@@ -104,7 +104,7 @@ const plusBtn = document.querySelectorAll('.plusBtn');
 
 
 minBtn[0].addEventListener('click',function(){
-  if( adultsVal.value > 0 ){
+  if( adultsVal.value > 1 ){
   return adultsVal.value = Number(adultsVal.value) - 1;
   }
 })
