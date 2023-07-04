@@ -10,7 +10,6 @@
             <h2>리뷰 수정</h2>
             <div class="reserve_con reserve_wrap">
                 <div class="review">
-                    @include('layout.errors_validate')
                     <h4>{{$review->hanok_name}}</h4>
                     <i class="fa-solid fa-star star"></i>
                     <span>{{$review->rate}}</span>
@@ -19,6 +18,7 @@
                     <form action="{{route('users.review.edit.post', ['rev_id' => $review->rev_id])}}" method="post">
                         @csrf
                             <textarea name="rev_content" id="rev_content" spellcheck="false" cols="50" rows="12">{{$review->rev_content}}</textarea>
+                    @include('layout.errors_validate')
                         <div class="btnCon">
                             <button class="updateBtn" type="submit">수 정</button>
                             <button class="cancelBtn"type="button" onclick="location.href='{{route('users.information.review')}}'">취 소</button>

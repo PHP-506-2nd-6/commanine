@@ -77,3 +77,8 @@ h2 {
     resize: none;
     padding: 30px;
 }
+
+.msg {
+    text-align: center;
+    color: #ff0000;
+}
