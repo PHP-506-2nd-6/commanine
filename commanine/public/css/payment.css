@@ -244,3 +244,24 @@ label {
     font-size: 14px;
     color: red;
 }
+
+@media screen and (min-width: 767px) {
+    .paymentInfo{
+        padding: 1% 20% 1% 20%;
+        height: 20vh;
+    }
+    .items {
+        width: 14vw;
+        height: auto;
+    }
+    .reserveInfo{
+        padding: 1% 20% 1% 20%;
+    }
+    .span_padding_1 {
+        padding-left: 25vw;
+    }
+    .span_padding_2 {
+        padding-left: 22.2vw;
+        font-weight: bolder;
+    }
+}
