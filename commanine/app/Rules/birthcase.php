@@ -4,6 +4,8 @@ namespace App\Rules;
 
 use DateTime;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class birthcase implements Rule
 {
@@ -31,12 +33,17 @@ class birthcase implements Rule
         // $year = $nowYear - $birth;
 
 
-        $firstDate  = new DateTime($value);
-        $secondDate = new DateTime();
-        $intvl = $firstDate->diff($secondDate);
-        $result = $intvl->days/365;
+        // $firstDate  = new DateTime($value);
+        // $secondDate = new DateTime();
+        // $intvl = $firstDate->diff($secondDate);
+        // $result = $intvl->days/365;
+
+        $today = date('Ymd');
+        $birthday = date('Ymd',strtotime($value));
+        $age = floor(($today - $birthday)/10000);
         
-        return $result >= 18;
+        Log::debug("생일", [$age]);
+        return $age >= 18;
     }
 
     /**
@@ -46,6 +53,6 @@ class birthcase implements Rule
      */
     public function message()
     {
-        return '만18세 이하는 가입이 불가능 합니다.';
+        return '만18세 미만은 가입이 불가능 합니다.';
     }
 }

@@ -89,7 +89,7 @@ class UsersController extends Controller
             ,'questAnswer.max'      =>  '답은 최대 30자 입니다.'
             ,'questAnswer.regex'    => '답은 한글,숫자,영어로 2~30자만 입력해주세요.'
         ]);
-
+        
         
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
