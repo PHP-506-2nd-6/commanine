@@ -62,18 +62,18 @@ class ResearchController extends Controller
         FROM hanoks han
             JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
                 FROM rooms r 
-                where r.room_max >= ".$val_count."
+                where r.room_max >= ?
                 AND r.id NOT IN      
                     (SELECT res.room_id
                     FROM reservations res
                     WHERE 
-                    res.chk_out >  ".$val_chkIn.
-                    " AND res.chk_in < ".$val_chkOut." ) 
+                    res.chk_out > ?
+                    AND res.chk_in < ? ) 
                     GROUP BY r.hanok_id) room
                     ON han.id = room.hanok_id
                     left JOIN reviews review ON han.id = review.hanok_id 
-                    WHERE ( han.hanok_name like "."'%$val_local%'"
-                ." OR han.hanok_addr LIKE "."'%$val_local%'"." ) 
+                    WHERE ( han.hanok_name like ?
+                OR han.hanok_addr LIKE ? ) 
                 GROUP BY 
                 han.id
                 ,han.hanok_name
@@ -81,8 +81,8 @@ class ResearchController extends Controller
                 ,room.room_price
                 
                 order by room.room_price ; ";
-
-       $result = DB::select($query);
+    $prepare = [$val_count, $val_chkIn, $val_chkOut, "%".$val_local."%", "%".$val_local."%"];
+       $result = DB::select($query, $prepare);
        $arr = ['local' => $val_local
                 ,'chkIn' => $val_chkIn
                 ,'chkOut' => $val_chkOut
