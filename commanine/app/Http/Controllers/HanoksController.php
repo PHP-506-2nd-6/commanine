@@ -94,8 +94,8 @@ class HanoksController extends Controller
                         ." ) "
         ." ORDER BY r.room_price "
                         ;
-        $arr = [$id, $val_count, $val_chkOut, $val_chkIn];
-        $rooms = DB::select($query, $arr);
+        $prepare = [$id, $val_count, $val_chkOut, $val_chkIn];
+        $rooms = DB::select($query, $prepare);
         
         // 해당 숙소의 찜 갯수 가져오기 0615 KMJ add
         $likes = DB::table('hanoks as h')
