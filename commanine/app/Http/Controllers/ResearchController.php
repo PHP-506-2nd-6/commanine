@@ -301,5 +301,4 @@ Log::debug('인원',[$val_count]);
     //     $category =
     // }
 
-    
 }
