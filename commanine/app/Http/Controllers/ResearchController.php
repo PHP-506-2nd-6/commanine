@@ -176,7 +176,7 @@ Log::debug('인원',[$val_count]);
 // 		order by room.room_price;
         //****************************************************************** */
 
-        $query= "SELECT
+        $query= "SELECT 
         han.id
         ,han.hanok_name
         ,han.hanok_img1
