@@ -103,30 +103,37 @@ class ResearchController extends Controller
         $val_local = $req->input('locOrHan');
         // 체크인
         $val_chkIn = $req->input('chkIn');
+        // if($val_chkIn === null ){
+        //     $val_chkIn = date('Y-m-d');
+        // }else{
+        //     $val_chkIn = $req->input('chkIn');
+        // }
         // 체크아웃
         $val_chkOut = $req->input('chkOut');
+        // 체크인 날짜만 선택했을 경우 자동으로 1박으로 계산 
+        // if($val_chkOut === null ){
+        //     $val_chkOut = date('Y-m-d', strtotime($val_chkIn . ' +1 day'));
+        // }else{
+            $val_chkOut = $req->input('chkOut');
+        // }
+        
         // 숙소유형
         $val_type = $req->input('hanokType');
-        // 성인
-        $val_adults = $req->input('adults');
-        // 어린이
-        $val_kids = $req->input('kids');
-        if( $val_type === "0" || $val_type === "1" || $val_type === "2" || $val_type === "3"){
+        if($val_type === "0"||$val_type === "1"||$val_type === "2"||$val_type === "3"){
             $val_type = $req->input('hanokType');
         }else{
-            $val_type = null;
+            $val_type =null;
         }
-
         // 인원
         $val_count = $req->input('adults')+$req->input('kids');
 
-        // 최소가격
+        // 가격
         $val_minPrice = $req->input('minPrice');
-        // 최대가격
         $val_maxPrice = $req->input('maxPrice');
+        Log::debug('성인',[$req->input('adults')]);
+Log::debug('키즈',[$req->input('kids')]);
 
-        Log::debug('값',[$val_local, $val_chkIn, $val_chkOut, $val_type , $val_adults, $val_kids ]);
-
+Log::debug('인원',[$val_count]);
         
         // 쿼리 작성
         //*********************** 쿼리
@@ -148,11 +155,11 @@ class ResearchController extends Controller
 //                     FROM reservations res
 //                     WHERE 
 //                   	res.chk_out > 20230621
-//                   	AND res.chk_in < 20230623 )
+//                   	or res.chk_in < 20230623 )
 // 				GROUP BY r.hanok_id) room
 //       ON han.id = room.hanok_id
 //       left JOIN reviews review ON han.id = review.hanok_id
-// 	    WHERE ( han.hanok_name LIKE '%경주%'
+// 	WHERE ( han.hanok_name LIKE '%경주%'
 // 		OR han.hanok_addr LIKE '%경주%')
 // 		AND han.hanok_type = "1"
 // 		GROUP BY 
@@ -163,27 +170,22 @@ class ResearchController extends Controller
 // 		order by room.room_price;
         //****************************************************************** */
 
-        $query= " SELECT
-            han.id
-            ,han.hanok_name
-            ,han.hanok_img1
-            ,room.room_price
-            ,COUNT(review.user_id ) AS cnt
-            ,AVG(review.rate) AS rate
-            FROM hanoks han
-                JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
-                        FROM rooms r ";
+        $query= "SELECT
+        han.id
+        ,han.hanok_name
+        ,han.hanok_img1
+        ,room.room_price
+        ,COUNT(review.user_id ) AS cnt
+        ,AVG(review.rate) AS rate
+        FROM hanoks han
+            JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
+                FROM rooms r ";
 
-        if($val_maxPrice === "1000000" ){
-            $query .= " WHERE r.room_price >= 0 ";
-            Log::debug("최대가격 1000000", [$query]);
-            // $prepare[] = 0;
+        if($val_maxPrice === null && $val_minPrice === null){
+            $query .= " WHERE r.room_price >= 0";
         }else{
-            $query .= " WHERE r.room_price >= ?
-                        AND r.room_price <= ?";
-            $prepare[] = $val_minPrice;
-            $prepare[] = $val_maxPrice;
-            Log::debug("최대가격 1000000 아닐 때", [$query]);
+            $query .= " WHERE r.room_price >= ".$val_minPrice
+                        ." AND r.room_price <= ".$val_maxPrice;
         }
         // Log::debug("최대가격", [$val_maxPrice]);
         // if(isset($val_maxPrice)){
@@ -205,22 +207,18 @@ class ResearchController extends Controller
         Log::debug("인원 ", [$val_count]);
         if(isset($val_count)){
         Log::debug("인원 확인", [$val_count]);
-            $query .= " AND r.room_max >= ? ";
-            $prepare[] = $val_count;
+            $query .= " AND r.room_max >= ".$val_count;
         }
         // 체크인 / 체크아웃
-        Log::debug("체크인,체크아웃 ", [$val_chkIn, $val_chkOut]);
+        Log::debug("체크인 ", [$val_chkIn]);
         if(isset($val_chkIn)){
-        Log::debug("체크인,체크아웃 확인", [$val_chkIn,$val_chkOut]);
-            $query .= " AND r.id NOT IN      
-                        (SELECT res.room_id
-                        FROM reservations res
-                        WHERE 
-                            res.chk_out >  ?
-                        AND res.chk_in <  ? )";
-            $prepare[] = $val_chkIn;
-            $prepare[] = $val_chkOut;
-
+        Log::debug("체크인 확인", [$val_chkIn,$val_chkOut]);
+        $query .= " AND r.id NOT IN      
+                    (SELECT res.room_id
+                    FROM reservations res
+                    WHERE 
+                        res.chk_out >  ".$val_chkIn.
+                    " AND res.chk_in < ".$val_chkOut." ) ";
         }
         $query .= " GROUP BY r.hanok_id) room
                     ON han.id = room.hanok_id
@@ -229,24 +227,16 @@ class ResearchController extends Controller
         // Log::debug("지역이름", [$val_local]);
         if(isset($val_local)){
         Log::debug("지역이름이 존재할 때", [$val_local]);
-
-            $query .= " WHERE ( han.hanok_name like ?
-                        OR han.hanok_addr LIKE ? ) ";
-            $prepare[] = "'%".$val_local."%'";
-            $prepare[] = "'%".$val_local."%'";
-
+            $query .= " WHERE ( han.hanok_name like "."'%$val_local%'"
+            ." OR han.hanok_addr LIKE "."'%$val_local%'"." ) ";
             if(isset($val_type)){
-            Log::debug("지역이름이 존재하고, 유형이 존재할 때", [$val_local]);
-                $query .= " AND han.hanok_type = ? ";
-                $prepare[] = "'".$val_type."'";
+        Log::debug("지역이름이 존재하고, 유형이 존재할 때", [$val_local]);
+                $query .= " AND han.hanok_type = "."'".$val_type."'";
             }
-
         }else{
-
             if(isset($val_type)){
                 Log::debug("지역검색하지 않고, 유형이 존재할 때", [$val_local]);
-                $query .= " WHERE han.hanok_type = ? ";
-                $prepare[] = "'".$val_type."'";
+                $query .= " WHERE han.hanok_type = "."'".$val_type."'";
             }
         }
             // 호텔 유형
@@ -264,36 +254,25 @@ class ResearchController extends Controller
                 order by room.room_price;";
         
         Log::debug("쿼리", [$query]);
-        Log::debug("쿼리", [$prepare]);
-
-
-        // if($val_maxPrice === null && $val_minPrice === null){
-        //     $prepare[] = '0';
-        // }else{
-        //     $prepare[] = $val_minPrice;
-        //     $prepare[] = $val_maxPrice;
-        // }
-        // if(isset($val_count)){
-        // Log::debug("인원 확인", [$val_count]);
-        //     $query .= " AND r.room_max >= ".$val_count;
-        // }
-
-
-        $result = DB::select($query,$prepare);
-        $arr = ['local'         => $val_local
-                ,'chkIn'        => $val_chkIn
-                ,'chkOut'       => $val_chkOut
-                ,'minPrice'     => $val_minPrice
-                ,'maxPrice'     => $val_maxPrice
-                ,'hanoktype'    => $val_type
-                ,'adults'       => $val_adults
-                ,'kids'         => $val_kids
-                ];
-        Log::debug("값 확인", [$arr]);
+                
+        $result = DB::select($query);
+        $arr = ['local' => $val_local
+                ,'chkIn' => $val_chkIn
+                ,'chkOut' => $val_chkOut
+                ,'minPrice' => $val_minPrice
+                ,'maxPrice' => $val_maxPrice
+                ,'hanoktype'    =>$val_type
+                ,'adults' => $req->adults
+                ,'kids' => $req->kids
+        ];
+        Log::debug("값 확인", [$arr['maxPrice']]);
         $notices = $this->arrayPaginator($result, $req);
         return view('research')
                 ->with('searches', $notices)
                 ->with('arr',$arr);
+        // return view('research')
+        // ->with('searches', $result)
+        // ->with('arr',$arr);
     }
 
     //0620 KMH add
