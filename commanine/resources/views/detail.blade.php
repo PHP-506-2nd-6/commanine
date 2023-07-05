@@ -252,7 +252,8 @@
     <input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}" disabled>
     <input type="hidden" name="latitude" id="latitude" value="{{$hanok->latitude}}" disabled>
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{config('app.kakaomap_key')}}"></script>
+    {{-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c13a45bd5670fc2f9682582b81e72b29"></script> --}}
     <script src="https://kit.fontawesome.com/da11601548.js" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/05d390fd09.js"></script>
     <script src="{{asset('js/detail.js')}}"></script>
