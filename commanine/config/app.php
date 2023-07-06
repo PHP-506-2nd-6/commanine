@@ -122,6 +122,7 @@ return [
     */
 
     'key' => env('APP_KEY'),
+    'kakaomap_key' => env('KAKAOMAP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
