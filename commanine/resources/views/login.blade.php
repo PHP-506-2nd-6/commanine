@@ -22,8 +22,10 @@
             <input type="password" name="password" id="password" placeholder="비밀번호" autocomplete="off">
             <button type="submit" class="loginBtn">Log in</button>
         </form>
+    <div class="findBox">
+        <a href="{{route('users.findId')}}" class="findId">아이디 찾기</a>
+        <a href="{{route('users.findPw')}}" class="findPw">비밀번호 찾기</a>
+    </div>
     </div>
 </div>
-    {{-- <a href="{{route('users.findId')}}">아이디 찾기</a>
-    <a href="{{route('users.findPw')}}">비밀번호 찾기</a> --}}
 @endsection
