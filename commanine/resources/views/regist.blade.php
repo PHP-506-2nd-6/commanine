@@ -12,9 +12,9 @@
 </head>
 @section('contents')
 <div class="container box">
-    <div class="registBox row">
+    <div class="registBox">
         <h2 class="title">회원가입</h2>
-        <form action="{{route('users.regist.post')}}" method="post" class="container text-center" id="formBox">
+        <form action="{{route('users.regist.post')}}" method="post" class="form-box" id="formBox">
             @csrf
             <input type="text" oninput="checkName()" name="name" id="name" autocomplete="off" class="errbox nameInput" placeholder="이름" value="{{old('name')}}">
             <div class="errmsg nameAlert">
