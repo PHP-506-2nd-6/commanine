@@ -4,7 +4,21 @@
  * 파일명     : regist.js
  * 이력       : 0614 KMH new
  * *********************************** */ 
-
+// 이름 input, alert
+// const nameInput = document.querySelector('.nameInput');
+// const nameAlert = document.querySelector('.nameAlert');
+// 전화번호 input, alert
+// const numInput = document.querySelector('.numInput');
+// const numAlert = document.querySelector('.numAlert');
+// 이메일 input, alert
+// const emailInput = document.querySelector('.emailInput');
+// const emailAlert = document.querySelector('.emailAlert');
+// 비밀번호 input, alert
+// const pwInput = document.querySelector('.pwInput');
+// const pwAlert = document.querySelector('.pwAlert');
+// 질문의 답 input, alert
+// const answerInput = document.querySelector('.answerInput');
+// const answerAlert = document.querySelector('.answerAlert');
 // EMAIL 체크 변수
 const emailBtn = document.getElementById('emailChkBtn');
 const idSpan = document.getElementById('errMsgId');
@@ -102,7 +116,7 @@ const checkPasswordMatch = () => {
     pwChkAlert.style.color = 'green';
     // 비밀번호와 비밀번호 확인이 일치하지 않은 경우
     } else {
-    pwChkAlert.innerHTML = '비밀번호와 일치하지 않습니다.';
+    pwChkAlert.innerHTML = '비밀번호와 일치하지 않습니다..';
     pwChkAlert.style.color = 'red';
     }
 };
@@ -112,7 +126,38 @@ pwChk.addEventListener('input', checkPasswordMatch);
 
 // 실시간 유효성 체크
 
-// 이름
+// function joinformCheck(){
+//     // 이름 input, alert
+// const nameInput = document.querySelector('.nameInput');
+// const nameAlert = document.querySelector('.nameAlert');
+// // 전화번호 input, alert
+// const numInput = document.querySelector('.numInput');
+// const numAlert = document.querySelector('.numAlert');
+// // 이메일 input, alert
+// const emailInput = document.querySelector('.emailInput');
+// const emailAlert = document.querySelector('.emailAlert');
+// // 비밀번호 input, alert
+// // const pwInput = document.querySelector('.pwInput');
+// const pwAlert = document.querySelector('.pwAlert');
+// // 질문의 답 input, alert
+// const answerInput = document.querySelector('.answerInput');
+// const answerAlert = document.querySelector('.answerAlert');
+// // EMAIL 체크 변수
+// const emailBtn = document.getElementById('emailChkBtn');
+// const idSpan = document.getElementById('errMsgId');
+//     const nameRegex = /^[가-힣]{2,30}$/;
+//     if(nameInput.vale === ""){
+//             nameAlert.innerHTML = '이름을 입력하세요.';
+//             nameAlert.style.color = 'red';
+//     }else if(nameRegex.test(nameInput) === false){
+//         nameAlert.innerHTML = '이름은 한글로 2~30자 입력해 주세요.';
+//         nameAlert.style.color = 'red';
+//     }else{
+//         nameAlert.innerHTML = '사용 가능한 이름입니다.';
+//         nameAlert.style.color = 'red';
+//     }
+// }
+
 function checkName(){
     const nameInput = document.querySelector('.nameInput');
     const nameAlert = document.querySelector('.nameAlert');
@@ -128,7 +173,6 @@ function checkName(){
     }
 }
 
-//전화번호
 function checkNum(){
     const numInput = document.querySelector('.numInput');
     const numAlert = document.querySelector('.numAlert');
@@ -143,7 +187,6 @@ function checkNum(){
         numAlert.style.color = 'red';
     }
 }
-// 비밀번호
 function checkPw(){
     const pwInput = document.querySelector('.pwInput');
     const pwAlert = document.querySelector('.pwAlert');
@@ -154,11 +197,11 @@ function checkPw(){
         pwAlert.style.color = 'green';
     }
     else{
-        pwAlert.innerHTML = '영어, 숫자, 특수문자 포함 8~20자 입력하세요.';
+        pwAlert.innerHTML = '영어, 숫자, 특수문자 포함 8~20 입력해 주세요.';
         pwAlert.style.color = 'red';
     }
 }
-// 질문의 답
+
 function checkAnswer(){
     const answerInput = document.querySelector('.answerInput');
     const answerAlert = document.querySelector('.answerAlert');
@@ -174,7 +217,6 @@ function checkAnswer(){
     }
 }
 
-// 이메일
 function checkEmail(){
     const emailInput = document.querySelector('.emailInput');
     const emailAlert = document.querySelector('.emailAlert');
@@ -190,8 +232,21 @@ function checkEmail(){
     }
 }
 
+function checkEmail(){
+    const emailInput = document.querySelector('.emailInput');
+    const emailAlert = document.querySelector('.emailAlert');
+    const emailRegex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+    
+    if(emailRegex.test(emailInput.value) === true){
+        emailAlert.innerHTML = '이메일 중복확인을 해주세요.';
+        emailAlert.style.color = 'red';
+    }
+    else{
+        emailAlert.innerHTML = '이메일 형식에 맞게 입력해 주세요.';
+        emailAlert.style.color = 'red';
+    }
+}
 
-// 만나이
 function checkBirth(){
     const birthInput = document.querySelector('.birthInput');
     const birthAlert = document.querySelector('.birthAlert');

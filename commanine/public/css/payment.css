@@ -245,3 +245,64 @@ label {
     color: red;
 }
 
+@media screen and (max-width: 768px) {
+    .paymentInfo{
+        padding: 1% 20% 1% 20%;
+        height: 20vh;
+        font-size: 16px;
+    }
+    .items {
+        width: 14vw;
+        height: auto;
+    }
+    .reserveInfo{
+        padding: 1% 20% 1% 20%;
+    }
+    .span_padding_1 {
+        padding-left: 25vw;
+    }
+    .span_padding_2 {
+        padding-left: 22.2vw;
+        font-weight: bolder;
+    }
+    .paymentInfo {
+        padding: 5% 20% 1% 20%;
+        height: 23vh;
+    }
+    .pay_padding_select {
+        padding-left: 21vw;
+        padding-right: 0;
+    }
+    .reserveInfo {
+        height: 59%;
+    }
+    .btn1 {
+        width: 10vw;
+    }
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .paymentInfo {
+        height: 30vh;
+        font-size: 16px;
+
+    }
+    .items {
+        width: 10vw;
+    }
+    
+    .span_padding_1 {
+        padding-left: 10.7vw;
+    }
+    .span_padding_2 {
+        padding-left: 8.5vw;
+    }
+    .pay_padding_select {
+        padding-left: 9vw;
+    }
+    .reserveInfo {
+        height: 103vh;
+    }
+    .reservetitle {
+        font-size: 1.3rem;
+    }
+}

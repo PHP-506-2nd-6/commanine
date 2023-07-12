@@ -172,7 +172,6 @@ return [
         , 'user_pwchk' => '새 비밀번호 확인'
         , 'reserve_name' => '예약자 이름'
         , 'reserve_num' => '예약자 전화 번호'
-        , 'rev_content' => '리뷰 내용'
     ],
 
 ];

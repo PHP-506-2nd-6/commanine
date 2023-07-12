@@ -15,12 +15,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 // 0614 KMJ new
 class HanoksController extends Controller
 {
     public function hanoksDetail($id, Request $req) {
+        Log::debug('kakaokey', [env('KAKAOMAP_KEY'), config('app.kakaomap_key')]);
         $hanoks = Hanoks::find($id);
 
         $val_count = $req->reserve_adult + $req->reserve_child;

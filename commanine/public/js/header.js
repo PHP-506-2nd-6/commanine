@@ -153,7 +153,7 @@ $(document).ready(function () {
         // qtybtn 의 부모중 input 태그의 value 값을 저장합니다.
         if ($button.hasClass("inc")) {
             // inc 속성을 가지고 있는 경우
-            if (oldValue > 15) {
+            if (oldValue > 10) {
                 // 10일 경우 더이상 증가하지 않고 리턴
                 return;
             }
