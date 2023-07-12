@@ -62,12 +62,12 @@
                         <div class="dateCon">
                             <i class="fa-regular fa-calendar-check icon1"></i>
                             <label for="chk_in">체크인</label>
-                            <input type="text" name="chk_in" class="datepicker inpDate" value="{{$inpData['val_chkIn']}}" autocomplete="off" readonly>
+                            <input type="text" name="chk_in" id="chk_in" class="datepicker inpDate" value="{{$inpData['val_chkIn']}}" autocomplete="off" readonly>
                         </div>
                         <div class="dateCon">
                             <i class="fa-regular fa-calendar-check icon2"></i>
                             <label for="chk_out">체크아웃</label>
-                            <input type="text" name="chk_out" class="datepicker2 inpDate" value="{{$inpData['val_chkOut']}}" autocomplete="off" readonly>
+                            <input type="text" name="chk_out" id="chk_out" class="datepicker2 inpDate" value="{{$inpData['val_chkOut']}}" autocomplete="off" readonly>
                         </div>
                         <div class="countWrap searchWidth">
                             <i class="fa-solid fa-user icon3"></i>
@@ -95,7 +95,7 @@
                                 <button type="button" class="countChkBtn">확인</button>
                             </div>
                         </div>
-                        <button type="submit" class="searchBtn">검색</button>
+                        <button type="submit" class="searchBtn">적용</button>
                     </div>
                     <input type="hidden" name="room_id" class="room_id" disabled="true">
                     <input type="hidden" placeholder="성인" name="reserve_adult" id="adults" class="adultsHide" value="{{$inpData['val_adult']}}">
@@ -133,14 +133,16 @@
             <div class="content">
                 <div class="service">
                     <p class="serv">편의 시설 및 서비스</p>
-                    <div class="amenityInfo">
-                    @foreach($amenities as $val)
-                        <div class="amenityCon">
-                            <img src="{{asset($val->icon_img)}}" alt="{{$val->amenity_name}}" class="amenities">
-                            <br>
-                            <span>{{$val->amenity_name}}</span>
+                    <div class="amenityImgCon">
+                        <div class="amenityInfo">
+                        @foreach($amenities as $val)
+                            <div class="amenityCon">
+                                <img src="{{asset($val->icon_img)}}" alt="{{$val->amenity_name}}" class="amenities">
+                                <br>
+                                <span>{{$val->amenity_name}}</span>
+                            </div>
+                        @endforeach
                         </div>
-                    @endforeach
                     </div>
                     <p class="serv2">기본정보</p>
                     <div class="roomCom">

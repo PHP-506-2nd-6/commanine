@@ -383,7 +383,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .amenityInfo {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: left; */
+    /* justify-content: center; */
 }
 .amenityInfo,
 .roomCom {
@@ -395,7 +395,10 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 95px;
     /* padding: 10px; */
 }
-
+.amenityCon span{
+    font-size: 14px;
+    
+}
 .roomCom > div {
     margin-bottom: 8px;
 }
@@ -411,6 +414,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .amenities {
     width: 64px;
     height: 64px;
+    margin-bottom: 5px;
 }
 
 .serviceCon {
@@ -481,7 +485,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-top: 50px;
 }
 
-.amenityInfo,
+.amenityImgCon,
 .roomCom {
     border-bottom: 1px #d6d6d6 solid;
 }
@@ -510,9 +514,33 @@ input[type="number"]::-webkit-inner-spin-button {
     box-shadow:none !important;
 } */
 @media (max-width: 991px) {
+    .tabBox .tabBtn{
+        font-size: 16px;
+    }
     .con,
     .hanok {
         width: 100%;
+    }
+    .hanok_name{
+        font-size: 20px;
+    }
+    .hanokInfo{
+        padding: 10px;
+    }
+    .amenityInfo{
+        /* justify-content: center; */
+        /* justify-content: space-evenly; */
+        padding: 20px;
+    }
+    .amenityCon {
+        text-align: center;
+        width: 75px;
+        margin-bottom: 5px;
+        /* padding: 10px; */
+    }
+    .amenities {
+        width: 40px;
+        height: 40px;
     }
     .hanok,
     .room {
@@ -528,10 +556,53 @@ input[type="number"]::-webkit-inner-spin-button {
         flex: 1 0 auto;
         padding: 18px 2px;
     }
+    .detailCon{
+        padding: 10px;
+    }
+    .addr{
+        font-size: 12px;
+    }
+    .addrBox{
+        padding: 0;
+    }
+    .copy{
+        right: 0;
+        font-size: 12px;
+    }
+    .pin{
+        font-size: 12px;
+        padding: 0;
+    }
+    .stars-outer::before {
+        letter-spacing: 5px;
+        content: "\f005 \f005 \f005 \f005 \f005";
+        color: #e2e2e2;
+        font-size: 20px;
+    }
+    
+    .stars-inner::before {
+        content: "\f005 \f005 \f005 \f005 \f005";
+        font-size: 20px;
+        color: #f8ce0b;
+        letter-spacing: 5px;
+    }
+    .rateComment
+    ,.rate{
+        font-size: 18px;
+    }
     /* .roomBtn {
         border-bottom: 4px solid black;
     } */
     /* .line {
         width: 28.6%;
     } */
+}
+@media all and (max-width:479px) {
+    .amenityInfo{
+        width: 340px;
+        margin: auto;
+    }
+    .dateCon label{
+        display: none;
+    }
 }
