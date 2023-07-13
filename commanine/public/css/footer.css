@@ -125,3 +125,8 @@ footer .footer-bottom {
         width: 100%;
     }
 }
+@media screen and (max-width: 750px) {
+    footer p{
+        font-size: 5px;
+    }
+}

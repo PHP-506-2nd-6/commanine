@@ -15,7 +15,7 @@
 {{-- 슬라이드 프로모션 배너 --}}
 <main>
     <div class="bg"></div>
-    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" style="width: 80%; top:-300px; margin:0 auto;">
+    <div id="carouselExampleControlsNoTouching" class="carousel slide mainslide" data-bs-touch="false" style="width: 80%; top:-300px; margin:0 auto;">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{asset('/img/hanok2.jpg')}}" class="d-block w-100" alt="...">
@@ -52,7 +52,6 @@
                 <img src="/img/pension.png" alt="pension"></a>
             <p>펜션</p>
         </li>
-
         <li class="cate guesthouse">
             <a href="/research/pageget?hanokType=2">
                 <img src="/img/guesthouse.png" alt="guesthouse"></a>
@@ -64,6 +63,7 @@
                 <img src="/img/resort.png" alt="resort"></a>
             <p>리조트</p>
         </li>
+
     </ul>
 {{-- </div> --}}
 </section>
