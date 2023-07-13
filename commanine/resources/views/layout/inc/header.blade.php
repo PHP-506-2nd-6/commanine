@@ -56,6 +56,11 @@
             </div>
             <input id="modalToggle" class="hide" type="checkbox">
             <div class="modal_search">
+                <div class="mobile-modal">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        어디로 떠날까요?
+                    </button>
+                </div>
                 <label class="btn_search btn-open" for="modalToggle">어디로 떠날까요?</label>
                 <div class="inside" id="errorBox">
                     <label class="btn-close" for="modalToggle">X</label>
@@ -82,119 +87,68 @@
                                 <label for="chk_out">체크아웃</label>
                                 <input name="chkOut" type="text" class="datepicker2" placeholder="오는 날짜" autocomplete="off" readonly>
                             </div>
-                        <div class="headercountBox poAbsolute">
-                            <div class="header_adults">
-                                <label for="adults">성인</label>
-                                <div class="pro-qty row" style="margin: 0 2px">
-                                    <input type="number" name="adults" value="2" readonly="readonly">
+                            <div class="headercountBox poAbsolute">
+                                <div class="header_adults">
+                                    <label for="adults">성인</label>
+                                    <div class="pro-qty row" style="margin: 0 2px">
+                                        <input type="number" name="adults" value="2" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="header_kids">
+                                    <label for="kids">어린이</label>
+                                    <div class="pro-qty row" style="margin: 0 2px">
+                                        <input type="number" name="kids" value="0" readonly="readonly">
+                                    </div> 
                                 </div>
                             </div>
-                            <div class="header_kids">
-                                <label for="kids">어린이</label>
-                                <div class="pro-qty row" style="margin: 0 2px">
-                                    <input type="number" name="kids" value="0" readonly="readonly">
-                                </div> 
-                            </div>
-                        </div>
-
-
                             <button id="mainsearch" class="main_btn" type="submit">검색</button>
-                            
                         </div>
-                    </form>
-
-
-{{-- 모달검색 --}}
-                    {{-- <form class="modal" style="display:none;" method="get" action="{{route('research.page')}}" >
-                        <div class="search_form">
-                            <div class="search_form1">
-                                <label for="hanok_name">스테이/여행지</label>
-                                <input type="text" name="locOrHan" id="hanok_name"  placeholder="스테이/여행지" autocomplete="off">
-                            </div>
-                            <div class="search_form2">
-                                <label for="chk_in">체크인</label>
-                                <input name="chkIn" type="text" class="datepicker" placeholder="가는 날짜" autocomplete="off" readonly>
-                                <label for="chk_out">체크아웃</label>
-                                <input name="chkOut" type="text" class="datepicker2" placeholder="오는 날짜" autocomplete="off" readonly>
-                            </div>
-                        <div class="headercountBox poAbsolute">
-                            <div class="header_adults">
-                                <label for="adults">성인</label>
-                                <div class="pro-qty row" style="margin: 0 2px">
-                                    <input type="number" name="adults" value="2" readonly="readonly">
+                    </form>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- 모바일 모달 --}}
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div>
+                        <form method="get" action="{{route('research.page')}}" >
+                            <div class="search_form">
+                                <div class="search_form1">
+                                    <label for="hanok_name">스테이/여행지</label>
+                                    <input type="text" name="locOrHan" id="hanok_name"  placeholder="스테이/여행지" autocomplete="off">
                                 </div>
+                                <div class="search_form2">
+                                    <label for="chk_in">체크인</label>
+                                    <input name="chkIn" type="text" class="datepicker" placeholder="가는 날짜" autocomplete="off" readonly>
+                                    <label for="chk_out">체크아웃</label>
+                                    <input name="chkOut" type="text" class="datepicker2" placeholder="오는 날짜" autocomplete="off" readonly>
+                                </div>
+                                <div class="headercountBox poAbsolute">
+                                    <div class="header_adults">
+                                        <label for="adults">성인</label>
+                                        <div class="pro-qty row" style="margin: 0 2px">
+                                            <input type="number" name="adults" value="2" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="header_kids">
+                                        <label for="kids">어린이</label>
+                                        <div class="pro-qty row" style="margin: 0 2px">
+                                            <input type="number" name="kids" value="0" readonly="readonly">
+                                        </div> 
+                                    </div>
+                                </div>
+                                <button id="mainsearch" class="main_btn" type="submit">검색</button>
                             </div>
-                            <div class="header_kids">
-                                <label for="kids">어린이</label>
-                                <div class="pro-qty row" style="margin: 0 2px">
-                                    <input type="number" name="kids" value="0" readonly="readonly">
-                                </div> 
-                            </div>
-                        </div>
-
-
-                            <button id="mainsearch" class="main_btn" type="submit">검색</button>
-                            
-                        </div>
-                    </form> --}}
-                        </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        어디로 떠날까요?
-    </button>
-                    
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div>
-                <form class="modal" method="get" action="{{route('research.page')}}" >
-                        <div class="search_form">
-                            <div class="search_form1">
-                                <label for="hanok_name">스테이/여행지</label>
-                                <input type="text" name="locOrHan" id="hanok_name"  placeholder="스테이/여행지" autocomplete="off">
-                            </div>
-                            <div class="search_form2">
-                                <label for="chk_in">체크인</label>
-                                <input name="chkIn" type="text" class="datepicker" placeholder="가는 날짜" autocomplete="off" readonly>
-                                <label for="chk_out">체크아웃</label>
-                                <input name="chkOut" type="text" class="datepicker2" placeholder="오는 날짜" autocomplete="off" readonly>
-                            </div>
-                        <div class="headercountBox poAbsolute">
-                            <div class="header_adults">
-                                <label for="adults">성인</label>
-                                <div class="pro-qty row" style="margin: 0 2px">
-                                    <input type="number" name="adults" value="2" readonly="readonly">
-                                </div>
-                            </div>
-                            <div class="header_kids">
-                                <label for="kids">어린이</label>
-                                <div class="pro-qty row" style="margin: 0 2px">
-                                    <input type="number" name="kids" value="0" readonly="readonly">
-                                </div> 
-                            </div>
-                        </div>
-
-
-                            <button id="mainsearch" class="main_btn" type="submit">검색</button>
-                            
-                        </div>
-                    </form>
-            </div>
-            <div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-            </div>
         </div>
-        </div>
-    </div> --}}
-                    
-        </div>
-    </div>
 </header>
     
 <script src="{{asset('js/header.js')}}"></script>

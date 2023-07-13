@@ -88,7 +88,9 @@ img {
 .nav_right {
     float: right;
 }
-
+.mobile-modal{
+    display: none;
+}
 .hide {
     display: none;
 }
@@ -149,7 +151,19 @@ img {
     animation-duration: 2s;
     animation-fill-mode: forwards;
 }
+.btn-primary{
+    border: none;
+    height: 2em;
+    width: 12em;
+    box-shadow: 2px 3px 10px 3px #cfcfcf;
+    color: #cfcfcf;
+    font-weight: 700;
+    background: #f6f6f0;
+}
+.btn-primary:hover{
+    background: #333;
 
+}
 .modal_search .inside {
     opacity: 0;
     display: none;
@@ -371,9 +385,9 @@ a {
 
 /* 반응형 */
 @media screen and (max-width: 1067px) {
-    /* header {
-        height: 800px;
-    } */
+    .mobile-modal{
+        display: block;
+    }
     .slide-menu{
         width: 90%;
     }
@@ -397,6 +411,9 @@ a {
     } 
     .d-inline-flex {
         visibility: hidden;
+    }
+    nav{
+        height: 100px;
     }
     .logo img{
         width: 200px;

@@ -426,7 +426,17 @@ main {
     }
 }
 @media screen and (max-width: 732px) {
-
+    .gnb {
+        width: 65%;
+        margin: 0 auto;
+    }
+    .cate {
+        width: 150px;
+        height: 150px;
+    }
+    .cate img {
+        width: 100px;
+    }
     .bg {
         visibility: hidden;
     }
