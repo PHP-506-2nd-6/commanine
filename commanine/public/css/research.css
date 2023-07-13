@@ -419,8 +419,9 @@ input:focus label{
         width:100%;
     }
 
-    .searchSecondBox>div{
+    .searchSecondBox>div,.searchFirstBox>div{
         padding-top:0;
+        margin:10px 0;
     }
 
     .searchFirstBox,.searchSecondBox{
@@ -444,7 +445,7 @@ input:focus label{
         margin-top:10px;
     }
     .searchBtn{
-        margin-top:20px;
+        margin-top:40px;
     }
     .rangeslider{
         z-index:4;
@@ -453,7 +454,7 @@ input:focus label{
     /* .input-local{
         z-index:10;
     } */
-/* start input-range */
+
 
     input[type='range'] {
         width: 100%;
@@ -523,16 +524,99 @@ input:focus label{
     .countBox.active{
         position: absolute;
         top: 100%; 
-        right:6%;
+        right:4%;
         border: 1px solid #000;
         border-radius: 10px;
         background-color: #fff;
-        width: 200px;
+        width: 60%;
         height: 150px;
         display:grid;
         opacity: 1;
         z-index:5;
         grid-template-rows: repeat(3,1fr);
         transition:all 0.3s;
+    }
+    
+}
+
+ @media all and (min-width:768px) and (max-width:1023px) { 
+    /* 상세검색 */
+    .tabFlex{
+    display:flex;
+    flex-direction: column;
+    }
+    .searchFirstBox>div>input, .selectBox>select, .countPeople>.countInput, .rangeslider{
+        width:90%;
+    }
+    .countBox.active {
+        position: absolute;
+        /* top: 100%; */
+        right: 10%;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #fff;
+        width: 90%;
+        height: 150px;
+        display: grid;
+        opacity: 1;
+        z-index: 5;
+        grid-template-rows: repeat(3,1fr);
+        transition: all 0.3s;
+    }
+    .countPeople>label{
+        text-align: left;
+    }
+    .rangeslider{
+        margin-left:0;
+    }
+
+
+    /* 검색결과 */
+    .searchUl{
+        width:100%;
+        padding: 10px 20px;
+        margin-top:20px;
+        min-height:300px;
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows:1fr;
+        /* justify-items: center; */
+        place-items: center; 
+    }    
+    .searchList{
+        width:100%;
+        padding: 20px 10px;
+        min-height:280px;
+    }
+    .searchList > a{
+        display:grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: auto;
+    }
+    .explainHanok{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin:10px;
+    }
+    .imgBox{
+        text-align: center;
+    }
+    /* img{
+        width:270px;
+    } */
+    .nameHanok{
+        text-align: left;
+        padding-left:20px;
+    }
+    .reviewHanok,.priceHanok{
+        padding-right:20px;
+    }
+    .nameHanok,.priceHanok{
+        font-size: 0.9em;
+    }
+    .priceHanok{
+        grid-column: 2/3;
+        grid-row:2;
     }
 }

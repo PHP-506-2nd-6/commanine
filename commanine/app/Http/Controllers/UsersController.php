@@ -191,7 +191,7 @@ class UsersController extends Controller
                 // 에러 메세지 출력하면서 redirect->back();
                 return redirect()->back()->with('error',$error);
             }else{
-                // 일치할 경우에는 임시비밀번호로 변경하면서 임시비밀번호변경알림페이지로 이동
+                // 일치할 경우에는 아이디찾기 알림페이지로이동
                 $findId=$user->email;
                 return redirect()->route('users.alert.findId')->with('findId',$findId);
             }
