@@ -513,6 +513,30 @@ input[type="number"]::-webkit-inner-spin-button {
     border:none !important;
     box-shadow:none !important;
 } */
+.filterBtn{
+    width: 100%;
+    text-align: left;
+    display: none;
+}
+.filter_form_s{
+    border: 1px solid #000;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+.filter_form_s div{
+    padding: 8px 0 8px 15px;
+    width: 50%;
+    font-size: 14px;
+    font-weight: 900;
+    /* text-align: center; */
+}
+.filter_form_s span{
+    margin-left: 5px;
+}
+.filter_form_s div:nth-child(1) {
+    border-right: 1px solid #000;
+}
 @media (max-width: 991px) {
     .tabBox .tabBtn{
         font-size: 16px;
@@ -560,17 +584,17 @@ input[type="number"]::-webkit-inner-spin-button {
         padding: 10px;
     }
     .addr{
-        font-size: 12px;
+        font-size: 14px;
     }
     .addrBox{
         padding: 0;
     }
     .copy{
         right: 0;
-        font-size: 12px;
+        font-size: 14px;
     }
     .pin{
-        font-size: 12px;
+        font-size: 14px;
         padding: 0;
     }
     .stars-outer::before {
@@ -597,6 +621,14 @@ input[type="number"]::-webkit-inner-spin-button {
         width: 28.6%;
     } */
 }
+@media (max-width: 666px){
+    .filter_form{
+        display: none;
+    }.filterBtn{
+        display: block;
+        margin-bottom: 20px;
+    }
+}
 @media all and (max-width:479px) {
     .amenityInfo{
         width: 340px;
@@ -604,5 +636,9 @@ input[type="number"]::-webkit-inner-spin-button {
     }
     .dateCon label{
         display: none;
+    }
+    .addr
+    ,.copy{
+        font-size: 12px;
     }
 }

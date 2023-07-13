@@ -97,6 +97,21 @@
                         </div>
                         <button type="submit" class="searchBtn">적용</button>
                     </div>
+                    {{-- 필터 모달 버튼 --}}
+                    <button type="button" class="filterBtn"data-bs-toggle="modal" data-bs-target="#filterModal">
+                        <div class="filter_form_s">
+                            <div>
+                                <i class="fa-regular fa-calendar-check icon-s"></i>
+                                <span>07-13 ~ 07-14</span>
+                            </div>
+                            
+                            <div>
+                                <i class="fa-solid fa-user icon-s"></i>
+                                <span>성인 : 2 / 어린이: 0</span>
+                            </div>
+                        </div>
+                    </button>
+                    {{-- 필터 모달 버튼 --}}
                     <input type="hidden" name="room_id" class="room_id" disabled="true">
                     <input type="hidden" placeholder="성인" name="reserve_adult" id="adults" class="adultsHide" value="{{$inpData['val_adult']}}">
                     <input type="hidden" placeholder="아동" name="reserve_child" id="kids" class="kidsHide" value="{{$inpData['val_child']}}">
@@ -249,6 +264,46 @@
                 </div>
             </div>
         @endforeach
+        {{-- 필터 모달 --}}
+        <div class="modal" id="filterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="dateCon">
+                        <i class="fa-regular fa-calendar-check icon1"></i>
+                        <label for="chk_in">체크인</label>
+                        <input type="text" name="chk_in" id="chk_in" class="datepicker inpDate" value="{{$inpData['val_chkIn']}}" autocomplete="off" readonly>
+                    </div>
+                    <div class="dateCon">
+                        <i class="fa-regular fa-calendar-check icon2"></i>
+                        <label for="chk_out">체크아웃</label>
+                        <input type="text" name="chk_out" id="chk_out" class="datepicker2 inpDate" value="{{$inpData['val_chkOut']}}" autocomplete="off" readonly>
+                    </div>
+                    <label for="adults">성인</label>
+                        <div >
+                            <button class="minBtn" type="button">-</button>
+                            <input type="number" value="{{$inpData['val_adult']}}" class="adultsVal" id="adults" min="1" max="16">
+                            <button class="plusBtn" type="button">+</button>
+                        </div>
+                    <div class="kidsBox">
+                        <label for="kids">어린이</label>
+                        <div>
+                            <button class="minBtn" type="button">-</button>
+                            <input type="number" value="{{$inpData['val_child']}}" class="kidsVal" id="kids" min="0" max="16">
+                            <button class="plusBtn" type="button">+</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="searchBtn">적용</button>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        {{-- 필터 모달 --}}
     </div>
 
     <input type="hidden" name="longitude" id="longitude" value="{{$hanok->longitude}}" disabled>
