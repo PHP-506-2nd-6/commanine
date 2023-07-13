@@ -17,21 +17,21 @@
     <div class="searchBox">
         <form action="{{route('research.page.get')}}" method="get" class="formBox">
             <div class="searchFirstBox" style="padding-bottom : 10px;">
-                <div class="searchWidth">
+                <div class="searchWidth tabFlex">
                     <label for="locOrHan">지역명 / 숙소명</label>
                     <input type="text" id="locOrHan" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth " value="{{isset($arr['local']) ? $arr['local'] : ""}}">
                 </div>
-                <div class="dayBox searchWidth">
+                <div class="dayBox searchWidth tabFlex">
                     <label for="chkIn">체크인</label>
                     <input type="text" id="chkIn" class="datepicker searchDate " autocomplete="off" readonly name="chkIn" value="{{isset($arr['chkIn']) ? $arr['chkIn'] : ""}}">
                 </div>
-                <div class="dayBox searchWidth ">
+                <div class="dayBox searchWidth tabFlex">
                     <label for="chkOut">체크아웃</label>
                     <input type="text" id="chkOut" class="datepicker2 searchDate " autocomplete="off" readonly name="chkOut" value="{{isset($arr['chkOut']) ? $arr['chkOut'] : ""}}">
                 </div>
             </div>
             <div class="searchSecondBox" >
-                    <div class="searchWidth selectBox">
+                    <div class="searchWidth selectBox tabFlex">
                         <span>숙소 유형</span>
                         @if(!isset($arr['hanoktype']))
                         <select name="hanokType" size="1" class="selectList">
@@ -77,7 +77,7 @@
 
                     </div>
                     <div class="countWrap searchWidth">
-                        <div class="countPeople">
+                        <div class="countPeople tabFlex">
                             <label for="countP">인원</label>
                             <input type="text" class="countInput" autocomplete="off" readonly id="countP" value="성인 : {{isset($arr['adults']) ? $arr['adults'] : "0" }} / 어린이 : {{isset($arr['kids']) ? $arr['kids'] : "0" }}"/>
                         </div>
@@ -103,8 +103,8 @@
                     </div>
 
                     {{-- range --}}
-                    <div class="text-box searchWidth">
-                        <p class="centered-text">가격</p>
+                    <div class="text-box searchWidth tabFlex">
+                        <div >가격</div>
                         <div class="rangeslider">
                             <input class="min" name="minPrice" type="range" min="0" max="1000000" value="{{isset($arr['minPrice']) ? $arr['minPrice'] : "0"}}" step="10000" />
                             <input class="max" name="maxPrice" type="range" min="0" max="1000000" value="{{isset($arr['maxPrice']) ? $arr['maxPrice'] : "1000000" }}" step="10000" />
