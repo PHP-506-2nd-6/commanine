@@ -9,15 +9,19 @@
     visibility: hidden;
 } 
 
- .box{
-     position:relative;
-     width:100%;
+.container.box{
+    margin: 15px auto 0;
+    /* height:100%; */
+}
+.box {
+    position:relative;
+    width:100%;
      /* height:800px; */
-     height:50%;
-     text-align: center;
-     border-left:1px solid #e2e2e2;
-     border-right:1px solid #e2e2e2;
-    }
+    height:50%;
+    text-align: center;
+    border-left:1px solid #e2e2e2;
+    border-right:1px solid #e2e2e2;
+}
     
 .loginBox{
     position:absolute;
@@ -75,4 +79,49 @@ form>input{
     background-color:#fff;
     color:#000;
     transition: all 0.4s;
+}
+.findbox{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.findId{
+    text-align: left;
+    padding-left:20px;
+    padding-top:5px;
+}
+.findPw{
+    text-align:right;
+    padding-right:20px;
+    padding-top:5px;
+}
+@media all and (min-width:768px) and (max-width:1023px) { 
+    .box{
+        border:none;
+    }
+
+    .loginBox{
+        width:80%;
+        /* border:none; */
+        /* border-top:1px solid #000;
+        border-bottom:1px solid #000; */
+    }
+}
+
+
+
+@media all and (max-width:767px) { 
+    .container.box{
+        width:100%;
+        margin:15px auto 0;
+        
+    }
+    .loginBox{
+        width:100%;
+        border:none;
+        /* border-top:1px solid #000;
+        border-bottom:1px solid #000; */
+    }
+    .box{
+        border:none;
+    }
 }

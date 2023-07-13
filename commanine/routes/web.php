@@ -29,15 +29,15 @@ Route::get('/users/regist',[UsersController::class,'regist'])->name('users.regis
 Route::post('/users/registpost',[UsersController::class,'registpost'])->name('users.regist.post');
 
 // // 비밀번호 찾기
-// Route::get('/users/findPw',[UsersController::class,'findPw'])->name('users.findPw');
-// Route::post('/users/findPwpost',[UsersController::class,'findPwpost'])->name('users.findPw.post');
+Route::get('/users/findPw',[UsersController::class,'findPw'])->name('users.findPw');
+Route::post('/users/findPwpost',[UsersController::class,'findPwpost'])->name('users.findPw.post');
 // // 아이디 찾기 
-// Route::get('/users/findId',[UsersController::class,'findId'])->name('users.findId');
-// Route::post('/users/findIdpost',[UsersController::class,'findIdpost'])->name('users.findId.post');
+Route::get('/users/findId',[UsersController::class,'findId'])->name('users.findId');
+Route::post('/users/findIdpost',[UsersController::class,'findIdpost'])->name('users.findId.post');
 // 임시비밀번호발송페이지 
 // Route::get('/users/alertFindPw',[UsersController::class,'alertFindPw'])->name('users.alert.findPw'); // 0614 del KMH
 // 아이디찾기알림페이지
-// Route::get('/users/alertFindId',[UsersController::class,'alertFindId'])->name('users.alert.findId'); // 0614 del KMH
+Route::get('/users/alertFindId',[UsersController::class,'alertFindId'])->name('users.alert.findId'); // 0614 del KMH
 //0613 KMH new end***********************************************
 // 0616 KMH add
 Route::get('/research/page',[ResearchController::class,'researchPage'])->name('research.page');
