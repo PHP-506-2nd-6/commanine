@@ -450,7 +450,9 @@ input:focus label{
         z-index:4;
     }
 
-    
+    /* .input-local{
+        z-index:10;
+    } */
 /* start input-range */
 
     input[type='range'] {
