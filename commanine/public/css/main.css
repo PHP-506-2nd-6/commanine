@@ -147,14 +147,14 @@ main {
 
 .myCarousel .slides-wrapper .slides.photo .image {
     /* position: relative; */
-    width: 100%;
+    width: 90%;
     /* height: 100%; */
     background-size: cover;
     background-position: center;
 }
 
 .myCarousel .slides-wrapper .slides.photo .image img {
-    width: 100%;
+    width: 95%;
 }
 
 .myCarousel .slides-wrapper .slides.title {
@@ -427,15 +427,14 @@ main {
 }
 @media screen and (max-width: 732px) {
     .gnb {
-        width: 65%;
-        margin: 0 auto;
+        width: 95%;
     }
     .cate {
-        width: 150px;
-        height: 150px;
+        width: 130px;
+        height: 130px;
     }
     .cate img {
-        width: 100px;
+        width: 70px;
     }
     .bg {
         visibility: hidden;
@@ -447,7 +446,7 @@ main {
         width: 100%!important;
     }
     .myCarousel .slides-wrapper .slides.photo {
-        width: 100%;
+        width: 95%;
         left: 5%;
     }
     .myCarousel .slides-wrapper .slides.content .bodytext .comment {
@@ -456,6 +455,9 @@ main {
     }
     .nav-border {
         top: -200px;
+    }
+    .card {
+        width: 100%;
     }
 }
 

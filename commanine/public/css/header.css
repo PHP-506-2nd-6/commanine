@@ -27,7 +27,7 @@ header {
     font-weight: bold;
 }
 nav {
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
     display: flex;
 }
@@ -52,8 +52,8 @@ nav {
 img {
     width: 250px;
 }
-.d-inline {
-    width: 20%;
+.d-menu2 {
+    width: 25%;
     /* padding-right: 50px; */
 }
 .d-inline-flex li {
@@ -81,7 +81,6 @@ img {
 .nav-a2,
 .nav-a3 {
     padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
     margin-right: 1rem;
 }
 
@@ -334,7 +333,7 @@ a {
 
 .bar-btn span {
     width: 25px;
-    height: 3px;
+    height: 2px;
     background-color: #444;
     display: block;
     transition: 0.4s;
@@ -356,7 +355,9 @@ a {
 .on .bar3 {
     transform: rotate(-40deg) translateY(-10px);
 }
-
+.hiuser{
+    padding: 10px 0;
+}
 .mobile-bar .bar-slide {
     display: none;
     top: 0;
@@ -364,12 +365,20 @@ a {
     width: 100%;
     height: 100%;
     transition: 0.4s;
-    background-color: #ffffff;
+    background-color: rgba(251, 247, 247, 0.9);
     z-index: 99999999;
+    position: absolute;
+    text-align: center;
 }
 
 .slide-menu li {
     float: right;
+}
+.slide-menu {
+    /* background-color: #333; */
+    width: 80px;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .nav-a2::before,
@@ -377,14 +386,40 @@ a {
 .nav-a4::before {
     content: "";
 }
-.bar-slide {
-    position: absolute;
-    top: 50%;
+
+/* 모바일 모달 */
+.mo-search {
+    padding: 5px;
+    width: 200px;
+    margin: 0 auto;
     text-align: center;
 }
-
 /* 반응형 */
+@media screen and (max-width: 1469px) {
+    .hidden-button li{
+        margin-right: 5px;
+    }
+    .hidden-button a{
+        font-size: 13px;
+    }
+    .d-inline-flex {
+        font-size: 13px;
+    }
+    .d-inline-flex a {
+        font-size: 13px;
+    }
+    .nav-a1, .nav-a2, .nav-a3{
+        margin-right: 0;
+    }
+}
 @media screen and (max-width: 1067px) {
+    nav {
+        /* width: 50%; */
+        margin: 0 auto;
+    }
+   .menu,.menu2 {
+    width: 0;
+   }
     .mobile-modal{
         display: block;
     }
@@ -415,8 +450,11 @@ a {
     nav{
         height: 100px;
     }
+    .menu{
+        width: 25%;
+    }
     .logo img{
-        width: 200px;
+        width: 100%;
     }
     .bg {
         color: #ffffff;
@@ -428,4 +466,15 @@ a {
         width: 100%;
     }
 }
+@media screen and (max-width: 415px) {
+    /* nav {
+        width: 50%;
+        margin: 0 auto;
+    }
+   .menu,.menu2 {
+    width: 0;
+   } */
+   
+}
+
 

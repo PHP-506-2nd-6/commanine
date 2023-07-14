@@ -501,6 +501,45 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-top: 1em;
 }
 
+.modalForm{
+    width: 90%;
+    padding: 100px 10px;
+    margin:auto;
+    text-align: center;
+}
+.modalForm .datepicker
+,.modalForm .datepicker2 {
+    width: 150px;
+    text-align: center;
+}
+#modalDate{
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+#modalDate:nth-child(1) {
+    margin-bottom: 10px;
+
+}
+.modalFilterBtn{
+    margin-top: 50px;
+    width: 200px;
+    padding: 5px;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 900;
+}
+#modalCount {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+#modalFilterBtnCon{
+    display: block;
+}
 /* .accordion-button {
     color: #8f8e8e !important;
 }
@@ -603,7 +642,9 @@ input[type="number"]::-webkit-inner-spin-button {
         color: #e2e2e2;
         font-size: 20px;
     }
-    
+    .modal-body{
+        padding: 50px;
+    }
     .stars-inner::before {
         content: "\f005 \f005 \f005 \f005 \f005";
         font-size: 20px;
@@ -640,5 +681,12 @@ input[type="number"]::-webkit-inner-spin-button {
     .addr
     ,.copy{
         font-size: 12px;
+    }
+    .msg{
+        font-size: 18px;
+    }
+    #modalDate
+    ,#modalCount{
+        width: 250px;
     }
 }

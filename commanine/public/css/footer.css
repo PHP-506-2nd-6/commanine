@@ -126,7 +126,19 @@ footer .footer-bottom {
     }
 }
 @media screen and (max-width: 750px) {
-    footer p{
-        font-size: 5px;
+    .footer-bottom .bottom-right{
+        display: none;
+    }
+    .footer-bottom .bottom-left{
+        border-right: 0;
+    }
+    .footer-top a{
+        font-size: 10px;
+    }
+    .bottom-left h5{
+        font-size: 18px;
+    }
+    .footer-con p {
+        font-size: 13px;
     }
 }
