@@ -12,9 +12,13 @@
                 <div class="review">
                     @include('layout.errors_validate')
                     <h4>{{$review->hanok_name}}</h4>
-                    <i class="fa-solid fa-star star"></i>
-                    <span>{{$review->rate}}</span>
-                    <span class="rev_date">{{substr($review->created_at, 0, 10)}}</span>
+                    <div class="flexReviewEdit">
+                        <div>
+                            <i class="fa-solid fa-star star"></i>
+                            <span>{{$review->rate}}</span>
+                        </div>
+                        <span class="rev_date">{{substr($review->created_at, 0, 10)}}</span>
+                    </div>
                     <div class="alertSuc">{!! session()->has('success') ? session('success') : "" !!}</div>
                     <form action="{{route('users.review.edit.post', ['rev_id' => $review->rev_id])}}" method="post">
                         @csrf

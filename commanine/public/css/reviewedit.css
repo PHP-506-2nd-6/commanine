@@ -23,15 +23,18 @@ h2 {
     margin-left: 150px;
 }
 .review {
-    width: 700px;
+    width: 100%;
     border-radius: 10px;
     padding: 0 30px;
 }
-
-.rev_date {
+.flexReviewEdit{
+    display: flex;
+    justify-content: space-between;
+}
+/* .rev_date {
     position: relative;
     left: 510px;
-}
+} */
 
 .btnCon {
     margin-top: 30px;
@@ -77,3 +80,40 @@ h2 {
     resize: none;
     padding: 30px;
 }
+@media screen and (max-width: 768px) {
+    .wrapGrid{
+        width: 90vw;
+        }
+    .wrap {
+        min-width: 375px;
+    }
+    .reviewBox {
+        margin: 0 auto;
+        width: 90vw;
+    }
+    .review{
+        padding: 10px;
+    }
+    h2 {
+        padding: 1em 0 0.5em 0;
+    }
+    .btnCon{
+        margin-top: 10px;
+    }
+    .updateBtn{
+        margin-right: 30px;
+    }
+    #rev_content{
+        padding: 15px;
+    }
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .wrapGrid{
+        width: 90vw;
+        }
+    .reviewBox {
+        margin-left: 8vw;
+        width: 55vw;
+    }
+    
+} 

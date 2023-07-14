@@ -24,3 +24,35 @@
 .list>a:hover{
     color:#000 ;
 }
+@media screen and (max-width: 768px) {
+    /* 사이드바 css 적용 시작 */
+    .wrapGrid{
+        display: grid;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr;
+        margin: 0 auto;
+        width: 100vw;
+    }
+    .listWrap > ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        width: 80vw;
+        padding: 0;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    .list {
+        margin: 0;
+    }
+    .listWrap {
+    width: 100vw;
+    }
+    .listWrap{
+        line-height: 40px;
+        border-right: none;
+        border-bottom: 1px solid #e2e2e2;
+    }
+    /* 사이드바 css 적용 끝 */
+}
