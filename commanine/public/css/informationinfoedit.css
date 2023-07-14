@@ -94,7 +94,7 @@ input:focus{
     .wrapGrid{
         display: grid;
         grid-template-columns: 1fr !important;
-        grid-template-rows: 1fr 9fr;
+        grid-template-rows: 1fr;
         margin: 0 auto;
         width: 100vw;
     }
@@ -130,10 +130,24 @@ input:focus{
         width: 90vw;
     }
     .btnGroup>button {
-        width: 27vw;
+        width: 26vw;
     }
     h2 {
         padding: 1vh 0;
     }
     
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .updateBox{
+        /* margin: 0; */
+        margin-left: 12vw;
+
+    }
+    .wrap{
+        width: 95vw;
+    }
+    .list {
+        width: 10vw;
+    }
 }

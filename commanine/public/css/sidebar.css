@@ -24,6 +24,7 @@
 .list>a:hover{
     color:#000 ;
 }
+
 @media screen and (max-width: 768px) {
     /* 사이드바 css 적용 시작 */
     .wrapGrid{
@@ -49,10 +50,11 @@
     .listWrap {
     width: 100vw;
     }
+    .updateBox {
+        width: 100vw;
+    }
     .listWrap{
-        line-height: 40px;
         border-right: none;
         border-bottom: 1px solid #e2e2e2;
     }
-    /* 사이드바 css 적용 끝 */
 }
