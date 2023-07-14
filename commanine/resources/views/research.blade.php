@@ -18,7 +18,7 @@
         <form action="{{route('research.page.get')}}" method="get" class="formBox">
             <div class="searchFirstBox" style="padding-bottom : 10px;">
                 <div class="searchWidth tabFlex">
-                    <label for="locOrHan">지역명 / 숙소명</label>
+                    <label for="locOrHan">지역/숙소명</label>
                     <input type="text" id="locOrHan" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth " value="{{isset($arr['local']) ? $arr['local'] : ""}}">
                 </div>
                 <div class="dayBox searchWidth tabFlex">
@@ -140,14 +140,14 @@
                     <div class="explainHanok">
                         <div class="nameHanok">
                         {{-- 숙소명 --}}
-                            {{$value->hanok_name}}
-                        </div>
-                        <div class="reviewHanok">
-                            <span><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span>
+                            <div class="hanokName">{{$value->hanok_name}}</div>
+                        {{-- </div>
+                        <div class="reviewHanok"> --}}
+                            {{-- <span><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span> --}}
                         {{-- 별점 평균 --}}
-                            <span>{{isset($value->rate) ? substr($value->rate,0,3) : "0"}}</span>
+                            <div class="reviewBox"><img src="{{asset('img/icon/star.png')}}" alt="star" class="star">{{isset($value->rate) ? substr($value->rate,0,3) : "0"}} ({{$value->cnt}})</div>
                         {{-- 리뷰 개수 --}}
-                            <span>({{$value->cnt}})</span>
+                            {{-- <span>({{$value->cnt}})</span> --}}
                         </div>
                         <div class="priceHanok">
                         {{-- 숙소 가격 --}}

@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservations;
 use App\Models\User;
 use App\Models\Users;
+use App\Models\Wishlists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,9 @@ class UsersInfoController extends Controller
         if(auth()->guest()) {
             return redirect()->route('users.login');
         }
-        $users = Reservations::find(Auth::User()->user_id);
+        // $users = Reservations::find(Auth::User()->user_id);
+        // $users = Users::find(Auth::User()->user_id);
+        // $likes = Wishlists::find($users);
         return view('informationdibs')->with('data', $users);
 
     }
