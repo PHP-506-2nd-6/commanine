@@ -92,7 +92,19 @@ form{
 }
 
 @media all and (min-width:768px) and (max-width:1023px) {
-
+    .wrap {
+        width: 90vw;
+        margin: 20px auto;
+    }
+    .list {
+        width: 10vw;
+    }
+    ul {
+        padding-left: 0;
+    }
+    .certBox{
+        margin-top: 0;
+    }
 
     
 }
@@ -101,15 +113,55 @@ form{
 
 
 @media all and (max-width:767px) {
-    .certBox{
-        width:100%;
-        border:none;
-        height:100%;
+    .main_container {
+        width: 95vw;
     }
-
-    .blackBtn,.whiteBtn{
-        width:100%;
-        margin: 10px 0;
+    .pay_font_size2 {
+        padding-left: 0;
+        justify-self: end;
     }
+    .pay_font_size3 {
+        padding-left: 0;
+    }
+    .pay_container{
+        width: 80vw;
+    }
+    .grid_container1{
+        width: 80vw;
+    }
+    .listWrap > ul {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: 88vw;
+        font-size: 1rem;
+    
+    }
+    .certBox {
+        width: 90vw;
+        height: 53vh;
+        border: none;
+        padding-top: 3vh;
+        margin: 0;
+    }
+    .pwInput {
+        margin: 0 auto;
+    }
+    p {
+        width: 85vw;
+        margin: 0 auto;
+    }
+    form {
+        grid-template-rows: 0.3fr 1fr;
+    }
+    .btnGroup > button {
+        height: 40px;
+    }
+    h2 {
+        padding: 0;
+    }
+    .wrapGrid {
+        width: 90vw;
+    }
+    
+    /* 모바일, 테블릿 좌우 스크롤 해결 안됨 */
 
 }
