@@ -54,6 +54,7 @@
         width: 100vw;
     }
     .listWrap{
+        line-height: 40px;
         border-right: none;
         border-bottom: 1px solid #e2e2e2;
     }
