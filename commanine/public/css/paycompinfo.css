@@ -157,3 +157,21 @@
     transition: all 0.4s;
 }
  
+@media screen and (max-width: 768px) {
+    .main_container {
+        width: 95vw;
+    }
+    .pay_font_size2 {
+        padding-left: 0;
+        justify-self: end;
+    }
+    .pay_font_size3 {
+        padding-left: 0;
+    }
+    .pay_container{
+        width: 80vw;
+    }
+    .grid_container1{
+        width: 80vw;
+    }
+}

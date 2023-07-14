@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+.payCon {
+    min-height: 115vh;
+}
 body {
     background-color: #f7f7f7;
 }
@@ -246,63 +249,96 @@ label {
 }
 
 @media screen and (max-width: 768px) {
+    .product_sum_flex1 {
+        display: flex;
+        height: 3vh;
+        margin: 0;
+        /* padding-top: 1.5vh; */
+        justify-content: space-between;
+    }
+    .product_sum_flex2 {
+        display: flex;
+        height: 3vh;
+        margin: 0;
+        /* padding-top: 1.5vh; */
+        justify-content: space-between;
+    }
+    .payContainer{
+        text-align: center;
+    }
+    .payCon {
+        min-height: 115vh;
+    }
+    .reservetitle {
+        font-size: 1.3rem;
+        /* display: flex; */
+        /* height: 3vh;
+        margin: 0;
+        justify-content: space-between; */
+    }
     .paymentInfo{
-        padding: 1% 20% 1% 20%;
-        height: 20vh;
-        font-size: 16px;
+        padding: 5% 15px 1% 15px;
+        min-height: 30vh;
+        font-size: 15px;
     }
     .items {
-        width: 14vw;
+        width: 30vw;
         height: auto;
     }
     .reserveInfo{
-        padding: 1% 20% 1% 20%;
+        padding: 2% 15px 1% 15px;
+        height: 59%;
     }
-    .span_padding_1 {
-        padding-left: 25vw;
+    /* .span_padding_1 {
+        padding-left: 28vw;
     }
     .span_padding_2 {
         padding-left: 22.2vw;
         font-weight: bolder;
-    }
+    } */
     .paymentInfo {
         padding: 5% 20% 1% 20%;
-        height: 23vh;
     }
-    .pay_padding_select {
+    /* .pay_padding_select {
         padding-left: 21vw;
         padding-right: 0;
-    }
-    .reserveInfo {
-        height: 59%;
-    }
+    } */
     .btn1 {
-        width: 10vw;
+        width: 18vw;
+    }
+    .btn2 {
+        width: 15vw;
     }
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .payCon {
+        min-height: 150vh;
+    }
     .paymentInfo {
-        height: 30vh;
+        height: auto;
         font-size: 16px;
+        padding: 6% 10% 1% 10%;
+        font-size: 18px ;
 
     }
     .items {
-        width: 10vw;
+        width: 15vw;
     }
     
     .span_padding_1 {
-        padding-left: 10.7vw;
+        padding-left: 45vw;
     }
     .span_padding_2 {
-        padding-left: 8.5vw;
+        padding-left: 42.5vw;
     }
     .pay_padding_select {
-        padding-left: 9vw;
+        padding-left: 40vw;
     }
     .reserveInfo {
-        height: 103vh;
+        min-height: 103vh;
+        padding: 2% 10% 1% 10%;
     }
     .reservetitle {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 }
