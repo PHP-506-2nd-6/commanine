@@ -57,7 +57,7 @@
         </div>
         <div class="conBox">
             <div class="content roomCon">
-                <form id="frm" method="get" action="">
+                <form id="frm" method="get" action="{{route('hanoks.detail',$hanok->id)}}">
                     <div class="filter_form">
                         <div class="dateCon">
                             <i class="fa-regular fa-calendar-check icon1"></i>
@@ -102,12 +102,12 @@
                         <div class="filter_form_s">
                             <div>
                                 <i class="fa-regular fa-calendar-check icon-s"></i>
-                                <span>07-13 ~ 07-14</span>
+                                <span>{{substr($inpData['val_chkIn'], 5)}} ~ {{substr($inpData['val_chkOut'], 5)}}</span>
                             </div>
                             
                             <div>
                                 <i class="fa-solid fa-user icon-s"></i>
-                                <span>성인 : 2 / 어린이: 0</span>
+                                <span>성인 : {{$inpData['val_adult']}} / 어린이: {{$inpData['val_child']}}</span>
                             </div>
                         </div>
                     </button>
@@ -134,7 +134,7 @@
                         </div>
                 </form>
                 @empty
-                <div class="msg">선택하신 날짜에 예약 가능한 객실이 없습니다. 날짜를 다시 선택해주세요</div>
+                <div class="msg">선택하신 날짜에 예약 가능한 객실이 없습니다.<br>날짜를 다시 선택해주세요</div>
                 @endforelse
             </div>
             <div class="content">
@@ -189,7 +189,7 @@
                 </div>
                 @forelse($reviews as $item)
                     <div class="review">
-                        <h5>{!! nl2br($item->rev_content) !!}</h5>
+                        <p>{!! nl2br($item->rev_content) !!}</p>
                         <i class="fa-solid fa-star revStar"></i>
                         <span>{{$item->rate}}</span>
                         <span>{{(substr($item->created_at, 0, 10))}}</span>
@@ -268,41 +268,47 @@
         <div class="modal" id="filterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="dateCon">
-                        <i class="fa-regular fa-calendar-check icon1"></i>
-                        <label for="chk_in">체크인</label>
-                        <input type="text" name="chk_in" id="chk_in" class="datepicker inpDate" value="{{$inpData['val_chkIn']}}" autocomplete="off" readonly>
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">날짜 / 인원 선택</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="dateCon">
-                        <i class="fa-regular fa-calendar-check icon2"></i>
-                        <label for="chk_out">체크아웃</label>
-                        <input type="text" name="chk_out" id="chk_out" class="datepicker2 inpDate" value="{{$inpData['val_chkOut']}}" autocomplete="off" readonly>
-                    </div>
-                    <label for="adults">성인</label>
-                        <div >
-                            <button class="minBtn" type="button">-</button>
-                            <input type="number" value="{{$inpData['val_adult']}}" class="adultsVal" id="adults" min="1" max="16">
-                            <button class="plusBtn" type="button">+</button>
+                    <div class="modal-body">
+                        <div class="modalForm">
+                            <form method="get" action="{{route('hanoks.detail',$hanok->id)}}" >
+                                <div class="search_form">
+                                    <div class="search_form2">
+                                        <div id="modalDate">
+                                            <label for="chk_in">체크인</label>
+                                            <input name="chk_in" type="text" class="datepicker" placeholder="가는 날짜" value="{{$inpData['val_chkIn']}}" autocomplete="off" readonly>
+                                        </div>
+                                        <div id="modalDate">
+                                            <label for="chk_out">체크아웃</label>
+                                            <input name="chk_out" type="text" class="datepicker2" placeholder="오는 날짜" value="{{$inpData['val_chkOut']}}" autocomplete="off" readonly>
+                                        </div>
+                                    </div>
+                                        <div>
+                                            <div id="modalCount">
+                                                <label for="adults">성인</label>
+                                                <div class="pro-qty row">
+                                                    <input type="number" name="reserve_adult" value="{{$inpData['val_adult']}}" readonly="readonly">
+                                                </div>
+                                            </div>
+                                            <div id="modalCount">
+                                                <label for="kids">어린이</label>
+                                                <div class="pro-qty row">
+                                                    <input type="number" name="reserve_child" value="{{$inpData['val_child']}}" readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div id="modalFilterBtnCon"><button id="mainsearch" class="modalFilterBtn" type="submit">적 용</button></div>
+                                </div>
+                            </form>
                         </div>
-                    <div class="kidsBox">
-                        <label for="kids">어린이</label>
-                        <div>
-                            <button class="minBtn" type="button">-</button>
-                            <input type="number" value="{{$inpData['val_child']}}" class="kidsVal" id="kids" min="0" max="16">
-                            <button class="plusBtn" type="button">+</button>
-                        </div>
                     </div>
-                    <button type="submit" class="searchBtn">적용</button>
-                </div>
-                </div>
                 </div>
             </div>
         </div>
+    </div>
         {{-- 필터 모달 --}}
     </div>
 
