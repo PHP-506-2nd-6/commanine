@@ -14,6 +14,10 @@
                 <div class="reserve_content">
                     <div class="con reserve_img">
                         <img src="{{asset($data->hanok_img1)}}" alt="#">
+                        <form action="{{route('users.review')}}" method="get">
+                            <input type="hidden" name="hanok_id" value="{{$data->id}}">
+                            <button class="review_btn" type="submit">리뷰 작성하기</button>
+                        </form>
                     </div>
                     <div class="con">
                         <div class="contit">숙소명
@@ -40,10 +44,10 @@
 
                     {{-- @if($val->room_id === 0) --}}
 
-                        <form action="{{route('users.review')}}" method="get">
+                        {{-- <form action="{{route('users.review')}}" method="get">
                             <input type="hidden" name="hanok_id" value="{{$data->id}}">
                             <button class="review_btn" type="submit">리뷰 작성하기</button>
-                        </form>
+                        </form> --}}
                         {{-- <a id="writeButton" href="{{route('users.review')}}">리뷰 작성하기</a> --}}
 
                     {{-- <button id="writeButton" onclick="checkDataAndRedirect()">작성하기</button> --}}
