@@ -4,7 +4,11 @@
 .wrap {
     min-height: 410px;
 }
-
+.wrapGrid {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    width: 90vw;
+}
 .reviewList {
     font-weight: 900;
     font-size: 1.1em;
@@ -81,9 +85,9 @@ h2 {
     padding: 30px;
 }
 @media screen and (max-width: 768px) {
-    .wrapGrid{
+    /* .wrapGrid{
         width: 90vw;
-        }
+        } */
     .wrap {
         min-width: 375px;
     }
@@ -108,9 +112,9 @@ h2 {
     }
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-    .wrapGrid{
+    /* .wrapGrid{
         width: 90vw;
-        }
+        } */
     .reviewBox {
         margin-left: 8vw;
         width: 55vw;
