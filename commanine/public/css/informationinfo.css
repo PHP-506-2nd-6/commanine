@@ -71,6 +71,7 @@ h2 {
         grid-template-rows: 1fr 9fr;
         margin: 0 auto;
         width: 80vw;
+        height: 50vh;
     }
     .listWrap > ul {
         display: grid;
@@ -80,27 +81,53 @@ h2 {
         padding: 0;
         margin: 0;
         text-align: center;
+        font-size: 0.9rem;
     }
+
+
+
+    
     .list {
         margin: 0;
     }
     .infoBox {
         margin-left: 0;
         width: 80vw;
+        padding-top: 2vh;
+        height: 60vh;
     }
     h2 {
         padding: 0;
     }
     .reserve_con{
-        grid-template-columns: 1fr 1fr;
-        width: 60vw;
+        grid-template-columns: 1fr 2fr;
+        width: 80vw;
         justify-items: center;
         padding-left: 0vw;
     }
     .infoBox > div {
         font-size: 1rem;
     }
+    .item1{
+        justify-self: start;
+    }
+    .item2{
+        justify-self: end;
+    }
+    .listWrap{
+        border-right: none;
+        border-bottom: 1px solid #e2e2e2;
+    }
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-    
+    .wrapGrid{
+    width: 90vw;
+    }
+    .list {
+        width: 12vw;
+    }
+    .infoBox {
+        margin-left: 8vw;
+        width: 50vw;
+    }
 } 

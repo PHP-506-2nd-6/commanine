@@ -88,3 +88,52 @@ input:focus{
     border:1px solid #000;
     transition: all 0.3s;
 }
+
+@media screen and (max-width: 768px) {
+    /* 사이드바 css 적용 시작 */
+    .wrapGrid{
+        display: grid;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr 9fr;
+        margin: 0 auto;
+        width: 100vw;
+    }
+    .listWrap > ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        width: 80vw;
+        padding: 0;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    .list {
+        margin: 0;
+    }
+    .listWrap {
+    width: 100vw;
+    }
+    .updateBox {
+        width: 100vw;
+    }
+    .listWrap{
+        border-right: none;
+        border-bottom: 1px solid #e2e2e2;
+    }
+    /* 사이드바 css 적용 끝 */
+
+
+
+    .updateBox {
+        font-size: 0.8em;
+        width: 90vw;
+    }
+    .btnGroup>button {
+        width: 27vw;
+    }
+    h2 {
+        padding: 1vh 0;
+    }
+    
+}
