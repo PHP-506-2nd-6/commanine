@@ -20,6 +20,14 @@
                         </form>
                     </div>
                     <div class="con">
+                        <div class="reserve_flg">
+                            <span>예약상태 : </span>
+                            @if($data->reserve_flg === '1')
+                                <span>예약완료</span>
+                            @else
+                                <span>결제대기</span>
+                            @endif
+                        </div>
                         <div class="contit">숙소명
                         <p>{{$data->hanok_name}}</p></div>
                         <div class="contit">객실명<p>
@@ -30,15 +38,6 @@
                         <p>{{substr($data->chk_in,0,10)}} ~ {{substr($data->chk_out,0,10)}}</p></div>
                         <div class="contit">인원
                         <p>{{$data->reserve_adult}} 명</p></div>
-
-                        <div class="reserve_flg">
-                            <span>예약상태 : </span>
-                            @if($data->reserve_flg === '1')
-                                <span>예약완료</span>
-                            @else
-                                <span>결제대기</span>
-                            @endif
-                        </div>
                         
                     </div>
 
@@ -58,7 +57,7 @@
                 <span>예약한 숙소가 없습니다.</span> 
             @endforelse
             </div>
-            <div class="d-flex justify-content-center" style="width:750px"> 
+            <div class="d-flex justify-content-center pagebtn" style="width:750px"> 
                 {{-- {{$reserve->onEachSide(1)->withQueryString()->links()}} --}}
                 {{ $reserve->withQueryString()->links('vendor.pagination.custom') }}
             </div>
