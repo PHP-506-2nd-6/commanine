@@ -4,11 +4,12 @@
  * 파일명     : research.css
  * 이력       : 0621 KMH new
  * *********************************** */ 
- @media all and (min-width:1024px) { /*스타일입력*/}
- @media all and (min-width:768px) and (max-width:1023px) { /*스타일입력*/}
- @media all and (max-width:830px) { /*스타일입력*/}
+ /* @media all and (min-width:1024px) { }
+ @media all and (min-width:768px) and (max-width:1023px) { }
+ @media all and (max-width:830px) { } */
+
 .containerBox{
-    width:90%;
+    width:80%;
     margin:0 auto;
 }
 .hidden-button {
@@ -82,8 +83,11 @@
        margin-right: -5px;
     }
 
-    
+    #locOrHan{
+        background-color: transparent;
+    }
 /* end input-range */
+
 
 .star{
     width:16px;
@@ -258,11 +262,7 @@ div>input{
 .searchSecondBox>div{
     padding-top:20px;
 }
-/* @media all and (max-width:830px) { 
-    .searchSecondBox>div{
-        padding-top:0;
-    }
-} */
+
 .countWrap>label{
     padding-right:15px;
 }
@@ -284,8 +284,10 @@ div>input{
 
 /* 검색 출력 박스 */
 .searchUl{
+    width:90%;
+    margin:30px auto 0;
     padding: 20px 40px;
-    margin-top:30px;
+    /* margin-top:30px; */
     min-height:300px;
     display:grid;
     grid-template-columns: 1fr 1fr;
@@ -342,7 +344,7 @@ div>input{
     width:95%;
     height:220px;
     /* border-radius: 10px; */
-    padding: 20px 50px;
+    padding: 20px 30px;
     margin-bottom: 10px;
 }
 .searchList>a{
@@ -353,7 +355,7 @@ div>input{
 }
 .explainHanok{
     display:grid;
-    grid-template-rows: repeat(4,1fr);
+    grid-template-rows: auto 25px;
     justify-content: right;
 }
 .nameHanok{
@@ -367,8 +369,9 @@ div>input{
 
 }
 .priceHanok{
-    font-size:20px;
-    grid-row :4 / span 1;
+    font-size: 18px;
+    
+    /* grid-row :3 / span 1; */
     text-align: right;
 }
 .noSearch{
@@ -408,138 +411,21 @@ input:focus label{
 }
 
 
-
-
-
-
-
-
-@media all and (max-width:767px) { 
-    .searchWidth{
-        width:100%;
-    }
-
-    .searchSecondBox>div,.searchFirstBox>div{
-        padding-top:0;
-        margin:10px 0;
-    }
-
-    .searchFirstBox,.searchSecondBox{
-        display:flex;
-        flex-direction: column;
-        justify-content: space-around;
-        /* position:relative; */
-    }
-    .searchWidth{
-        position:relative;
-    }
-    .searchWidth>input,.searchWidth>select,.searchWidth>.countPeople>input,.rangeslider{
-        position:absolute;
-        top:0;
-        right:20px;
-    }
-    div>input{
-        height:100%;
-    }
-    .text-box{
-        margin-top:10px;
-    }
-    .searchBtn{
-        margin-top:40px;
-    }
-    .rangeslider{
-        z-index:4;
-    }
-
-    /* .input-local{
-        z-index:10;
-    } */
-
-
-    input[type='range'] {
-        width: 100%;
-    }
-    
-    .searchUl{
-        width:100%;
-        padding: 10px 20px;
-        margin-top:20px;
-        min-height:300px;
-        display:grid;
-        grid-template-columns: 1fr;
-        grid-template-rows:1fr;
-        /* justify-items: center; */
-        place-items: center; 
-    }    
+/* @media all and (min-width:1024) and (max-width:1350px) {
     .searchList{
-        width:100%;
-        padding: 20px 10px;
-        min-height:280px;
+        height: auto;
     }
-    .searchList > a{
+    .searchList>a{
         display:grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: auto;
+        grid-template-columns: ;
+        grid-template-columns: 1fr !important;
+        justify-content: right;
     }
-    .explainHanok{
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        margin:10px;
-    }
-    .imgBox{
-        text-align: center;
-    }
-    /* img{
-        width:270px;
-    } */
-    .nameHanok{
-        text-align: left;
-        padding-left:20px;
-    }
-    .reviewHanok,.priceHanok{
-        padding-right:20px;
-    }
-    .nameHanok,.priceHanok{
-        font-size: 0.9em;
-    }
-    .priceHanok{
-        grid-column: 2/3;
-        grid-row:2;
-    }
-    .countBox {
-        position: absolute;
-        top: 70%; 
-        right:6%;
-        border: 1px solid #000;
-        border-radius: 10px;
-        background-color: #fff;
-        width: 200px;
-        height: 150px;
-        opacity: 0;
-        z-index:3;
-        grid-template-rows: repeat(3,1fr);
-    }
-    
-    .countBox.active{
-        position: absolute;
-        top: 100%; 
-        right:4%;
-        border: 1px solid #000;
-        border-radius: 10px;
-        background-color: #fff;
-        width: 60%;
-        height: 150px;
-        display:grid;
-        opacity: 1;
-        z-index:5;
-        grid-template-rows: repeat(3,1fr);
-        transition:all 0.3s;
-    }
-    
-}
+}  */
 
- @media all and (min-width:768px) and (max-width:1023px) { 
+
+
+@media all and (min-width:870px) and (max-width:1350px) { 
     /* 상세검색 */
     .tabFlex{
     display:flex;
@@ -573,50 +459,244 @@ input:focus label{
 
     /* 검색결과 */
     .searchUl{
-        width:100%;
+        width:90%;
         padding: 10px 20px;
         margin-top:20px;
-        min-height:300px;
+        /* min-height:300px; */
         display:grid;
-        grid-template-columns: 1fr;
-        grid-template-rows:1fr;
+        /* grid-template-columns: 1fr 1fr; */
+        grid-template-rows:1fr 1fr;
         /* justify-items: center; */
         place-items: center; 
     }    
     .searchList{
-        width:100%;
-        padding: 20px 10px;
-        min-height:280px;
+        border:2px solid #b3b3b3;
+        width:95%;
+        height:auto;
+        /* border-radius: 10px; */
+        padding: 20px;
+        margin-bottom: 10px;
     }
-    .searchList > a{
-        display:grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: auto;
+    .searchList>a{
+        color:#000;
+        text-decoration: none;
+        display: grid;
+        grid-template-rows:1fr 100px;
+        grid-template-columns:1fr
     }
+    .hanokName{
+        display: inline-block;
+    }
+    .imgBox > img {
+        width: 100%;
+    }
+
+
     .explainHanok{
         display:grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        margin:10px;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        justify-content: right;
+        margin: 0 auto;
     }
-    .imgBox{
+    .nameHanok{
+        font-size: 1.1em;
+        text-align: right;
+        font-weight: 900;
+        margin-top:20px;
+    }
+    .reviewBox{
         text-align: center;
     }
-    /* img{
-        width:270px;
+    .reviewHanok{
+        font-size:16px;
+        text-align: right;
+    }
+    .priceHanok{
+        font-size:1.1em;
+        /* grid-row :3 / span 1; */
+        text-align: center;
+    }
+    .noSearch{
+        text-align: center;
+        grid-column: 1 / span 2;
+        align-self: flex-start;
+        vertical-align: middle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    
+    }
+}
+
+
+@media all and (max-width:869px) { 
+    .searchWidth{
+        width:100%;
+    }
+
+    .searchSecondBox>div,.searchFirstBox>div{
+        padding-top:0;
+        margin:10px 0;
+    }
+
+    .searchFirstBox,.searchSecondBox{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        /* position:relative; */
+    }
+    .searchWidth{
+        position:relative;
+    }
+    .searchWidth>input,.searchWidth>select,.searchWidth>.countPeople>input,.rangeslider{
+        position:absolute;
+        top:0;
+        right:20px;
+    }
+    div>input{
+        height:100%;
+    }
+    .text-box{
+        margin-top:10px;
+    }
+    .searchBtn{
+        margin-top:40px;
+        margin-bottom:10px;
+        width:60%;
+    }
+    .rangeslider{
+        z-index:4;
+    }
+    .searchBox{
+        padding:0;
+    }
+    /* .input-local{
+        z-index:10;
     } */
+
+
+    input[type='range'] {
+        width: 100%;
+    }
+    
+    .searchUl{
+        width:100%;
+        padding: 10px 20px;
+        
+        margin-top:20px;
+        min-height:300px;
+        display:grid;
+        grid-template-columns: 1fr;
+        /* grid-template-rows:1fr; */
+        /* justify-items: center; */
+        place-items: center; 
+    }    
+    .searchList{
+        border:2px solid #b3b3b3;
+        width:95%;
+        height:auto;
+        /* border-radius: 10px; */
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+    .searchList>a{
+        color:#000;
+        text-decoration: none;
+        display: grid;
+        grid-template-rows:1fr auto;
+        grid-template-columns:1fr
+    }
+    .hanokName{
+        display: inline-block;
+    }
+    .imgBox > img {
+        width: 100%;
+    }
     .nameHanok{
         text-align: left;
-        padding-left:20px;
+        font-size:1em;
+        /* padding-left:20px; */
     }
-    .reviewHanok,.priceHanok{
+    .explainHanok{
+        margin:0 auto;
+    }
+    /* .reviewHanok,.priceHanok{
         padding-right:20px;
     }
-    .nameHanok,.priceHanok{
-        font-size: 0.9em;
-    }
+
     .priceHanok{
         grid-column: 2/3;
         grid-row:2;
+    } */
+
+    .reviewBox{
+        text-align: center;
     }
+    .reviewHanok{
+        font-size:0.9em;
+        text-align: right;
+    }
+    .priceHanok{
+        font-size:0.9em;
+        /* grid-row :3 / span 1; */
+        text-align: center;
+    }
+    .noSearch{
+        text-align: center;
+        grid-column: 1 / span 2;
+        align-self: flex-start;
+        vertical-align: middle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .countBox {
+        position: absolute;
+        top: 70%; 
+        right:6%;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #fff;
+        width: 200px;
+        height: 150px;
+        opacity: 0;
+        z-index:3;
+        grid-template-rows: repeat(3,1fr);
+    }
+    
+    .countBox.active{
+        position: absolute;
+        top: 100%; 
+        right:4%;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #fff;
+        width: 60%;
+        height: 150px;
+        display:grid;
+        opacity: 1;
+        z-index:5;
+        grid-template-rows: repeat(3,1fr);
+        transition:all 0.3s;
+    }
+    
 }

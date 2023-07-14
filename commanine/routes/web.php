@@ -50,7 +50,7 @@ Route::get('/hanoks/detail/{id}',[HanoksController::class,'hanoksDetail'])->name
 // 회원 정보 페이지(내 예약)
 Route::get('/users/information/reserve',[UsersInfoController::class,'reserveInfo'])->name('users.information.reserve');
 // // 회원 정보 페이지(찜)
-// Route::get('/users/information/dibs',[UsersInfoController::class,'dibsInfo'])->name('users.information.dibs');
+Route::get('/users/information/dibs',[UsersInfoController::class,'dibsInfo'])->name('users.information.dibs');
 // 회원 정보 페이지(회원 정보)
 Route::get('/users/information/info',[UsersInfoController::class,'info'])->name('users.information.info');
 // 회원 정보 수정페이지

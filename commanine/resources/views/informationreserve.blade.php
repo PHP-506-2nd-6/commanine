@@ -7,7 +7,7 @@
 @section('contents')
 <div class="wrap wrapGrid">
         @include('layout.sidebar')
-        <div class="reserve_box" style="margin-left: 150px;">
+        <div class="reserve_box">
             <h2>예약 내역</h2>
             <div class="reserve_cont">
                 @forelse($reserve as $data)
