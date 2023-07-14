@@ -686,7 +686,7 @@ input:focus label{
     .countBox.active{
         position: absolute;
         top: 100%; 
-        right:4%;
+        right:20px;
         border: 1px solid #000;
         border-radius: 10px;
         background-color: #fff;

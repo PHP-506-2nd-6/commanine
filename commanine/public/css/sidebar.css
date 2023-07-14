@@ -19,7 +19,6 @@
 .list>a{
     color:#000 ;
     text-decoration: none;
-
 }
 .list>a:hover{
     color:#000 ;
@@ -36,7 +35,7 @@
     }
     .listWrap > ul {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr;
         width: 80vw;
         padding: 0;
