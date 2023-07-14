@@ -454,7 +454,7 @@ a {
         width: 25%;
     }
     .logo img{
-        width: 100%;
+        width: 50%;
     }
     .bg {
         color: #ffffff;
@@ -467,14 +467,10 @@ a {
     }
 }
 @media screen and (max-width: 415px) {
-    /* nav {
-        width: 50%;
-        margin: 0 auto;
-    }
-   .menu,.menu2 {
-    width: 0;
-   } */
-   
+
+   .logo img{
+    width: 100%;
+}
 }
 
 
