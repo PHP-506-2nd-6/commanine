@@ -1,7 +1,7 @@
 @extends('layout.layout')
 <head>
-    <link rel="stylesheet" href="{{asset('css/myreview.css')}}">
     <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/myreview.css')}}">
 </head>
 @section('contents')
     <div class="wrap wrapGrid">
