@@ -9,15 +9,15 @@
     <div class="header_bg">
         <div class="fix">
             <nav>
-                <ol class="menu hidden-button">
+                <ul class="menu hidden-button">
                     <li class="menuactive hidden-button"><a href="#menu1">category</a></li>
                     <li><a href="#menu2">popularity</a></li>
                     <li><a href="#menu3">recent</a></li>
-                </ol>
+                </ul>
                 <div class="logo">
                     <a href="{{route('main')}}"><img src="{{asset('/img/logologo.png')}}" alt="#"></a>
                 </div>
-                <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto menu2">
                     @guest()
                     <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
                     <li class="nav-a2"><a href="{{route('users.regist')}}">회원가입</a></li>
@@ -39,15 +39,16 @@
                 </div>
                 <div class="bar-slide">
                     <ul class="slide-menu">
-                        <li><a href="{{route('main')}}">HOME</a></li>
                         @guest()
+                        <li><a href="{{route('main')}}">HOME</a></li>
                         <li class="nav-a1"><a href="{{route('users.login')}}">로그인</a></li>
                         <li class="nav-a2"><a href="{{route('users.regist')}}">회원가입</a></li>
                         {{-- <li class="nav-a3"><a href="">예약내역</a></li> --}}
                         @endguest
     
                         @auth()
-                        <p style="color:#333; margin:7px 30px 0 0;">안녕하세요! <span class="user_name">{{session('user_name') }}</span>님</p>
+                        <p class="hiuser" style="color:#333; margin:7px 30px 0 0;">안녕하세요! <span class="user_name">{{session('user_name') }}</span>님</p>
+                        <li><a href="{{route('main')}}">HOME</a></li>
                         <li class="nav-a1"><a href="{{route('users.logout')}}">로그아웃</a></li>
                         <li class="nav-a2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
                         @endauth
@@ -117,7 +118,7 @@
                     </div>
                     <div>
                         <form method="get" action="{{route('research.page')}}" >
-                            <div class="search_form">
+                            <div class="search_form mo-search">
                                 <div class="search_form1">
                                     <label for="hanok_name">스테이/여행지</label>
                                     <input type="text" name="locOrHan" id="hanok_name"  placeholder="스테이/여행지" autocomplete="off">
