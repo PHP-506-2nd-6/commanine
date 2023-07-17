@@ -1,5 +1,10 @@
 <?php
-
+/**************************************
+ * 프로젝트명 : commanine
+ * 디렉토리   : Controllers\Api
+ * 파일명     : ApiUsersController.php
+ * 이력       : 0615 new KMH
+ * *********************************** */
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -13,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 class ApiUsersController extends Controller
 {
     public function getUserChk($email){
-
+        
         $user=DB::table('users')->where('user_email',$email)->first();
         // user가 없을 경우 성공
         $arr['errorcode']="0";

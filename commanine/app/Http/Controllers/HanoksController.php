@@ -128,7 +128,38 @@ class HanoksController extends Controller
                         ->where('deleted_at', '=', null)
                         ->get();
 
+        //해당 유저의 숙소 찜 여부 확인 0717 KMH add
+        // $wishFlg = 0 이면 빈하트 .  1이면 꽉찬 하트 
+        // 쿼리 
+            // SELECT EXISTS(
+            // SELECT 1
+            // FROM wishlists
+            // WHERE user_id = 100
+            // AND hanok_id =1);
+            $userId = null;
+            if(isset(Auth::User()->user_id)){
+                $userId = Auth::User()->user_id;
+                $wishQuery = 
+                    " SELECT exists(
+                    SELECT 1
+                    FROM wishlists
+                    WHERE user_id = ?
+                    AND hanok_id = ? ) as wish";
+                $wishPrepare = [ $userId, $id ];
+                $wishResult = DB::select($wishQuery, $wishPrepare);
+                
+                if($wishResult[0]->wish === 0){
+                    $wishFlg = 0;
+                    }else{
+                        $wishFlg = 1;
+                    }
+                }else{
+                    $wishFlg = 0;
+                }
+                
+        // return var_dump($hanoks);
 
+        // return var_dump($wishFlg);
         // return view('detail')->with('hanok', $hanoks); // 0615 KMJ del
         // return view('detail', [])
         return view('detail')
@@ -138,7 +169,10 @@ class HanoksController extends Controller
                 ->with('amenities', $amenities)
                 ->with('reviews', $reviews)
                 ->with('rate', $rate[0])
-                ->with('inpData', $inpData); // 0615 KMJ add
+                ->with('inpData', $inpData) // 0615 KMJ add
+                // 0717 KMH add
+                ->with('userId',$userId)
+                ->with('wishFlg',$wishFlg);
     }
 
 

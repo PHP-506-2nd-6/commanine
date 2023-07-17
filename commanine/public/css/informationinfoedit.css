@@ -89,8 +89,29 @@ input:focus{
     transition: all 0.3s;
 }
 
-@media screen and (max-width: 768px) {
-    /* 사이드바 css 적용 시작 */
+@media screen and (max-width: 767px) {
+ .infoVal{
+    text-align: right;
+    padding-right: 20px;
+ }
+ .updateBox{
+    width:95%;
+    margin:0 auto;
+ }
+ .btnGroup{
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+ }
+ .btnGroup > button{
+    width:100%;
+ }
+ /* .listWrap{
+    width:100%;
+ } */
+}
+
+/* @media screen and (max-width: 768px) {
+    사이드바 css 적용 시작
     .wrapGrid{
         display: grid;
         grid-template-columns: 1fr !important;
@@ -121,11 +142,11 @@ input:focus{
         border-right: none;
         border-bottom: 1px solid #e2e2e2;
     }
-    /* 사이드바 css 적용 끝 */
+    사이드바 css 적용 끝
+ */
 
 
-
-    .updateBox {
+    /* .updateBox {
         font-size: 0.8em;
         width: 90vw;
     }
@@ -140,7 +161,7 @@ input:focus{
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     .updateBox{
-        /* margin: 0; */
+        margin: 0;
         margin-left: 12vw;
 
     }
@@ -150,4 +171,4 @@ input:focus{
     .list {
         width: 10vw;
     }
-}
+} */

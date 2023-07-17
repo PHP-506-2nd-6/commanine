@@ -1,7 +1,7 @@
 @extends('layout.layout')
 <head>
-    <link rel="stylesheet" href="{{asset('css/withdraw.css')}}">
     <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/withdraw.css')}}">
 </head>
 @section('contents')
     <div class="wrap wrapGrid">
@@ -16,7 +16,7 @@
                     @csrf
                     <button type="submit" class="blackBtn" onclick="alert('탈퇴가 완료되었습니다')">탈퇴하기</button>
                 </form>
-                <button type="button" class="whiteBtn" onclick="location.href='{{route('users.information.info')}}'">취소</button>
+                <button type="button" class="whiteBtn " onclick="location.href='{{route('users.information.info')}}'">취소</button>
             </div>
         </div>
     </div>

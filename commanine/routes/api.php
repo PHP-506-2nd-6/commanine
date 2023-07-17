@@ -24,6 +24,8 @@ use App\Http\Controllers\Auth\SocialController;
 
 Route::get('/users/regist/{email}',[ApiUsersController::class,'getUserChk']);
 
+Route::post('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'store']);
+Route::delete('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'destroy']);
 Route::get('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'getWishList']);
 
 // 0717 byj
