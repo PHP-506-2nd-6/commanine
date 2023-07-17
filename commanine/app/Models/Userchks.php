@@ -16,6 +16,7 @@ class Userchks extends Model
 {
     use HasFactory, HasApiTokens;
 
+    protected $table = 'userchks';
     protected $guarded=[
 
     ];

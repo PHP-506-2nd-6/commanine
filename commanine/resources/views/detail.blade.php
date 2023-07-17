@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" href="{{asset('css/detail.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"/>
+    
 </head>
 @section('contents')
     <div class="con">
@@ -32,9 +33,22 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
+                    {{-- 0717 add KMH --}}
+                    <div>
+                        <input type="hidden" value="{{isset($userId) ? $userId : null }}" id="user">
+                        @if($wishFlg === 0 )
+                            <button onclick="storeWish()"><img src="{{asset('img/icon/heart.png')}}" class="wish" alt="wish" style="width:25px;height:25px;">
+                            </button>
+                        @else
+                            <button onclick="deleteWish()"><img src="{{asset('img/icon/heart_red.png')}}" class="wish" alt="wish" style="width:25px;height:25px;">
+                            </button>
+                        @endif
+                    </div>
+                    {{-- 0717 add end KMH  --}}
                 </div>
             </div>
         <div class="hanokInfo">
+            <input type="hidden" value="{{$hanok->id}}" id="hanokId">
             <p class="hanok_name">{{$hanok->hanok_name}}</p>
             <i class="fa-solid fa-star star"></i>
             <span class="rate">{{number_format($rate->rate, 1)}}</span>
@@ -120,6 +134,7 @@
                         <div class="room">
                             <div>
                                 <img src="{{asset($val->room_img1)}}" alt="{{$val->room_name}}" class="roomImg">
+                                
                             </div>
                             <div class="room2">
                                 <div class="room3">
@@ -275,6 +290,7 @@
                     <div class="modal-body">
                         <div class="modalForm">
                             <form method="get" action="{{route('hanoks.detail',$hanok->id)}}" >
+                                <input type="hidden" name="hanok" class="hanokId" value="{{$hanok->id}}">
                                 <div class="search_form">
                                     <div class="search_form2">
                                         <div id="modalDate">
@@ -319,5 +335,6 @@
     <script src="https://kit.fontawesome.com/da11601548.js" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/05d390fd09.js"></script>
     <script src="{{asset('js/detail.js')}}"></script>
+    <script src="{{asset('js/wishlists.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 @endsection

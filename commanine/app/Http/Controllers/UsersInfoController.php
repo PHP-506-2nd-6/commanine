@@ -4,6 +4,7 @@
  * 디렉토리   : controllers
  * 파일명     : UsersInformationController.php
  * 이력       : 0613 new ysh
+ *              0717 add KMH  
  * *********************************** */
 
 namespace App\Http\Controllers;
@@ -18,7 +19,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\VarDumper\VarDumper;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Log;
 
 class UsersInfoController extends Controller
 {
@@ -53,10 +56,36 @@ class UsersInfoController extends Controller
         if(auth()->guest()) {
             return redirect()->route('users.login');
         }
-        // $users = Reservations::find(Auth::User()->user_id);
-        // $users = Users::find(Auth::User()->user_id);
-        // $likes = Wishlists::find($users);
-        return view('informationdibs')->with('data', $users);
+        // 0717 KMH add
+        $users = Auth::User()->user_id;
+        Log::debug("유저 아이디", [$users]);
+            // 쿼리 
+            // SELECT han.id, han.hanok_name, han.hanok_addr, han.hanok_img1, COUNT(review.hanok_id ) AS cnt ,AVG(review.rate) AS rate
+            //     FROM hanoks han
+            //     JOIN wishlists wish
+	        //         ON wish.hanok_id = han.id
+	        //     left JOIN reviews review 
+		    //         ON han.id = review.hanok_id
+		    //     WHERE wish.user_id = ?
+	        //     GROUP BY 
+            //         han.id
+            //         ,han.hanok_name
+            //         ,han.hanok_img1
+            //         ,han.hanok_addr;
+            
+        $result = DB::table('hanoks as han')
+                    ->join('wishlists as wish', 'han.id', '=', 'wish.hanok_id')
+                    ->select('han.id','han.hanok_name','han.hanok_addr','han.hanok_img1',DB::raw('COUNT(review.hanok_id ) AS cnt ,AVG(review.rate) AS rate'))
+                    ->leftJoin('reviews as review','han.id','=','review.hanok_id')
+                    ->where('wish.user_id','=',$users)
+                    ->groupBy('han.id','han.hanok_name','han.hanok_addr','han.hanok_img1')
+                    ->orderBy('han.hanok_name')
+                    ->paginate(5);
+        // return var_dump($result);
+
+        Log::debug("결과", [$result]);
+        return view('informationdibs')->with('data', $result);
+        // 0717 add end KMH
 
     }
     // 내 회원 정보 출력 페이지
