@@ -21,6 +21,7 @@
             <input type="text" name="email" id="email" placeholder="이메일" autocomplete="off">
             <input type="password" name="password" id="password" placeholder="비밀번호" autocomplete="off">
             <button type="submit" class="loginBtn">Log in</button>
+            <button type="button" onclick="kakaoLogin()"><img src="{{ asset('/img/kakao_login.png') }}" alt="카카오아이콘">fdfdfddf</button>
         </form>
     <div class="findBox">
         <a href="{{route('users.findId')}}" class="findId">아이디 찾기</a>
@@ -29,3 +30,28 @@
     </div>
 </div>
 @endsection
+
+<script src="https://developers.kakao.com./sdk/js/kakao.js"></script>
+        <script>
+            //js key
+        	//4699cc71bdf057335511bc15da234da1
+            window.Kakao.init("77b8a598458c6d8243e8e4deb19cb111");
+
+            function kakaoLogin(){
+                window.Kakao.Auth.login({
+                    scope:'profile_nickname, account_email',
+                    success: function(authObj){
+                        console.log(authObj);
+                        window.Kakao.API.request({
+                            url:'/v2/user/me',
+                            success: res => {
+                                const kakao_account = res.kakao_account;
+                                console.log(kakao_account);
+                                window.location.href = "/users/regist?";
+                            }
+                        })
+                    }
+                });
+
+            }
+        </script>

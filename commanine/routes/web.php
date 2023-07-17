@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\HanoksController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\ReviewController;
@@ -19,6 +20,13 @@ use App\Http\Controllers\PaymentController;
 */
 
 Route::get('/',[HanoksController::class,'hanoksMain'])->name('main');
+
+
+// Route::get('login/kakao', [SocialController::class,'redirectToKakao'])->name('login.kakao');
+// Route::get('login/kakao/callback', [SocialController::class,'handleKakaoCallback']);
+
+Route::get('login/kakao', [UsersController::class,'redirectToKakao'])->name('login.kakao');
+Route::get('login/kakao/callback', [UsersController::class,'handleKakaoCallback']);
 
 // 0613 KMH new
 // 로그인 
