@@ -14,4 +14,9 @@
     left: 10%;
     color: #ffffff;
 }
-
+.ft-quotation{
+    width: 100%;
+    text-align: center;
+    background-image: url("../img/tr_patterns_top.png");
+    background: no-repeat left top;
+}

@@ -17,6 +17,7 @@
         <img class="introimg" src="{{asset('/img/intro.jpg')}}" alt="">
         <span class="introp">한옥에 빠지다</span>
     </div>
+    <p class="ft-quotation mg-b40"><strong>최근 한옥은 다음과 같은 특징이 재조명되어 아파트와 다세대주택 등 기존 주거의 대안으로 큰 관심을 얻고 있다.</strong></p>
 </div>
 
     
