@@ -138,7 +138,7 @@ return [
     */
 
     'providers' => [
-
+        SocialiteProviders\Manager\ServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */

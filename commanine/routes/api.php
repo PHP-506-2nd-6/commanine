@@ -26,9 +26,9 @@ Route::get('/users/regist/{email}',[ApiUsersController::class,'getUserChk']);
 
 Route::post('/wishlists/{hanok_id}', [ApiWishlistsController::class, 'store']);
 Route::delete('/wishlists/{hanok_id}', [ApiWishlistsController::class, 'destroy']);
-Route::post('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'store']);
-Route::delete('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'destroy']);
-Route::get('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'getWishList']);
+// Route::post('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'store']);
+// Route::delete('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'destroy']);
+// Route::get('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'getWishList']);
 
 // 0717 byj
 // Route::get('login/kakao', 'Auth\SocialController@SocialController')->name('login.kakao');

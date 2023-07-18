@@ -290,4 +290,7 @@ class HanoksController extends Controller
 
 }
 
+public function introHanok() {
+    return view('intro');
+    }
 }

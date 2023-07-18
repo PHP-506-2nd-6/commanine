@@ -18,7 +18,7 @@
     <div id="carouselExampleControlsNoTouching" class="carousel slide mainslide" data-bs-touch="false" style="width: 80%; top:-300px; margin:0 auto;">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{asset('/img/hanok2.jpg')}}" class="d-block w-100" alt="...">
+                <a href="{{route('intro')}}"><img src="{{asset('/img/hanok2.jpg')}}" class="d-block w-100" alt="..."></a>
             </div>
             <div class="carousel-item">
                 <img src="{{asset('/img/hanok1.jpg')}}" class="d-block w-100" alt="...">

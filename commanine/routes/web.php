@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\SocialController;
+
 use App\Http\Controllers\HanoksController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\ReviewController;
@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UsersInfoController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SocialController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,13 +22,15 @@ use App\Http\Controllers\PaymentController;
 */
 
 Route::get('/',[HanoksController::class,'hanoksMain'])->name('main');
+// 한옥소개 페이지 add 0718 2n byj
+Route::get('/intro',[HanoksController::class,'introHanok'])->name('intro');
 
-
+// 카카오 로그인 add 0717 2n byj
 // Route::get('login/kakao', [SocialController::class,'redirectToKakao'])->name('login.kakao');
 // Route::get('login/kakao/callback', [SocialController::class,'handleKakaoCallback']);
 
-Route::get('login/kakao', [UsersController::class,'redirectToKakao'])->name('login.kakao');
-Route::get('login/kakao/callback', [UsersController::class,'handleKakaoCallback']);
+Route::get('login/kakao', [SocialController::class,'redirectToKakao'])->name('login.kakao');
+Route::get('login/kakao/callback', [SocialController::class,'handleKakaoCallback']);
 
 // 0613 KMH new
 // 로그인 
