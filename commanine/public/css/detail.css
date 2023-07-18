@@ -102,6 +102,7 @@ button {
     overflow: hidden;
     position:relative;
 }
+/* 0718 KMH add */
 .wish{
     position:absolute;
     top: 5px;
@@ -109,6 +110,21 @@ button {
     z-index:10;
 }
 
+.wishHeart{
+    display:none;
+}
+.wishHeart.active{
+    display:inline-block;
+}
+
+
+.wishHeartRed{
+    display:none;
+}
+.wishHeartRed.active{
+    display:inline-block;
+}
+/* 0718 KMH end */
 .img {
     width: 100%;
     object-fit: cover;

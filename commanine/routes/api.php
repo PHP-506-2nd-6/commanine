@@ -23,5 +23,5 @@ use App\Http\Controllers\Api\ApiWishlistsController;
 
 Route::get('/users/regist/{email}',[ApiUsersController::class,'getUserChk']);
 
-Route::post('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'store']);
-Route::delete('/wishlist/{hanok_id}', [ApiWishlistsController::class, 'destroy']);
+Route::post('/wishlists/{hanok_id}', [ApiWishlistsController::class, 'store']);
+Route::delete('/wishlists/{hanok_id}', [ApiWishlistsController::class, 'destroy']);

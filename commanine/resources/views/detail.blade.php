@@ -36,13 +36,13 @@
                     {{-- 0717 add KMH --}}
                     <div>
                         <input type="hidden" value="{{isset($userId) ? $userId : null }}" id="user">
-                        @if($wishFlg === 0 )
-                            <button onclick="storeWish()"><img src="{{asset('img/icon/heart.png')}}" class="wish" alt="wish" style="width:25px;height:25px;">
+                        <input type="hidden" value="{{ $wishFlg }}" id="wishFlg">
+
+                            <button onclick="storeWish()"><img src="{{asset('img/icon/heart.png')}}" class="wish wishHeart" alt="wish" style="width:25px;height:25px;">
                             </button>
-                        @else
-                            <button onclick="deleteWish()"><img src="{{asset('img/icon/heart_red.png')}}" class="wish" alt="wish" style="width:25px;height:25px;">
+                            <button onclick="deleteWish()"><img src="{{asset('img/icon/heart_red.png')}}" class="wish wishHeartRed" alt="wish" style="width:25px;height:25px;">
                             </button>
-                        @endif
+
                     </div>
                     {{-- 0717 add end KMH  --}}
                 </div>
