@@ -79,6 +79,8 @@ Route::post('/users/information/unregist/complete',[UsersInfoController::class,'
 Route::get('/users/payment',[PaymentController::class,'payInfo'])->name('users.payment');
 // 결제 완료 페이지
 Route::post('/users/payment/complete',[PaymentController::class,'payInfopost'])->name('users.payment.comp');
+// 관리자 메인 페이지
+Route::get('/admin', [AdminController::class, 'adminList'])->name('admin.list');
 // YSH new end***********************************************
 
 // 0615 BYJ new
