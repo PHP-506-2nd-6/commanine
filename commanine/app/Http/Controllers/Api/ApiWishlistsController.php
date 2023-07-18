@@ -7,14 +7,17 @@
  * *********************************** */
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\Models\Wishlists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class ApiWishlistsController extends Controller
 {
@@ -39,17 +42,33 @@ class ApiWishlistsController extends Controller
      */
     public function store(Request $request)
     {
+        $arr['errorcode'] = '0';
+        $arr['msg'] = 'success';
 
-        
-        $data['hanok_id']   = $request->get('hanok_id');
-        $data['user_id']   = $request->get('user_id');
-        $wish = Wishlists::create($data);   // insert 
-        if($wish){
-            $arr['errorcode']="0";
-            $arr['msg']="찜하기 성공";
+        // 로그인이 안되어 있을 경우
+        Log::debug('ddd',[session('user_id')]);
+        if(!$request->user_id) {
+            $arr['errorcode'] = 'E01';
+            $arr['msg'] = 'Not login';
+            Log::debug('비로그인',[$request->user_id]);
+            return response()->json($arr,Response::HTTP_OK);
+        }else{
+        // 로그인이 되어 있을 경우
+        // $user = Auth::User()->user_id;
+        Log::debug('request',[$request->hanok_id,$request->user_id,$request]);
+        $query = " INSERT INTO wishlists (user_id, hanok_id) values ( ? , ? ) ";
+        $prepare = [$request->user_id, $request->hanok_id];
+        $wish = DB::insert($query,$prepare);
+        // $wish = DB::table('wishlists')->insert(['user_id'=>$request->user_id,'hanok_id'=>$request->hanok_id]);
+        // Log::debug('통신',[var_dump($wish)]);
+        // $wish = new Wishlists();
+        // $wish->user_id = $request->user_id;
+        // $wish->hanok_id = $request->hanok_id;
+        // $wish->save();
+        Log::debug('통신',[$wish]);
+        // $arr['data'] = $wish->only('hanok_id','user_id');
+        return $arr;
         }
-        return response()->json($arr,Response::HTTP_OK);
-        
 
         // if(auth()->guest()) {
         //     return redirect()->route('users.login');
@@ -86,21 +105,31 @@ class ApiWishlistsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $user_id = Auth::User()->user_id;
-        $deleteWish = Wishlists::where('hanok_id',$id)
-                        ->where('user_id',$user_id)
-                        ->first();
-        $delAlarm = $deleteWish->delete();
-        if($delAlarm){
-            $arr['errorcode'] = "001";
-            $arr['msg'] = "찜 삭제";
+        Log::debug('request',$request);
+        // $user_id = Auth::User()->user_id;
+        $arr['errorcode'] = '0';
+        $arr['msg'] = 'success';
+        if(!$request->user_id) {
+            $arr['errorcode'] = 'E01';
+            $arr['msg'] = 'Not login';
+            Log::debug('비로그인',[$request->user_id]);
+            return response()->json($arr,Response::HTTP_OK);
         }else{
-            $arr['errorcode'] = "E001";
-            $arr['msg'] = "찜 삭제 에러";
+        $query = " DELETE FROM wishlists where user_id = ? AND hanok_id = ? ";
+        $prepare = [$request->user_id, $request->hanok_id];
+        $wish = DB::delete($query,$prepare);
+        // $wish = DB::table('wishlists')->insert(['user_id'=>$request->user_id,'hanok_id'=>$request->hanok_id]);
+        // Log::debug('통신',[var_dump($wish)]);
+        // $wish = new Wishlists();
+        // $wish->user_id = $request->user_id;
+        // $wish->hanok_id = $request->hanok_id;
+        // $wish->save();
+        // Log::debug('통신',[$wish]);
+        // $arr['data'] = $wish->only('hanok_id','user_id');
+        return $arr;
         }
-
-        return response()->json($arr,Response::HTTP_OK);
     }
 }
+
