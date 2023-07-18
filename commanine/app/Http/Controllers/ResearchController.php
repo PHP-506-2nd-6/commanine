@@ -13,6 +13,7 @@ use App\Models\Hanoks;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -123,9 +124,9 @@ class ResearchController extends Controller
         $inputChkIn = $req->input('chkIn');
         $inputChkOut = $req->input('chkOut');
         
+        // prepare 실행에 넣을때
         $val_chkIn = str_replace('-','',$val_chkIn);
         $val_chkOut = str_replace('-','',$val_chkOut);
-
         // 숙소유형
         $val_type = $req->input('hanokType');
         // 성인
@@ -143,6 +144,31 @@ class ResearchController extends Controller
         $val_minPrice = $req->input('minPrice');
         // 최대가격
         $val_maxPrice = $req->input('maxPrice');
+
+        // 입력값이 null일 때 값 세팅
+        $nowDate = Carbon::now();
+        if( $val_local === null ) {
+            $val_local = '전주';
+        }
+        if( $inputChkIn === null ) {
+            $val_chkIn = $nowDate->format("Y-m-d");
+            $inputChkIn = $nowDate->format("Y-m-d");
+            $val_chkIn = str_replace('-','',$val_chkIn);
+        }
+        if( $inputChkOut === null ) {
+            $val_chkOut = $nowDate->addDays(1)->format("Y-m-d");
+            $inputChkOut = $val_chkOut;
+            $val_chkOut = str_replace('-','',$val_chkOut);
+        }
+        if( $val_adults === null || $val_kids === null ) {
+            $val_adults = '2';
+            $val_kids = '0';
+            $val_count = (int)$val_adults + (int)$val_kids;
+        }
+        if( $val_minPrice === null || $val_maxPrice === null ) {
+            $val_minPrice = '0';
+            $val_maxPrice = '1000000';
+        }
         Log::debug('val 값',[$val_local, $val_chkIn, $val_chkOut, $val_type , $val_adults, $val_kids , $val_count]);
         // 쿼리 작성
         //*********************** 쿼리
@@ -188,10 +214,29 @@ class ResearchController extends Controller
             FROM hanoks han
                 JOIN (SELECT r.hanok_id, MIN(r.room_price) room_price
                         FROM rooms r ";
+        // if($val_maxPrice === "1000000" ){
+        //     $query .= " WHERE r.room_price >= 0 ";
+        //     Log::debug("최대가격 1000000", [$query]);
+        //     // $prepare[] = 0;
+        // }else{
+        //     $query .= " WHERE r.room_price >= ?
+        //                 AND r.room_price <= ?";
+        //     $prepare[] = $val_minPrice;
+        //     $prepare[] = $val_maxPrice;
+        //     Log::debug("최대가격 1000000 아닐 때", [$query]);
+        // }
+
+
         if($val_maxPrice === "1000000" ){
+            if( $val_minPrice === "0" ) {
             $query .= " WHERE r.room_price >= 0 ";
             Log::debug("최대가격 1000000", [$query]);
             // $prepare[] = 0;
+            }
+            else if( $val_minPrice !== "0" ) {
+                $query .= " WHERE r.room_price >= ? ";
+                $prepare[] = $val_minPrice;
+            }
         }else{
             $query .= " WHERE r.room_price >= ?
                         AND r.room_price <= ?";
@@ -265,8 +310,23 @@ class ResearchController extends Controller
                 han.id
                 ,han.hanok_name
                 ,han.hanok_img1
-                ,room.room_price
-                order by room.room_price;";
+                ,room.room_price ";
+                if( $req->has('range') ) {
+                    if( $req->range === "0" ) {
+                        $query .= " order by room.room_price; ";
+                    }
+                    else if( $req->range === "1" ) {
+                        $query .= " order by room.room_price desc; ";
+                    }
+                    else if( $req->range === "2" ) {
+                        $query .= " order by cnt desc; ";
+                    }
+                    else if( $req->range === "3" ) {
+                        $query .= " order by rate desc; ";
+                    }
+                } else {
+                    $query .= " order by room.room_price;";
+                }
         Log::debug("쿼리", [$query]);
         Log::debug("prepare", [$prepare]);
         // if($val_maxPrice === null && $val_minPrice === null){

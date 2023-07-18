@@ -34,7 +34,7 @@
                     <div class="searchWidth selectBox tabFlex">
                         <span>숙소 유형</span>
                         @if(!isset($arr['hanoktype']))
-                        <select name="hanokType" size="1" class="selectList">
+                        <select name="hanokType" size="1" class="selectList" id="select_1">
                             <option  selected>전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
@@ -42,7 +42,7 @@
                             <option value="3">리조트</option>
                         </select>
                         @elseif($arr['hanoktype'] === "0")
-                        <select name="hanokType" size="1" class="selectList">
+                        <select name="hanokType" size="1" class="selectList" id="select_1">
                             <option  >전체</option>
                             <option value="0" selected >호텔</option>
                             <option value="1">펜션</option>
@@ -50,7 +50,7 @@
                             <option value="3">리조트</option>
                         </select>
                         @elseif($arr['hanoktype'] === "1")
-                        <select name="hanokType" size="1" class="selectList">
+                        <select name="hanokType" size="1" class="selectList" id="select_1">
                             <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" selected>펜션</option>
@@ -58,7 +58,7 @@
                             <option value="3">리조트</option>
                         </select>
                         @elseif($arr['hanoktype'] === "2")
-                        <select name="hanokType" size="1" class="selectList">
+                        <select name="hanokType" size="1" class="selectList" id="select_1">
                             <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
@@ -66,7 +66,7 @@
                             <option value="3">리조트</option>
                         </select>
                         @else
-                        <select name="hanokType" size="1" class="selectList">
+                        <select name="hanokType" size="1" class="selectList" id="select_1">
                             <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
@@ -123,17 +123,20 @@
 
         </form>
     </div>
-            
-    {{-- <ul>
-        <li>가격 낮은 순</li>
-        <li>가격 높은 순</li>
-        <li>별점 순</li>
-        <li>찜 많은 순</li>
-    </ul> --}}
+    <div>
+        <ul>
+            <a href="{{route('research.page.get', array_merge($arr, ['range' => '0']) );}}"><li>가격 낮은 순</li></a>
+            <a href="{{route('research.page.get', array_merge($arr, ['range' => '1']) );}}"><li>가격 높은 순</li></a>
+            <a href="{{route('research.page.get', array_merge($arr, ['range' => '2']) );}}"><li>리뷰 순</li></a>
+            <a href="{{route('research.page.get', array_merge($arr, ['range' => '3']) );}}"><li>별점 순</li></a>
+        </ul>
+    </div>
+
     <div class="searchUl">
         @forelse($searches as $value)
             <div class="searchList">
-                <a href="{{route('hanoks.detail',$value->id)}}" class="listA">
+                {{-- <a href="{{route('hanoks.detail',$value->id)}}" class="listA"> --}}
+                <a href="{{route('hanoks.detail',[ 'id' => $value->id, 'chk_in' => $arr['chkIn'], 'chk_out' => $arr['chkOut'], 'reserve_adult' => $arr['adults'], 'reserve_child' => $arr['kids'] ])}}" class="listA">
                     <div class="imgBox">
                         <img src="{{asset($value->hanok_img1)}}" >
                     </div>

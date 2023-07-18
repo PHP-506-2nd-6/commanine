@@ -35,7 +35,7 @@
                     </button>
                     {{-- 0717 add KMH --}}
                     <div>
-                        <input type="hidden" value="{{isset($userId) ? $userId : null }}" id="user">
+                        <input type="hidden" value="{{ session('user_id') }}" id="user">
                         <input type="hidden" value="{{ $wishFlg }}" id="wishFlg">
 
                             <button onclick="storeWish()"><img src="{{asset('img/icon/heart.png')}}" class="wish wishHeart" alt="wish" style="width:25px;height:25px;">
@@ -55,7 +55,9 @@
             <button type='button'>
                 <i class="fa-solid fa-heart heart"></i>
             </button>
-            <span class="rate">{{$likes->likes}}</span>
+            {{-- 0718 class add KMH --}}
+            <span class="rate countWish">{{$likes->likes}}</span>
+            {{-- 0718 class end KMH --}}
             <br>
             <span>{{$hanok->hanok_addr}}</span>
             <div class="hanokComment"><span>{!! nl2br($hanok->hanok_comment) !!}</span></div>
