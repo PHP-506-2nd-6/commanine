@@ -16,6 +16,8 @@ if(wishFlg.value == 0 ){
     wishHeartRed.classList.add('active');
     wishHeart.classList.remove('active');
 }
+
+
 function storeWish(){
 //     let hanok = document.getElementById('hanokId');
 // let user = document.getElementById('user');
