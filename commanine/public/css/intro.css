@@ -1,8 +1,10 @@
 .intro_wrap {
-    height: 2000px;
+    height: 3000px;
 }
 .introimgimg {
+    height: 900px;
     position: relative;
+    overflow: hidden;
 }
 .introimg {
     /* background-image: url("https://news.airbnb.com/wp-content/uploads/sites/4/2022/11/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B51-%E1%84%8B%E1%85%A6%E1%84%8B%E1%85%A5%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A2%E1%86%AB%E1%84%87%E1%85%B5-%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%A9%E1%86%A8-%E1%84%8F%E1%85%A1%E1%84%90%E1%85%A6%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A5%E1%86%AF-1.jpg"); */
@@ -21,9 +23,10 @@
 .explain {
     width: 1000px;
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto;
 }
-h1 {
+.hanokis {
+    font-size: 60px;
     font-family: 'SangSangFlowerRoad';
 }
 .ft-quotation strong{
@@ -41,6 +44,7 @@ h1 {
     
 }
 .ft-quotation {
+    margin-top: 50px;
     width: 100%;
     text-align: center;
     background: no-repeat;
@@ -49,10 +53,56 @@ h1 {
     background-position-x: center;
 }
 .intro_content{
+    position: relative;
+    width: 1400px;
+    height: 1200px;
+    margin: 0 auto;
+}
+.intro_content .intro_cont{
+    display: inline-block;
+}
+.intro_cont{
     width: 500px;
+}
+.contentwrap {
+    width: 1200px;
+    height: 1200px;
+    margin: 0 auto;
+}
+.cont1{
+    margin-top: 130px;
+    margin-bottom: 80px;
+}
+.cont2{
+    margin-top: 60px;
+}
+.cont4{
+    position: absolute;
+    right: 7%;
+    top: 27%;
+}
+.cont5{
+    padding-top: 70px;
+}
+.cont2,
+.cont4,
+.cont5 {
+    float: right;
+}
+.contimg{
+    width: 500px;
+}
+.illhanok {
+    position: absolute;
+    right: 0;
+    top: 10%;
+    width: 500px;
+    opacity: 0.3;
+    /* background-image: url("../img/illhanok.jpg"); */
 }
 .seasons{
     width: 1300px;
+    padding: 10px;
     margin: 0 auto;
 }
 .season {
@@ -62,6 +112,10 @@ h1 {
     height: 300px;
     border-radius: 50%;
     overflow: hidden;
+    margin-right: 15px;
+}
+.season:last-child {
+    margin-right: 0;
 }
 .seasonimg {
     width: 300px;
@@ -82,4 +136,15 @@ h1 {
 }
 .season:hover .seasonp{ 
     opacity: 1; 
+}
+h4{
+    color: #9f978c;
+    letter-spacing: 0.5rem;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.tit {
+    font-family: 'SangSangFlowerRoad';
+    font-size: 30px;
 }
