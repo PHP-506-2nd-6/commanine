@@ -64,22 +64,20 @@ class PaymentController extends Controller
     DB::beginTransaction();
 
     try {
-        $result = DB::select(
-            "SELECT id FROM reservations WHERE room_id = :room_id AND chk_in <= :chk_in AND chk_out >= :chk_out FOR UPDATE",
+        $result2 = DB::select(
+            "SELECT * FROM reservations WHERE room_id = :room_id AND chk_in <= :chk_in AND chk_out >= :chk_out FOR UPDATE",
             [
             'room_id' => $req->room_id,
             'chk_in' => $req->chk_in,
             'chk_out' => $req->chk_out
             ]);
-    
-        if (!empty($result)) {
-            // 이미 해당 기간에 예약이 존재하는 경우
-            echo "<script>alert('해당 기간에 숙소가 예약되어 있습니다.');</script>";
-        } 
-        // else {
-        //     // 예약 가능한 경우
-        //     echo "<script>alert('예약이 완료 되었습니다.');</script>";
-        // }
+            DB::commit();
+            dd($result2);
+            exit;
+            if (!empty($result2)) {
+                // 이미 해당 기간에 예약이 존재하는 경우
+                return "<script>alert('해당 기간에 숙소가 예약되어 있습니다.');</script>";
+            } 
         else{
             DB::commit();
         };
@@ -87,7 +85,7 @@ class PaymentController extends Controller
         DB::rollback();
         echo "<script>alert('예약 중 오류가 발생했습니다:');</script>" . $e->getMessage();
     }
-    
+    finally {
 
     // 예약 정보만 저장
     $reserve = new Reservations([
@@ -128,6 +126,7 @@ class PaymentController extends Controller
     // 결제가 취소되었을 때 결제 페이지 재실행
     echo "<script>alert('결제가 취소 되었습니다 다시 결제해 주세요');</script>";
     return Redirect()->route('users.payment');
+    }
     }
 
 
