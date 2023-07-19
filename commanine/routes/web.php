@@ -89,6 +89,8 @@ Route::post('/users/payment/complete',[PaymentController::class,'payInfopost'])-
 Route::get('/admin', [AdminController::class, 'adminRegist'])->name('admin.regist');
 // 관리자 로그인 페이지 이동
 Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
+// 관리자 로그인 페이지 이동
+Route::post('/admin/loginpost', [AdminController::class, 'adminLoginPost'])->name('admin.login.post');
 // 관리자 로그아웃 페이지 이동
 Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
 // 관리자 예약 정보 이동

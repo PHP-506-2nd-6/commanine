@@ -31,28 +31,28 @@ class UsersController extends Controller
     
     //0613 KMH new
     public function loginpost(Request $request){
-        if( $request->session()->has('admin') ) {
-            $error = '아이디와 비밀번호를 확인해주세요.';
-            $admin = Admins::where('admin_id', $request->email)->first();
-            // $user가 존재하지 않거나, 비밀번호가 일치하지 않을 경우
-            if(!$admin || !($request->password === $admin->admin_pw)){
-                return redirect()
-                        ->back()
-                        ->with('error',$error);
-            }
-            Auth::login($admin);
-            session($admin->only('id','admin_id')); 
-            session()->forget('admin');
-            return redirect()->intended(route('admin.regist'));
-        }
-        else{
+        // if( $request->session()->has('admin') ) {
+        //     $error = '아이디와 비밀번호를 확인해주세요.';
+        //     $admin = Admins::where('admin_id', $request->email)->first();
+        //     // $user가 존재하지 않거나, 비밀번호가 일치하지 않을 경우
+        //     if(!$admin || !($request->password === $admin->admin_pw)){
+        //         return redirect()
+        //                 ->back()
+        //                 ->with('error',$error);
+        //     }
+        //     Auth::login($admin);
+        //     session($admin->only('id','admin_id')); 
+        //     session()->forget('admin');
+        //     return redirect()->intended(route('admin.regist'));
+        // }
+        // else{
         $error = '아이디와 비밀번호를 확인해주세요.';
         // 유효성 검사
         $validator = Validator::make(
             $request->only('email','password')
             ,[
                 'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/u'
-                ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[\!\@\#\$\%\^\*\-])(?=.*[0-9]).{8,20}$/u'
+                ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u'
             ]);
         if($validator->fails()){
             return redirect()->back()->with('error',$error);
@@ -74,7 +74,7 @@ class UsersController extends Controller
             $error = '유저 인증 작업 에러. 잠시 후에 다시 입력해 주세요';
             return redirect()->back()->with('error',$error);
         }
-        }
+        // }
     }
 
 
