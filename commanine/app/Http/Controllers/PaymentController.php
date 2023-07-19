@@ -72,8 +72,8 @@ class PaymentController extends Controller
             'chk_out' => $req->chk_out
             ]);
             DB::commit();
-            dd($result2);
-            exit;
+            // dd($result2);
+            // exit;
             if (!empty($result2)) {
                 // 이미 해당 기간에 예약이 존재하는 경우
                 return "<script>alert('해당 기간에 숙소가 예약되어 있습니다.');</script>";
