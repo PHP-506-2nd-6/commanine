@@ -14,6 +14,7 @@
         "laravel/socialite": "^5.8",
         "laravel/tinker": "^2.7",
         "socialiteproviders/kakao": "^4.2",
+        "socialiteproviders/naver": "^4.1",
         "socialiteproviders/zoho": "^4.1"
     },
     "require-dev": {

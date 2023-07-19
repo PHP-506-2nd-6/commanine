@@ -1,9 +1,13 @@
+.intro_wrap {
+    height: 2000px;
+}
 .introimgimg {
     position: relative;
 }
 .introimg {
     /* background-image: url("https://news.airbnb.com/wp-content/uploads/sites/4/2022/11/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B51-%E1%84%8B%E1%85%A6%E1%84%8B%E1%85%A5%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A2%E1%86%AB%E1%84%87%E1%85%B5-%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%A9%E1%86%A8-%E1%84%8F%E1%85%A1%E1%84%90%E1%85%A6%E1%84%80%E1%85%A9%E1%84%85%E1%85%B5-%E1%84%89%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A5%E1%86%AF-1.jpg"); */
     width: 100%;
+    margin-bottom: 20px;
 }
 .introp {
     font-family: 'SangSangFlowerRoad';
@@ -14,9 +18,68 @@
     left: 10%;
     color: #ffffff;
 }
-.ft-quotation{
+.explain {
+    width: 1000px;
+    text-align: center;
+    margin: 0 auto;
+}
+h1 {
+    font-family: 'SangSangFlowerRoad';
+}
+.ft-quotation strong{
+    display: block;
+    font-size: 18px;
+    color: #9f978c;
+    width: 100%;
+    padding: 27px 0;
+    font-weight: 400;
+    text-align: center;
+    background: no-repeat;
+    background-image: url(https://www.hanokdb.kr/Assets/img/bg/tr_patterns_bottom.png);
+    background-position-y: bottom;
+    background-position-x: center;
+    
+}
+.ft-quotation {
     width: 100%;
     text-align: center;
-    background-image: url("../img/tr_patterns_top.png");
-    background: no-repeat left top;
+    background: no-repeat;
+    background-image: url(https://www.hanokdb.kr/Assets/img/bg/tr_patterns_top.png);
+    background-position-y: top;
+    background-position-x: center;
+}
+.intro_content{
+    width: 500px;
+}
+.seasons{
+    width: 1300px;
+    margin: 0 auto;
+}
+.season {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.seasonimg {
+    width: 300px;
+}
+.seasonp {
+    font-family: 'SangSangFlowerRoad';
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    opacity: 0;
+    font-size: 40px;
+    font-weight: bold;
+    color: #ffffff;
+}
+.season:hover {
+    /* display: block; */
+    opacity: 0.5;
+}
+.season:hover .seasonp{ 
+    opacity: 1; 
 }
