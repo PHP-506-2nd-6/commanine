@@ -80,8 +80,9 @@ class PaymentController extends Controller
         //     // 예약 가능한 경우
         //     echo "<script>alert('예약이 완료 되었습니다.');</script>";
         // }
-    
-        DB::commit();
+        else{
+            DB::commit();
+        };
     } catch (Exception $e) {
         DB::rollback();
         echo "<script>alert('예약 중 오류가 발생했습니다:');</script>" . $e->getMessage();
