@@ -14,6 +14,7 @@ use App\Models\Users;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ApiUsersController extends Controller
 {
@@ -31,6 +32,19 @@ class ApiUsersController extends Controller
         return response()->json($arr,Response::HTTP_OK);
         // return $arr;
 
+    }
+    public function postMailChk($email){
+        // $mailData = array(
+        //     'a' => $a
+        //     ,'b' => $b
+        // );
+        $code ='';
+        // 메일보내기
+        for ($i=0; $i <= 6; $i++) { 
+            $code .= random_int(0, 10);
+        }
+        // Mail::to($email)->send(new FindPassword($pw));
+        // Mail::send('emailchk');
     }
 
 }

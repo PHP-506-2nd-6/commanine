@@ -12,17 +12,17 @@ use Illuminate\Queue\SerializesModels;
 class FindPassword extends Mailable
 {
     use Queueable, SerializesModels;
-
+    
+    protected $pw;
     /**
      * Create a new message instance.
      *
      * @return void
      */
 
-    public $user;
-    public function __construct($user)
+    public function __construct($pw)
     {
-        $this->user = $user;
+        $this->pw = $pw;
     }
 
     /**
@@ -60,6 +60,7 @@ class FindPassword extends Mailable
     // }
 
     public function build(){
-        return $this->subject('Find Password From Commanine')->view('emails.findPassword');
+        $pw = $this->pw;
+        return $this->subject('COMMA,NINE 임시 비밀번호 발급')->view('emails.findPassword', compact('pw'));
     }
 }

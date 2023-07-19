@@ -4,6 +4,7 @@
  * 디렉토리   : Controller
  * 파일명     : UsersController.php
  * 이력       : 0613 new KMH
+ *              0719 add KMJ
  * *********************************** */
 namespace App\Http\Controllers;
 
@@ -35,7 +36,7 @@ class UsersController extends Controller
             $request->only('email','password')
             ,[
                 'email'     =>  'required|email|max:50|regex:/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/u'
-                ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u'
+                ,'password'  =>  'required|regex:/^(?=.*[a-zA-Z])(?=.*[\!\@\#\$\%\^\*\-])(?=.*[0-9]).{8,20}$/u'
             ]);
         if($validator->fails()){
             return redirect()->back()->with('error',$error);
@@ -109,12 +110,18 @@ class UsersController extends Controller
 
 
         $user = Users::create($data);   // insert 
+        // return var_dump($user->user_email);
         if(!$user){
             $error = '잠시 후에 다시 시도해 주세요';
             return redirect()
                     ->route('users.regist')
                     ->with('error',$error);
-        } 
+        }
+        // $user = new Users();
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        Mail::to($data['user_email'])->send(new CertificationEmail($data));
+        // return var_dump($user);
         // 회원가입 완료 로그인 페이지 이동
         return redirect()
                 ->route('users.login')
@@ -137,7 +144,7 @@ class UsersController extends Controller
                 ,'phoneNumber' =>'required|regex:/^[0-9]{3}[0-9]{4}[0-9]{4}$/u'
                 ,'question' =>'required'
                 // 질문의 답 
-                ,'questAnswer'=>'required|max:30|/^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/u'
+                ,'questAnswer'=>'required|max:30|regex:/^[ㄱ-ㅎ가-힣a-zA-Z0-9]{2,30}$/u'
             ]);
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
@@ -153,7 +160,29 @@ class UsersController extends Controller
                 // 에러 메세지 출력하면서 redirect->back();
                 return redirect()->back()->with('error',$error);
             }else{
-                return redirect()->route('users.login');
+                // 0719 KMJ add 임시 비밀번호 생성 - 총 10자리의 영어 대소문자, 숫자, 특수문자가 들어가는 비밀번호
+                $len = 8;
+                $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                $symbols = '!@#$%^*-';
+                $random_char = '';
+                $random_symbol = $symbols[random_int(0, mb_strlen($symbols))];
+                $max = mb_strlen($chars);
+                for ($i=0; $i < $len ; $i++) { 
+                    $rand_index = random_int(0, $max);
+                    $random_char .= $chars[$rand_index];
+                }
+                // 비밀번호 임의의 자리에 임의의 특수문자 추가
+                $pw = substr_replace($random_char, $random_symbol, random_int(0, mb_strlen($random_char)), 0);
+
+                // 로그인 정규식 때문에 숫자 안 들어갔을 경우를 대비해서 끝에 무조건 숫자 넣어주기
+                $pw .= random_int(0, 9);
+
+                $user->user_pw = Hash::make($pw);
+                $user->pw_flg = '1';
+                $user->save();
+                // 임시 비밀번호 해당 메일로 전송
+                Mail::to($request->email)->send(new FindPassword($pw));
+                return redirect()->route('users.alert.findPw');
             }
         
     }
@@ -193,8 +222,15 @@ class UsersController extends Controller
                 return redirect()->back()->with('error',$error);
             }else{
                 // 일치할 경우에는 아이디찾기 알림페이지로이동
-                $findId=$user->email;
-                return redirect()->route('users.alert.findId')->with('findId',$findId);
+
+                // 0719 KMJ add 아이디찾기 알림 페이지로 이메일 데이터 보내기
+                $email = $user->user_email;
+                if ( ($p=strpos($email,'@'))>3 ){
+                    $email = substr_replace($email,str_repeat('*',$l=$p-3),3,$l);
+                    // 이메일 아이디 앞글자 세자리만 보여주고 나머지는 *로 표시
+                }
+
+                return redirect()->route('users.alert.findId')->with('email',$email);
             }
         // name, phoneNumber,question, questAnswer이 유저 테이블의 user_name, user_num, user_que,user_an 과 일치하지 않을 경우
         // 에러 메세지 출력하면서 redirect->back();
@@ -203,6 +239,9 @@ class UsersController extends Controller
     //0613 KMH new
     public function alertFindId(){
         return view('alertfindid');
+    }
+    public function alertFindPw(){
+        return view('alertfindpw');
     }
     //0620 BYJ
     public function logout() {

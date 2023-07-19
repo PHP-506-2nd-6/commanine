@@ -36,3 +36,6 @@ Route::delete('/wishlists/delete/{hanok_id}', [ApiWishlistsController::class, 'd
 
 // Route::get('login/kakao', [App\Http\Controllers\Auth\SocialController::class,'SocialController'])->name('login.kakao');
 // Route::get('login/kakao/callback', [App\Http\Controllers\Auth\SocialController::class,'handleKakaoCallback']);
+
+// 0719 KMJ
+Route::post('/users/regist/{email}', [ApiUsersController::class, '']);

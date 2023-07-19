@@ -19,10 +19,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         SocialiteWasCalled::class => [
             KakaoExtendSocialite::class,
-        ]
-        // Registered::class => [
-        //     SendEmailVerificationNotification::class,
-        // ],
+        ],
+        Registered::class => [
+            SendEmailVerificationNotification::class,
+        ],
     ];
 
     /**

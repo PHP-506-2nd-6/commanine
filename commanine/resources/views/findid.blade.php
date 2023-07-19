@@ -26,6 +26,6 @@
         <input type="text" name="questAnswer" id="questAnswer" placeholder="질문의 답">
         <br>
         <button type="submit">아이디 찾기</button>
-        <button type="button">취소</button>
+        <button type="button" onclick="location.href='{{route('users.login')}}'">취소</button>
     </form>
 @endsection
