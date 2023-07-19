@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CertificationEmail;
 use Illuminate\Http\Request;
 use App\Models\Userchks;
 use App\Models\Users;
@@ -19,7 +20,6 @@ use Illuminate\Support\Facades\Mail;
 class ApiUsersController extends Controller
 {
     public function getUserChk($email){
-        
         $user=DB::table('users')->where('user_email',$email)->first();
         // user가 없을 경우 성공
         $arr['errorcode']="0";

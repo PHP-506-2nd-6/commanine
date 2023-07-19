@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HanoksController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\ReviewController;
@@ -83,8 +83,22 @@ Route::post('/users/information/unregist/complete',[UsersInfoController::class,'
 Route::get('/users/payment',[PaymentController::class,'payInfo'])->name('users.payment');
 // 결제 완료 페이지
 Route::post('/users/payment/complete',[PaymentController::class,'payInfopost'])->name('users.payment.comp');
+// 0719 YSH new add
+// 3차
 // 관리자 메인 페이지
-Route::get('/admin', [AdminController::class, 'adminList'])->name('admin.list');
+Route::get('/admin', [AdminController::class, 'adminRegist'])->name('admin.regist');
+// 관리자 로그인 페이지 이동
+Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
+// 관리자 로그아웃 페이지 이동
+Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
+// 관리자 예약 정보 이동
+Route::get('/admin/reservation', [AdminController::class, 'adminReservation'])->name('admin.reservation');
+// 관리자 리뷰 이동
+Route::get('/admin/review', [AdminController::class, 'adminReview'])->name('admin.review');
+// 관리자 유저 정보 이동
+Route::get('/admin/users', [AdminController::class, 'adminUsers'])->name('admin.users');
+// 관리자 숙소 정보 이동
+Route::get('/admin/hanoks', [AdminController::class, 'adminHanoks'])->name('admin.hanoks');
 // YSH new end***********************************************
 
 // 0615 BYJ new
