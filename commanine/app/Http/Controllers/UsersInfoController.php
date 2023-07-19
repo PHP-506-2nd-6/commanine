@@ -10,7 +10,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservations;
-use App\Models\User;
 use App\Models\Users;
 use App\Models\Wishlists;
 use Illuminate\Http\Request;

@@ -97,6 +97,8 @@ Route::get('/admin/reservation', [AdminController::class, 'adminReservation'])->
 Route::get('/admin/review', [AdminController::class, 'adminReview'])->name('admin.review');
 // 관리자 유저 정보 이동
 Route::get('/admin/users', [AdminController::class, 'adminUsers'])->name('admin.users');
+Route::get('/admin/users/search', [AdminController::class, 'adminUsersSearch'])->name('admin.users.search');
+
 // 관리자 숙소 정보 이동
 Route::get('/admin/hanoks', [AdminController::class, 'adminHanoks'])->name('admin.hanoks');
 // YSH new end***********************************************
