@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Users;
+use App\Models\Admins;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -30,6 +31,16 @@ class UsersController extends Controller
     //0613 KMH new
     public function loginpost(Request $request){
         if( $request->session()->has('admin') ) {
+            $error = '아이디와 비밀번호를 확인해주세요.';
+            $admin = Admins::where('admin_id', $request->email)->first();
+            // $user가 존재하지 않거나, 비밀번호가 일치하지 않을 경우
+            if(!$admin || !($request->password === $admin->admin_pw)){
+                return redirect()
+                        ->back()
+                        ->with('error',$error);
+            }
+            Auth::login($admin);
+            session($admin->only('id','admin_id')); 
             session()->forget('admin');
             return redirect()->intended(route('admin.regist'));
         }
