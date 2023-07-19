@@ -26,9 +26,14 @@ class UsersController extends Controller
     public function login(){
         return view('login');
     }
-
+    
     //0613 KMH new
     public function loginpost(Request $request){
+        if( $request->session()->has('admin') ) {
+            session()->forget('admin');
+            return redirect()->intended(route('admin.regist'));
+        }
+        else{
         $error = '아이디와 비밀번호를 확인해주세요.';
         // 유효성 검사
         $validator = Validator::make(
@@ -56,6 +61,7 @@ class UsersController extends Controller
         }else{
             $error = '유저 인증 작업 에러. 잠시 후에 다시 입력해 주세요';
             return redirect()->back()->with('error',$error);
+        }
         }
     }
 
