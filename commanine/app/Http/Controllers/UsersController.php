@@ -183,13 +183,13 @@ class UsersController extends Controller
                 $symbols = '!@#$%^*-';
                 $random_char = '';
                 $random_symbol = $symbols[random_int(0, mb_strlen($symbols))];
-                $max = mb_strlen($chars);
+                $max = mb_strlen($chars) - 1;
                 for ($i=0; $i < $len ; $i++) { 
                     $rand_index = random_int(0, $max);
                     $random_char .= $chars[$rand_index];
                 }
                 // 비밀번호 임의의 자리에 임의의 특수문자 추가
-                $pw = substr_replace($random_char, $random_symbol, random_int(0, mb_strlen($random_char)), 0);
+                $pw = substr_replace($random_char, $random_symbol, random_int(0, (mb_strlen($random_char) - 1)), 0);
 
                 // 로그인 정규식 때문에 숫자 안 들어갔을 경우를 대비해서 끝에 무조건 숫자 넣어주기
                 $pw .= random_int(0, 9);
