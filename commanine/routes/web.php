@@ -89,6 +89,8 @@ Route::post('/users/payment/complete',[PaymentController::class,'payInfopost'])-
 Route::get('/admin', [AdminController::class, 'adminRegist'])->name('admin.regist');
 // 관리자 로그인 페이지 이동
 Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
+// 관리자 로그인 페이지 이동
+Route::post('/admin/loginpost', [AdminController::class, 'adminLoginPost'])->name('admin.login.post');
 // 관리자 로그아웃 페이지 이동
 Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
 // 관리자 예약 정보 이동
@@ -97,6 +99,8 @@ Route::get('/admin/reservation', [AdminController::class, 'adminReservation'])->
 Route::get('/admin/review', [AdminController::class, 'adminReview'])->name('admin.review');
 // 관리자 유저 정보 이동
 Route::get('/admin/users', [AdminController::class, 'adminUsers'])->name('admin.users');
+Route::get('/admin/users/search', [AdminController::class, 'adminUsersSearch'])->name('admin.users.search');
+
 // 관리자 숙소 정보 이동
 Route::get('/admin/hanoks', [AdminController::class, 'adminHanoks'])->name('admin.hanoks');
 // YSH new end***********************************************

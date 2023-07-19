@@ -1,13 +1,17 @@
-<div>
-관리자계정
-</div>
-@guest()
-{{-- <form action="{{ route('admin.login') }}">
-    <button type="submit">로그인</button>
-</form> --}}
-    <a href="{{route('admin.login')}}">로그인</a>
-@endguest
+@extends('layout.adminlayout')
+@section('contents')
+    <div class="container row">
+        @include('layout.adminsidebar')
+        <div class="container col-10"></div>
+    </div>
+@endsection
 
-@auth()
-    <a href="{{route('admin.logout')}}">로그아웃</a>
-@endauth
+
+
+
+
+
+
+
+
+
