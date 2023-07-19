@@ -153,9 +153,9 @@ class HanoksController extends Controller
                     }else{
                         $wishFlg = 1;
                     }
-                }else{
-                    $wishFlg = 0;
-                }
+            }else{
+                $wishFlg = 0;
+            }
                 
         // return var_dump($hanoks);
 

@@ -78,6 +78,7 @@ class UsersInfoController extends Controller
                     ->select('han.id','han.hanok_name','han.hanok_addr','han.hanok_img1',DB::raw('COUNT(review.hanok_id ) AS cnt ,AVG(review.rate) AS rate'))
                     ->leftJoin('reviews as review','han.id','=','review.hanok_id')
                     ->where('wish.user_id','=',$users)
+                    ->where('review.deleted_at', '=', null)
                     ->groupBy('han.id','han.hanok_name','han.hanok_addr','han.hanok_img1')
                     ->orderBy('han.hanok_name')
                     ->paginate(5);
