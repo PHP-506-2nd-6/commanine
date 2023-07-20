@@ -8,7 +8,10 @@
         <input type="text" placeholder="숙소명 / 주소 입력" name="hanoks">
         <button type="submit">검색</button>
     </form>
-    <button onclick="location.href='{{route('admin.hanoks.insert')}}'">숙소 등록</button>
+    
+        <button type="button" onclick="location.href='{{route('admin.hanoks.insert')}}'">숙소등록</button>
+
+
     <div class="searchUl">
         @forelse($hanoks as $value)
             <div class="searchList">
