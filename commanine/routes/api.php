@@ -22,7 +22,10 @@ use App\Http\Controllers\Auth\SocialController;
 // });
 
 
+// Route::post('/users/regist/{email}',[ApiUsersController::class,'getUserChk']);
 Route::get('/users/regist/{email}',[ApiUsersController::class,'getUserChk']);
+// Route::put('/users/regist/{email}',[ApiUsersController::class,'getMailChk']);
+Route::post('/users/regist/{email}',[ApiUsersController::class,'getMailChk']);
 
 Route::post('/wishlists/post/{hanok_id}', [ApiWishlistsController::class, 'store']);
 Route::delete('/wishlists/delete/{hanok_id}', [ApiWishlistsController::class, 'destroy']);
@@ -38,4 +41,5 @@ Route::delete('/wishlists/delete/{hanok_id}', [ApiWishlistsController::class, 'd
 // Route::get('login/kakao/callback', [App\Http\Controllers\Auth\SocialController::class,'handleKakaoCallback']);
 
 // 0719 KMJ
-Route::post('/users/regist/{email}', [ApiUsersController::class, '']);
+// Route::post('/users/regist/{email}', [ApiUsersController::class, 'postMailChk']);
+// Route::post('/users/regist/{email}', [ApiUsersController::class, 'postMailChk']);

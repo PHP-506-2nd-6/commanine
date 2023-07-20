@@ -137,7 +137,7 @@ class UsersController extends Controller
         // $user = new Users();
         // $user->name = $request->name;
         // $user->email = $request->email;
-        Mail::to($data['user_email'])->send(new CertificationEmail($data));
+        // Mail::to($data['user_email'])->send(new CertificationEmail($data));
         // return var_dump($user);
         // 회원가입 완료 로그인 페이지 이동
         return redirect()
@@ -167,12 +167,25 @@ class UsersController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         // 유저 정보 가져와서 
-        $user = Users::where('user_email',$request->email)->first();
+        $user = Users::where('user_email',$request->email)
+                    ->where('user_num',$request->phoneNumber)
+                    ->where('user_que',$request->question)
+                    ->where('user_an',$request->questAnswer)
+                    ->first();
+        // 0720 KMJ add
+
+        // $user = Users::where('user_email',$request->email)->first();
         // email, phoneNumber,question, questAnswer이 유저 테이블의 user_email, user_num, user_que,user_an 과 일치하지 않을 경우
-        if((!($user->email === $request->email)&&
-            ($user->user_num === $request->phoneNumber)&&
-            ($user->user_que === $request->question)&&
-            ($user->user_an === $request->questAnswer))){
+        // if((!($user->email === $request->email)&&
+        //     !($user->user_num === $request->phoneNumber)&&
+        //     !($user->user_que == $request->question)&&
+        //     !($user->user_an === $request->questAnswer))){
+        //         $error="일치하는 회원 정보가 없습니다";
+        //         // 에러 메세지 출력하면서 redirect->back();
+        //         return redirect()->back()->with('error',$error);
+        // 0720 KMJ del 조건문 버그 발견
+
+        if(!$user){ // 0720 KMJ add 유저 정보 못 가져오면 에러 메세지 뜨도록 수정
                 $error="일치하는 회원 정보가 없습니다";
                 // 에러 메세지 출력하면서 redirect->back();
                 return redirect()->back()->with('error',$error);
@@ -182,7 +195,7 @@ class UsersController extends Controller
                 $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
                 $symbols = '!@#$%^*-';
                 $random_char = '';
-                $random_symbol = $symbols[random_int(0, mb_strlen($symbols))];
+                $random_symbol = $symbols[random_int(0, (mb_strlen($symbols) - 1))];
                 $max = mb_strlen($chars) - 1;
                 for ($i=0; $i < $len ; $i++) { 
                     $rand_index = random_int(0, $max);
@@ -231,10 +244,15 @@ class UsersController extends Controller
                     ->first();
 
         // email, phoneNumber,question, questAnswer이 유저 테이블의 user_email, user_num, user_que,user_an 과 일치하지 않을 경우
-        if((!($user->name === $request->name)&&
-            ($user->user_num === $request->phoneNumber)&&
-            ($user->user_que === $request->question)&&
-            ($user->user_an === $request->questAnswer))){
+        // if((!($user->name === $request->name)&&
+        //     !($user->user_num === $request->phoneNumber)&&
+        //     !($user->user_que === $request->question)&&
+        //     !($user->user_an === $request->questAnswer))){
+        //         // 에러 메세지 출력하면서 redirect->back();
+        //         return redirect()->back()->with('error',$error);
+        // 0720 KMJ del 조건문 버그 발견
+
+        if(!$user){ // 0720 KMJ add 유저 정보 못 가져오면 에러 메세지 뜨도록 수정
                 // 에러 메세지 출력하면서 redirect->back();
                 return redirect()->back()->with('error',$error);
             }else{

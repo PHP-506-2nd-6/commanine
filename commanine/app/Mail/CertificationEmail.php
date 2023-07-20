@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\Users;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -14,15 +13,15 @@ class CertificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $users;
+    protected $num;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($users)
+    public function __construct($num)
     {
-        $this->users=$users;
+        $this->num=$num;
     }
 
     /**
@@ -60,8 +59,8 @@ class CertificationEmail extends Mailable
     // }
 
     public function build(){
-        $user = $this->users;
-        return $this->view('emails.certificationEmail', compact('user'))
-            ->subject('COMMA,NINE 이메일 인증');
+        $num = $this->num;
+        return $this->view('emails.certificationEmail', compact('num'))
+            ->subject('COMMA,NINE 회원가입을 위한 인증메일입니다');
     }
 }

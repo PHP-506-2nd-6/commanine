@@ -39,7 +39,7 @@ h2{
     /* top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); */
-    width:350px;
+    width:500px;
     margin:0 auto;
     border:1px solid #000;
 }
@@ -53,12 +53,22 @@ h2{
     font-size: 14px;
 }
 
-form>input,#email{
+form>input
+,#email
+,#emailChkNum{
     padding:5px 10px;
     width:90%;
     border: 1px solid #000;
     /* margin-right:0; */
 }
+#emailChkNum:disabled {
+    background-color: #f3f3f3;
+}
+#emailChkNumBtn:disabled {
+    background-color: #696969;
+    pointer-events: none;
+}
+
 form{
     padding:0;
 }
@@ -71,25 +81,36 @@ form{
 #pwChkAlert{
     height:20px;
 }
-.emailBox{
+.emailBox
+,.emailChkNumBox{
     position:relative;
 }
 
-#emailChkBtn{
+#emailChkBtn
+,#emailChkNumBtn{
     position:absolute;
     z-index: 5;
     top:50%;
     transform: translateY(-50%);
-    right:6%;
-    width:70px;
+    right:5%;
+    /* width:70px; */
     font-size: 14px;
-    height: 30px;
-    padding: 5px 0;
-    
+    height: 36px;
+    padding: 5px;
+}
+
+#timer {
+    position:absolute;
+    z-index: 5;
+    top:50%;
+    transform: translateY(-50%);
+    right:20%;
+    font-size: 14px;
 }
 
 .blackBtn{
-    border:none;
+    border:1px solid #000;
+    /* border:none; */
     background-color: #000;
     color:#fff;
 }
@@ -106,7 +127,7 @@ form{
     color:#000;
 }
 .whiteBtn:hover{
-    border:1px solid #fff;
+    border:1px solid #000;
     background-color:#000;
     color:#fff;
     transition: all 0.4s;
@@ -144,7 +165,7 @@ form>input:focus,form>select:focus,#email:focus{
 
 form>select{
     width:90%;
-    padding:10px 0;
+    padding:10px 5px;
     border: 1px solid #000;
 }
 

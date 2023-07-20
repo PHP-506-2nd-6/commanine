@@ -9,14 +9,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\HasApiTokens;
 
 // 0613 KMH new
 class Userchks extends Model
 {
-    use HasFactory, HasApiTokens;
+    use HasFactory, HasApiTokens, SoftDeletes;
 
     protected $table = 'userchks';
+    
+    protected $primaryKey = 'id';
+
     protected $guarded=[
 
     ];
