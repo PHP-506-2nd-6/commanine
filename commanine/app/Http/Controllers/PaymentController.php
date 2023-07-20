@@ -48,6 +48,12 @@ class PaymentController extends Controller
         ->join('hanoks', 'rooms.hanok_id', '=', 'hanoks.id')
         ->where('rooms.id', '=', $req->room_id)
         ->get();
+
+        if ($result->isEmpty()) {
+            echo "<script>alert('해당 룸 정보가 존재하지 않습니다.');</script>";
+            return Redirect()->route('users.payment');
+        }
+
         $arr = ['room_name' => $result[0]->room_name
         // , 'room_price' => $result[0]->room_price
         // 가격에 , 제거후 저장
@@ -61,31 +67,21 @@ class PaymentController extends Controller
     ];
     $req->merge($arr);
 
-    DB::beginTransaction();
+// 동시 예약 막기 위해 룸을 락(lock) 설정
+DB::transaction(function () use ($req, $user_id) {
+    $result2 = Reservations::where('room_id', $req->room_id)
+        ->where(function ($query) use ($req) {
+            $query->where('chk_in', '<=', $req->chk_in_date)
+                ->where('chk_out', '>=', $req->chk_out_date);
+        })
+        ->lockForUpdate()
+        ->get();
 
-    try {
-        $result2 = DB::select(
-            "SELECT * FROM reservations WHERE room_id = :room_id AND chk_in <= :chk_in AND chk_out >= :chk_out FOR UPDATE",
-            [
-            'room_id' => $req->room_id,
-            'chk_in' => $req->chk_in,
-            'chk_out' => $req->chk_out
-            ]);
-            DB::commit();
-            // dd($result2);
-            // exit;
-            if (!empty($result2)) {
-                // 이미 해당 기간에 예약이 존재하는 경우
-                return "<script>alert('해당 기간에 숙소가 예약되어 있습니다.');</script>";
-            } 
-        else{
-            DB::commit();
-        };
-    } catch (Exception $e) {
-        DB::rollback();
-        echo "<script>alert('예약 중 오류가 발생했습니다:');</script>" . $e->getMessage();
+    // 중복 예약이 있을 경우 예약 막기
+    if (!$result2->isEmpty()) {
+        echo "<script>alert('이미 예약된 날짜입니다.');</script>";
+        return Redirect()->route('users.payment');
     }
-    finally {
 
     // 예약 정보만 저장
     $reserve = new Reservations([
@@ -108,6 +104,7 @@ class PaymentController extends Controller
         , 'pay_flg' => '1'
     ]);
     $payment->save();
+    
     // 결제가 완료 됐을때 예약 플래그 1(예약 완료) 로 변경후 결제 완료 페이지
     if($payment) {
         $reservation = Reservations::find($reserve->id);
@@ -121,19 +118,20 @@ class PaymentController extends Controller
                     ->where('reservations.id', '=', $reservation->id)
                     ->get();
         echo "<script>alert('예약이 완료 되었습니다.');</script>";
+        var_dump($result);
+        exit;
         return view('payCompInfo')->with('data', $result);
+    
     }
+    else{
     // 결제가 취소되었을 때 결제 페이지 재실행
     echo "<script>alert('결제가 취소 되었습니다 다시 결제해 주세요');</script>";
     return Redirect()->route('users.payment');
     }
+});
+
+
     }
-
-
-
-
-
-
 
 
     // public function payInfopost(Request $req) {
