@@ -108,15 +108,15 @@ Route::get('/admin/hanoks', [AdminController::class, 'adminHanoks'])->name('admi
 Route::get('/admin/hanoks/search', [AdminController::class, 'adminUsersSearch'])->name('admin.hanoks.search');
 
 // 관리자 숙소 상세 이동
-Route::get('/admin/hanoks/{hanok_id}', [AdminController::class, 'adminHanoksDetail'])->name('admin.hanoks.detail');
+Route::get('/admin/hanoks/detail/{hanok_id}', [AdminController::class, 'adminHanoksDetail'])->name('admin.hanoks.detail');
 
 // 관리자 숙소 등록 이동 
 Route::get('/admin/hanoks/insert', [AdminController::class, 'adminHanoksInsert'])->name('admin.hanoks.insert');
 Route::post('/admin/hanoks/insertPost', [AdminController::class, 'adminHanoksInsertPost'])->name('admin.hanoks.insert.post');
 
 // 관리자 객실 등록 이동
-Route::get('/admin/hanoks/{hanok_id}/Roominsert', [AdminController::class, 'adminRoomsInsert'])->name('admin.rooms.insert');
-Route::post('/admin/hanoks/{hanok_id}/RoominsertPost', [AdminController::class, 'adminRoomsInsertPost'])->name('admin.rooms.insert.post');
+Route::get('/admin/hanoks/Roominsert/{hanok_id}', [AdminController::class, 'adminRoomsInsert'])->name('admin.rooms.insert');
+Route::post('/admin/hanoks/RoominsertPost/{hanok_id}', [AdminController::class, 'adminRoomsInsertPost'])->name('admin.rooms.insert.post');
 // YSH new end***********************************************
 
 // 0615 BYJ new

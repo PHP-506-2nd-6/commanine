@@ -22,7 +22,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($users as $key => $val)
+                    @forelse($users as $key => $val)
                     <tr class="bg0">
                         <td class="td_chk">{{$val->user_email}}</td>
                         <td class="td_chk">{{$val->user_name}}</td>
@@ -35,7 +35,7 @@
                     <tr>
                         <td>검색된 결과가 없습니다.</td>
                     </tr>
-                    @endforeach
+                    @endforelse
                     </tbody>
                 </table>
             </div>
