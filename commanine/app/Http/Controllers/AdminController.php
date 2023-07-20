@@ -63,4 +63,17 @@ class AdminController extends Controller
         $hanoks = DB::table('hanoks')->select('id','hanok_name','hanok_addr','hanok_img1')->paginate(15);
         return view('adminHanok')->with('hanoks',$hanoks);
     }
+
+    public function adminReservation() {
+        // $reserve = DB::table('reservations')->select('id','reserve_adult')
+        $reserve = DB::table('rooms as room')
+        ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
+        ->join('reservations as re', 're.room_id', '=', 'room.id')
+        ->select('han.id','han.hanok_name', 'han.hanok_img1', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg')
+        ->where('re.user_id', '4')
+        ->orderBy('re.id', 'desc')
+        ->paginate(5);
+        // ->dd();
+        return view('adminReserve')->with('reservations',$reserve);
+    }
 }

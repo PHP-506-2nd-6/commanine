@@ -68,7 +68,7 @@ class PaymentController extends Controller
     $req->merge($arr);
 
 // 동시 예약 막기 위해 룸을 락(lock) 설정
-DB::transaction(function () use ($req, $user_id) {
+$values = DB::transaction(function () use ($req, $user_id) {
     $result2 = Reservations::where('room_id', $req->room_id)
         ->where(function ($query) use ($req) {
             $query->where('chk_in', '<=', $req->chk_in_date)
@@ -80,7 +80,7 @@ DB::transaction(function () use ($req, $user_id) {
     // 중복 예약이 있을 경우 예약 막기
     if (!$result2->isEmpty()) {
         echo "<script>alert('이미 예약된 날짜입니다.');</script>";
-        return Redirect()->route('users.payment');
+        return Redirect()->back();
     }
 
     // 예약 정보만 저장
@@ -110,29 +110,49 @@ DB::transaction(function () use ($req, $user_id) {
         $reservation = Reservations::find($reserve->id);
         $reservation->reserve_flg = '1';
         $reservation->save();
-        $result = DB::table('reservations')->select('reservations.updated_at', 'reservations.reserve_adult', 'reservations.id', 'reservations.chk_in as chk_in_date', 'reservations.chk_out as chk_out_date', 'rooms.room_name'
+        // $result = DB::table('reservations')->select('reservations.updated_at', 'reservations.reserve_adult', 'reservations.id', 'reservations.chk_in as chk_in_date', 'reservations.chk_out as chk_out_date', 'rooms.room_name'
+        //             , 'rooms.room_img1', 'rooms.chk_in', 'rooms.chk_out', 'hanoks.hanok_addr', 'hanoks.hanok_name', 'hanoks.hanok_num', 'payments.pay_price', 'payments.pay_type')
+        //             ->join('rooms', 'rooms.id', '=', 'reservations.room_id')
+        //             ->join('hanoks', 'rooms.hanok_id', '=', 'hanoks.id')
+        //             ->join('payments', 'payments.reserve_id', '=', 'reservations.id')
+        //             ->where('reservations.id', '=', $reservation->id)
+        //             ->get();
+        // echo "<script>alert('예약이 완료 되었습니다.');</script>";
+        // return view('payCompInfo')->with('data', $result);
+        // return view('payCompInfo')->with('data', $result);
+    
+    }
+    else{
+        // 결제가 취소되었을 때 결제 페이지 재실행
+        echo "<script>alert('결제가 취소 되었습니다 다시 결제해 주세요');</script>";
+        
+    }
+});
+if( $values === null ) {
+$user_id = Auth::User()->user_id;
+
+$result = DB::table('reservations')->select('reservations.updated_at', 'reservations.reserve_adult', 'reservations.id', 'reservations.chk_in as chk_in_date', 'reservations.chk_out as chk_out_date', 'rooms.room_name'
                     , 'rooms.room_img1', 'rooms.chk_in', 'rooms.chk_out', 'hanoks.hanok_addr', 'hanoks.hanok_name', 'hanoks.hanok_num', 'payments.pay_price', 'payments.pay_type')
                     ->join('rooms', 'rooms.id', '=', 'reservations.room_id')
                     ->join('hanoks', 'rooms.hanok_id', '=', 'hanoks.id')
                     ->join('payments', 'payments.reserve_id', '=', 'reservations.id')
-                    ->where('reservations.id', '=', $reservation->id)
-                    ->get();
+                    // ->where('reservations.id', '=', '325')
+                    ->where('reservations.user_id', '=', $user_id)
+                    ->orderBy('reservations.id', 'desc')
+                    ->first();
         echo "<script>alert('예약이 완료 되었습니다.');</script>";
-        var_dump($result);
-        exit;
-        return view('payCompInfo')->with('data', $result);
-    
-    }
-    else{
-    // 결제가 취소되었을 때 결제 페이지 재실행
-    echo "<script>alert('결제가 취소 되었습니다 다시 결제해 주세요');</script>";
-    return Redirect()->route('users.payment');
-    }
-});
-
-
+return view('payCompInfo')->with('data', $result);
+} 
+else {
+     $errmsg ='이미 예약된 날짜입니다.';
+     session()->flash('value',$errmsg);
+    return Redirect()->back();
+}
     }
 
+    // public function payComplete() {
+    //     return redirect()->route('users.payment');
+    // }
 
     // public function payInfopost(Request $req) {
     //     if(auth()->guest()) {

@@ -101,3 +101,9 @@
 
 <script src="{{asset('js/payment.js')}}"></script>
 @endsection
+@if(session()->has('value'))
+    
+<script>
+    alert('이미 예약된 방입니다.')
+</script>
+@endif

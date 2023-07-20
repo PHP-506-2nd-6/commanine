@@ -9,6 +9,9 @@
     <div class="header_bg">
         <div class="fix">
             <nav>
+                {{-- <div class="menu_hanok"> --}}
+                    <a class="menu_hanok" href="{{route('intro')}}">Hanok</a>
+                {{-- </div> --}}
                 <ul class="menu hidden-button">
                     <li class="menuactive hidden-button"><a href="#menu1">category</a></li>
                     <li><a href="#menu2">popularity</a></li>
