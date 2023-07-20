@@ -8,12 +8,12 @@
         <input type="text" placeholder="숙소명 / 주소 입력" name="hanoks">
         <button type="submit">검색</button>
     </form>
-    <button onclick="location.href='{{route()}}'">숙소 등록</button>
+    <button onclick="location.href='{{route('admin.hanoks.insert')}}'">숙소 등록</button>
     <div class="searchUl">
         @forelse($hanoks as $value)
             <div class="searchList">
                 {{-- <a href="{{route('hanoks.detail',$value->id)}}" class="listA"> --}}
-                <a href="{{route('hanoks.detail',[ 'id' => $value->id ])}}" class="listA">
+                <a href="{{route('admin.hanoks.detail',[ 'hanok_id' => $value->id ])}}" class="listA">
                     <div class="imgBox">
                         <img src="{{asset($value->hanok_img1)}}" >
                     </div>
