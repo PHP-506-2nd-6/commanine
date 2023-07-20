@@ -103,6 +103,18 @@ Route::get('/admin/users/search', [AdminController::class, 'adminUsersSearch'])-
 
 // 관리자 숙소 정보 이동
 Route::get('/admin/hanoks', [AdminController::class, 'adminHanoks'])->name('admin.hanoks');
+Route::get('/admin/users/search', [AdminController::class, 'adminUsersSearch'])->name('admin.users.search');
+
+// 관리자 숙소 상세 이동
+Route::get('/admin/hanoks/{hanok_id}', [AdminController::class, 'adminHanoksDetail'])->name('admin.hanoks.detail');
+
+// 관리자 숙소 등록 이동 
+Route::get('/admin/hanoks/{hanok_id}/insert', [AdminController::class, 'adminHanoksInsert'])->name('admin.hanoks.insert');
+Route::post('/admin/hanoks/{hanok_id}/insertPost', [AdminController::class, 'adminHanoksInsertPost'])->name('admin.hanoks.insert.post');
+
+// 관리자 객실 등록 이동
+Route::get('/admin/hanoks/{hanok_id}/Roominsert', [AdminController::class, 'adminRoomsInsert'])->name('admin.rooms.insert');
+Route::post('/admin/hanoks/{hanok_id}/RoominsertPost', [AdminController::class, 'adminRoomsInsertPost'])->name('admin.rooms.insert.post');
 // YSH new end***********************************************
 
 // 0615 BYJ new

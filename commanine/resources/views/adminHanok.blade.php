@@ -4,7 +4,7 @@
 
     @include('layout.adminsidebar')
     <h2>숙소관리</h2>
-    <form action="{{route('admin.hanoks')}}" method="get">
+    <form action="{{route('admin.hanoks.search')}}" method="get">
         <input type="text" placeholder="숙소명 / 주소 입력" name="hanoks">
         <button type="submit">검색</button>
     </form>
