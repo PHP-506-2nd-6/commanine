@@ -50,4 +50,17 @@ class AdminController extends Controller
         return view('adminUser')->with('users',$users);
     }
 
+    public function adminHanoks(){
+        // 쿼리
+        // SELECT
+        // id,
+        // hanok_name,
+        // hanok_img1,
+        // hanok_addr
+        // FROM hanoks han
+
+        // ORDER BY han.hanok_name;
+        $hanoks = DB::table('hanoks')->select('id','hanok_name','hanok_addr','hanok_img1')->paginate(15);
+        return view('adminHanok')->with('hanoks',$hanoks);
+    }
 }

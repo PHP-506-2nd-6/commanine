@@ -9,9 +9,36 @@
         <button type="submit">검색</button>
     </form>
     <button onclick="location.href='{{route()}}'">숙소 등록</button>
+    <div class="searchUl">
+        @forelse($hanoks as $value)
+            <div class="searchList">
+                {{-- <a href="{{route('hanoks.detail',$value->id)}}" class="listA"> --}}
+                <a href="{{route('hanoks.detail',[ 'id' => $value->id ])}}" class="listA">
+                    <div class="imgBox">
+                        <img src="{{asset($value->hanok_img1)}}" >
+                    </div>
+                    <div class="explainHanok">
+                        <div class="nameHanok">
+                        {{-- 숙소명 --}}
+                            <div class="hanokName">{{$value->hanok_name}}</div>
+                        {{-- </div>
+                        <div class="reviewHanok"> --}}
+                            {{-- <span><img src="{{asset('img/icon/star.png')}}" alt="star" class="star"></span> --}}
+                        {{-- 별점 평균 --}}
+                            <div class="reviewBox">{{$value->hanok_addr}}</div>
+                        {{-- 리뷰 개수 --}}
+                            {{-- <span>({{$value->cnt}})</span> --}}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @empty
+            <div class="searchList noSearch" >검색된 결과가 없습니다.</div>
+        @endforelse
+    </div>
     
 
     <div class="d-flex justify-content-center" > 
-        {{ $users->withQueryString()->links('vendor.pagination.custom') }}
+        {{ $hanoks->withQueryString()->links('vendor.pagination.custom') }}
     </div>
 @endsection

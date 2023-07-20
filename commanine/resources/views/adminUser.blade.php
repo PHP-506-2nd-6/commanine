@@ -31,6 +31,10 @@
                         <td class="td_chk">{{$val->created_at}}</td>
                         <td class="td_chk">{{isset($val->deleted_at) ? $val->deleted_at : ""}}</td>
                     </tr>
+                    @empty
+                    <tr>
+                        <td>검색된 결과가 없습니다.</td>
+                    </tr>
                     @endforeach
                     </tbody>
                 </table>
