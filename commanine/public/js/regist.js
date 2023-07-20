@@ -27,6 +27,12 @@ const registBtn = document.querySelector('.registBtn');
 let btnChk = false; 
 let apiData = null;
 // EMAIL 체크 변수 end *********************
+// 이메일 인증번호 체크 변수
+const emailChkNumBtn = document.getElementById('emailChkNumBtn');
+const emailChkNum = document.getElementById('emailChkNum');
+const errMsgEmailChkNum = document.getElementById('errMsgEmailChkNum');
+let numChk = false;
+// 이메일 인증번호 체크 변수 end ************
 // password 체크 변수
 const pw = document.getElementById('password');
 const pwChk = document.getElementById('passwordChk');
@@ -41,8 +47,8 @@ const errbox = document.querySelectorAll('.errbox');
 const birthInput = document.querySelector('#birth');
 
 
+const email = document.getElementById('email');
 const certification = ()=>{
-    const email = document.getElementById('email');
     const url = "/api/users/regist/"+email.value;
     const regex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
     if (email.value === '') { 
@@ -72,11 +78,85 @@ const certification = ()=>{
                 idSpan.innerHTML = apiData["msg"];
                 idSpan.style.color = "green";
                 btnChk = true;
+                emailChkNumBtn.disabled = false;
+                emailChkNum.disabled = false;
             }
         })
         .catch(error=>alert(error.message));
 }
 
+// 인증번호 보내기?
+const timer = document.getElementById('timer');
+
+timer.innerHTML = "10:00";
+
+let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+// function storeUserChks(){
+//     const url = '/api/users/regist/' + email.value;
+//     fetch(url, {
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Accept": "application/json, text-plain, */*",
+//             "X-Requested-With": "XMLHttpRequest",
+//             "X-CSRF-TOKEN": token
+//             },
+//         method: 'post',
+//         credentials: "same-origin",
+//         body: JSON.stringify({
+//             email: email.value
+//         })
+//     })
+//     .then((data) => {
+//         console.log(data);
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     })
+//     emailChkNum.disabled = false;
+// }
+function mailNumChk(){
+    const url = "/api/users/regist/"+email.value;
+    fetch(url, {
+                headers: {
+                    "Content-Type": "application/json",
+                    // "Accept": "application/json, text-plain, */*",
+                    // "X-Requested-With": "XMLHttpRequest",
+                    // "X-CSRF-TOKEN": token
+                    },
+                method: 'POST',
+                // credentials: "same-origin",
+                body: JSON.stringify({
+                    email: email.value
+                    ,chk_num: emailChkNum.value
+                    ,chk_flg:"1"
+                })
+            })
+    .then(data=>{
+        //     // Response Status 확인  (200번 외에는 에러 처리)
+        if(data.status !== 200){
+                throw new Error(data.status + ' : API Response Error');
+            }
+        return data.json();
+        })
+    .then(data => {
+        if (data["errorcode"] === "E02") {
+            errMsgEmailChkNum.innerHTML = data['msg'];
+            errMsgEmailChkNum.style.color = "red";
+
+        } else {
+            errMsgEmailChkNum.innerHTML = data['msg'];
+            errMsgEmailChkNum.style.color = "green";
+
+        }
+        console.log(data);
+        // errMsgEmailChkNum.innerHTML = '올바른 인증번호 입니다.';
+        // errMsgEmailChkNum.style.color = 'green';
+        // emailChkNum.disabled = false; 옳은 번호 입력하면 타이머 멈추기
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}
 
 // 쓰로틀
 
@@ -95,6 +175,7 @@ const throttle = () =>{
 
 // birthInput.addEventListener('click',throttleBirth());
 emailBtn.addEventListener('click',throttle(certification));
+emailChkNumBtn.addEventListener('click', mailNumChk);
 
 //이메일 확인하기 버튼을 누르지 않고 회원가입을 누를 경우 
 registBtn.addEventListener('click', function(event) {
@@ -104,7 +185,26 @@ registBtn.addEventListener('click', function(event) {
     idSpan.style.color = "red";
     }
 });
+// ! 이메일 인증번호 유효성 체크
+function emailNumChk(){
+    const emailNum = emailChkNum.value;
+    const numRegex = /^[0-9]{8}$/;
+    if(emailNum == ''){
+        errMsgEmailChkNum.innerHTML = '인증번호를 입력해주세요.';
+        errMsgEmailChkNum.style.color = 'red';
+    } else if (numRegex.test(emailNum) === false) {
+        errMsgEmailChkNum.innerHTML = '인증번호가 옳지 않습니다.';
+        errMsgEmailChkNum.style.color = 'red';
+        
+    } else{
+        errMsgEmailChkNum.innerHTML = '';
+    }
+    // else{
+    //     nameAlert.innerHTML = '이름은 한글로 2~30자 입력해 주세요.';
+    //     nameAlert.style.color = 'red';
+    // }
 
+}
 
 // ! 비밀번호 체크 
 const checkPasswordMatch = () => {
@@ -222,29 +322,34 @@ function checkEmail(){
     const emailAlert = document.querySelector('.emailAlert');
     const emailRegex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
     
-    if(emailRegex.test(emailInput.value) === true){
-        emailAlert.innerHTML = '이메일 중복확인을 해주세요.';
-        emailAlert.style.color = 'red';
-    }
-    else{
+    if(emailRegex.test(emailInput.value) == false){
         emailAlert.innerHTML = '이메일 형식에 맞게 입력해 주세요.';
-        emailAlert.style.color = 'red';
-    }
+        emailAlert.style.color = 'red';}
+    // if(emailRegex.test(emailInput.value) === true){
+    //     emailAlert.innerHTML = '이메일 중복확인을 해주세요.';
+    //     emailAlert.style.color = 'red';
+    // }
+    // else{
+    //     emailAlert.innerHTML = '이메일 형식에 맞게 입력해 주세요.';
+    //     emailAlert.style.color = 'red';
+    // }
 }
 
-function checkEmail(){
+function checkEmailNum(){
     const emailInput = document.querySelector('.emailInput');
     const emailAlert = document.querySelector('.emailAlert');
     const emailRegex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
-    
-    if(emailRegex.test(emailInput.value) === true){
-        emailAlert.innerHTML = '이메일 중복확인을 해주세요.';
-        emailAlert.style.color = 'red';
-    }
-    else{
+    if(emailRegex.test(emailInput.value) == false){
         emailAlert.innerHTML = '이메일 형식에 맞게 입력해 주세요.';
-        emailAlert.style.color = 'red';
-    }
+        emailAlert.style.color = 'red';}
+    // if(emailRegex.test(emailInput.value) === true){
+    //     emailAlert.innerHTML = '이메일 중복확인을 해주세요.';
+    //     emailAlert.style.color = 'red';
+    // }
+    // else{
+    //     emailAlert.innerHTML = '이메일 형식에 맞게 입력해 주세요.';
+    //     emailAlert.style.color = 'red';
+    // }
 }
 
 function checkBirth(){

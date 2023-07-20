@@ -11,7 +11,7 @@
     @include('layout.errors_validate')
     <form action="{{route('users.findId.post')}}" method="post">
         @csrf
-        <input type="text" name="name" id="name" placeholder="이름">
+        <input type="text" name="name" id="name" placeholder="이름" value="{{old('name')}}">
         <br>
         <input type="text" name="phoneNumber" id="phoneNumber" placeholder="전화번호" max="11">
         <br>
