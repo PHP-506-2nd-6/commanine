@@ -1,25 +1,20 @@
-/* 
-.sidebar > ul {
-    text-decoration: none;
 
-}
-
-.sidebar > ul > li{
-    text-decoration: none;
-} */
 ul{
     list-style: none;
 }
-a{
+.a-link{
     color:#000;
     text-decoration: none;
     font-weight: 900;
+    font-size: 1.1em;
 }
 
-a:hover{
-    color:#000;
+.a-link:hover{
+    color:#b2b2b2;
     text-decoration: none;
 }
+
+
 .form {
     margin: 30px 0;
 }
@@ -28,4 +23,15 @@ a:hover{
 } */
 th{
     font-size:1.1em;
+}
+.sidebar{
+    border-right: 2px solid #000;
+    /* text-align: center; */
+}
+.header-box{
+    display:flex;
+    flex-direction: row;
+}
+.main-container{
+    min-height:90%;
 }

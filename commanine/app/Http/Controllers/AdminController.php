@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admins;
+use App\Models\Rooms;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -38,6 +40,7 @@ class AdminController extends Controller
         Auth::logout();
         return redirect()->route('admin.regist');
     }
+    //0719 KMH add
     public function adminUsers() {
         $users = DB::table('users')
         // ->dd();
@@ -50,7 +53,9 @@ class AdminController extends Controller
         ->paginate(15);
         return view('adminUser')->with('users',$users);
     }
+    // 0719 add end KMH
 
+    // 0720 add KMH
     public function adminHanoks(){
         // 쿼리
         // SELECT
@@ -62,28 +67,34 @@ class AdminController extends Controller
         $hanoks = DB::table('hanoks')->select('id','hanok_name','hanok_addr','hanok_img1')->paginate(15);
         return view('adminHanok')->with('hanoks',$hanoks);
     }
-
+    // 0720 add end KMH 
     public function adminHanoksInsert(){
         Log::debug("insert");
     return view('adminHanoksInsert');
     }
 
-
+    // 0720 add KMH 
     public function adminHanoksDetail($hanok_id){
-        
-        Log::debug("detail");
         // 쿼리
-        // SELECT
-        // id,
-        // hanok_name,
-        // hanok_img1,
-        // hanok_addr
+        // SELECT *
         // FROM hanoks han
-        $hanoks = DB::table('hanoks')->select('id','hanok_name','hanok_addr','hanok_img1')->paginate(15);
-        return view('adminHanokDetail')->with('hanoks',$hanoks);
-        // return redirect()->route('admin.hanoks.detail')->with('hanoks',$hanoks);
+        // where id = hanok_id
+        // 숙소 정보 출력
+        $hanoks = DB::table('hanoks')->where('id','=',$hanok_id)->get();
+        // 현재 숙소가 추가한 객실 출력 
+        // select room.+
+        // from rooms room
+        // join hanoks hanok 
+        // on room.hanok_id = hanok.id
+        // where hanok.id = $hanok_id
+        $rooms = DB::table('rooms as room')
+        ->select('room.*')
+        ->join('hanoks as hanok','room.hanok_id','=','hanok.id')
+        ->where('hanok.id','=',$hanok_id)
+        ->paginate(1);
+        return view('adminHanokDetail')->with('hanoks',$hanoks[0])->with('rooms',$rooms);
     }
-
+    // 0720 add end KMH
 
 
     public function adminReservation() {
@@ -98,4 +109,70 @@ class AdminController extends Controller
         // ->dd();
         return view('adminReserve')->with('reservations',$reserve);
     }
+
+    // 0720 add KMH
+    public function adminRoomsInsert($hanok_id){
+        $hanoks = DB::table('hanoks')->select('hanok_name','hanok_addr','id')->where('id','=',$hanok_id)->get();
+        return view('adminRoomsInsert')->with('hanoks',$hanoks[0]);
+    }
+    public function adminRoomsInsertPost($hanok_id,Request $req){
+        $error = "모든 사항은 필수 사항 입니다.";
+        $validator = Validator::make(
+            $req->only('room_name','room_content','room_price','room_min','room_max','chk_in','chk_out','room_detail','room_facility','room_img1','room_img2','room_img3')
+            ,[
+                'room_name'     => 'required'
+                ,'room_content' =>'required'
+                ,'room_price' =>'required'
+                ,'room_min' =>'required'
+                ,'room_max' =>'required'
+                ,'chk_in' =>'required'
+                ,'chk_out' =>'required'
+                ,'room_detail' =>'required'
+                ,'room_facility' =>'required'
+                ,'room_img1' => ['required']
+                ,'room_img2' => ['required']
+                ,'room_img3' => ['required']
+            ]);
+        
+        if($validator->fails()){
+            return var_dump($validator);
+            // return redirect()->back()->with('error',$error);
+        }
+        // 이미지 저장
+        $req->room_img1->store('/img/roomImg');
+        $req->room_img2->store('/img/roomImg');
+        $req->room_img3->store('/img/roomImg');
+        // 이미지 이름 가져오기
+        $fileName1 = $req->room_img1->hashName();
+        $fileName2 = $req->room_img2->hashName();
+        $fileName3 = $req->room_img3->hashName();
+
+        
+        $data['room_name']   = $req->input('room_name');
+        $data['room_content']   = $req->input('room_content');
+        $data['room_price']   = $req->input('room_price');
+        $data['room_min']   = $req->input('room_min');
+        $data['room_max']   = $req->input('room_max');
+        $data['chk_in']   = $req->input('chk_in');
+        $data['chk_out']  = $req->input('chk_out');
+        $data['room_detail'] = $req->input('room_detail');
+        $data['room_facility'] = $req->input('room_facility');
+        $data['hanok_id'] = $hanok_id;
+        $data['room_img1'] = 'img/roomImg/'.$fileName1;
+        $data['room_img2'] = 'img/roomImg/'.$fileName2;
+        $data['room_img3'] = 'img/roomImg/'.$fileName3;
+
+        $room = Rooms::create($data);   // insert 
+        if(!$room){
+            $error = '잠시 후에 다시 시도해 주세요';
+            return redirect()
+                    ->route('admin.rooms.insert')
+                    ->with('error',$error);
+        }
+        return redirect()
+                ->route('admin.hanoks')
+                ->with('success','숙소 등록 완료');
+        
+    }
+    // 0720 add end KMH
 }

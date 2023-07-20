@@ -1,17 +1,20 @@
 @extends('layout.adminlayout')
-
+<head>
+    <link rel="stylesheet" href="{{asset('css/adminSidebar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/adminUsers.css')}}"> 
+</head>
 @section('contents')
-    <div class="container row">
+    <div class="container row main-container ">
         @include('layout.adminsidebar')
-        <div class="container col-10">
-            <h2>유저 관리</h2>
-            <form action="{{route('admin.users.search')}}" method="get" class="form">
-                <input type="text" placeholder="이메일/이름 입력" name="users">
-                <button type="submit">검색</button>
+        <div class="container col-9 content-box">
+            <h2 >유저 관리</h2>
+            <form action="{{route('admin.users.search')}}" method="get" class="form" >
+                <input type="text" placeholder="이메일/이름 입력" name="users" class="input">
+                <button type="submit" class="btn btn-dark">검색</button>
             </form>
-            <div class="table">
-                <table>
-                    <thead>
+            <div >
+                <table class="table">
+                    <thead >
                         <tr>
                             <th scope="col">유저이메일</th>
                             <th scope="col">이름</th>
