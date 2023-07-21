@@ -72,19 +72,42 @@ class ApiUsersController extends Controller
     } // 0720 KMJ add
 
     public function getMailChk(Request $req){        
-        $chk = Userchks::where('email', $req->email)
-                        ->where('chk_num', $req->chk_num)
-                        ->where('chk_flg', '0')
-                        ->where('time_deadline', '>', Carbon::now())
-                        ->get();
+        // $chk = DB::table('userchks')
+        //                 ->where('email', $req->email)
+        //                 ->where('chk_num', $req->chk_num)
+        //                 ->where('chk_flg', '0')
+        //                 ->where('time_deadline', '>', Carbon::now())
+        //                 ->get();
+        $date = Carbon::now();
+        $chk = DB::table('userchks')
+        ->where('email', $req->email)
+        ->where('chk_num', $req->chk_num)
+        ->where('chk_flg', '0')
+        ->where('time_deadline', '>', $date)
+        ->update(['chk_flg' => '1', 'updated_at' => $date]);
+        // $chk = Userchks::where('email', $req->email)
+        //                 ->where('chk_num', $req->chk_num)
+        //                 ->where('chk_flg', '0')
+        //                 ->where('time_deadline', '>', Carbon::now())
+        //                 ->get();
+        // $sql = "UPDATE userchks SET chk_flg = ? WHERE email = ? AND chk_flg = ? AND chk_num = ?";
+        // $prepare = [ 'chk_flg' => '1', 'email' => $req->email, 'chk_num' => $req->chk_num];
+        // $chk = DB::update($sql, $prepare);
+        // Log::debug('chk',[$chk]);
         // return var_dump($chk);
         if ($chk) {
-            $query = "UPDATE userchks SET chk_flg = '1' WHERE email = ? AND chk_flg = '0' AND chk_num = ? ";
-            $prepare = ['email' => $req->email, 'chk_num' => $req->chk_num];
-            $result = DB::update($query,$prepare);
-            Log::debug('result',[$result]);
+            // $query = "UPDATE userchks SET chk_flg = '1' WHERE email = ? AND chk_flg = '0' AND chk_num = ? and 'time_deadline' > ? ";
+            // $prepare = ['email' => $req->email, 'chk_num' => $req->chk_num, Carbon::now()];
+            // $result = DB::update($query,$prepare);
             // $chk->chk_flg = "1";
             // $chk->save();
+            // DB::table('userchks')
+            //     ->where('email', $req->email)
+            //     ->where('chk_num', $req->chk_num)
+            //     ->where('chk_flg', '0')
+            //     ->where('time_deadline', '>', Carbon::now())
+            //     ->update(['chk_flg' => '1']);
+
             $arr['errorcode']="0";
             $arr['msg'] = "올바른 인증번호 입니다.";
             // $arr['msg'] = var_dump($chk);

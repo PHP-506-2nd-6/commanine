@@ -24,7 +24,8 @@ use App\Http\Controllers\Auth\SocialController;
 
 // Route::post('/users/regist/{email}',[ApiUsersController::class,'getUserChk']);
 Route::get('/users/regist/{email}',[ApiUsersController::class, 'getUserChk']);
-Route::put('/users/regist/{email}',[ApiUsersController::class,'getMailChk']);
+Route::put('/users/mail/{email}',[ApiUsersController::class,'getMailChk']);
+// Route::put('/users/regist/{email}',[ApiUsersController::class,'getMailChk']);
 // Route::post('/users/regist/{email}',[ApiUsersController::class, 'getMailChk']);
 
 Route::post('/wishlists/post/{hanok_id}', [ApiWishlistsController::class, 'store']);

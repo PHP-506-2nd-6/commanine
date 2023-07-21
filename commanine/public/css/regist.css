@@ -96,16 +96,18 @@ form{
     /* width:70px; */
     font-size: 14px;
     height: 36px;
-    padding: 5px;
+    width: 95px;
+    padding: 5px 0;
 }
 
-#timer {
+#timet {
     position:absolute;
     z-index: 5;
     top:50%;
     transform: translateY(-50%);
-    right:20%;
+    right:27%;
     font-size: 14px;
+    /* display: none; */
 }
 
 .blackBtn{
