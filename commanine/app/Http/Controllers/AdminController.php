@@ -97,16 +97,46 @@ class AdminController extends Controller
     // 0720 add end KMH
 
 
+    // 0720 add BYJ
+    // 예약관리 정보
     public function adminReservation() {
-        // $reserve = DB::table('reservations')->select('id','reserve_adult')
+        //test
+        // $reserve = DB::table('reservations')
+        // ->orderBy('id','desc')
+        // ->paginate(15);
+
         $reserve = DB::table('rooms as room')
         ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
         ->join('reservations as re', 're.room_id', '=', 'room.id')
-        ->select('han.id','han.hanok_name', 'han.hanok_img1', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg')
-        ->where('re.user_id', '4')
+        ->SELECT('re.id as reserve_id','re.reserve_name','re.reserve_num','han.id','han.hanok_name', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg','re.created_at')
+        // ->where('re.user_id')
         ->orderBy('re.id', 'desc')
-        ->paginate(5);
-        // ->dd();
+        ->paginate(15);
+        
+
+        return view('adminReserve')->with('reservations',$reserve);
+    }
+    // 0721 add BYJ
+    // 예약관리 검색
+    public function adminReservationSearch(Request $req){
+        // test
+        // $reserve = DB::table('reservations')->where('id','LIKE','%' . $req->id . '%')->orWhere('reserve_name','LIKE','%' . $req->reserve_name . '%')
+        // ->paginate(15);
+        // $reserve_id = 25;
+
+        $keyword = $req->input('keyword');
+        $searchType = $req->input('searchType');
+
+        $reserve = DB::table('rooms as room')
+            ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
+            ->join('reservations as re', 're.room_id', '=', 'room.id')
+            ->select('re.id as reserve_id', 're.reserve_name', 're.reserve_num', 'han.id', 'han.hanok_name', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg', 're.created_at')
+            // ->where('han.hanok_name', 'LIKE', '%' . $keyword . '%')
+            ->Where('re.' . $searchType, 'LIKE', '%' . $keyword . '%')
+            ->orderBy('re.id', 'desc')
+            // ->get();
+            ->paginate(15);
+
         return view('adminReserve')->with('reservations',$reserve);
     }
 
@@ -175,4 +205,37 @@ class AdminController extends Controller
         
     }
     // 0720 add end KMH
+
+
+    // 0721 add BYJ
+    // 리뷰관리 정보
+    public function adminReview() {
+
+    $reviews = DB::table('users as u')
+        ->join('reviews as rev', 'rev.user_id', '=', 'u.user_id')
+        ->join('hanoks as han', 'han.id', '=', 'rev.hanok_id')
+        ->select('u.user_name', 'rev.rev_content', 'rev.rate', 'rev.created_at', 'rev.updated_at', 'rev.deleted_at', 'han.hanok_name')
+        // ->get();
+        ->paginate(15);
+    
+
+        return view('adminReview')->with('review',$reviews);
+    }
+
+    // 리뷰관리 검색
+    public function adminReviewSearch(Request $req) {
+
+    $revkeyword = $req->input('revkeyword');
+    // $revsearchType = $req->input('revsearchType');
+    $reviews = DB::table('users as u')
+        ->join('reviews as rev', 'rev.user_id', '=', 'u.user_id')
+        ->join('hanoks as han', 'han.id', '=', 'rev.hanok_id')
+        ->select('u.user_name', 'rev.rev_content', 'rev.rate', 'rev.created_at', 'rev.updated_at', 'rev.deleted_at', 'han.hanok_name')
+        ->where('rev.rev_content', 'LIKE', '%' . $revkeyword . '%')
+        ->orWhere('u.user_name', 'LIKE', '%' . $revkeyword . '%')
+        // ->get();
+        ->paginate(15);
+
+        return view('adminReview')->with('review',$reviews);
+    }
 }
