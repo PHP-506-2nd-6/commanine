@@ -32,7 +32,7 @@
             <br>
             <div class="btnGroup">
                 <button type="submit" class="blackBtn">비밀번호 찾기</button>
-                <button type="button" onclick="location.href='{{route('users.login')}}'" class="whiteBtn">취소</button>
+                <button type="button" onclick="location.href='{{route('users.login')}}'" class="whiteBtn">취 소</button>
             </div>
         </form>
     </div>
