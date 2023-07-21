@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class ApiUsersController extends Controller
@@ -37,6 +38,7 @@ class ApiUsersController extends Controller
         }
         return response()->json($arr,Response::HTTP_OK);
     }
+
     // public function getUserChk($email){ // 0720 KMJ del
     //     $user=DB::table('users')->where('user_email',$email)->first();
     //     // user가 없을 경우 성공
@@ -52,6 +54,7 @@ class ApiUsersController extends Controller
     //     // return $arr;
 
     // }
+
     public function insertMailChk($email){
         $num ='';
         // 메일보내기
@@ -67,6 +70,7 @@ class ApiUsersController extends Controller
         $userchks->save();
         Mail::to($email)->send(new CertificationEmail($num));
     } // 0720 KMJ add
+
     public function getMailChk(Request $req){        
         $chk = Userchks::where('email', $req->email)
                         ->where('chk_num', $req->chk_num)
@@ -75,8 +79,12 @@ class ApiUsersController extends Controller
                         ->get();
         // return var_dump($chk);
         if ($chk) {
-            $chk->chk_flg = $req->chk_flg;
-            $chk->save();
+            $query = "UPDATE userchks SET chk_flg = '1' WHERE email = ? AND chk_flg = '0' AND chk_num = ? ";
+            $prepare = ['email' => $req->email, 'chk_num' => $req->chk_num];
+            $result = DB::update($query,$prepare);
+            Log::debug('result',[$result]);
+            // $chk->chk_flg = "1";
+            // $chk->save();
             $arr['errorcode']="0";
             $arr['msg'] = "올바른 인증번호 입니다.";
             // $arr['msg'] = var_dump($chk);

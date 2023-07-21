@@ -77,7 +77,7 @@ const certification = ()=>{
             }else{
                 idSpan.innerHTML = apiData["msg"];
                 idSpan.style.color = "green";
-                btnChk = true;
+                // btnChk = true;
                 emailChkNumBtn.disabled = false;
                 emailChkNum.disabled = false;
             }
@@ -119,16 +119,16 @@ function mailNumChk(){
     fetch(url, {
                 headers: {
                     "Content-Type": "application/json",
-                    // "Accept": "application/json, text-plain, */*",
-                    // "X-Requested-With": "XMLHttpRequest",
-                    // "X-CSRF-TOKEN": token
+                    "Accept": "application/json, text-plain, */*",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRF-TOKEN": token
                     },
-                method: 'POST',
-                // credentials: "same-origin",
+                method: 'PUT',
+                credentials: "same-origin",
                 body: JSON.stringify({
                     email: email.value
                     ,chk_num: emailChkNum.value
-                    ,chk_flg:"1"
+                    // ,chk_flg:"1"
                 })
             })
     .then(data=>{
@@ -146,16 +146,17 @@ function mailNumChk(){
         } else {
             errMsgEmailChkNum.innerHTML = data['msg'];
             errMsgEmailChkNum.style.color = "green";
-
+            btnChk = true;
         }
         console.log(data);
         // errMsgEmailChkNum.innerHTML = '올바른 인증번호 입니다.';
         // errMsgEmailChkNum.style.color = 'green';
         // emailChkNum.disabled = false; 옳은 번호 입력하면 타이머 멈추기
     })
-    .catch((err) => {
-        console.log(err);
-    })
+    .catch(error=>alert(error.message));
+    // .catch((err) => {
+    //     console.log(err);
+    // })
 }
 
 // 쓰로틀

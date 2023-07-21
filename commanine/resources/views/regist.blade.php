@@ -38,7 +38,7 @@
             </div>
             <div id="errMsgId" class="errmsg emailAlert"></div>
             <div class="emailChkNumBox">
-                <input type="text" name="emailChkNum" onblur="emailNumChk()"  class="emailChkNum" autocomplete="off" id="emailChkNum" placeholder="인증번호" value="{{old('emailChkNum')}}" disabled="true">
+                <input type="text" name="emailChkNum" onblur="emailNumChk()"  class="emailChkNum" autocomplete="off" id="emailChkNum" placeholder="인증번호" disabled="true">
                 <button type="button" id="emailChkNumBtn" class="blackBtn" disabled="true">인증하기</button>
                 <span id="timer"></span>
             </div>
