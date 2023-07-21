@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admins' => [ // 'admins' 가드를 추가
+            'driver' => 'session',
+            'provider' => 'admins', // 'admins' 가드의 인증에 사용되는 Eloquent 모델을 지정
+        ],
     ],
 
     /*
@@ -69,6 +73,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'admins' => [ // 'admins' 가드의 인증에 사용될 Eloquent 모델을 지정
+            'driver' => 'eloquent',
+            'model' => App\Models\Admins::class,
+        ],
     ],
 
     /*

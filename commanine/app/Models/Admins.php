@@ -23,5 +23,6 @@ class Admins extends Authenticatable
         'remember_token',
     ];
     protected $guarded=[
+        'admin',
     ];
 }

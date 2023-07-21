@@ -36,6 +36,9 @@ Route::get('login/kakao/callback', [SocialController::class,'handleKakaoCallback
 // 로그인 
 Route::get('/users/login',[UsersController::class,'login'])->name('users.login');
 Route::post('/users/loginpost',[UsersController::class,'loginpost'])->name('users.login.post');
+// 임시 비밀번호 변경
+Route::get('/users/pwchange', [UsersController::class, 'pwchange'])->name('users.pwchange');
+Route::post('/users/pwchangepost', [UsersController::class, 'pwchangepost'])->name('users.pwchange.post');
 //회원가입
 Route::get('/users/regist',[UsersController::class,'regist'])->name('users.regist');
 Route::post('/users/registpost',[UsersController::class,'registpost'])->name('users.regist.post');

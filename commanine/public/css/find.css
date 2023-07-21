@@ -1,0 +1,104 @@
+h2{
+    margin-bottom: 40px;
+}
+
+.con{
+    margin:50px auto;
+    width:500px;
+    border:1px solid #000;
+    text-align: center;
+    padding: 50px;
+}
+
+.msgBox{
+    height: 30px;
+}
+
+.msg{
+    font-size: 14px;
+    color: red;
+}
+
+.findInput{
+    height: 36px;
+    width:100%;
+    margin:0 auto;
+    margin-bottom: 20px;
+    border: 1px solid #000;
+    padding: 5px 10px;
+    border-bottom: 1px solid #000;
+    outline:none;
+}
+
+.btnGroup > button{
+    width:200px;
+    margin:40px auto 0;
+    height:40px;
+}
+
+.blackBtn{
+    border:1px solid #000;
+    /* border:none; */
+    background-color: #000;
+    color:#fff;
+}
+
+.blackBtn:hover{
+    border:1px solid #000;
+    background-color:#fff;
+    color:#000;
+    transition: all 0.4s;
+}
+.whiteBtn{
+    border:1px solid #000;
+    background-color: #fff;
+    color:#000;
+}
+.whiteBtn:hover{
+    border:1px solid #000;
+    background-color:#000;
+    color:#fff;
+    transition: all 0.4s;
+}
+
+.errmsg{
+    height:20px;
+    font-size: 14px;
+    color:#ff0000;
+}
+
+.btnGroup{
+    /* display:grid;
+    grid-template-columns: repeat(2,1fr); */
+display:flex;
+flex-direction:row;
+width:90%;
+margin:0 auto 20px;
+
+}
+.btnGroup > button{
+    padding:5px;
+}
+
+.btnGroup > .blackBtn{
+    margin-right: 5px;
+}
+.btnGroup > .whiteBtn{
+    margin-left:5px;
+}
+
+@media all and (max-width:767px) {
+    .con {
+        width: 100%;
+        height: 53vh;
+        border: none;
+        padding-top: 3vh;
+        margin: 30px auto;
+    }
+    form {
+        grid-template-rows: 0.3fr 1fr;
+    }
+    .btnGroup > button {
+        height: 40px;
+    }
+}

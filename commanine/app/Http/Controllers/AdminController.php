@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admins;
 use App\Models\Rooms;
+use App\Models\Hanoks;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -30,7 +31,8 @@ class AdminController extends Controller
                         ->back()
                         ->with('error',$error);
             }
-            Auth::login($admin);
+            // admins 테이블에 로그인 하기 위해 설정
+            Auth::guard('admins')->login($admin);
             session($admin->only('id','admin_id')); 
             // session()->forget('admin');
             return redirect()->intended(route('admin.regist'));
@@ -70,7 +72,7 @@ class AdminController extends Controller
     // 0720 add end KMH 
     public function adminHanoksInsert(){
         Log::debug("insert");
-    return view('adminHanoksInsert');
+    return view('adminhanoksinsert');
     }
 
     // 0720 add KMH 
@@ -205,6 +207,83 @@ class AdminController extends Controller
         
     }
     // 0720 add end KMH
+    public function adminHanoksInsertPost(Request $req) {
+
+        // $uploaded_file_name_tmp = $_FILES['hanok_img1']['tmp_name'];
+        // $uploaded_file_name = $_FILES['hanok_img1']['name'];
+        // $upload_folder = "/public/img/hanokImg";
+        // move_uploaded_file( $uploaded_file_name_tmp, $_SERVER['DOCUMENT_ROOT'].'/img/hanokImg/'.$uploaded_file_name );
+        // var_dump($req->hanok_img1[0], $req->hanok_img1[1]);
+        // var_dump(count($req->file()['hanok_img1']) );
+        $arr = [];
+        // file 담는 배열
+        $arr_chk = [];
+        // 저장된 파일명 담는 배열
+        $arr_upload_name = [];
+        // 관리자로 로그인된 아이디 조회
+        $loggedInadminId = Auth::guard('admins')->id();
+        // // 관리자 로그인된 모든 값 확인 하고 싶을때
+        // $loggedInUserall = Admins::all();
+
+        // var_dump($loggedInUserall);
+        // exit;
+        // var_dump($req->file()['hanok_img1']) ;
+        // exit;
+        $arr = $req->file()['hanok_img1'];
+        // 여러개 담은 파일들 arr_chk에 배열로 담아 줌
+        foreach($arr as $value ) {
+            $arr_chk[] = $value;
+        }
+        // 이미지 업로드 및 지정 경로 확인
+        // for($i=0; $i <= count($req->file()['hanok_img1']) -1 ; $i++)
+        for($i=0; $i < count($req->file()['hanok_img1']) ; $i++)
+        {
+            $arr_chk[$i]->store('/img/hanokImg');
+            $arr_upload_name[] = $arr_chk[$i]->hashName();
+        }
+        // var_dump($arr_chk);
+        // exit;
+        $hanoks_insert = [
+            'hanok_name' => $req->hanok_name
+            , 'hanok_local' => $req->hanok_local
+            , 'hanok_comment' => $req->hanok_comment
+            , 'hanok_addr' => $req->hanok_addr
+            , 'latitude' => $req->latitude
+            , 'longitude' => $req->longitude
+            , 'hanok_num' => $req->hanok_num
+            , 'hanok_info' => $req->hanok_info
+            , 'hanok_refund' => $req->hanok_refund
+            , 'hanok_type' => $req->hanok_type
+        ];
+        // foreach($arr_chk as $value) {
+        //     $hanoks_insert['']
+        // }
+        for($i=0; $i <= count($req->file()['hanok_img1']) -1 ; $i++)
+        {
+            $img_key = (string)'hanok_img'.$i+1;
+            $img_value = (string)'img/hanokImg/'.$arr_upload_name[$i];
+            $hanoks_insert[$img_key] = $img_value;
+        }
+        
+        $hanoks_recreate = new Hanoks($hanoks_insert);
+        $hanoks_recreate->save();
+        var_dump($hanoks_insert);
+        exit;
+
+        return redirect()->route('admin.hanoks');
+
+
+
+
+
+        // // 이미지 업로드
+        // $req->hanok_img1->store('/img/hanokImg');
+
+        // // 지정 경로 저장 후 파일 명 반환
+        // $uploadOriginalName = $req->hanok_img1->hashName();
+    }
+
+
 
 
     // 0721 add BYJ
