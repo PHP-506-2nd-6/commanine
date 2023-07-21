@@ -18,4 +18,5 @@ class Hanoks extends Model
     protected $table = 'hanoks';
 
     protected $primaryKey = 'id';
+    protected $guarded = [];
 }
