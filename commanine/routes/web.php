@@ -98,10 +98,12 @@ Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.
 Route::post('/admin/loginpost', [AdminController::class, 'adminLoginPost'])->name('admin.login.post');
 // 관리자 로그아웃 페이지 이동
 Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
-// 관리자 예약 정보 이동
+// 관리자 예약 정보 이동 byj
 Route::get('/admin/reservation', [AdminController::class, 'adminReservation'])->name('admin.reservation');
-// 관리자 리뷰 이동
+Route::get('/admin/reservation/search', [AdminController::class, 'adminReservationSearch'])->name('admin.reservation.search');
+// 관리자 리뷰 이동 byj
 Route::get('/admin/review', [AdminController::class, 'adminReview'])->name('admin.review');
+Route::get('/admin/review/search', [AdminController::class, 'adminReviewSearch'])->name('admin.review.search');
 // 관리자 유저 정보 이동
 Route::get('/admin/users', [AdminController::class, 'adminUsers'])->name('admin.users');
 Route::get('/admin/users/search', [AdminController::class, 'adminUsersSearch'])->name('admin.users.search');

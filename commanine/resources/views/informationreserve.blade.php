@@ -25,13 +25,13 @@
                             @if($data->reserve_flg === '1')
                                 <span>예약완료</span>
                             @else
-                                <span>결제대기</span>
+                                <span>예약대기</span>
                             @endif
                         </div>
-                        <div class="contit">숙소명
-                        <p>{{$data->hanok_name}}</p></div>
-                        <div class="contit">객실명<p>
-                        {{$data->room_name}}</p></div>
+                        <div class="contit">예약번호
+                        <p>{{$data->reserve_id}}</p></div>
+                        <div class="contit">숙소명/객실명
+                        <p>{{$data->hanok_name}} / {{$data->room_name}}</p></div>
                         <div class="contit">가격
                         <p>{{$data->room_price}}</p></div>
                         <div class="contit">예약 날짜
