@@ -7,7 +7,7 @@
 @extends('layout.adminlayout')
 <head>
     <link rel="stylesheet" href="{{asset('css/adminSidebar.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/adminReserve.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('css/adminreview.css')}}"> --}}
 </head>
 @section('contents')
     <div class="container row main-container ">
@@ -21,7 +21,7 @@
             <input type="text" name="revkeyword">
         </select> --}}
             <input type="text" placeholder="회원이름/리뷰 내용" name="revkeyword" class="input">
-        <button type="submit">검색</button>
+        <button type="submit" class="btn btn-dark">검색</button>
     </form>
     <div class="searchUl">
             <div class="searchList">

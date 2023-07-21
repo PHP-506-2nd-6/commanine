@@ -15,7 +15,7 @@
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
         <h2>예약관리</h2>
-    <form action="{{route('admin.reservation.search')}}" method="get">
+    <form class="form" action="{{route('admin.reservation.search')}}" method="get">
         {{-- <div class="search_form">
             <label for="chk_in">예약기간</label>
             <input name="chkIn" type="text" class="datepicker" id="datepicker" autocomplete="off" readonly>
@@ -26,7 +26,7 @@
             <option  value="id">예약번호</option>
             <option value="reserve_name" >이름</option>
             <option value="reserve_num" >전화번호</option>
-        <input type="text" name="keyword" autocomplete="off">
+        <input class="input" type="text" name="keyword" autocomplete="off">
         </select>
          {{-- <input type="text" name="reservations"> --}}
         {{-- <br>
@@ -35,30 +35,30 @@
             <option value="0" >예약완료</option>
             <option value="1" >예약대기</option>
         </select> --}}
-        <button type="submit">검색</button>
+        <button type="submit" class="btn btn-dark">검색</button>
     </form>
     <div class="searchUl">
             <div class="searchList">
-                <table>
+                <table class="table">
                     <thead>
                     <tr>
-                        <th>예약번호</th>
-                        <th>예약숙소/객실</th>
-                        <th>예약자</th>
-                        <th>휴대폰</th>
-                        <th>예약일시</th>
-                        <th>처리현황</th>
+                        <th scope="col">예약번호</th>
+                        <th scope="col">예약숙소/객실</th>
+                        <th scope="col">예약자</th>
+                        <th scope="col">휴대폰</th>
+                        <th scope="col">예약일시</th>
+                        <th scope="col">처리현황</th>
                     </tr>
                     </thead>
                     <tbody>
                     @forelse($reservations as $val)
                     <tr>
-                        <td>{{ $val->reserve_id }}</td>
-                        <td>{{ $val->hanok_name }}/{{ $val->room_name }}</td>
-                        <td>{{ $val->reserve_name }}</td>
-                        <td>{{ $val->reserve_num }}</td>
-                        <td>{{ $val->created_at }}</td>
-                        <td>
+                        <td class="td_chk">{{ $val->reserve_id }}</td>
+                        <td class="td_chk">{{ $val->hanok_name }}/{{ $val->room_name }}</td>
+                        <td class="td_chk">{{ $val->reserve_name }}</td>
+                        <td class="td_chk">{{ $val->reserve_num }}</td>
+                        <td class="td_chk">{{ $val->created_at }}</td>
+                        <td class="td_chk">
                             @if($val->reserve_flg === '1')
                                 <span>예약완료</span>
                             @else
