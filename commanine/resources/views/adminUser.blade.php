@@ -22,6 +22,8 @@
                             <th scope="col">전화번호</th>
                             <th scope="col">생성 일자</th>
                             <th scope="col">탈퇴 일자</th>
+                            <th scope="col">비밀번호 리셋</th>
+                            <th scope="col">회원탈퇴</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +35,22 @@
                         <td class="td_chk">{{$val->user_num}}</td>
                         <td class="td_chk">{{$val->created_at}}</td>
                         <td class="td_chk">{{isset($val->deleted_at) ? $val->deleted_at : ""}}</td>
+                        <td class="td_chk">
+                            <form class="frm" action="{{route('admin.users.pw.reset',['user_id' => $val->user_id])}}" method="POST"
+                                onsubmit="return confirm('{{$val->user_name}}회원의 비밀번호를 리셋하시겠습니까?');">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">리셋</button>
+                            </form>
+                        </td>
+                        {{-- <td class="td_chk"><button type="button">리셋</button></td> --}}
+                        {{-- <td class="td_chk"><button type="button" onclick="location.href='{{route('admin.users.unregist',['user_id' => $val->user_id])}}'">탈퇴</button></td> --}}
+                        <td class="td_chk">
+                            <form class="frm" action="{{route('admin.users.unregist',['user_id' => $val->user_id])}}" method="POST"
+                                onsubmit="return confirm('{{$val->user_name}}회원의 탈퇴를 진행하시겠습니까?');">
+                                @csrf
+                                <button type="submit" class="{{isset($val->deleted_at)? 'btn btn-secondary' : 'btn btn-danger'}}" {{isset($val->deleted_at) ? "disabled" : ""}}>탈퇴</button>
+                            </form>
+                        </td>
                     </tr>
                     @empty
                     <tr>

@@ -108,6 +108,11 @@ Route::get('/admin/review/search', [AdminController::class, 'adminReviewSearch']
 Route::get('/admin/users', [AdminController::class, 'adminUsers'])->name('admin.users');
 Route::get('/admin/users/search', [AdminController::class, 'adminUsersSearch'])->name('admin.users.search');
 
+// 관리자 유저 탈퇴
+Route::post('/admin/users/unregist/{user_id}', [AdminController::class,'adminUserUnregist'])->name('admin.users.unregist');
+// 관리자 유저 비밀번호 리셋
+Route::post('/admin/users/pwreset/{user_id}', [AdminController::class,'adminUserPwReset'])->name('admin.users.pw.reset');
+
 // 관리자 숙소 정보 이동
 Route::get('/admin/hanoks', [AdminController::class, 'adminHanoks'])->name('admin.hanoks');
 Route::get('/admin/hanoks/search', [AdminController::class, 'adminHanoksSearch'])->name('admin.hanoks.search');

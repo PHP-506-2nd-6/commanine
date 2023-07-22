@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FindPassword;
 use Illuminate\Http\Request;
 use App\Models\Admins;
 use App\Models\Rooms;
 use App\Models\Hanoks;
+use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,6 +48,7 @@ class AdminController extends Controller
     }
     //0719 KMH add
     public function adminUsers() {
+        
         $users = DB::table('users')
         // ->dd();
         ->paginate(15);
@@ -325,4 +330,43 @@ class AdminController extends Controller
         ->paginate(16);
         return view('adminHanok')->with('hanoks',$users);
     }
+
+    // 0722 add KMJ
+    // 관리자 유저 탈퇴 기능
+    public function adminUserUnregist($user_id) {
+        // 유저 id로 삭제
+        $user = Users::find($user_id);
+        $user->delete();
+        return redirect()->back();
+    }
+
+    // 관리자 유저 비밀번호 리셋 기능(임시 비밀번호 메일로 발송)
+    public function adminUserPwReset($user_id){
+        $user = Users::find($user_id);
+        // 0719 KMJ add 임시 비밀번호 생성 - 총 10자리의 영어 대소문자, 숫자, 특수문자가 들어가는 비밀번호
+        $len = 8;
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $symbols = '!@#$%^*-';
+        $random_char = '';
+        $random_symbol = $symbols[random_int(0, (mb_strlen($symbols) - 1))];
+        $max = mb_strlen($chars) - 1;
+        for ($i=0; $i < $len ; $i++) { 
+            $rand_index = random_int(0, $max);
+            $random_char .= $chars[$rand_index];
+        }
+        // 비밀번호 임의의 자리에 임의의 특수문자 추가
+        $pw = substr_replace($random_char, $random_symbol, random_int(0, (mb_strlen($random_char) - 1)), 0);
+
+        // 로그인 정규식 때문에 숫자 안 들어갔을 경우를 대비해서 끝에 무조건 숫자 넣어주기
+        $pw .= random_int(0, 9);
+
+        $user->user_pw = Hash::make($pw);
+        $user->pw_flg = '1';
+        $user->save();
+        // 임시 비밀번호 해당 메일로 전송
+        Mail::to($user->user_email)->send(new FindPassword($pw));
+        return redirect()->back();
+    }
+        
+    
 }
