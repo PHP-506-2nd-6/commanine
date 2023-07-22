@@ -205,13 +205,20 @@
                     </div>
                 </div>
                 @forelse($reviews as $item)
-                    <div class="review">
-                        <p>{!! nl2br($item->rev_content) !!}</p>
-                        <i class="fa-solid fa-star revStar"></i>
-                        <span>{{$item->rate}}</span>
+                    @if($item->rev_flg === '1' )
+                        <div class="review">
+                        <p>관리자에 의해 블라인드 처리된 리뷰 입니다</p>
                         <span>{{(substr($item->created_at, 0, 10))}}</span>
-                        <span class="editRev">{{$item->created_at !== $item->updated_at? "(수정됨)" : ""}}</span>
                     </div>
+                    @else
+                        <div class="review">
+                            <p>{!! nl2br($item->rev_content) !!}</p>
+                            <i class="fa-solid fa-star revStar"></i>
+                            <span>{{$item->rate}}</span>
+                            <span>{{(substr($item->created_at, 0, 10))}}</span>
+                            <span class="editRev">{{$item->created_at !== $item->updated_at? "(수정됨)" : ""}}</span>
+                        </div>
+                    @endif
                 @empty
                 <div class="msg">아직 리뷰가 작성되지 않았습니다.</div>
                 @endforelse

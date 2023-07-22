@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Admins;
 use App\Models\Rooms;
 use App\Models\Hanoks;
+use App\Models\Reviews;
+use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -295,7 +297,8 @@ class AdminController extends Controller
     $reviews = DB::table('users as u')
         ->join('reviews as rev', 'rev.user_id', '=', 'u.user_id')
         ->join('hanoks as han', 'han.id', '=', 'rev.hanok_id')
-        ->select('u.user_name', 'rev.rev_content', 'rev.rate', 'rev.created_at', 'rev.updated_at', 'rev.deleted_at', 'han.hanok_name')
+        // 0722 ysh review id, hanok id 추가
+        ->select('*')
         // ->get();
         ->paginate(15);
     
@@ -311,7 +314,8 @@ class AdminController extends Controller
     $reviews = DB::table('users as u')
         ->join('reviews as rev', 'rev.user_id', '=', 'u.user_id')
         ->join('hanoks as han', 'han.id', '=', 'rev.hanok_id')
-        ->select('u.user_name', 'rev.rev_content', 'rev.rate', 'rev.created_at', 'rev.updated_at', 'rev.deleted_at', 'han.hanok_name')
+        // 0722 ysh review id, hanok id 추가
+        ->select('*')
         ->where('rev.rev_content', 'LIKE', '%' . $revkeyword . '%')
         ->orWhere('u.user_name', 'LIKE', '%' . $revkeyword . '%')
         // ->get();
@@ -319,10 +323,75 @@ class AdminController extends Controller
 
         return view('adminReview')->with('review',$reviews);
     }
+    // 0721 YSH add
+    // 숙소 검색
     public function adminHanoksSearch(Request $request) {
         $users = DB::table('hanoks')->where('hanok_name','LIKE','%' . $request->hanoks . '%')->orWhere('hanok_addr','LIKE','%' . $request->hanoks . '%')
         // ->dd();
         ->paginate(16);
         return view('adminHanok')->with('hanoks',$users);
+    }
+
+    // 관리자 리뷰 가리기
+    public function adminReviewUpdate(Request $req, $review_id) {
+        $users = DB::table('reviews as r')
+        ->select('r.*')
+        ->where('r.rev_id', "=", $review_id)
+        ->get();
+        
+        // var_dump($users[0]->rev_id);
+        // exit;
+
+        // // flg가 0은 출력용, 1은 가리기용
+        // if( $users[0]->rev_flg === '0' ) {
+        //     $users_update = DB::table('reviews as r')
+        //                     ->where('r.rev_id', '=', $users[0]->rev_id)
+        //                     ->update(['r.rev_flg' => '1']);
+        //                     // ->get();
+        // }
+        // else {
+        //     $users_update = DB::table('reviews as r')
+        //                     ->where('r.rev_id', '=', $users[0]->rev_id)
+        //                     ->update(['rev_flg' => '0']);
+        // }
+        // if( $users_update === 1) {
+
+        // }
+
+        // flg가 0은 출력용, 1은 가리기용
+        try {
+            if( $users[0]->rev_flg === '0' ) {
+                $users_update = DB::transaction(function () use ($users) {
+                                DB::table('reviews as r')
+                                ->where('r.rev_id', '=', $users[0]->rev_id)
+                                ->update(['r.rev_flg' => '1']);
+                });
+            }
+            else {
+                $users_update = DB::transaction(function () use ($users) {
+                    DB::table('reviews as r')
+                    ->where('r.rev_id', '=', $users[0]->rev_id)
+                    ->update(['r.rev_flg' => '0']);
+                });
+            }
+        
+        
+        } catch (\Exception $e) {
+            return redirect()->back($e);
+        }
+        finally{
+            return redirect()->route('admin.review');
+        }
+    }
+
+    // 관리자 리뷰 삭제
+    public function adminReviewDelete($review_id) {
+        $users = DB::table('reviews as r')
+            ->select('r.*')
+            ->where('r.rev_id', "=", $review_id)
+            ->get();
+
+        Reviews::find($review_id)->delete();
+        return redirect()->route('admin.review');
     }
 }

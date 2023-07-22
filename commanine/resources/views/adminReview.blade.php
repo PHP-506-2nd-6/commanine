@@ -41,12 +41,31 @@
                     @forelse($review as $val)
                     <tr>
                         <td>{{ $val->user_name }}</td>
-                        <td>{{ $val->rev_content }}</td>
+                        <td><a href="{{route('hanoks.detail', ['id' => $val->hanok_id])}}">{{ $val->rev_content }}</a></td>
                         <td>{{ $val->rate }}</td>
                         <td>{{ $val->hanok_name }}</td>
                         <td>{{ $val->created_at }}</td>
                         <td>{{ $val->updated_at }}</td>
                         <td>{{ $val->deleted_at }}</td>
+                        <td>
+                            <form method="POST" action="{{ route('admin.review.update', ['review_id' => $val->rev_id]) }}">
+                                @csrf
+                                @method('PUT')
+                                @if( $val->rev_flg === '0' )
+                                    <button type="submit">숨기기</button>
+                                @else
+                                    <button type="submit">보이기</button>
+                                @endif
+                            </form>
+                        </td>
+                        {{-- <td><a href="{{route('admin.review.update', ['review_id' => $val->rev_id])}}"><button type="button">수정</button></a></td> --}}
+                        <td>
+                            <form method="POST" action="{{ route('admin.review.delete', ['review_id' => $val->rev_id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">삭제</button>
+                            </form>
+                        </td>
                     </tr>
                     @empty
                     <tr>
