@@ -35,7 +35,7 @@ class AdminController extends Controller
             Auth::guard('admins')->login($admin);
             session($admin->only('id','admin_id')); 
             // session()->forget('admin');
-            return redirect()->intended(route('admin.regist'));
+            return redirect()->intended(route('admin.reservation'));
     }
     public function adminLogout() {
         Session::flush();
@@ -66,7 +66,7 @@ class AdminController extends Controller
         // hanok_img1,
         // hanok_addr
         // FROM hanoks han
-        $hanoks = DB::table('hanoks')->select('id','hanok_name','hanok_addr','hanok_img1')->paginate(15);
+        $hanoks = DB::table('hanoks')->select('id','hanok_name','hanok_addr','hanok_img1')->paginate(16);
         return view('adminHanok')->with('hanoks',$hanoks);
     }
     // 0720 add end KMH 
@@ -230,6 +230,10 @@ class AdminController extends Controller
         // var_dump($req->file()['hanok_img1']) ;
         // exit;
         $arr = $req->file()['hanok_img1'];
+        if( !(count($req->file()['hanok_img1']) >= 3 && count($req->file()['hanok_img1']) <= 5) ) {
+            session()->flash('errMsg', '사진은 3개에서 5개 사이로 지정하세요.');
+            return redirect()->back();
+        }
         // 여러개 담은 파일들 arr_chk에 배열로 담아 줌
         foreach($arr as $value ) {
             $arr_chk[] = $value;
@@ -267,8 +271,6 @@ class AdminController extends Controller
         
         $hanoks_recreate = new Hanoks($hanoks_insert);
         $hanoks_recreate->save();
-        var_dump($hanoks_insert);
-        exit;
 
         return redirect()->route('admin.hanoks');
 
@@ -316,5 +318,11 @@ class AdminController extends Controller
         ->paginate(15);
 
         return view('adminReview')->with('review',$reviews);
+    }
+    public function adminHanoksSearch(Request $request) {
+        $users = DB::table('hanoks')->where('hanok_name','LIKE','%' . $request->hanoks . '%')->orWhere('hanok_addr','LIKE','%' . $request->hanoks . '%')
+        // ->dd();
+        ->paginate(16);
+        return view('adminHanok')->with('hanoks',$users);
     }
 }
