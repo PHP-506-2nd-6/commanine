@@ -15,10 +15,10 @@ const pwAlert = document.getElementById('pwAlert');
 const pwChkAlert = document.getElementById('pwChkAlert');
 
 const submitBtn = document.getElementById('submitBtn');
-submitBtn.disabled = true;
+let btnChk = true;
 
 password.addEventListener('blur', checkPw);
-passwordChk.addEventListener('blur', checkPasswordMatch);
+passwordChk.addEventListener('input', checkPasswordMatch);
 
 function checkPw(){
     const pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*-])(?=.*[0-9]).{8,20}$/u;
@@ -31,7 +31,7 @@ function checkPw(){
         pwAlert.innerHTML = '영어, 숫자, 특수문자 포함 8~20 입력해 주세요.';
         pwAlert.style.color = 'red';
     }
-}
+};
 
 function checkPasswordMatch() {
     // 비밀번호와 비밀번호 확인이 일치한 경우
@@ -44,3 +44,9 @@ function checkPasswordMatch() {
     pwChkAlert.style.color = 'red';
     }
 };
+
+submitBtn.addEventListener('click', function(event) {
+    if (btnChk !== true) {
+      event.preventDefault(); // 기본 동작 중지
+    }
+});

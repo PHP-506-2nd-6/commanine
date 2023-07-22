@@ -82,6 +82,9 @@ class UsersController extends Controller
     }
 
     public function pwchange(){
+        if(auth()->guest()) {
+            return redirect()->route('users.login');
+        }
         return view('pwchange');
     }
 

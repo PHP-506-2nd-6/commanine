@@ -7,7 +7,7 @@
         <div class="pwBox">
             <h2>비밀번호 변경</h2>
             <p class="info">개인 정보 보호를 위해 임시 비밀번호를<br>변경해 주시기 바랍니다</p>
-            {{-- <div class="msgBox">@include('layout.errors_validate')</div> --}}
+            <div class="msgBox">@include('layout.errors_validate')</div>
             <form action="{{route('users.pwchange.post')}}" method="post">
                 @csrf
                 <input type="password" name="password" placeholder="변경할 비밀번호 8~20자" id="password" class="pwInput" maxlength="20">
