@@ -23,13 +23,13 @@
                     {{-- <a href="{{route('hanoks.detail',$value->id)}}" class="listA"> --}}
                     <a href="{{route('admin.hanoks.detail',[ 'hanok_id' => $value->id ])}}" class="listA">
                         <div class="imgBox">
-                            <img src="{{asset($value->hanok_img1)}}" style="width:250px; height:200px;" >
+                            <img src="{{asset($value->hanok_img1)}}" style="width:220px; height:194px;" >
                         </div>
                         <div class="explainHanok">
                             <div class="nameHanok">
                                 <div class="hanokName">{{$value->hanok_name}}</div>
-                                <div class="reviewBox">{{$value->hanok_addr}}</div>
                             </div>
+                                <div class="reviewBox">{{$value->hanok_addr}}</div>
                         </div>
                     </a>
                 </div>

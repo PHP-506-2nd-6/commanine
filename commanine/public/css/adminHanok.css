@@ -1,0 +1,139 @@
+.searchUl{
+    width:90%;
+    margin:30px auto 0;
+    padding: 20px 40px;
+    /* margin-top:30px; */
+    min-height:300px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    /* justify-items: center; */
+    place-items: center; 
+}    
+
+.text-box {
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    justify-content: flex-start;
+    height: 100%; /* 필요한 높이 설정 */
+    padding-top:20px;
+}
+  
+.centered-text {
+    text-align: center;
+}
+
+
+
+
+.dayBox>.ui-datepicker-trigger{
+    background-color: #000;
+    color:#fff;
+    border: none;
+    /* z-index: 300; */
+}
+
+.dayBox>.ui-datepicker-trigger:hover,.countChkBtn:hover{
+    background-color: #fff;
+    color:#000;
+    border: 1px solid #000;
+    transition:all 0.3s;
+}
+
+
+.searchBtn,.countChkBtn{
+    background-color: #fff;
+    border:1px solid #000;
+    color: #000;
+}
+
+.searchBtn:hover,.countChkBtn:hover{
+    background-color: #000;
+    border:1px solid #fff;
+    color: #fff;
+    transition:all 0.3s;
+}
+
+.searchList{
+    border:2px solid #b3b3b3;
+    width:95%;
+    height:220px;
+    border-radius: 15px 15px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+.searchList>a{
+    color:#000;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+.explainHanok{
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    align-content: start;
+    padding-left: 10px;
+}
+.nameHanok{
+    font-size: 15px;
+    text-align: right;
+    font-weight: 500;
+    align-self: center;
+}
+.reviewHanok{
+    font-size:16px;
+    text-align: right;
+
+}
+.priceHanok{
+    font-size: 18px;
+    
+    /* grid-row :3 / span 1; */
+    text-align: right;
+}
+.noSearch{
+    text-align: center;
+    grid-column: 1 / span 2;
+    align-self: flex-start;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.listA:hover{
+    color:#000;
+}
+
+
+.small.text-muted{
+    display:none;
+}
+
+
+div>input{
+    padding-left:10px;
+}
+input:focus{
+    outline:none;
+}
+a:hover{
+    text-decoration: none !important ;
+}
+
+
+input:focus label{
+    font-size: 0.9em;
+}
+.hanokName {
+    text-align: center;
+}
+.reviewBox {
+    text-align: center;
+    font-size: 12px;
+}
+img {
+    border-radius: 20px / 20px;
+}

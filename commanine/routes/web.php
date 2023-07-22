@@ -110,7 +110,7 @@ Route::get('/admin/users/search', [AdminController::class, 'adminUsersSearch'])-
 
 // 관리자 숙소 정보 이동
 Route::get('/admin/hanoks', [AdminController::class, 'adminHanoks'])->name('admin.hanoks');
-Route::get('/admin/hanoks/search', [AdminController::class, 'adminUsersSearch'])->name('admin.hanoks.search');
+Route::get('/admin/hanoks/search', [AdminController::class, 'adminHanoksSearch'])->name('admin.hanoks.search');
 
 // 관리자 숙소 상세 이동
 Route::get('/admin/hanoks/detail/{hanok_id}', [AdminController::class, 'adminHanoksDetail'])->name('admin.hanoks.detail');
