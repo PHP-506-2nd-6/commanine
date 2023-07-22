@@ -1,0 +1,113 @@
+.hidden-button {
+    visibility: hidden;
+}
+.wrap {
+    min-height: 410px;
+}
+
+h2 {
+    padding: 30px 0;
+}
+
+.dibsList {
+    font-weight: 900;
+    font-size: 1.1em;
+}
+
+.dibsList::before {
+    content: "\00B7";
+    padding-right: 5px;
+}
+
+.dibs_box {
+    width: 600px;
+    margin-left: 150px;
+}
+.dibs_content{
+    display:flex;
+    justify-content: space-between;
+    padding:20px;
+    margin-bottom: 20px;
+    border:1px solid #000;
+    border-radius: 25px;
+}
+.con{
+    text-align: right;
+}
+.dibs_item{
+    padding-bottom: 10px;
+}
+
+.review_btn{
+    margin-top:25px;
+    border:1px solid #000;
+    background-color: #fff;
+    border-radius: 5px;
+    padding:10px 5px;
+}
+.review_btn:hover{
+    margin-top:25px;
+    border:1px solid #fff;
+    background-color: #000;
+    color:#fff;
+    border-radius: 5px;
+    padding:10px 5px;
+    transition: all 0.5s;
+}
+
+
+/* 반응형 */
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .dibs_box {
+        /* margin-left: 50px; */
+        width:70%;
+        margin: 0 auto;
+    }
+    .dibs_content {
+        display:flex;
+        flex-direction: column;
+        justify-content:unset;
+        width:100%;
+    }
+    .con{
+        text-align: center;
+    }
+    .img{
+        width:90%;
+    }
+    .review_btn{
+        margin-top:10px;
+    }
+    .review_btn:hover{
+        margin-top:10px;
+    }
+    
+} 
+
+
+@media screen and (max-width: 768px) {
+    .dibs_box {
+        /* margin-left: 50px; */
+        width:90%;
+        margin: 0 auto;
+    }
+    .dibs_content {
+        display:flex;
+        flex-direction: column;
+        justify-content:unset;
+        width:100%;
+    }
+    .con{
+        text-align: center;
+    }
+    .img{
+        width:100%;
+    }
+    .review_btn{
+        margin-top:10px;
+    }
+    .review_btn:hover{
+        margin-top:10px;
+    }
+}

@@ -201,15 +201,25 @@ class HanoksController extends Controller
         // -> limit('6')
         // -> get();
         
-        $hanoks = DB::table('hanoks AS han')
+    //     $hanoks = DB::table('hanoks AS han')
+    // ->select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'), DB::raw('AVG(re.rate) AS review'))
+    // ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
+    // ->leftJoin('reviews AS re', 're.hanok_id', '=', 'han.id')
+    // ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
+    // ->orderBy('han.id', 'DESC')
+    // ->limit(6)
+    // ->get();
+
+    // 최신순-> 평점높은 순 0721 add KMH
+    $hanoks = DB::table('hanoks AS han')
     ->select('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local', DB::raw('MIN(ro.room_price) AS room_price'), DB::raw('AVG(re.rate) AS review'))
     ->join('rooms AS ro', 'han.id', '=', 'ro.hanok_id')
     ->leftJoin('reviews AS re', 're.hanok_id', '=', 'han.id')
     ->groupBy('han.id','han.hanok_name', 'han.hanok_img1', 'han.hanok_local')
-    ->orderBy('han.id', 'DESC')
+    ->orderBy('review', 'DESC')
     ->limit(6)
     ->get();
-
+    // 0721 add end KMH
 
         
     // $hanoks = DB::table('hanoks AS han')

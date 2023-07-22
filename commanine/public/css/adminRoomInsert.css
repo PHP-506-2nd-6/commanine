@@ -1,0 +1,49 @@
+
+.hanoks,.rooms{
+    margin-top:20px;
+}
+.hanok-tit,.room-tit{
+    font-size:17px;
+    text-align: center;
+}
+
+.hanok-con, .room-con{
+    padding-left: 20px;
+    
+    margin:10px 0 10px 50px;
+}
+
+.room-con{
+    border:1px solid #000;
+    width:90%;
+}
+
+.room-con:focus{
+    outline:none;
+}
+.img-file{
+    border:none;
+    padding:0;
+}
+.blackBtn{
+    color: #fff;
+    border-color: #000;
+    background-color: #000;
+}
+/* .blackBtn:hover{
+    color: #fff;
+    border-color: #000;
+    background-color: #000;
+} */
+
+
+.custom-btn{
+    background-color: #000;
+    color:#fff;
+    border-color:#fff;
+}
+.custom-btn-hover:hover {
+    color: #fff; /* 텍스트 색상을 흰색으로 지정 */
+    border-color: #fff; /* 테두리 색상을 흰색으로 지정 */
+    background-color: transparent; /* 배경 색상을 투명으로 지정 (outline 버튼은 배경이 없으므로 투명 처리) */
+  }
