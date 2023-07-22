@@ -127,6 +127,12 @@ Route::post('/admin/hanoks/insertPost', [AdminController::class, 'adminHanoksIns
 // 관리자 객실 등록 이동
 Route::get('/admin/hanoks/Roominsert/{hanok_id}', [AdminController::class, 'adminRoomsInsert'])->name('admin.rooms.insert');
 Route::post('/admin/hanoks/RoominsertPost/{hanok_id}', [AdminController::class, 'adminRoomsInsertPost'])->name('admin.rooms.insert.post');
+
+// 0722 add
+// 관리자 리뷰 수정
+Route::put('admin/review/update/{review_id}', [AdminController::class, 'adminReviewUpdate'])->name('admin.review.update');
+// 관리자 리뷰 삭제
+Route::delete('admin/review/delete/{review_id}', [AdminController::class, 'adminReviewDelete'])->name('admin.review.delete');
 // YSH new end***********************************************
 
 // 0615 BYJ new

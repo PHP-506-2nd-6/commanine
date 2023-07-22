@@ -24,3 +24,12 @@ a {
 a:visited {
     color:black; 
 }
+ul {
+    font-size: 25px;
+    padding-bottom: 60px;
+}
+.logout {
+    width: 50%;
+    margin: auto;
+    text-align: right;
+}
