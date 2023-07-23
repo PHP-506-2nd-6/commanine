@@ -66,7 +66,7 @@
                         </div>
                         <div >
                             <button class="btn btn-outline-dark">등록하기</button>
-                            <button type="button" class="btn btn-outline-primary custom-btn-hover " style="background-color:black;" onclick="location.href='{{route('admin.hanoks.detail',[ 'hanok_id' => $hanoks->id ])}}' ">취소하기</button>
+                            <button type="button" class="btn btn-outline-danger "  onclick="location.href='{{route('admin.hanoks.detail',[ 'hanok_id' => $hanoks->id ])}}' ">취소하기</button>
                         </div>
                     </form>
                 </div>

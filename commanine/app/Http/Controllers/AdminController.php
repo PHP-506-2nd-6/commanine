@@ -9,12 +9,14 @@ use App\Models\Rooms;
 use App\Models\Hanoks;
 use App\Models\Reviews;
 use App\Models\Users;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -156,7 +158,7 @@ class AdminController extends Controller
     public function adminRoomsInsertPost($hanok_id,Request $req){
         $error = "모든 사항은 필수 사항 입니다.";
         $validator = Validator::make(
-            $req->only('room_name','room_content','room_price','room_min','room_max','chk_in','chk_out','room_detail','room_facility','room_img1','room_img2','room_img3')
+            $req->only('room_name','room_content','room_price','room_min','room_max','chk_in','chk_out','room_detail','room_facility')
             ,[
                 'room_name'     => 'required'
                 ,'room_content' =>'required'
@@ -167,54 +169,298 @@ class AdminController extends Controller
                 ,'chk_out' =>'required'
                 ,'room_detail' =>'required'
                 ,'room_facility' =>'required'
-                ,'room_img1' => ['required']
-                ,'room_img2' => ['required']
-                ,'room_img3' => ['required']
             ]);
-        
         if($validator->fails()){
-            return var_dump($validator);
-            // return redirect()->back()->with('error',$error);
+            // return var_dump($validator);
+            // return new fileUpload($req->room_img);
+            return redirect()->back()->with('error',$error);
         }
-        // 이미지 저장
-        $req->room_img1->store('/img/roomImg');
-        $req->room_img2->store('/img/roomImg');
-        $req->room_img3->store('/img/roomImg');
-        // 이미지 이름 가져오기
-        $fileName1 = $req->room_img1->hashName();
-        $fileName2 = $req->room_img2->hashName();
-        $fileName3 = $req->room_img3->hashName();
+        $arr = [];
+        // file 담는 배열
+        $arr_chk = [];
+        // 저장된 파일명 담는 배열
+        $arr_upload_name = [];
+        // 관리자로 로그인된 아이디 조회
+        $loggedInadminId = Auth::guard('admins')->id();
+        $arr = $req->file()['room_img'];
+        if(count($req->file()['room_img']) !== 3){
+            session()->flash('errMsg','사진은 3개만 저장하세요.');
+            return redirect()->back();
+        }
 
+        // 여러개 담은 파일들 arr_chk에 배열로 담아 줌
+        foreach($arr as $value ) {
+            $arr_chk[] = $value;
+        }
+        // 이미지 업로드 및 지정 경로 확인
+        for($i=0; $i < count($req->file()['room_img']) ; $i++)
+        {
+            $arr_chk[$i]->store('/img/roomImg');
+            $arr_upload_name[] = $arr_chk[$i]->hashName();
+        }
+        $rooms_insert = [
+            'room_name' => $req->room_name
+            , 'room_content' => $req->room_content
+            , 'room_comment'    => $req->room_comment
+            , 'room_price' => $req->room_price
+            , 'room_min' => $req->room_min
+            , 'room_max' => $req->room_max
+            , 'chk_in' => $req->chk_in
+            , 'chk_out' => $req->chk_out
+            , 'room_detail' => $req->room_detail
+            , 'room_facility' => $req->room_facility
+            , 'hanok_id' => $hanok_id
+        ];
+
+        for($i=0; $i < count($req->file()['room_img']) ; $i++)
+        {
+            $img_key = (string)'room_img'.$i+1;
+            $img_value = (string)'img/roomImg/'.$arr_upload_name[$i];
+            $rooms_insert[$img_key] = $img_value;
+        }
         
-        $data['room_name']   = $req->input('room_name');
-        $data['room_content']   = $req->input('room_content');
-        $data['room_price']   = $req->input('room_price');
-        $data['room_min']   = $req->input('room_min');
-        $data['room_max']   = $req->input('room_max');
-        $data['chk_in']   = $req->input('chk_in');
-        $data['chk_out']  = $req->input('chk_out');
-        $data['room_detail'] = $req->input('room_detail');
-        $data['room_facility'] = $req->input('room_facility');
-        $data['hanok_id'] = $hanok_id;
-        $data['room_img1'] = 'img/roomImg/'.$fileName1;
-        $data['room_img2'] = 'img/roomImg/'.$fileName2;
-        $data['room_img3'] = 'img/roomImg/'.$fileName3;
-
-        $room = Rooms::create($data);   // insert 
+        $room = Rooms::create($rooms_insert);   // insert 
         if(!$room){
             $error = '잠시 후에 다시 시도해 주세요';
             return redirect()
-                    ->route('admin.rooms.insert')
+                    ->back()
                     ->with('error',$error);
         }
         return redirect()
                 ->route('admin.hanoks')
-                ->with('success','숙소 등록 완료');
-        
+                ->with('success','객실 등록 완료');
     }
     // 0720 add end KMH
-    public function adminHanoksInsertPost(Request $req) {
+    // 0722 add KMH
+    public function adminHanokUpdate(Request $request) {
+        $arrKey=[];
+        //ㅡㅡㅡㅡㅡㅡ유효성 체크 하는 모든 항목 리스트 
+        $chkList=[
+            'hanok_id'          => 'required'
+            ,'hanok_name'       => 'required'
+            , 'hanok_comment'   => 'required'
+            , 'hanok_addr'      => 'required'
+            , 'hanok_num'       => 'required'
+            , 'hanok_info'      => 'required'
+            , 'hanok_refund'    => 'required'
+            , 'hanok_type'      => 'required'
+            , 'hanok_img1'      =>'required'
+            , 'hanok_img2'      =>'required'
+            , 'hanok_img3'      =>'required'
+        ];
+        
+        $hanoks = Hanoks::find($request->hanok_id); // 기존 데이터 가져옴 
 
+        // 수정할 항목을 배열에 담는 처리
+        // 변경된 항목만 담음
+
+        if($request->hanok_name !== $hanoks->hanok_name){
+            $arrKey[]='hanok_name';
+        }
+        if($request->hanok_comment !== $hanoks->hanok_comment){
+            $arrKey[]='hanok_comment';
+        }
+
+        if($request->hanok_addr !== $hanoks->hanok_addr){
+            $arrKey[]='hanok_addr';
+        }
+        if($request->hanok_num !== $hanoks->hanok_num){
+            $arrKey[]='hanok_num';
+        }
+
+        if($request->hanok_info !== $hanoks->emahanok_infoil){
+            $arrKey[]='hanok_info';
+        }
+        if($request->hanok_refund !== $hanoks->hanok_refund){
+            $arrKey[]='hanok_refund';
+        }
+
+        if($request->hanok_type !== $hanoks->hanok_type){
+            $arrKey[]='hanok_type';
+        }
+        if(isset($request->hanok_img1)){
+            $arrKey[]='hanok_img1';
+        }
+        if(isset($request->hanok_img2)){
+            $arrKey[]='hanok_img2';
+
+        }
+        if(isset($request->hanok_img3)){
+            $arrKey[]='hanok_img3';
+        }
+
+
+        try {
+            foreach($arrKey as $val){
+                $arrCheck[$val] = $chkList[$val]; 
+            }
+            $validate =  $request->validate($arrCheck);
+            foreach($arrKey as $val){
+                if($val === 'hanok_img1'){
+                    Storage::disk('public')->delete($hanoks->hanok_img1);
+                    $request->hanok_img1->store('/img/hanokImg');
+                    $fileName1 = $request->hanok_img1->hashName();
+                    $hanoks->$val = 'img/hanokImg/'.$fileName1;
+                    continue;
+                }
+                if($val === 'hanok_img2'){
+                    Storage::disk('public')->delete($hanoks->hanok_img2);
+                    $request->hanok_img2->store('/img/hanokImg');
+                    $fileName2 = $request->hanok_img2->hashName();
+                    $hanoks->$val = 'img/hanokImg/'.$fileName2;
+                    continue;
+                }
+                if($val === 'hanok_img3'){
+                    Storage::disk('public')->delete($hanoks->hanok_img3);
+                    $request->hanok_img3->store('/img/hanokImg');
+                    $fileName3 = $request->hanok_img3->hashName();
+                    $hanoks->$val = 'img/hanokImg/'.$fileName3;
+                    continue;
+                }
+                $hanoks->$val = $request->$val;
+            }    
+            $hanoks->save(); // update
+        }    
+        catch (Exception $e){
+            return redirect()->back($e);
+        }
+        finally{
+            return redirect()->route('admin.hanoks.detail',[ 'hanok_id' => $request->hanok_id ]);
+        }
+
+    }
+
+    public function adminRoomUpdate(Request $request) {
+        $countPrice = strlen($request->room_price);
+        if($countPrice > 3){
+            $price = (int)str_replace(',', '', $request->room_price);
+        }else{
+            // // 아닌 경우 그대로
+            $price = $request->room_price;
+        }
+        $arrKey=[];
+        //ㅡㅡㅡㅡㅡㅡ유효성 체크 하는 모든 항목 리스트 
+        $chkList=[
+            'room_id'           => 'required'
+            ,'room_name'        => 'required'
+            , 'room_content'    => 'required'
+            , 'room_price'      => 'required'
+            , 'room_min'        => 'required'
+            , 'room_max'        => 'required'
+            , 'chk_in'          => 'required'
+            , 'chk_out'         => 'required'
+            , 'room_detail'     => 'required'
+            , 'room_facility'   => 'required'
+            , 'room_img1'       => 'required'
+            , 'room_img2'       => 'required'
+            , 'room_img3'       => 'required'
+        ];
+        
+        $rooms = Rooms::find($request->room_id); // 기존 데이터 가져옴 
+        
+
+        // 수정할 항목을 배열에 담는 처리
+        // 변경된 항목만 담음
+        if($request->room_name !== $rooms->room_name){
+            $arrKey[]='room_name';
+        }
+
+        if($request->room_content !== $rooms->room_content){
+            $arrKey[]='room_content';
+        }
+
+        if($price !== $rooms->room_price){
+            $arrKey[]='room_price';
+            // $countPrice = strlen($request->room_price);
+
+            // 가격 3자리수 초과일 경우 , 제거
+            
+            // return var_dump($price);
+        }
+
+        if((int)$request->room_min !== $rooms->room_min){
+            $arrKey[]='room_min';
+        }
+        if((int)$request->room_max !== $rooms->room_max){
+            $arrKey[]='room_max';
+        }
+        if($request->chk_in !== $rooms->chk_in){
+            $arrKey[]='chk_in';
+        }
+        if($request->chk_out !== $rooms->chk_out){
+            $arrKey[]='chk_out';
+        }
+        if($request->room_detail !== $rooms->room_detail){
+            $arrKey[]='room_detail';
+        }
+        if($request->room_facility !== $rooms->room_facility){
+            $arrKey[]='room_facility';
+        }
+        if(isset($request->room_img1)){
+            $arrKey[]='room_img1';
+            // 기존에 있던 파일 삭제
+        }
+        if(isset($request->room_img2)){
+            $arrKey[]='room_img2';
+
+        }
+        if(isset($request->room_img3)){
+            $arrKey[]='room_img3';
+        }
+
+    try {
+        foreach($arrKey as $val){
+            $arrCheck[$val] = $chkList[$val]; 
+        }
+        $validate =  $request->validate($arrCheck);
+
+        foreach($arrKey as $val){
+            if($val === 'room_price'){
+                $rooms->$val = $price;
+                continue;
+            }
+            if($val === 'room_img1'){
+
+                Storage::disk('public')->delete($rooms->room_img1);
+                    
+                $request->room_img1->store('/img/roomImg');
+                $fileName1 = $request->room_img1->hashName();
+                $rooms->$val = 'img/roomImg/'.$fileName1;
+                continue;
+            }
+            if($val === 'room_img2'){
+
+                Storage::disk('public')->delete($rooms->room_img2);
+
+                $request->room_img2->store('/img/roomImg');
+                $fileName2 = $request->room_img2->hashName();
+                $rooms->$val = 'img/roomImg/'.$fileName2;
+                continue;
+            }
+            if($val === 'room_img3'){
+                // 저장되어있던 이미지 삭제
+                Storage::disk('public')->delete($rooms->room_img3);
+
+                $request->room_img3->store('/img/roomImg');
+                $fileName3 = $request->room_img3->hashName();
+                $rooms->$val = 'img/roomImg/'.$fileName3;
+                continue;
+            }
+            $rooms->$val = $request->$val;
+        }    
+        $rooms->save(); // update
+    }
+    catch (Exception $e){
+        return redirect()->back($e);
+    }
+    finally{
+        return redirect()->route('admin.hanoks.detail',[ 'hanok_id' => $request->hanok_id ]);
+    }
+    }
+
+    // 0722 add end KMH
+    public function adminHanoksInsertPost(Request $req) {
+        
         // $uploaded_file_name_tmp = $_FILES['hanok_img1']['tmp_name'];
         // $uploaded_file_name = $_FILES['hanok_img1']['name'];
         // $upload_folder = "/public/img/hanokImg";

@@ -1,0 +1,43 @@
+
+.hanoks,.rooms{
+    margin-top:20px;
+}
+.hanok-tit,.room-tit{
+    font-size:18px;
+    text-align: center;
+}
+
+
+.hanok-con, .room-con{
+    border: 2px solid #e2e2e2;
+    padding:  10px;
+    margin: 20px 0;
+}
+textarea{
+    min-height:250px;
+    resize:none;
+}
+.img-upload{
+    position:relative;
+    right:0;
+}
+
+.line{
+    border-top:3px dotted #000;
+}
+
+h2{
+    font-weight: 900;
+    padding-bottom:5px;
+    border-bottom: 5px double #000;
+}
+.room-title{
+    display: inline-block;
+}
+
+input:focus,textarea:focus,select:focus{
+    outline:none;
+}
+.page-pad {
+    margin:20px;
+}

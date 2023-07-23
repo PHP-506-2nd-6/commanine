@@ -46,7 +46,7 @@ class ApiWishlistsController extends Controller
         $arr['msg'] = 'Insert success';
 
         // 로그인이 안되어 있을 경우
-        Log::debug('ddd',[session('user_id')]);
+        // Log::debug('ddd',[session('user_id')]);
         if(!$request->user_id) {
             $arr['errorcode'] = 'E01';
             $arr['msg'] = 'Not login';
