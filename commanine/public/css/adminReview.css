@@ -1,0 +1,25 @@
+
+.form{
+  height: 40px;
+  /* vertical-align: middle; */
+}
+.input{
+  width:300px;
+  outline: none;
+  height:95%;
+}
+.selectList {
+  height:95%;
+}
+.btn{
+  margin-bottom: 5px;
+}
+.table{
+  font-size: 15px;
+  width:100%;
+  text-align: center;
+}
+
+tr > th{
+  font-weight: 900;
+}

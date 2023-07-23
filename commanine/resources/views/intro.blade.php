@@ -19,17 +19,27 @@
     </div>
     <div class="explain">
         <h1 class="hanokis">한옥이란</h1>
-        <p> 선사시대부터 우리나라에 우리 고유의 기술과 양식으로 지은 건축을 의미한다. <br>
-        좁은 범위로는 ‘주거용 살림집’을 의미하며, 넓은 범위로는 ‘한국 전통건축 전체’를 포함한다. 
-        한옥이라는 용어는 1907년부터 문헌에 등장하기 시작하였으며, 
-        ‘우리나라 고유의 양식으로 지은 집을 양식 건물에 상대하여 부르는 말’이라고 정의되어 있다.
-         한옥의 기원은 조선시대 후기에 전통한옥이 완성된 것으로 본다. 
-         이 시기에 한옥은 공간구성의 기본단위인 온돌, 마루, 부엌이 완전히 결합하여 각 마당과 밀접한 관계를 갖게 되고 
-         다양한 지역형으로 분화하게 되었다.</p>
+        <div class="explain_vd">
+            <p> 선사시대부터 우리나라에 우리 고유의 기술과 양식으로 지은 건축을 의미한다. <br>
+            좁은 범위로는 ‘주거용 살림집’을 의미하며, 넓은 범위로는 ‘한국 전통건축 전체’를 포함한다. 
+            한옥이라는 용어는 1907년부터 문헌에 등장하기 시작하였으며, 
+            ‘우리나라 고유의 양식으로 지은 집을 양식 건물에 상대하여 부르는 말’이라고 정의되어 있다.
+            한옥의 기원은 조선시대 후기에 전통한옥이 완성된 것으로 본다. 
+            이 시기에 한옥은 공간구성의 기본단위인 온돌, 마루, 부엌이 완전히 결합하여 각 마당과 밀접한 관계를 갖게 되고 
+            다양한 지역형으로 분화하게 되었다.</p>
+            <div class="vd">
+                <video src="{{asset('hanokvd.mp4')}}" controls>
+            </div>
+        </div>
     </div>
-    <p class="ft-quotation mg-b40">
-        <strong>최근 한옥은 다음과 같은 특징이 재조명되어 아파트와 다세대주택 등 기존 주거의 대안으로 큰 관심을 얻고 있다.</strong>
-    </p>
+    {{-- <div class="vd">
+        <video src="{{asset('hanokvd.mp4')}}" controls>
+    </div> --}}
+    <div class="subtit">
+        <p class="ft-quotation mg-b40">
+            <strong>최근 한옥은 다음과 같은 특징이 재조명되어 아파트와 다세대주택 등 기존 주거의 대안으로 큰 관심을 얻고 있다.</strong>
+        </p>
+    </div>
     <div class="intro_content">
         <div class="introbg">
             <img class="illhanok" src="{{asset('/img/illhanok.png')}}" alt="">
@@ -78,6 +88,7 @@
             </div>
         </div>
     </div>
+    <hr>
     <div class="seasons">
         <div class="title">
             <h4>season</h4>

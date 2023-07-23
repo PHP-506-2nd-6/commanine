@@ -1,5 +1,5 @@
 .intro_wrap {
-    height: 3000px;
+    height: 3300px;
 }
 .introimgimg {
     height: 900px;
@@ -11,6 +11,16 @@
     width: 100%;
     margin-bottom: 20px;
 }
+/* .vd {
+    width: 90%;
+    height: 500px;
+} */
+video {
+    /* margin-top: 60px; */
+    width: 500px;
+    height: 300px;
+    float: right;
+}
 .introp {
     font-family: 'SangSangFlowerRoad';
     position: absolute;
@@ -21,9 +31,19 @@
     color: #ffffff;
 }
 .explain {
-    width: 1000px;
+    width: 70%;
+    height: 500px;
     text-align: center;
-    margin: 20px auto;
+    margin: 50px auto 0;
+}
+.explain p{
+    /* font-size: 20px; */
+    padding: 30px 0;
+    width: 550px;
+    float: left;
+}
+.explain_vd {
+    margin-top: 50px;
 }
 .hanokis {
     font-size: 60px;
@@ -44,7 +64,7 @@
     
 }
 .ft-quotation {
-    margin-top: 50px;
+    margin-top: 30px;
     width: 100%;
     text-align: center;
     background: no-repeat;
@@ -91,6 +111,7 @@
 }
 .contimg{
     width: 500px;
+    margin-bottom: 15px;
 }
 .illhanok {
     position: absolute;

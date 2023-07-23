@@ -134,17 +134,26 @@ class AdminController extends Controller
 
         $keyword = $req->input('keyword');
         $searchType = $req->input('searchType');
+        $reserveStatus = $req->input('reserveStatus'); 
 
         $reserve = DB::table('rooms as room')
             ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
             ->join('reservations as re', 're.room_id', '=', 'room.id')
             ->select('re.id as reserve_id', 're.reserve_name', 're.reserve_num', 'han.id', 'han.hanok_name', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg', 're.created_at')
             // ->where('han.hanok_name', 'LIKE', '%' . $keyword . '%')
-            ->Where('re.' . $searchType, 'LIKE', '%' . $keyword . '%')
-            ->orderBy('re.id', 'desc')
+            ->Where('re.' . $searchType, 'LIKE', '%' . $keyword . '%');
+            // ->orderBy('re.id', 'desc');
             // ->get();
-            ->paginate(15);
+            // ->paginate(15);
 
+    // 예약 상태로 필터링
+    if (!empty($reserveStatus)) {
+        $reserve->where('re.reserve_flg', $reserveStatus);
+    }
+
+    $reserve = $reserve->orderBy('re.id', 'desc')
+        ->paginate(15);
+        // dd($reserve->toSql());/
         return view('adminReserve')->with('reservations',$reserve);
     }
 
