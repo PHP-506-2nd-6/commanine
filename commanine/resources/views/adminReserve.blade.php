@@ -22,19 +22,19 @@
             <label for="chk_out">~</label>
             <input name="chkOut" type="text" class="datepicker2" id="datepicker2" autocomplete="off" readonly>
         </div> --}}
+        <select name="reserveStatus" size="1" class="selectList" id="select_2">
+            <option  selected>전체</option>
+            <option value="0" >예약완료</option>
+            <option value="1" >예약대기</option>
+        </select>
+        <br>
         <select name="searchType" size="1" class="selectList" id="select_1">
             <option  value="id">예약번호</option>
             <option value="reserve_name" >이름</option>
             <option value="reserve_num" >전화번호</option>
-        <input class="input" type="text" name="keyword" autocomplete="off">
         </select>
-         {{-- <input type="text" name="reservations"> --}}
-        {{-- <br>
-        <select name="hanokType" size="1" class="selectList" id="select_1">
-            <option  selected>전체</option>
-            <option value="0" >예약완료</option>
-            <option value="1" >예약대기</option>
-        </select> --}}
+    
+        <input class="input" type="text" name="keyword" autocomplete="off">
         <button type="submit" class="btn btn-dark">검색</button>
     </form>
     <div class="searchUl">
