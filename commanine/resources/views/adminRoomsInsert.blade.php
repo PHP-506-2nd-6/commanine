@@ -60,13 +60,16 @@
                             <label for="room_facility" class="col-2 room-tit">편의시설</label>
                             <textarea type="text" name="room_facility" class="col-10 room-con"></textarea>
                         </div>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center ">
                             <label for="room_img1[]" class="col-2 room-tit">객실 이미지</label>
-                            <input type="file" name="room_img[]" multiple accept="image/*" class="col-10 room-con img-file ">
+                            <input type="file" name="room_img[]" multiple accept="image/*" class="col-10 room-con img-file " onchange="readURL(this);">
                         </div>
-                        <div >
-                            <button class="btn btn-outline-dark">등록하기</button>
-                            <button type="button" class="btn btn-outline-danger "  onclick="location.href='{{route('admin.hanoks.detail',[ 'hanok_id' => $hanoks->id ])}}' ">취소하기</button>
+                        <div class="d-flex justify-content-end hanoks">
+                            <div id="imageContainer" class="col-10 d-flex justify-content-between preview-box"></div>
+                        </div>
+                        <div class="d-flex justify-content-end group-btn">
+                            <button class="btn btn-outline-dark insert-btn col-5">등록하기</button>
+                            <button type="button" class="btn btn-outline-danger col-5 cancel-btn ml-auto"  onclick="location.href='{{route('admin.hanoks.detail',[ 'hanok_id' => $hanoks->id ])}}' ">취소하기</button>
                         </div>
                     </form>
                 </div>
@@ -78,3 +81,4 @@
         </script>
     @endif
 @endsection
+<script src="{{asset('js/adminhanoksinsert.js')}}"></script>

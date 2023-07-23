@@ -41,3 +41,9 @@ input:focus,textarea:focus,select:focus{
 .page-pad {
     margin:20px;
 }
+.preview-box{
+    width:200px;
+}
+.room-btn{
+    margin:20px 0 ;
+}

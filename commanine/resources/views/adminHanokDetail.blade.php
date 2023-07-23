@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('css/adminHanokDetail.css')}}"> 
 </head>
 @section('contents')
-    <div class=" row main-container ">
+    <div class="container row main-container ">
         @include('layout.adminsidebar')
             <div class="container col-9 content-box" >
                 <div class="d-flex justify-content-between hanoks">
@@ -89,19 +89,19 @@
                         <div class="d-flex align-items-center">
                             <h3  class="col-2 hanok-tit">숙소 이미지 변경</h3>
                             <div class="col-10 hanok-con d-flex justify-content-between">
-                                <div >
+                                <div class="preview-box" >
                                     <label for="hanok_img1">첫번째 사진</label>
                                     <input type="file" name="hanok_img1" id="hanok_img1" accept="image/*" onchange="preview(event, 'hanokImgPreview1')">
                                     <img id="hanokImgPreview1" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
 
                                 </div>
-                                <div >
+                                <div class="preview-box" >
                                     <label for="hanok_img2">두번째 사진</label>
                                     <input type="file" name="hanok_img2" id="hanok_img2" accept="image/*" onchange="preview(event, 'hanokImgPreview2')" >
                                     <img id="hanokImgPreview2" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
 
                                 </div>
-                                <div >
+                                <div class="preview-box" >
                                     <label for="hanok_img3">세번째 사진</label>
                                     <input type="file" name="hanok_img3" id="hanok_img3" accept="image/*" onchange="preview(event, 'hanokImgPreview3')">
                                     <img id="hanokImgPreview3" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
@@ -243,31 +243,32 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <h3  class="col-2 room-tit">객실 이미지 변경</h3>
-
-                                            <div class="col">
+                                        <div class="col-10 hanok-con d-flex justify-content-between">
+                                            <div class=" preview-box">
                                                 <label for="room_img1">첫번째 사진</label>
                                                 <input type="file" name="room_img1" id="room_img1" accept="image/*" onchange="preview(event, 'roomImgPreview1')">
                                                 <img id="roomImgPreview1" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
 
                                             </div>
-                                            <div class="col">
+                                            <div class=" preview-box">
                                                 <label for="room_img2">두번째 사진</label>
                                                 <input type="file" name="room_img2" id="room_img2" accept="image/*" onchange="preview(event, 'roomImgPreview2')" >
                                                 <img id="roomImgPreview2" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
 
                                             </div>
-                                            <div class="col">
+                                            <div class=" preview-box">
                                                 <label for="room_img3">세번째 사진</label>
                                                 <input type="file" name="room_img3" id="room_img3" accept="image/*" onchange="preview(event, 'roomImgPreview3')">
                                                 <img id="roomImgPreview3" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
                                             </div>
+                                        </div>
                                     {{-- <input type="file" name="room_img[]" multiple accept="image/*" class="col-10 room-con img-file "> --}}
                                 </div>
                                 {{-- <div class="d-flex align-items-center justify-content-end">
                                     <div id="imageContainer" class= "col-10 hanok-con img-upload"></div>
                                 </div> --}}
                                 <div class="d-flex justify-content-end">
-                                    <button class="btn btn-outline-dark " >객실 수정하기</button>
+                                    <button class="btn btn-outline-dark room-btn" >객실 수정하기</button>
                                 </div>
                             </form>
                         </div>
