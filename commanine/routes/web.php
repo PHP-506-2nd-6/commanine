@@ -128,6 +128,11 @@ Route::post('/admin/hanoks/insertPost', [AdminController::class, 'adminHanoksIns
 Route::get('/admin/hanoks/Roominsert/{hanok_id}', [AdminController::class, 'adminRoomsInsert'])->name('admin.rooms.insert');
 Route::post('/admin/hanoks/RoominsertPost/{hanok_id}', [AdminController::class, 'adminRoomsInsertPost'])->name('admin.rooms.insert.post');
 
+// 관리자 숙소 수정
+Route::put('/admin/hanoks/hanokUpdate', [AdminController::class, 'adminHanokUpdate'])->name('admin.hanoks.update');
+// 관리자 객실 수정
+Route::put('/admin/hanoks/roomUpdate', [AdminController::class, 'adminRoomUpdate'])->name('admin.rooms.update');
+
 // 0722 add
 // 관리자 리뷰 수정
 Route::put('admin/review/update/{review_id}', [AdminController::class, 'adminReviewUpdate'])->name('admin.review.update');

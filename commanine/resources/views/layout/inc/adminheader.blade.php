@@ -3,7 +3,7 @@
     {{-- <link rel="stylesheet" href="{{asset('css/adminheader.css')}}"> --}}
 </head>
 <header>
-    <div class="header-box">
+    <div class="header-box d-flex justify-content-between ">
         <div class="logo">
             <h1><a href="{{route('admin.users')}}" class="a-link">COMMANINE ADMIN</a></h1>
         </div>
@@ -16,3 +16,5 @@
         </div>
     </div>
 </header>
+
+
