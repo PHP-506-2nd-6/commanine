@@ -1,3 +1,9 @@
+/* *************************************
+    * 프로젝트명 : commanine
+    * 디렉토리   : public/js
+    * 파일명     : wishlist.js
+    * 이력       : 0718 v001 KMH new
+    * *********************************** */ 
 // 찜목록 API 0717 add KMH
 let hanok = document.getElementById('hanokId');
 let user = document.getElementById('user');

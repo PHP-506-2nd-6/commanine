@@ -52,3 +52,18 @@ header{
     padding-right:50px;
     padding-top:15px;
 }
+
+.pagePadding{
+    color:#000;
+    text-decoration: none;
+    padding:10px;
+}
+.pagePadding:hover{
+    color:#b2b2b2;
+}
+
+.currentLink{
+    font-size:18px;
+    border-bottom: 3px double #000;
+    padding-bottom: 1px;
+}

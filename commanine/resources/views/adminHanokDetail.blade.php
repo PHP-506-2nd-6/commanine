@@ -1,12 +1,18 @@
+{{-- /**************************************
+ * 프로젝트명 : commanine
+ * 디렉토리   : Views
+ * 파일명     : adminHanokDetail.blade.php
+ * 이력       : 0720 v001 KMH new
+ * *********************************** */ --}}
 @extends('layout.adminlayout')
 <head>
     <link rel="stylesheet" href="{{asset('css/adminSidebar.css')}}">
     <link rel="stylesheet" href="{{asset('css/adminHanokDetail.css')}}"> 
 </head>
 @section('contents')
-    <div class=" row main-container ">
+    <div class="container row main-container " style="max-width:2000px">
         @include('layout.adminsidebar')
-        <div class="col-9 d-flex row" >
+        <div class="container col-9 content-box" >
             <div class="hanoks-container">
                 <div class="d-flex justify-content-between hanoks">
                     <h2  >숙소 상세관리</h2>
@@ -20,21 +26,21 @@
                         <input type="hidden" name="hanok_id"value="{{$hanoks->id}}">
                         <div class="d-flex align-items-center">
 
-                            <label for="hanok_name" class="col-2 hanok-tit">숙소 이름</label>   
+                            <label for="hanok_name" class="col-2 hanok-tit require ">숙소 이름</label>   
                             <input type="text" name="hanok_name" class= "col-10 hanok-con" value="{{isset($hanoks->hanok_name) ? $hanoks->hanok_name : ""}}">
                         </div>
 
                         <div class="d-flex align-items-center">
-                            <label for="hanok_addr" class="col-2 hanok-tit">주소</label>
+                            <label for="hanok_addr" class="col-2 hanok-tit require">주소</label>
                             <input type="text" name="hanok_addr" id="hanok_addr" class= "col-10 hanok-con" value="{{isset($hanoks->hanok_addr) ? $hanoks->hanok_addr : ""}}">
                         </div>
 
                         <div class="d-flex align-items-center">
-                            <label for="hanok_num" class="col-2 hanok-tit">숙소 전화번호</label>
+                            <label for="hanok_num" class="col-2 hanok-tit require">숙소 전화번호</label>
                             <input type="number" name="hanok_num" id="hanok_num" class= "col-10 hanok-con" value="{{isset($hanoks->hanok_num) ? $hanoks->hanok_num : ""}}">
                         </div>
                         <div class="d-flex align-items-center">
-                            <label for="hanok_refund" class="col-2 hanok-tit">숙소 타입</label>
+                            <label for="hanok_refund" class="col-2 hanok-tit require">숙소 타입</label>
                                 @if($hanoks->hanok_type == 0)
                                     <select name="hanok_type" class="select_box" class= "col-10 hanok-con">
                                         <option value="0" selected>호텔</option>
@@ -67,7 +73,7 @@
                             {{-- </span> --}}
                         </div>
                         <div class="d-flex align-items-center">
-                            <h3 class="col-2 hanok-tit">숙소 이미지</h3>
+                            <h3 class="col-2 hanok-tit require">숙소 이미지</h3>
                             <div class="imgBox col-10 hanok-con d-flex justify-content-between">
                                 <span >
                                     <img src="{{asset($hanoks->hanok_img1)}}" style="width:200px; height:150px;" >
@@ -85,19 +91,19 @@
                             <div class="col-10 hanok-con d-flex justify-content-between">
                                 <div class="preview-box" >
                                     <label for="hanok_img1">첫번째 사진</label>
-                                    <input type="file" name="hanok_img1" id="hanok_img1" accept="image/*" onchange="preview(event, 'hanokImgPreview1')">
+                                    <input type="file" name="hanok_img1" id="hanok_img1" accept="image/*" onchange="preview(event, 'hanokImgPreview1')" class="img-box">
                                     <img id="hanokImgPreview1" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
 
                                 </div>
                                 <div class="preview-box" >
                                     <label for="hanok_img2">두번째 사진</label>
-                                    <input type="file" name="hanok_img2" id="hanok_img2" accept="image/*" onchange="preview(event, 'hanokImgPreview2')" >
+                                    <input type="file" name="hanok_img2" id="hanok_img2" accept="image/*" onchange="preview(event, 'hanokImgPreview2')" class="img-box" >
                                     <img id="hanokImgPreview2" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
 
                                 </div>
                                 <div class="preview-box" >
                                     <label for="hanok_img3">세번째 사진</label>
-                                    <input type="file" name="hanok_img3" id="hanok_img3" accept="image/*" onchange="preview(event, 'hanokImgPreview3')">
+                                    <input type="file" name="hanok_img3" id="hanok_img3" accept="image/*" onchange="preview(event, 'hanokImgPreview3')" class="img-box">
                                     <img id="hanokImgPreview3" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
                                 </div>
                             </div>
@@ -110,7 +116,7 @@
                             
                         @endphp
                         <div class="d-flex align-items-center">
-                            <h3 class="col-2 amenity-tit">어메니티</h3>
+                            <h3 class="col-2 amenity-tit hanok-tit require">어메니티</h3>
                             <div class="col-10 d-flex row">
                                 <div  class="d-flex" >
                                     <div class="d-flex">
@@ -178,21 +184,21 @@
                         </div>
 
                         <div class="d-flex align-items-center">
-                            <label for="hanok_comment" class="col-2 hanok-tit">상세 내용</label>
-                            <textarea type="text" name="hanok_comment"  class= "col-10 hanok-con" id="hanok_comment" rows="3" >{{isset($hanoks->hanok_comment) ?  $hanok_comment : "" }}</textarea>
+                            <label for="hanok_comment" class="col-2 hanok-tit require">상세 내용</label>
+                            <textarea type="text" name="hanok_comment"  class= "col-10 hanok-con textarea-box" id="hanok_comment" rows="3" >{{isset($hanoks->hanok_comment) ?  $hanok_comment : "" }}</textarea>
                         </div>
 
                         <div class="d-flex align-items-center">
-                            <label for="hanok_info" class="col-2 hanok-tit">숙소 기본정보</label>
-                            <textarea type="text" name="hanok_info" class= "col-10 hanok-con" id="hanok_info" rows="4">{{isset($hanoks->hanok_info) ?  $hanok_info : "" }}</textarea>
+                            <label for="hanok_info" class="col-2 hanok-tit require">숙소 기본정보</label>
+                            <textarea type="text" name="hanok_info" class= "col-10 hanok-con textarea-box" id="hanok_info" rows="4">{{isset($hanoks->hanok_info) ?  $hanok_info : "" }}</textarea>
                         </div>
 
                         <div class="d-flex align-items-center">
-                            <label for="hanok_refund" class="col-2 hanok-tit">환불 정보</label>
-                            <textarea type="text" name="hanok_refund" class= "col-10 hanok-con" id="hanok_refund" rows="3">{{isset($hanoks->hanok_refund) ?  $hanok_refund : "" }}</textarea>
+                            <label for="hanok_refund" class="col-2 hanok-tit require">환불 정보</label>
+                            <textarea type="text" name="hanok_refund" class= "col-10 hanok-con textarea-box" id="hanok_refund" rows="3">{{isset($hanoks->hanok_refund) ?  $hanok_refund : "" }}</textarea>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-outline-danger " >숙소 수정하기</button>
+                            <button class="btn btn-outline-success update-btn" >숙소 수정하기</button>
                         </div>
                     </form>
                 </div>
@@ -217,47 +223,47 @@
                                 $room_facility = str_replace("<br />","\r\n",$value->room_facility);
                             @endphp
                             <div class="d-flex align-items-center">
-                                <label for="room_name" class="col-2 room-tit">객실 명</label>
+                                <label for="room_name" class="col-2 room-tit require">객실 명</label>
                                 <input type="text" name="room_name" class="col-10 room-con" value="{{isset($value->room_name) ? $value->room_name : ""}}">
                             </div>
                             <div class="d-flex align-items-center">
-                                <label for="room_content" class="col-2 room-tit">객실 설명</label>
-                                <textarea type="text" name="room_content" class="col-10 room-con">{{ isset($value->room_content) ? $room_content : "" }}</textarea>
+                                <label for="room_content" class="col-2 room-tit require">객실 설명</label>
+                                <textarea type="text" name="room_content" class="col-10 room-con textarea-box">{{ isset($value->room_content) ? $room_content : "" }}</textarea>
                             </div>
                             <div class="d-flex align-items-center">
-                                <label for="room_price" class="col-2 room-tit">객실 가격</label>
-                                <input type="text" name="room_price" class="col-10 room-con"  value="{{isset($value->room_price) ? number_format($value->room_price)  : ""}}" oninput="formatPrice(this)">
+                                <label for="room_price" class="col-2 room-tit require">객실 가격</label>
+                                <input type="text" name="room_price" maxlength="13" id="room_price" class="col-10 room-con text-center"  value="{{isset($value->room_price) ? number_format($value->room_price)  : ""}}" oninput="onlyNumber(this);formatPrice(this);" style="width:200px;">
                             </div>
                             <div class="d-flex align-items-center">
-                                <label for="room_min" class="col-2 room-tit">최소 수용 가능 인원</label>
-                                <input type="number" min="2" max="16" name="room_min" value="{{isset($value->room_min) ? $value->room_min : "2"}}" class="col-10 room-con" >
+                                <label for="room_min" class="col-2 room-tit require">최소 수용 가능 인원</label>
+                                <input type="number" min="2" max="16" name="room_min" value="{{isset($value->room_min) ? $value->room_min : "2"}}" class="col-10 room-con text-center" style="width:200px;" >
                             </div>
                             <div  class="d-flex align-items-center">
-                                <label for="room_max" class="col-2 room-tit">최대 수용 가능 인원</label>
-                                <input type="number" min="2" max="16" name="room_max" value="{{isset($value->room_max) ? $value->room_max : "2"}}" class="col-10 room-con">
+                                <label for="room_max" class="col-2 room-tit require">최대 수용 가능 인원</label>
+                                <input type="number" min="2" max="16" name="room_max" value="{{isset($value->room_max) ? $value->room_max : "2"}}" class="col-10 room-con text-center" style="width:200px;">
                             </div>
                             <div  class="d-flex align-items-center">
-                                <label for="chk_in" class="col-2 room-tit">체크인</label>
-                                <input type="time" name="chk_in" class="col-10 room-con" value="{{isset($value->chk_in ) ? $value->chk_in : ""}}">
+                                <label for="chk_in" class="col-2 room-tit require">체크인</label>
+                                <input type="time" name="chk_in" class="col-10 room-con " value="{{isset($value->chk_in ) ? $value->chk_in : ""}}" style="width:200px;">
                             </div>
                             <div class="d-flex align-items-center">
-                                <label for="chk_out" class="col-2 room-tit">체크아웃</label>
-                                <input type="time" name="chk_out" class="col-10 room-con" value="{{isset($value->chk_out ) ? $value->chk_out : ""}}">
+                                <label for="chk_out" class="col-2 room-tit require">체크아웃</label>
+                                <input type="time" name="chk_out" class="col-10 room-con " value="{{isset($value->chk_out ) ? $value->chk_out : ""}}" style="width:200px;">
                             </div>
                             <div class="d-flex align-items-center">
-                                <label for="room_detail" class="col-2 room-tit">객실 상세설명</label>
-                                <textarea type="text" name="room_detail" class="col-10 room-con">{{ isset($value->room_detail) ? $room_detail : "" }}</textarea>
+                                <label for="room_detail" class="col-2 room-tit require">객실 상세설명</label>
+                                <textarea type="text" name="room_detail" class="col-10 room-con textarea-box">{{ isset($value->room_detail) ? $room_detail : "" }}</textarea>
                             </div>
                             <div class="d-flex align-items-center">
-                                <label for="room_facility" class="col-2 room-tit">편의시설</label>
-                                <textarea type="text" name="room_facility" class="col-10 room-con">{{ isset($value->room_facility) ? $room_facility : "" }}</textarea>
+                                <label for="room_facility" class="col-2 room-tit require">편의시설</label>
+                                <textarea type="text" name="room_facility" class="col-10 room-con textarea-box">{{ isset($value->room_facility) ? $room_facility : "" }}</textarea>
                             </div>
                             {{-- <div class="d-flex align-items-center">
                                 <label for="room_img1[]" class="col-2 room-tit">객실 이미지</label>
                                 <input type="file" name="room_img[]" multiple accept="image/*" class="col-10 room-con img-file ">
                             </div> --}}
                             <div class="d-flex align-items-center">
-                                <h3 class="col-2 room-tit">객실 이미지</h3>
+                                <h3 class="col-2 room-tit require">객실 이미지</h3>
                                 <div class="imgBox col-10 room-con d-flex justify-content-between">
                                     <span >
                                         <img src="{{asset($value->room_img1)}}" style="width:200px; height:150px;" >
@@ -271,23 +277,23 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
-                                <h3  class="col-2 room-tit">객실 이미지 변경</h3>
+                                <h3  class="col-2 room-tit ">객실 이미지 변경</h3>
                                     <div class="col-10 hanok-con d-flex justify-content-between">
                                         <div class=" preview-box">
                                             <label for="room_img1">첫번째 사진</label>
-                                            <input type="file" name="room_img1" id="room_img1" accept="image/*" onchange="preview(event, 'roomImgPreview1')">
+                                            <input type="file" name="room_img1" id="room_img1" accept="image/*" onchange="preview(event, 'roomImgPreview1')" class="img-box">
                                             <img id="roomImgPreview1" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
 
                                         </div>
                                         <div class=" preview-box">
                                             <label for="room_img2">두번째 사진</label>
-                                            <input type="file" name="room_img2" id="room_img2" accept="image/*" onchange="preview(event, 'roomImgPreview2')" >
+                                            <input type="file" name="room_img2" id="room_img2" accept="image/*" onchange="preview(event, 'roomImgPreview2')" class="img-box" >
                                             <img id="roomImgPreview2" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
 
                                         </div>
                                         <div class=" preview-box">
                                             <label for="room_img3">세번째 사진</label>
-                                            <input type="file" name="room_img3" id="room_img3" accept="image/*" onchange="preview(event, 'roomImgPreview3')">
+                                            <input type="file" name="room_img3" id="room_img3" accept="image/*" onchange="preview(event, 'roomImgPreview3')" class="img-box">
                                             <img id="roomImgPreview3" src="#" alt="미리 보기" style="display: none; width: 200px; height: 150px;">
                                         </div>
                                     </div>
@@ -297,7 +303,7 @@
                                 <div id="imageContainer" class= "col-10 hanok-con img-upload"></div>
                             </div> --}}
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-outline-danger room-btn" >객실 수정하기</button>
+                                <button class="btn btn-outline-success room-btn" >객실 수정하기</button>
                             </div>
                         </form>
                     </div>
@@ -318,4 +324,4 @@
 </script>
 
 @endif
-<script src="{{asset('js/adminHanokUpdate.js')}}"></script>
+<script src="{{asset('js/adminhanokupdate.js')}}"></script>

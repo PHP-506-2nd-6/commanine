@@ -1,9 +1,14 @@
-
-.hanoks,.rooms{
+/* *************************************
+    * 프로젝트명 : commanine
+    * 디렉토리   : public/css
+    * 파일명     : adminRoomInsert.css
+    * 이력       : 0722 v001 KMH new
+    * *********************************** */ 
+.hanoks-info,.rooms,.title{
     margin-top:20px;
 }
 .hanok-tit,.room-tit{
-    font-size:17px;
+    font-size:18px;
     text-align: center;
 }
 
@@ -13,10 +18,10 @@
     margin:10px 0 10px 50px;
 }
 
-.room-con{
+/* .room-con{
     border:1px solid #000;
     width:90%;
-}
+} */
 
 .room-con:focus{
     outline:none;
@@ -34,7 +39,6 @@
 }
 textarea{
     height:250px;
-    resize:none !important;
 }
 
 .preview-box>img{
@@ -47,7 +51,7 @@ textarea{
 } */
 
 .group-btn{
-    margin:20px 0;
+    margin:40px 0;
 }
 h2 {
     border-bottom: 5px double #000;
@@ -65,3 +69,32 @@ label::before {
     margin-right: 5px; 
     font-weight: 900;;
   }
+
+
+.count-img{
+    font-size:12px;
+}
+
+input{
+    border:none;
+    /* outline: none; */
+    border-bottom:1px solid #000;
+}
+
+input:focus , textarea:focus{
+    border-color: #ff0000;
+}
+
+.img-box{
+    border:none;
+}
+
+.require::before{
+    content: '*'; 
+    color: #ff0000;
+    margin-right: 5px; 
+    font-weight: 900;;
+  }
+.textarea-box{
+    resize:none;
+}

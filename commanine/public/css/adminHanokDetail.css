@@ -1,4 +1,9 @@
-
+/* *************************************
+    * 프로젝트명 : commanine
+    * 디렉토리   : public/css
+    * 파일명     : adminHanokDetail.css
+    * 이력       : 0723 v001 KMH new
+    * *********************************** */ 
 .hanoks,.rooms{
     margin-top:20px;
 }
@@ -9,13 +14,12 @@
 
 
 .hanok-con, .room-con{
-    border: 2px solid #e2e2e2;
+    /* border: 2px solid #e2e2e2; */
     padding:  10px;
     margin: 20px 0;
 }
 textarea{
-    min-height:250px;
-    resize:none;
+    height:250px;
 }
 .img-upload{
     position:relative;
@@ -60,4 +64,31 @@ input:focus,textarea:focus,select:focus{
 .msg{
     text-align: center;
     color:#ff0000;
+}
+input{
+    border:none;
+    /* outline: none; */
+    border-bottom:1px solid #000;
+}
+
+input:focus , textarea:focus{
+    border-color: #ff0000;
+}
+
+.img-box{
+    border:none;
+}
+
+.require::before{
+    content: '*'; 
+    color: #ff0000;
+    margin-right: 5px; 
+    font-weight: 900;;
+  }
+.textarea-box{
+    resize:none;
+}
+
+.update-btn{
+    margin: 0 0 50px 0 ;
 }

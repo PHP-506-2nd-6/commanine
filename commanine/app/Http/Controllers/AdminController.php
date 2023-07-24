@@ -53,40 +53,54 @@ class AdminController extends Controller
     }
     //0719 KMH add
     public function adminUsers() {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         
         $users = DB::table('users')
-        // ->dd();
-        ->paginate(15);
+                ->paginate(15);
         return view('adminUser')->with('users',$users);
     }
     public function adminUsersSearch(Request $request){
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         $users = DB::table('users')->where('user_email','LIKE','%' . $request->users . '%')->orWhere('user_name','LIKE','%' . $request->users . '%')
-        // ->dd();
-        ->paginate(15);
+                ->paginate(15);
         return view('adminUser')->with('users',$users);
     }
     // 0719 add end KMH
 
     // 0720 add KMH
     public function adminHanoks(){
-        // 쿼리
-        // SELECT
-        // id,
-        // hanok_name,
-        // hanok_img1,
-        // hanok_addr
-        // FROM hanoks han
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         $hanoks = DB::table('hanoks')->select('id','hanok_name','hanok_addr','hanok_img1')->paginate(16);
         return view('adminHanok')->with('hanoks',$hanoks);
     }
     // 0720 add end KMH 
     public function adminHanoksInsert(){
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+
         Log::debug("insert");
-    return view('adminhanoksinsert');
+        return view('adminhanoksinsert');
     }
 
     // 0720 add KMH 
     public function adminHanoksDetail($hanok_id){
+        
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+
         // 쿼리
         // SELECT *
         // FROM hanoks han
@@ -99,10 +113,7 @@ class AdminController extends Controller
         {
             $category[] =$val->amenity_category; 
         }
-        // return var_dump($category);
 
-        // return var_dump($category);
-        // return var_dump($amenities);
         // 현재 숙소가 추가한 객실 출력 
         // select room.+
         // from rooms room
@@ -126,6 +137,10 @@ class AdminController extends Controller
         // $reserve = DB::table('reservations')
         // ->orderBy('id','desc')
         // ->paginate(15);
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
 
         $reserve = DB::table('rooms as room')
         ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
@@ -141,6 +156,10 @@ class AdminController extends Controller
     // 0721 add BYJ
     // 예약관리 검색
     public function adminReservationSearch(Request $req){
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         // test
         // $reserve = DB::table('reservations')->where('id','LIKE','%' . $req->id . '%')->orWhere('reserve_name','LIKE','%' . $req->reserve_name . '%')
         // ->paginate(15);
@@ -187,11 +206,30 @@ class AdminController extends Controller
 
     // 0720 add KMH
     public function adminRoomsInsert($hanok_id){
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+
         $hanoks = DB::table('hanoks')->select('hanok_name','hanok_addr','id')->where('id','=',$hanok_id)->get();
         return view('adminRoomsInsert')->with('hanoks',$hanoks[0]);
     }
     public function adminRoomsInsertPost($hanok_id,Request $req){
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+
+        // 가격이 4자리 이상일 경우 => , 제거
+        $countPrice = strlen($req->room_price);
+        if($countPrice > 3){
+            $price = (int)str_replace(',', '', $req->room_price);
+        }else{
+            // 아닌 경우 그대로
+            $price = (int)$req->room_price;
+        }
         $error = "모든 사항은 필수 사항 입니다.";
+        // 유효성 검사
         $validator = Validator::make(
             $req->only('room_name','room_content','room_price','room_min','room_max','chk_in','chk_out','room_detail','room_facility')
             ,[
@@ -205,11 +243,11 @@ class AdminController extends Controller
                 ,'room_detail' =>'required'
                 ,'room_facility' =>'required'
             ]);
+        // 실패했을 경우 
         if($validator->fails()){
-            // return var_dump($validator);
-            // return new fileUpload($req->room_img);
             return redirect()->back()->with('error',$error);
         }
+        //--  이미지 3개 검사  
         $arr = [];
         // file 담는 배열
         $arr_chk = [];
@@ -218,11 +256,12 @@ class AdminController extends Controller
         // 관리자로 로그인된 아이디 조회
         $loggedInadminId = Auth::guard('admins')->id();
         $arr = $req->file()['room_img'];
+        // 이미지파일이 3개가 아닌 경우 
         if(count($req->file()['room_img']) !== 3){
+            // 세션에 에러메세지를 담아주고 back
             session()->flash('errMsg','사진은 3개만 저장하세요.');
             return redirect()->back();
         }
-
         // 여러개 담은 파일들 arr_chk에 배열로 담아 줌
         foreach($arr as $value ) {
             $arr_chk[] = $value;
@@ -233,11 +272,13 @@ class AdminController extends Controller
             $arr_chk[$i]->store('/img/roomImg');
             $arr_upload_name[] = $arr_chk[$i]->hashName();
         }
+
+        // Insert할 값들을 배열에 담아준다.
         $rooms_insert = [
             'room_name' => $req->room_name
             , 'room_content' => $req->room_content
             , 'room_comment'    => $req->room_comment
-            , 'room_price' => $req->room_price
+            , 'room_price' => $price
             , 'room_min' => $req->room_min
             , 'room_max' => $req->room_max
             , 'chk_in' => $req->chk_in
@@ -268,16 +309,26 @@ class AdminController extends Controller
     // 0720 add end KMH
     // 0722 add KMH
     public function adminHanokUpdate(Request $request) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+
         $error = "모든 사항은 필수 사항 입니다.";
+        // 체크박스를 여러개 체크하면 $request->amenity에 배열로 담아져서 옴
+        // 비어있을 경우 빈 배열 $requestAmenity 을 만들고 
         if(empty($request->amenity)){
+            
             $requestAmenity = [];
         }else{
+        // 아닌 경우 $request->amenty 값들을 $requestAmenity에 담아줌
             foreach($request->amenity as $val){
                 $requestAmenity[] = $val;
             }
         }
         Log::debug('request amenity 확인',[$requestAmenity]);
         Log::debug('checkbox',[$request->only('amenity')]);
+        
         $arrKey=[];
         //ㅡㅡㅡㅡㅡㅡ유효성 체크 하는 모든 항목 리스트 
         $chkList=[
@@ -295,19 +346,24 @@ class AdminController extends Controller
             , 'amenity'         => 'required'
                 ];
         Log::debug('어메니티 값' ,[$requestAmenity]);
-        $hanoks = Hanoks::find($request->hanok_id); // 기존 데이터 가져옴 
-        $amenities = DB::table('amenities')->where('hanok_id','=',$request->hanok_id)->get();
+        // 기존 hanoks 데이터 가져오기 
+        $hanoks = Hanoks::find($request->hanok_id); 
+        // 해당 숙소의 어메니티 가져오기
+        $amenities = DB::table('amenities')->where('hanok_id','=',$request->hanok_id)->get();   // 
         $category = [];
+        // $category 배열에 $amenity_category 값들 담아주기
         foreach($amenities as $val)
         {
             $category[] =(string)$val->amenity_category; 
         }
         // 요청된 aemnity랑 데이터베이스에 있는 카테고리들 비교 
-        $compare_arr1 = array_diff($requestAmenity, $category); // 추가했을 때 
-        $compare_arr2 = array_diff($category,$requestAmenity); // 지웠을 때
-         Log::debug('카테고리1 비교',$compare_arr1);   // 체크박스를 추가하면 생기는데 체크를 풀면 실행 x
-         Log::debug('카테고리2 비교',$compare_arr2);   // 체크박스를 제거하면 생기는데 체크를 풀면 실행 x
-
+        // compare_arr1 => 체크박스중 추가한 값들을 배열로 나타냄
+        $compare_arr1 = array_diff($requestAmenity, $category); 
+        // compare_arr2 => 체크박스중 제가한 값들을 배열로 나타냄
+        $compare_arr2 = array_diff($category,$requestAmenity); 
+         Log::debug('카테고리1 비교',$compare_arr1);   
+         Log::debug('카테고리2 비교',$compare_arr2);   
+        // $compare_arr1 과 $compare_arr이 하나라도 존재하면(값 변경) $arrKey[]에 담아준다.
         if($compare_arr1 ||$compare_arr2){
             $arrKey[] = 'amenity';
         Log::debug('체크박스 값 변경시 arrKey에 추가',$arrKey);
@@ -315,7 +371,6 @@ class AdminController extends Controller
 
         // 수정할 항목을 배열에 담는 처리
         // 변경된 항목만 담음
-
         if($request->hanok_name !== $hanoks->hanok_name){
             $arrKey[]='hanok_name';
         }
@@ -352,22 +407,30 @@ class AdminController extends Controller
         }
         Log::debug('변경된 값 확인');
         $hanok_id = $request->hanok_id;
-        
+        // 변경된 항목 담기 END
+
+        // try catch finally
         try {
             Log::debug('try');
+            // arrKey 값을 키로 가진 $chkList의 값들을 $arrChek에 담음
             foreach($arrKey as $val){
                 $arrCheck[$val] = $chkList[$val]; 
             }
+            // 유효성 검사
             $validate =  $request->validate($arrCheck);
             Log::debug('유효성검사');
             foreach($arrKey as $val){
-                
+                // 트랜잭션 시작
+                DB::beginTransaction();
+                Log::debug('Start amenity transaction');
+                // $arrKey에 amenity가 있는 경우
                 if($val === 'amenity'){
-                    DB::beginTransaction();
-                    Log::debug('Start amenity transaction');
+                    // $compare_arr1이 있을 경우에는 insert를 해주어야 하고
+                    // $compare_arr2가 있는 경우에는 delete를 해주어야 함
                     // 추가했을 때 insert 
                     if(!empty($compare_arr1)){
                         Log::debug('-------------amenity 추가--------------');
+                        // $compare_arr1에 들어있는 값의 개수 만큼 insert 
                         foreach($compare_arr1 as $val){
                             Log::debug('추가할 값 확인',[$val]);
                             $insert_amenity = DB::table('amenities')
@@ -375,6 +438,7 @@ class AdminController extends Controller
                                                 ['hanok_id' => $request->hanok_id
                                                 , 'amenity_category' => $val],
                                                 ]);
+                            // insert가 실패했을 경우
                             if(!$insert_amenity){
                                 throw new Exception('amenity insert Error');
                             }
@@ -384,11 +448,13 @@ class AdminController extends Controller
                     }
                     // 체크박스를 해제 했을 때 delete
                     if(!empty($compare_arr2)){
+                        // $compare_arr2에 들어있는 값의 개수 만큼 delete
                         foreach($compare_arr2 as $val){
-                        $deleted_amenity = DB::table('amenities')
-                            ->where('hanok_id','=',$request->hanok_id)
-                            ->where('amenity_category','=',$val)
-                            ->delete();
+                            $deleted_amenity = DB::table('amenities')
+                                ->where('hanok_id','=',$request->hanok_id)
+                                ->where('amenity_category','=',$val)
+                                ->delete();
+                            // delete 실패했을 경우
                             if(!$deleted_amenity){
                                 throw new Exception('amenity delete Error');
                             }
@@ -396,43 +462,57 @@ class AdminController extends Controller
                         Log::debug('delete success');
                         continue;
                     }
-                    
                 }
+                // 수정한 hanok_img1가 있는 경우
                 if($val === 'hanok_img1'){
+                    // 이전에 있던 이미지 삭제하고
                     Storage::disk('public')->delete($hanoks->hanok_img1);
+                    // 수정한 이미지 저장
                     $request->hanok_img1->store('/img/hanokImg');
+                    // 파일명
                     $fileName1 = $request->hanok_img1->hashName();
+                    // 파일경로
                     $hanoks->$val = 'img/hanokImg/'.$fileName1;
                     continue;
                 }
+                // 수정한 hanok_img2가 있는 경우
                 if($val === 'hanok_img2'){
+                    // 이전에 있던 이미지 삭제하고
                     Storage::disk('public')->delete($hanoks->hanok_img2);
+                    // 수정한 이미지 저장
                     $request->hanok_img2->store('/img/hanokImg');
+                    // 파일명
                     $fileName2 = $request->hanok_img2->hashName();
+                    // 파일경로
                     $hanoks->$val = 'img/hanokImg/'.$fileName2;
                     continue;
                 }
+                // 수정한 hanok_img3가 있는 경우
                 if($val === 'hanok_img3'){
+                    // 이전에 있던 이미지 삭제하고
                     Storage::disk('public')->delete($hanoks->hanok_img3);
+                    // 수정한 이미지 저장
                     $request->hanok_img3->store('/img/hanokImg');
+                    // 파일명
                     $fileName3 = $request->hanok_img3->hashName();
                     $hanoks->$val = 'img/hanokImg/'.$fileName3;
+                    // 파일경로
                     continue;
                 }
+                // 수정한 값들로 변경
                 $hanoks->$val = $request->$val;
-                Log::debug('hanok update',[$hanoks]);
             }
-            Log::debug('hanok update?');
-
-                $update_hanok = $hanoks->save(); // update
-            
+            Log::debug('hanok update',[$hanoks]);
+            // update
+            $update_hanok = $hanoks->save(); // update
             Log::debug('update hanok 확인',[$update_hanok]);
+            // update error 발생 시
             if(!$update_hanok){
                 Log::debug('update Error');
                 throw new Exception('update hanok Error');
             }
-            DB::commit();
             Log::debug('End transaction');
+            DB::commit();
         }    
         catch (Exception $e){
             Log::debug('error',[$e->getMessage()]);
@@ -440,18 +520,23 @@ class AdminController extends Controller
             return redirect()->back()->with('error',$error);
         }
         finally{
-
             return redirect()->route('admin.hanoks.detail',[ 'hanok_id' => $request->hanok_id ]);
         }
 
     }
 
     public function adminRoomUpdate(Request $request) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+
+        // 가격이 3자리 초과일 경우 , 제거
         $countPrice = strlen($request->room_price);
         if($countPrice > 3){
             $price = (int)str_replace(',', '', $request->room_price);
         }else{
-            // // 아닌 경우 그대로
+        // 아닌 경우 그대로
             $price = $request->room_price;
         }
         $arrKey=[];
@@ -471,8 +556,8 @@ class AdminController extends Controller
             , 'room_img2'       => 'required'
             , 'room_img3'       => 'required'
         ];
-        
-        $rooms = Rooms::find($request->room_id); // 기존 데이터 가져옴 
+        // 기존 데이터 가져옴 
+        $rooms = Rooms::find($request->room_id); 
         
 
         // 수정할 항목을 배열에 담는 처리
@@ -518,48 +603,65 @@ class AdminController extends Controller
         if(isset($request->room_img3)){
             $arrKey[]='room_img3';
         }
-
+        // 수정할 항목을 배열에 담는 처리 END
+        // try catch finally
     try {
+        // arrKey 값을 키로 가진 $chkList의 값들을 $arrChek에 담음
         foreach($arrKey as $val){
             $arrCheck[$val] = $chkList[$val]; 
         }
+        // 유효성 검사
         $validate =  $request->validate($arrCheck);
 
         foreach($arrKey as $val){
+            // $arrKey의 값에 'room_price가 있는 경우
             if($val === 'room_price'){
+                // price 값을 넣어줌
                 $rooms->$val = $price;
                 continue;
             }
+            // 수정한 room_img1 있는 경우
             if($val === 'room_img1'){
-
+                // 이전에 있던 이미지 삭제하고
                 Storage::disk('public')->delete($rooms->room_img1);
-                    
+                // 수정한 이미지 저장
                 $request->room_img1->store('/img/roomImg');
+                // 파일명
                 $fileName1 = $request->room_img1->hashName();
+                // 파일경로
                 $rooms->$val = 'img/roomImg/'.$fileName1;
                 continue;
             }
+            // 수정한 room_img2 있는 경우
             if($val === 'room_img2'){
-
+                // 이전에 있던 이미지 삭제하고
                 Storage::disk('public')->delete($rooms->room_img2);
-
+                // 수정한 이미지 저장
                 $request->room_img2->store('/img/roomImg');
+                // 파일명
                 $fileName2 = $request->room_img2->hashName();
+                // 파일경로
                 $rooms->$val = 'img/roomImg/'.$fileName2;
                 continue;
             }
+            // 수정한 room_img3 있는 경우
             if($val === 'room_img3'){
-                // 저장되어있던 이미지 삭제
+                // 이전에 있던 이미지 삭제하고
                 Storage::disk('public')->delete($rooms->room_img3);
-
+                // 수정한 이미지 저장
                 $request->room_img3->store('/img/roomImg');
+                // 파일명
                 $fileName3 = $request->room_img3->hashName();
+                // 파일경로
                 $rooms->$val = 'img/roomImg/'.$fileName3;
                 continue;
             }
+            // 나머지 변경된 값들 변경
             $rooms->$val = $request->$val;
         }    
-        $roomUpdate = $rooms->save(); // update
+        // update
+        $roomUpdate = $rooms->save(); 
+        // update 실패시
         if(!$roomUpdate){
             throw new Exception('update room Error');
         }
@@ -573,9 +675,12 @@ class AdminController extends Controller
         return redirect()->route('admin.hanoks.detail',[ 'hanok_id' => $request->hanok_id ]);
     }
     }
-
     // 0722 add end KMH
     public function adminHanoksInsertPost(Request $req) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         
         // $uploaded_file_name_tmp = $_FILES['hanok_img1']['tmp_name'];
         // $uploaded_file_name = $_FILES['hanok_img1']['name'];
@@ -659,6 +764,10 @@ class AdminController extends Controller
     // 0721 add BYJ
     // 리뷰관리 정보
     public function adminReview() {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
 
     $reviews = DB::table('users as u')
         ->join('reviews as rev', 'rev.user_id', '=', 'u.user_id')
@@ -674,6 +783,10 @@ class AdminController extends Controller
 
     // 리뷰관리 검색
     public function adminReviewSearch(Request $req) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
 
     $revkeyword = $req->input('revkeyword');
     // $revsearchType = $req->input('revsearchType');
@@ -692,6 +805,11 @@ class AdminController extends Controller
     // 0721 YSH add
     // 숙소 검색
     public function adminHanoksSearch(Request $request) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+
         $users = DB::table('hanoks')->where('hanok_name','LIKE','%' . $request->hanoks . '%')->orWhere('hanok_addr','LIKE','%' . $request->hanoks . '%')
         // ->dd();
         ->paginate(16);
@@ -700,6 +818,10 @@ class AdminController extends Controller
 
     // 관리자 리뷰 가리기
     public function adminReviewUpdate(Request $req, $review_id) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         $users = DB::table('reviews as r')
         ->select('r.*')
         ->where('r.rev_id', "=", $review_id)
@@ -752,6 +874,10 @@ class AdminController extends Controller
 
     // 관리자 리뷰 삭제
     public function adminReviewDelete($review_id) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         $users = DB::table('reviews as r')
             ->select('r.*')
             ->where('r.rev_id', "=", $review_id)
@@ -765,6 +891,10 @@ class AdminController extends Controller
     // 0722 add KMJ
     // 관리자 유저 탈퇴 기능
     public function adminUserUnregist($user_id) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         // 유저 id로 삭제
         $user = Users::find($user_id);
         $user->delete();
@@ -773,6 +903,10 @@ class AdminController extends Controller
 
     // 관리자 유저 비밀번호 리셋 기능(임시 비밀번호 메일로 발송)
     public function adminUserPwReset($user_id){
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         $user = Users::find($user_id);
         // 0719 KMJ add 임시 비밀번호 생성 - 총 10자리의 영어 대소문자, 숫자, 특수문자가 들어가는 비밀번호
         $len = 8;
@@ -802,6 +936,10 @@ class AdminController extends Controller
     // 0724 byj
     // 예약 정보 수정
     public function adminReservationEdit($reserve_id) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         $reserve = DB::table('rooms as room')
         ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
         ->join('reservations as re', 're.room_id', '=', 'room.id')
@@ -813,6 +951,10 @@ class AdminController extends Controller
         return view('adminReserveUp')->with('reservations',$reserve[0]);
     }
     public function adminReservationUp(Request $req, $reserve_id) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
         // $arrKey=[];
         // //ㅡㅡㅡㅡㅡㅡ유효성 체크 하는 모든 항목 리스트 
         // $chkList=[
