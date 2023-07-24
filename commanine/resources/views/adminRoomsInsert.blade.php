@@ -4,9 +4,9 @@
     <link rel="stylesheet" href="{{asset('css/adminRoomInsert.css')}}"> 
 </head>
 @section('contents')
-    <div class="container row main-container ">
+    <div class=" row main-container ">
         @include('layout.adminsidebar')
-            <div class="container col-9 content-box ">
+            <div class=" col-9 content-box ">
                 <div class="rooms">
                     <h2>객실 등록하기</h2>
                     <div class="hanoks">
