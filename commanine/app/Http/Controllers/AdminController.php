@@ -136,21 +136,35 @@ class AdminController extends Controller
 
         $keyword = $req->input('keyword');
         $searchType = $req->input('searchType');
-        $reserveStatus = $req->input('reserveStatus'); 
+        $reserveStatus = $req->input('reserveStatus'); // 예약상태폼 변수
+        $chkIn = $req->input('chkIn'); // 예약 시작일
+        $chkOut = $req->input('chkOut'); // 예약 종료일
 
         $reserve = DB::table('rooms as room')
             ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
             ->join('reservations as re', 're.room_id', '=', 'room.id')
-            ->select('re.id as reserve_id', 're.reserve_name', 're.reserve_num', 'han.id', 'han.hanok_name', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg', 're.created_at')
-            // ->where('han.hanok_name', 'LIKE', '%' . $keyword . '%')
-            ->Where('re.' . $searchType, 'LIKE', '%' . $keyword . '%');
+            ->select('re.id as reserve_id', 're.reserve_name', 're.reserve_num', 'han.id', 'han.hanok_name', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg', 're.created_at');
+            // ->Where('re.' . $searchType, 'LIKE', '%' . $keyword . '%');
             // ->orderBy('re.id', 'desc');
             // ->get();
             // ->paginate(15);
 
+    // 검색 조건 추가
+    if (!empty($keyword) && !empty($searchType)) {
+        $reserve->where('re.' . $searchType, 'LIKE', '%' . $keyword . '%');
+    }
+
     // 예약 상태로 필터링
-    if (!empty($reserveStatus)) {
-        $reserve->where('re.reserve_flg', $reserveStatus);
+    if ($reserveStatus === '1') {
+        $reserve->where('re.reserve_flg', 1); // 예약대기인 예약만 보여줌
+    } elseif ($reserveStatus === '0') {
+        $reserve->where('re.reserve_flg', 0); // 예약완료인 예약만 보여줌
+    }
+
+     // 예약 기간으로 필터링
+     if (!empty($chkIn) && !empty($chkOut)) {
+        $reserve->whereDate('re.chk_in', '>=', $chkIn)
+            ->whereDate('re.chk_out', '<=', $chkOut);
     }
 
     $reserve = $reserve->orderBy('re.id', 'desc')
