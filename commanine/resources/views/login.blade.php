@@ -22,8 +22,8 @@
                     <input type="text" name="email" id="email" placeholder="이메일" autocomplete="off">
                     <input type="password" name="password" id="password" placeholder="비밀번호" autocomplete="off">
                     <button type="submit" class="loginBtn">Log in</button>
-                    {{-- <button type="button" onclick="kakaoLogin()"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" alt="카카오아이콘"></button> --}}
-                    <a href="{{route('login.kakao')}}"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" alt="카카오아이콘"></a>
+                    
+                    <a href="{{route('login.kakao')}}" class="kakao"><img src="{{asset('/img/kakao_login.png')}}" alt="카카오아이콘"></a>
                 </form>
             <div class="findBox">
                 <a href="{{route('users.findId')}}" class="findId">아이디 찾기</a>
@@ -45,7 +45,7 @@
                     <input type="password" name="password" id="password" placeholder="비밀번호" autocomplete="off">
                     <button type="submit" class="loginBtn">Log in</button>
                     {{-- <button type="button" onclick="kakaoLogin()"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" alt="카카오아이콘"></button> --}}
-                    <a href="{{route('login.kakao')}}"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" alt="카카오아이콘"></a>
+                    <a href="{{route('login.kakao')}}" class="kakao"><img src="{{asset('/img/kakao_login.png')}}" alt="카카오아이콘"></a>
                 </form>
             <div class="findBox">
                 <a href="{{route('users.findId')}}" class="findId">아이디 찾기</a>

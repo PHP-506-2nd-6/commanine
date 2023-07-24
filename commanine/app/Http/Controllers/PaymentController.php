@@ -68,9 +68,12 @@ class PaymentController extends Controller
     $req->merge($arr);
 
 // 동시 예약 막기 위해 룸을 락(lock) 설정
+// 트랜잭션(하나 이상의 데이터베이스 작업을 하나의 단위로 묶어서 실행하는 것을 의미) 시작
+//트랜잭션 내에서 발생하는 어떤 오류가 있더라도,
+// 트랜잭션 내에서 수행된 모든 변경 사항이 롤백되어 데이터 일관성을 보장
 $values = DB::transaction(function () use ($req, $user_id) {
     $result2 = Reservations::where('room_id', $req->room_id)
-        ->where(function ($query) use ($req) {
+        ->where(function ($query) use ($req) { // 익명함수를 사용한 WHERE절
             $query->where('chk_in', '<=', $req->chk_in_date)
                 ->where('chk_out', '>=', $req->chk_out_date);
         })

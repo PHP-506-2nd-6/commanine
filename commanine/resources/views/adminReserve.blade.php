@@ -23,21 +23,24 @@
                     <label for="chk_out">~</label>
                     <input name="chkOut" type="text" class="datepicker2" id="datepicker2" autocomplete="off" readonly value="{{ request('chkOut') }}">
                 </div>
+                {{-- <br> --}}
                 {{-- <select name="reserveStatus" size="1" class="selectList" id="select_2">
                     <option  selected>전체</option>
                     <option value="0" >예약완료</option>
                     <option value="1" >예약대기</option>
                 </select> --}}
-                <label>
-                    <input type="radio" name="reserveStatus" value="" onclick="updateRadioValue(this)" @if(empty(request('reserveStatus'))) checked @endif> 전체
-                </label>
-                <label>
-                    <input type="radio" name="reserveStatus" value="0" onclick="updateRadioValue(this)" @if(empty(request('reserveStatus'))) checked @endif> 예약대기
-                </label>
-                <label>
-                    <input type="radio" name="reserveStatus" value="1" onclick="updateRadioValue(this)" @if(empty(request('reserveStatus'))) checked @endif> 예약완료
-                </label>
-                <br>
+                <div class="reservestatus">
+                    <label>
+                        <input type="radio" name="reserveStatus" value="" onclick="updateRadioValue(this)" @if(empty(request('reserveStatus'))) checked @endif> 전체
+                    </label>
+                    <label>
+                        <input type="radio" name="reserveStatus" value="0" onclick="updateRadioValue(this)" @if(empty(request('reserveStatus'))) checked @endif> 예약대기
+                    </label>
+                    <label>
+                        <input type="radio" name="reserveStatus" value="1" onclick="updateRadioValue(this)" @if(empty(request('reserveStatus'))) checked @endif> 예약완료
+                    </label>
+                </div>
+                {{-- <br> --}}
                 <select name="searchType" size="1" class="selectList" id="select_1">
                     <option value="id" @if(request('searchType') === 'id') selected @endif>예약번호</option>
                     <option value="reserve_name" @if(request('searchType') === 'reserve_name') selected @endif>이름</option>
