@@ -685,7 +685,7 @@ input[type="number"]::-webkit-inner-spin-button {
         width: 28.6%;
     } */
 }
-@media (max-width: 666px){
+@media (max-width: 768px){
     .filter_form{
         display: none;
     }.filterBtn{

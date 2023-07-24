@@ -15,16 +15,17 @@
 {{-- 슬라이드 프로모션 배너 --}}
 <main>
     <div class="bg"></div>
-    <div id="carouselExampleControlsNoTouching" class="carousel slide mainslide" data-bs-touch="false" style="width: 80%; top:-300px; margin:0 auto;">
+    {{-- <div id="carouselExampleControlsNoTouching" class="carousel slide mainslide" data-bs-touch="false" style="width: 1350px; top:-300px; margin:0 auto;"> --}}
+    <div id="carouselExampleControlsNoTouching" class="carousel slide mainslide" data-bs-touch="false">
         <div class="carousel-inner " data-bs-ride="carousel">
-            <div class="carousel-item active" data-bs-interval="2000">
-                <a class="menu_hanok" href="{{route('intro')}}"><img src="{{asset('/img/hanok2.jpg')}}" class="d-block w-100" alt="..."></a>
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
+            <div class="carousel-item active" data-bs-interval="3000">
                 <a class="menu_hanok" href="{{route('intro')}}"><img src="{{asset('/img/hanok1.jpg')}}" class="d-block w-100" alt="..."></a>
             </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <a class="menu_hanok" href="{{route('intro')}}"><img src="https://cdn.imweb.me/upload/S20201008b3425fabf62b4/02d195cf265f1.png" class="d-block w-100" alt="..."></a>
+            <div class="carousel-item" data-bs-interval="3000">
+                <a class="menu_hanok" href="{{route('intro')}}"><img src="{{asset('/img/hanok2.jpg')}}" class="d-block w-100" alt="..."></a>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <a class="menu_hanok" href="{{route('intro')}}"><img src="{{asset('/img/hanok3.jpg')}}" class="d-block w-100" alt="..."></a>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
@@ -41,6 +42,29 @@
 <section id="menu1" class="nav-border">
 {{-- <div class="nav-border"> --}}
     <ul class="gnb clearfix">
+        <a href="/research/pageget?hanokType=0">
+            <li class="cate hotel" style="background-image:url({{asset('/img/hotel.jpg')}})">
+                <p>HOTEL</p>
+            </li>
+        </a>
+
+        <a href="/research/pageget?hanokType=1">
+            <li class="cate pension" style="background-image:url({{asset('/img/pension.jpg')}})">   
+                <p>PENSION</p>
+            </li>
+        </a>
+        <a href="/research/pageget?hanokType=2">
+            <li class="cate guesthouse" style="background-image:url({{asset('/img/guesthouse.jpg')}})">
+                <p>GUESTHOUSE</p>
+            </li>
+        </a>
+        <a href="/research/pageget?hanokType=3">
+            <li class="cate resort" style="background-image:url({{asset('/img/resort.jpg')}})">
+                <p>RESORT</p>
+            </li>
+        </a>
+    </ul>
+    {{-- <ul class="gnb clearfix">
         <li class="cate hotel">
             <a href="/research/pageget?hanokType=0">
                 <img src="/img/hotel.png" alt="hotel"></a>
@@ -63,8 +87,7 @@
                 <img src="/img/resort.png" alt="resort"></a>
             <p>리조트</p>
         </li>
-
-    </ul>
+    </ul> --}}
 {{-- </div> --}}
 </section>
 
