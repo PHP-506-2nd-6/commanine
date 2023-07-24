@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\FindPassword;
 use Illuminate\Http\Request;
 use App\Models\Admins;
+use App\Models\Amenities;
 use App\Models\Rooms;
 use App\Models\Hanoks;
 use App\Models\Reservations;
@@ -92,6 +93,16 @@ class AdminController extends Controller
         // where id = hanok_id
         // 숙소 정보 출력
         $hanoks = DB::table('hanoks')->where('id','=',$hanok_id)->get();
+        $amenities = DB::table('amenities')->where('hanok_id','=',$hanok_id)->get();
+        $category = [];
+        foreach($amenities as $val)
+        {
+            $category[] =$val->amenity_category; 
+        }
+        // return var_dump($category);
+
+        // return var_dump($category);
+        // return var_dump($amenities);
         // 현재 숙소가 추가한 객실 출력 
         // select room.+
         // from rooms room
@@ -103,7 +114,7 @@ class AdminController extends Controller
         ->join('hanoks as hanok','room.hanok_id','=','hanok.id')
         ->where('hanok.id','=',$hanok_id)
         ->paginate(1);
-        return view('adminHanokDetail')->with('hanoks',$hanoks[0])->with('rooms',$rooms);
+        return view('adminHanokDetail')->with('hanoks',$hanoks[0])->with('rooms',$rooms)->with('amenities',$category);
     }
     // 0720 add end KMH
 
@@ -257,6 +268,16 @@ class AdminController extends Controller
     // 0720 add end KMH
     // 0722 add KMH
     public function adminHanokUpdate(Request $request) {
+        $error = "모든 사항은 필수 사항 입니다.";
+        if(empty($request->amenity)){
+            $requestAmenity = [];
+        }else{
+            foreach($request->amenity as $val){
+                $requestAmenity[] = $val;
+            }
+        }
+        Log::debug('request amenity 확인',[$requestAmenity]);
+        Log::debug('checkbox',[$request->only('amenity')]);
         $arrKey=[];
         //ㅡㅡㅡㅡㅡㅡ유효성 체크 하는 모든 항목 리스트 
         $chkList=[
@@ -268,12 +289,29 @@ class AdminController extends Controller
             , 'hanok_info'      => 'required'
             , 'hanok_refund'    => 'required'
             , 'hanok_type'      => 'required'
-            , 'hanok_img1'      =>'required'
-            , 'hanok_img2'      =>'required'
-            , 'hanok_img3'      =>'required'
-        ];
-        
+            , 'hanok_img1'      => 'required'
+            , 'hanok_img2'      => 'required'
+            , 'hanok_img3'      => 'required'
+            , 'amenity'         => 'required'
+                ];
+        Log::debug('어메니티 값' ,[$requestAmenity]);
         $hanoks = Hanoks::find($request->hanok_id); // 기존 데이터 가져옴 
+        $amenities = DB::table('amenities')->where('hanok_id','=',$request->hanok_id)->get();
+        $category = [];
+        foreach($amenities as $val)
+        {
+            $category[] =(string)$val->amenity_category; 
+        }
+        // 요청된 aemnity랑 데이터베이스에 있는 카테고리들 비교 
+        $compare_arr1 = array_diff($requestAmenity, $category); // 추가했을 때 
+        $compare_arr2 = array_diff($category,$requestAmenity); // 지웠을 때
+         Log::debug('카테고리1 비교',$compare_arr1);   // 체크박스를 추가하면 생기는데 체크를 풀면 실행 x
+         Log::debug('카테고리2 비교',$compare_arr2);   // 체크박스를 제거하면 생기는데 체크를 풀면 실행 x
+
+        if($compare_arr1 ||$compare_arr2){
+            $arrKey[] = 'amenity';
+        Log::debug('체크박스 값 변경시 arrKey에 추가',$arrKey);
+        }
 
         // 수정할 항목을 배열에 담는 처리
         // 변경된 항목만 담음
@@ -312,14 +350,54 @@ class AdminController extends Controller
         if(isset($request->hanok_img3)){
             $arrKey[]='hanok_img3';
         }
-
-
+        Log::debug('변경된 값 확인');
+        $hanok_id = $request->hanok_id;
+        
         try {
+            Log::debug('try');
             foreach($arrKey as $val){
                 $arrCheck[$val] = $chkList[$val]; 
             }
             $validate =  $request->validate($arrCheck);
+            Log::debug('유효성검사');
             foreach($arrKey as $val){
+                
+                if($val === 'amenity'){
+                    DB::beginTransaction();
+                    Log::debug('Start amenity transaction');
+                    // 추가했을 때 insert 
+                    if(!empty($compare_arr1)){
+                        Log::debug('-------------amenity 추가--------------');
+                        foreach($compare_arr1 as $val){
+                            Log::debug('추가할 값 확인',[$val]);
+                            $insert_amenity = DB::table('amenities')
+                                                ->insert([
+                                                ['hanok_id' => $request->hanok_id
+                                                , 'amenity_category' => $val],
+                                                ]);
+                            if(!$insert_amenity){
+                                throw new Exception('amenity insert Error');
+                            }
+                        }
+                        Log::debug('insert success');
+                        continue;
+                    }
+                    // 체크박스를 해제 했을 때 delete
+                    if(!empty($compare_arr2)){
+                        foreach($compare_arr2 as $val){
+                        $deleted_amenity = DB::table('amenities')
+                            ->where('hanok_id','=',$request->hanok_id)
+                            ->where('amenity_category','=',$val)
+                            ->delete();
+                            if(!$deleted_amenity){
+                                throw new Exception('amenity delete Error');
+                            }
+                        }
+                        Log::debug('delete success');
+                        continue;
+                    }
+                    
+                }
                 if($val === 'hanok_img1'){
                     Storage::disk('public')->delete($hanoks->hanok_img1);
                     $request->hanok_img1->store('/img/hanokImg');
@@ -342,13 +420,27 @@ class AdminController extends Controller
                     continue;
                 }
                 $hanoks->$val = $request->$val;
-            }    
-            $hanoks->save(); // update
+                Log::debug('hanok update',[$hanoks]);
+            }
+            Log::debug('hanok update?');
+
+                $update_hanok = $hanoks->save(); // update
+            
+            Log::debug('update hanok 확인',[$update_hanok]);
+            if(!$update_hanok){
+                Log::debug('update Error');
+                throw new Exception('update hanok Error');
+            }
+            DB::commit();
+            Log::debug('End transaction');
         }    
         catch (Exception $e){
-            return redirect()->back($e);
+            Log::debug('error',[$e->getMessage()]);
+            DB::rollBack();
+            return redirect()->back()->with('error',$error);
         }
         finally{
+
             return redirect()->route('admin.hanoks.detail',[ 'hanok_id' => $request->hanok_id ]);
         }
 
@@ -395,11 +487,6 @@ class AdminController extends Controller
 
         if($price !== $rooms->room_price){
             $arrKey[]='room_price';
-            // $countPrice = strlen($request->room_price);
-
-            // 가격 3자리수 초과일 경우 , 제거
-            
-            // return var_dump($price);
         }
 
         if((int)$request->room_min !== $rooms->room_min){
@@ -472,10 +559,15 @@ class AdminController extends Controller
             }
             $rooms->$val = $request->$val;
         }    
-        $rooms->save(); // update
+        $roomUpdate = $rooms->save(); // update
+        if(!$roomUpdate){
+            throw new Exception('update room Error');
+        }
     }
     catch (Exception $e){
-        return redirect()->back($e);
+        Log::debug('Rooms update Error',[$e->getMessage()]);
+        DB::rollBack();
+        return redirect()->back()->with('roomError','모든 값은 필수 사항 입니다.');
     }
     finally{
         return redirect()->route('admin.hanoks.detail',[ 'hanok_id' => $request->hanok_id ]);

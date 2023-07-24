@@ -5,7 +5,7 @@
  * 이력       : 0616 KMH new
  * *********************************** */ 
  /* add 0703 byj */
- .hidden-button {
+.hidden-button {
     visibility: hidden;
 } 
 
@@ -26,7 +26,7 @@
 .loginBox{
     position:absolute;
     width:400px;
-    height: 350px;
+    /* height: 350px;  del 0724 KMJ */ 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
