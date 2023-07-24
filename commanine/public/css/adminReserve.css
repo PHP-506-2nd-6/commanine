@@ -26,3 +26,18 @@ tr > th{
 .form_wrap {
     height: 150px;
 }
+
+
+/* 리뷰수정페이지 css */
+.reserveup {
+    font-size: 20px;
+    margin: 20px;
+}
+.reserveup label{
+    margin-right: 15px;
+    font-weight: bold;
+}
+.reserveup input{
+    width: 600px;
+    margin: 10px 0;
+}

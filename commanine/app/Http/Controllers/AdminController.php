@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admins;
 use App\Models\Rooms;
 use App\Models\Hanoks;
+use App\Models\Reservations;
 use App\Models\Reviews;
 use App\Models\Users;
 use Exception;
@@ -119,7 +120,7 @@ class AdminController extends Controller
         ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
         ->join('reservations as re', 're.room_id', '=', 'room.id')
         ->SELECT('re.id as reserve_id','re.reserve_name','re.reserve_num','han.id','han.hanok_name', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg','re.created_at')
-        // ->where('re.user_id')
+        // ->where('re.id', $reserve_id)
         ->orderBy('re.id', 'desc')
         ->paginate(15);
         
@@ -706,4 +707,39 @@ class AdminController extends Controller
         return redirect()->back();
     }
     
+    // 0724 byj
+    // 예약 정보 수정
+    public function adminReservationEdit($reserve_id) {
+        $reserve = DB::table('rooms as room')
+        ->join('hanoks as han', 'han.id', '=', 'room.hanok_id')
+        ->join('reservations as re', 're.room_id', '=', 'room.id')
+        ->SELECT('re.id as reserve_id','re.reserve_name','re.reserve_num','han.id','han.hanok_name', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.reserve_child' , 're.user_id', 're.reserve_flg','re.created_at')
+        ->where('re.id','=',$reserve_id)
+        ->orderBy('re.id', 'desc')
+        ->paginate(15);
+
+        return view('adminReserveUp')->with('reservations',$reserve[0]);
+    }
+    public function adminReservationUp(Request $req, $reserve_id) {
+        // $arrKey=[];
+        // //ㅡㅡㅡㅡㅡㅡ유효성 체크 하는 모든 항목 리스트 
+        // $chkList=[
+        //     'reserve_name'          => 'reserve_name'
+        // ];
+
+    // 예약 정보를 db에서 가져옴
+    $reserve = Reservations::find($reserve_id);
+
+    // 폼에서 제출된 데이터를 기반으로 예약 정보 필드를 업데이트
+    $reserve->reserve_name = $req->input('reserve_name');
+    $reserve->reserve_num = $req->input('reserve_num');
+    $reserve->reserve_flg = $req->input('reserve_flg');
+
+    // 업데이트된 예약 정보를 저장
+    $reserve->save();
+
+    // 수정이 완료되면 예약 목록 페이지 또는 업데이트된 예약 정보를 보여주는 페이지로 리다이렉션
+    return redirect()->route('admin.reservation');
+
+    }
 }

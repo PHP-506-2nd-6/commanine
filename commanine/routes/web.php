@@ -101,6 +101,10 @@ Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admi
 // 관리자 예약 정보 이동 byj
 Route::get('/admin/reservation', [AdminController::class, 'adminReservation'])->name('admin.reservation');
 Route::get('/admin/reservation/search', [AdminController::class, 'adminReservationSearch'])->name('admin.reservation.search');
+// 관리자 예약 정보 수정 add 0724 byj
+// Route::get('/admin/reservation/{reserve_id}/edit', AdminController::class,'adminReservationEdit')->name('admin.reservation.edit');
+Route::get('/admin/reservation/{reserve_id}', [AdminController::class, 'adminReservationEdit'])->name('admin.reservation.edit');
+Route::put('/admin/reservation/{reserve_id}', [AdminController::class,'adminReservationUp'])->name('admin.reservation.up');
 // 관리자 리뷰 이동 byj
 Route::get('/admin/review', [AdminController::class, 'adminReview'])->name('admin.review');
 Route::get('/admin/review/search', [AdminController::class, 'adminReviewSearch'])->name('admin.review.search');

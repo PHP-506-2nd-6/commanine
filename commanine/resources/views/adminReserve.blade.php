@@ -60,6 +60,7 @@
                         <th scope="col">예약일시</th>
                         {{-- <th scope="col">가격</th> --}}
                         <th scope="col">처리현황</th>
+                        <th scope="col">상세</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,6 +78,9 @@
                             @else
                                 <span>예약대기</span>
                             @endif
+                        </td>
+                        <td>
+                        <a href="{{ route('admin.reservation.edit', ['reserve_id' => $val->reserve_id]) }}" class="btn btn-primary">상세</a>
                         </td>
                     </tr>
                     @empty
