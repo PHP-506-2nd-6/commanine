@@ -50,7 +50,6 @@ const birthInput = document.querySelector('#birth');
 
 const email = document.getElementById('email');
 const certification = ()=>{
-    emailBtn.innerHTML = "재발송하기";
     const url = "/api/users/regist/"+email.value;
     const regex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
     if (email.value === '') { 
@@ -63,7 +62,8 @@ const certification = ()=>{
         idSpan.style.color = "red";
         return;
     }
-
+    
+    emailBtn.innerHTML = "재발송하기";
         fetch(url)
         .then(data=>{
         //     // Response Status 확인  (200번 외에는 에러 처리)
@@ -433,3 +433,10 @@ function checkBirth(){
         birthAlert.style.color = 'green';
     }
 };
+
+// enter로 submit되는 것 방지
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+    event.preventDefault();
+    };
+}, true);
