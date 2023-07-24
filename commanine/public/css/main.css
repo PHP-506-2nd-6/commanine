@@ -16,9 +16,9 @@ main {
     position: relative;
     top: -200px;
 }
-.nav-border li:hover img {
+/* .nav-border li:hover img {
     opacity: 0.5;
-}
+} */
 
 .gnb {
     /* width: 90%;
@@ -29,11 +29,11 @@ main {
     text-align: center;
 }
 
-.gnb li {
+.gnb a {
     display: inline-block;
     margin: 0 120px 0 0;
 }
-.gnb li:last-child {
+.gnb a:last-child {
     margin-right: 0;
 }
 
@@ -65,15 +65,32 @@ main {
     height: 160px;
     /* background-color: #f8f8f8; */
     /* padding: 15px; */
-    border-radius: 50%;
-    border: 4px solid #f8f8f8;
+    /* border-radius: 50%; */
+    /* border: 4px solid #f8f8f8; */
+    background: center;
+    position: relative;
+    background-size: 100%;
+}
+.cate:hover{
+    background-size: 120%;
+    transition: .2s;
 }
 .cate img {
     margin-top: 15px;
 }
 .cate p {
-    padding-top: 10px;
+    /* padding-top: 10px; */
+    position: absolute;
+    top: 88.8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 900;
+    font-size: 1.5em;
+    color: #fff;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
 }
+
 .card-body {
     padding: 10px;
 }
@@ -281,6 +298,16 @@ main {
     opacity: 0.5;
 }
 
+#carouselExampleControlsNoTouching{
+    width: 1350px;
+    top:-300px;
+    margin:0 auto;
+}
+.rankCon{
+    width: 1200px;
+    margin: auto;
+}
+
 @media screen and (max-width: 1400px) {
     .myCarousel .slides-wrapper .slides.content .title {
         font-size: 50px;
@@ -317,10 +344,13 @@ main {
     .myCarousel #arrows .next {
         font-size: 50px;
     }
+    #carouselExampleControlsNoTouching{
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 1067px) {
-    .gnb li {
+    .gnb a {
         display: inline-block;
         margin: 0;
     }
@@ -373,10 +403,13 @@ main {
     .bg {
         background-color: #ffffff;
     }
+    .carousel-inner > h4{
+        margin-left: 50px;
+    }
 }
 
 @media screen and (max-width: 830px) {
-    .gnb li {
+    .gnb a {
         display: inline-block;
         margin: 0;
     }
@@ -424,6 +457,9 @@ main {
     .myCarousel #arrows {
         top: 60%;
     }
+    #carouselExampleControls{
+        margin: 0;
+    }
 }
 @media screen and (max-width: 732px) {
     .gnb {
@@ -458,6 +494,9 @@ main {
     }
     .card {
         width: 100%;
+    }
+    .cate p {
+        font-size: 1.3em;
     }
 }
 

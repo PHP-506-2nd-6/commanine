@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('css/adminHanok.css')}}"> 
 </head>
 @section('contents')
-    <div class="container row main-container ">
+    <div class="container row main-container" style="max-width:2000px">
     @include('layout.adminsidebar')
     <div class="container col-9 content-box">
         <h2>숙소관리</h2>

@@ -685,7 +685,7 @@ input[type="number"]::-webkit-inner-spin-button {
         width: 28.6%;
     } */
 }
-@media (max-width: 666px){
+@media (max-width: 685px){
     .filter_form{
         display: none;
     }.filterBtn{
@@ -710,6 +710,6 @@ input[type="number"]::-webkit-inner-spin-button {
     }
     #modalDate
     ,#modalCount{
-        width: 250px;
+        width: 240px;
     }
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/adminReview.css')}}">
 </head>
 @section('contents')
-    <div class="container row main-container ">
+    <div class="container row main-container" style="max-width:2000px">
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
         <h2>리뷰관리</h2>
@@ -29,19 +29,22 @@
                     <thead>
                     <tr>
                         <th scope="col">회원 이름</th>
-                        <th scope="col">리뷰 내용</th>
-                        <th scope="col">별점</th>
+                        <th scope="col" style="width: 400px;">리뷰 내용</th>
+                        <th scope="col" style="width: 60px;">별점</th>
                         <th scope="col">숙소 이름</th>
                         <th scope="col">작성일자</th>
                         <th scope="col">수정일자</th>
                         <th scope="col">삭제일자</th>
+                        <th scope="col">리뷰관리</th>
+                        <th scope="col">삭제관리</th>
                     </tr>
                     </thead>
                     <tbody>
                     @forelse($review as $val)
                     <tr>
                         <td class="td_chk">{{ $val->user_name }}</td>
-                        <td class="td_chk"><a href="{{route('hanoks.detail', ['id' => $val->hanok_id])}}">{{ $val->rev_content }}</a></td>
+                        <td class="td_chk"><a href="{{route('hanoks.detail', ['id' => $val->hanok_id])}}" target="_blank">{{ $val->rev_content }}</a></td>
+                        {{-- <td class="td_chk"><a href="{{ route('hanoks.detail', ['id' => $val->hanok_id]) }}">{{ $val->rev_content }}</a></td> --}}
                         <td class="td_chk">{{ $val->rate }}</td>
                         <td class="td_chk">{{ $val->hanok_name }}</td>
                         <td class="td_chk">{{ $val->created_at }}</td>
@@ -52,9 +55,9 @@
                                 @csrf
                                 @method('PUT')
                                 @if( $val->rev_flg === '0' )
-                                    <button type="submit">숨기기</button>
+                                    <button type="submit" class="btn btn-outline-primary">숨기기</button>
                                 @else
-                                    <button type="submit">보이기</button>
+                                    <button type="submit" class="btn btn-primary">보이기</button>
                                 @endif
                             </form>
                         </td>
@@ -63,7 +66,7 @@
                             <form method="POST" action="{{ route('admin.review.delete', ['review_id' => $val->rev_id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">삭제</button>
+                                <button type="submit" class="btn btn-outline-danger">삭제</button>
                             </form>
                         </td>
                     </tr>
