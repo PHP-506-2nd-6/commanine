@@ -423,6 +423,18 @@ input:focus label{
     }
 }  */
 
+.range_1 {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-items: end;
+}
+.range_2 {
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-column-gap: 15px;
+}
+
 
 
 @media all and (min-width:870px) and (max-width:1350px) { 

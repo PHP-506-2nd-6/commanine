@@ -13,7 +13,7 @@ function readURL(input) {
         const imgElement = document.createElement('img');
         // 데이터 url을 src에 저장
         imgElement.setAttribute('src', e.target.result);
-        imgElement.setAttribute('width', '150'); // 미리보기 이미지의 너비를 조정하려면 이 부분을 변경하세요.
+        imgElement.setAttribute('width', '120'); // 미리보기 이미지의 너비를 조정하려면 이 부분을 변경하세요.
         imgElement.setAttribute('height', '100'); // 미리보기 이미지의 높이를 조정하려면 이 부분을 변경하세요.
         
           // img 컨테이너 안에 맨끝에 계속 추가

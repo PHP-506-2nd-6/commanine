@@ -10,7 +10,7 @@ input::-webkit-inner-spin-button {
 .grid_conn {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(12,auto);
+    grid-template-rows: repeat(13,auto);
     row-gap: 10px;
 }
 .grid_conn_1 {
@@ -22,4 +22,78 @@ input::-webkit-inner-spin-button {
 }
 .select_box {
     width: 120px;
+}
+.grid_conn_2 {
+    display: grid;
+    grid-template-columns: repeat(6,auto);
+    grid-template-rows: repeat(3,auto);
+}
+.grid_conn_3 {
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    grid-template-rows: repeat(1,auto);
+}
+/* .grid_conn_4 {
+    height: 100px;
+}
+.grid_conn_5 {
+    display: grid;
+    grid-template-rows: repeat(2,50px);
+} */
+/* .button {
+    grid-row: 1/2;
+} */
+.room_img_size {
+    height: 100px;
+}
+.position {
+    justify-self: center;
+}
+.grid_conn_1 > input {
+    border: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.781);
+}
+#hanok_local {
+    border: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.781);
+}
+.grid_conn_1 > input:focus {
+    outline: none;
+    border: none;
+    /* border-bottom: 1px solid red; */
+    border-bottom: 1px solid red;
+}
+#hanok_local:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid red;
+}
+#hanok_comment, #hanok_refund, #hanok_info{
+    padding: 1%;
+}
+.btn1 {
+    border: none;
+    width: 120px;
+    height: 40px;
+    background-color: rgba(0, 47, 255, 0.932);
+    color: white;
+    border-radius: 7px 7px;
+}
+.btn2 {
+    border: 1px solid black;
+    background-color: white;
+    width: 120px;
+    height: 40px;
+    border-radius: 7px 7px;
+}
+.btn1:hover {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    transition: 0.3s;
+}
+.btn2:hover {
+    background-color: black;
+    color: white;
+    transition: 0.7s;
 }
