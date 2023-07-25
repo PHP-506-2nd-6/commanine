@@ -4,7 +4,7 @@
 </head>
 <header>
     <div class="header-box d-flex justify-content-between ">
-        <div class="logo">
+        <div class="logo" style="padding: 10px 0">
             <h1><a href="{{route('admin.users')}}" class="a-link">COMMANINE ADMIN</a></h1>
         </div>
         <div class="login">
