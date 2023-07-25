@@ -4,7 +4,8 @@
     * 프로젝트명 : commanine
     * 디렉토리   : app/Http/Controllers
     * 파일명     : ReseachController.php
-    * 이력       : 0616 KMH new
+    * 이력       : v001 0616 KMH new 
+    *             v002  0724 Y  (번호) 검색기능수정 
     * *********************************** */ 
 
 namespace App\Http\Controllers;
@@ -84,7 +85,7 @@ class ResearchController extends Controller
                 order by room.room_price ; ";
     $prepare = [$val_count, $val_chkIn, $val_chkOut, "%".$val_local."%", "%".$val_local."%"];
        $result = DB::select($query, $prepare);
-       $arr = ['local' => $val_local
+       $arr = ['locOrHan' => $val_local
                 ,'chkIn' => $val_chkIn
                 ,'chkOut' => $val_chkOut
                 ,'adults' => $req->adults
@@ -100,6 +101,9 @@ class ResearchController extends Controller
 
 
     public function researchPageget(Request $req){
+        Log::debug('--------------- reseqarchPageget Start ---------------');
+        Log::debug('Request', $req->all());
+
         // $validator = Validator::make($req->all(), [
         //     'locOrHan'   => []
         //     ,'chkIn'     => ['regex:/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/u']
@@ -115,7 +119,9 @@ class ResearchController extends Controller
         //     return redirect()->back();
         // }
         // 지역명/ 호텔명
-        $val_local = $req->input('locOrHan');
+        // $val_local = $req->input('local'); // del v002
+        $val_local = $req->input('locOrHan'); // add v002
+        Log::debug('Request : 지역명/ 호텔명',[$req->input('locOrHan')]);
         // 체크인
         $val_chkIn = $req->input('chkIn');
         // 체크아웃
@@ -128,13 +134,13 @@ class ResearchController extends Controller
         $val_chkIn = str_replace('-','',$val_chkIn);
         $val_chkOut = str_replace('-','',$val_chkOut);
         // 숙소유형
-        $val_type = $req->input('hanokType');
+        $val_type = $req->input('hanoktype');
         // 성인
         $val_adults = $req->input('adults');
         // 어린이
         $val_kids = $req->input('kids');
         if( $val_type === "0" || $val_type === "1" || $val_type === "2" || $val_type === "3"){
-            $val_type = $req->input('hanokType');
+            $val_type = $req->input('hanoktype');
         }else{
             $val_type = null;
         }
@@ -341,7 +347,9 @@ class ResearchController extends Controller
         // }
         $result = DB::select($query,$prepare);
 
-        $arr = ['local'         => $val_local
+        $arr = [
+                // 'local'         => $val_local // del v002
+                'locOrHan'      => $val_local   // add v002
                 ,'chkIn'        => $inputChkIn
                 ,'chkOut'       => $inputChkOut
                 ,'minPrice'     => $val_minPrice
@@ -352,6 +360,7 @@ class ResearchController extends Controller
                 ];
         Log::debug("값 확인", [$arr]);
         $notices = $this->arrayPaginator($result, $req);
+        Log::debug('--------------- reseqarchPageget End ---------------');
         return view('research')
                 ->with('searches', $notices)
                 ->with('arr',$arr);

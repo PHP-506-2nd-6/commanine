@@ -90,7 +90,10 @@ class AdminController extends Controller
         }
 
         Log::debug("insert");
-        return view('adminhanoksinsert');
+        $amenities = DB::table('amenity_categories')
+                    ->select('*')
+                    ->get();
+        return view('adminhanoksinsert')->with('data', $amenities);
     }
 
     // 0720 add KMH 
@@ -420,11 +423,11 @@ class AdminController extends Controller
             $validate =  $request->validate($arrCheck);
             Log::debug('유효성검사');
             foreach($arrKey as $val){
-                // 트랜잭션 시작
-                DB::beginTransaction();
-                Log::debug('Start amenity transaction');
                 // $arrKey에 amenity가 있는 경우
                 if($val === 'amenity'){
+                    // 트랜잭션 시작
+                    DB::beginTransaction();
+                    Log::debug('Start amenity transaction');
                     // $compare_arr1이 있을 경우에는 insert를 해주어야 하고
                     // $compare_arr2가 있는 경우에는 delete를 해주어야 함
                     // 추가했을 때 insert 
@@ -693,6 +696,7 @@ class AdminController extends Controller
         $arr_chk = [];
         // 저장된 파일명 담는 배열
         $arr_upload_name = [];
+        $amenities = $req->amenity_name;
         // 관리자로 로그인된 아이디 조회
         $loggedInadminId = Auth::guard('admins')->id();
         // // 관리자 로그인된 모든 값 확인 하고 싶을때
@@ -745,6 +749,17 @@ class AdminController extends Controller
         $hanoks_recreate = new Hanoks($hanoks_insert);
         $hanoks_recreate->save();
 
+        // Hanoks의 아이디
+        $Hanoks_insert_id = DB::table('hanoks')->select('id')->orderBy('id', 'desc')->first();
+        $new_amenities=[];
+        foreach($amenities as $value) {
+            // $new_amenities[$Hanoks_insert_id] 
+            $new_amenities['hanok_id'] = $Hanoks_insert_id->id;
+            $new_amenities['amenity_category'] = $value;
+            $amenities_create = new Amenities($new_amenities);
+            $amenities_create->save();
+        }
+
         return redirect()->route('admin.hanoks');
 
 
@@ -769,11 +784,12 @@ class AdminController extends Controller
             return redirect()->route('admin.login');
         }
 
-    $reviews = DB::table('users as u')
+        $reviews = DB::table('users as u')
         ->join('reviews as rev', 'rev.user_id', '=', 'u.user_id')
         ->join('hanoks as han', 'han.id', '=', 'rev.hanok_id')
         // 0722 ysh review id, hanok id 추가
         ->select('*')
+        ->whereNull('rev.deleted_at')
         // ->get();
         ->paginate(15);
     
@@ -795,9 +811,14 @@ class AdminController extends Controller
         ->join('hanoks as han', 'han.id', '=', 'rev.hanok_id')
         // 0722 ysh review id, hanok id 추가
         ->select('*')
-        ->where('rev.rev_content', 'LIKE', '%' . $revkeyword . '%')
-        ->orWhere('u.user_name', 'LIKE', '%' . $revkeyword . '%')
-        // ->get();
+        // ->where('rev.rev_content', 'LIKE', '%' . $revkeyword . '%')
+        // ->orWhere('u.user_name', 'LIKE', '%' . $revkeyword . '%')
+        ->where(function ($query) use ($revkeyword) {
+            $query->where('rev.rev_content', 'like', '%' . $revkeyword . '%')
+                ->orWhere('u.user_name', 'like', '%' . $revkeyword . '%');
+        })
+        ->whereNull('rev.deleted_at')
+        // ->dd();
         ->paginate(15);
 
         return view('adminReview')->with('review',$reviews);

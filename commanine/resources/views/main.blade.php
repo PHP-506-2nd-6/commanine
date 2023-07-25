@@ -42,23 +42,23 @@
 <section id="menu1" class="nav-border">
 {{-- <div class="nav-border"> --}}
     <ul class="gnb clearfix">
-        <a href="/research/pageget?hanokType=0">
+        <a href="/research/pageget?hanoktype=0">
             <li class="cate hotel" style="background-image:url({{asset('/img/hotel.jpg')}})">
                 <p>HOTEL</p>
             </li>
         </a>
 
-        <a href="/research/pageget?hanokType=1">
+        <a href="/research/pageget?hanoktype=1">
             <li class="cate pension" style="background-image:url({{asset('/img/pension.jpg')}})">   
                 <p>PENSION</p>
             </li>
         </a>
-        <a href="/research/pageget?hanokType=2">
+        <a href="/research/pageget?hanoktype=2">
             <li class="cate guesthouse" style="background-image:url({{asset('/img/guesthouse.jpg')}})">
                 <p>GUESTHOUSE</p>
             </li>
         </a>
-        <a href="/research/pageget?hanokType=3">
+        <a href="/research/pageget?hanoktype=3">
             <li class="cate resort" style="background-image:url({{asset('/img/resort.jpg')}})">
                 <p>RESORT</p>
             </li>

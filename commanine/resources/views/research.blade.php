@@ -19,7 +19,7 @@
             <div class="searchFirstBox" style="padding-bottom : 10px;">
                 <div class="searchWidth tabFlex">
                     <label for="locOrHan">지역/숙소명</label>
-                    <input type="text" id="locOrHan" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth " value="{{isset($arr['local']) ? $arr['local'] : ""}}">
+                    <input type="text" id="locOrHan" placeholder="지역명 / 숙소명" name="locOrHan" autocomplete="off" class="localInput searchWidth " value="{{isset($arr['locOrHan']) ? $arr['locOrHan'] : ""}}">
                 </div>
                 <div class="dayBox searchWidth tabFlex">
                     <label for="chkIn">체크인</label>
@@ -34,7 +34,7 @@
                     <div class="searchWidth selectBox tabFlex">
                         <span>숙소 유형</span>
                         @if(!isset($arr['hanoktype']))
-                        <select name="hanokType" size="1" class="selectList" id="select_1">
+                        <select name="hanoktype" size="1" class="selectList" id="select_1">
                             <option  selected>전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
@@ -42,7 +42,7 @@
                             <option value="3">리조트</option>
                         </select>
                         @elseif($arr['hanoktype'] === "0")
-                        <select name="hanokType" size="1" class="selectList" id="select_1">
+                        <select name="hanoktype" size="1" class="selectList" id="select_1">
                             <option  >전체</option>
                             <option value="0" selected >호텔</option>
                             <option value="1">펜션</option>
@@ -50,7 +50,7 @@
                             <option value="3">리조트</option>
                         </select>
                         @elseif($arr['hanoktype'] === "1")
-                        <select name="hanokType" size="1" class="selectList" id="select_1">
+                        <select name="hanoktype" size="1" class="selectList" id="select_1">
                             <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" selected>펜션</option>
@@ -58,7 +58,7 @@
                             <option value="3">리조트</option>
                         </select>
                         @elseif($arr['hanoktype'] === "2")
-                        <select name="hanokType" size="1" class="selectList" id="select_1">
+                        <select name="hanoktype" size="1" class="selectList" id="select_1">
                             <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
@@ -66,7 +66,7 @@
                             <option value="3">리조트</option>
                         </select>
                         @else
-                        <select name="hanokType" size="1" class="selectList" id="select_1">
+                        <select name="hanoktype" size="1" class="selectList" id="select_1">
                             <option >전체</option>
                             <option value="0" >호텔</option>
                             <option value="1" >펜션</option>
@@ -123,8 +123,8 @@
 
         </form>
     </div>
-    <div>
-        <ul>
+    <div class = "range_1">
+        <ul class = "range_2">
             <a href="{{route('research.page.get', array_merge($arr, ['range' => '0']) );}}"><li>가격 낮은 순</li></a>
             <a href="{{route('research.page.get', array_merge($arr, ['range' => '1']) );}}"><li>가격 높은 순</li></a>
             <a href="{{route('research.page.get', array_merge($arr, ['range' => '2']) );}}"><li>리뷰 순</li></a>
