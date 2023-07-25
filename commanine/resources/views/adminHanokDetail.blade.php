@@ -14,9 +14,12 @@
         @include('layout.adminsidebar')
         <div class="container col-9 content-box" >
             <div class="hanoks-container">
-                <div class="d-flex justify-content-between hanoks">
-                    <h2  >숙소 상세관리</h2>
-                    <button type="button" class=" btn btn-outline-dark ml-auto" onclick="location.href='{{route('admin.rooms.insert',[ 'hanok_id' => $hanoks->id ])}}'">객실 등록</button>
+                <div class="d-flex justify-content-between">
+                    <h2 class="">숙소 상세관리</h2>
+                    <div class="d-flex justify-content-end  hanoks">
+                        <button type="button" class=" btn btn-outline-danger cancel-btn" onclick="location.href='{{route('admin.hanoks')}}'">취소</button>
+                        <button type="button" class=" btn btn-outline-dark " onclick="location.href='{{route('admin.rooms.insert',[ 'hanok_id' => $hanoks->id ])}}'">객실 등록</button>
+                    </div>
                 </div>
                 @include('layout.errors_validate')
                 <div class="hanoks" >
@@ -125,7 +128,7 @@
                                     </div>
                                     <div class="d-flex">
                                         <label for="tv" class="amenity">TV</label>
-                                        <input type="checkbox" name="amenity[]" id="wifi" {{ in_array('1',$amenities) ? "checked" : "" }} value="1">
+                                        <input type="checkbox" name="amenity[]" id="tv" {{ in_array('1',$amenities) ? "checked" : "" }} value="1">
                                     </div>
                                     <div class="d-flex">
                                         <label for="ac" class="amenity">에어컨</label>
@@ -235,21 +238,27 @@
                                 <input type="text" name="room_price" maxlength="13" id="room_price" class="col-10 room-con text-center"  value="{{isset($value->room_price) ? number_format($value->room_price)  : ""}}" oninput="onlyNumber(this);formatPrice(this);" style="width:200px;">
                             </div>
                             <div class="d-flex align-items-center">
-                                <label for="room_min" class="col-2 room-tit require">최소 수용 가능 인원</label>
-                                <input type="number" min="2" max="16" name="room_min" value="{{isset($value->room_min) ? $value->room_min : "2"}}" class="col-10 room-con text-center" style="width:200px;" >
+                                <label for="room_min" class="col-2 room-tit require"   >최소 수용 가능 인원</label>
+                                <input type="number" min="2" max="16" name="room_min" value="{{isset($value->room_min) ? $value->room_min : "2"}}" class=" room-con text-center" style="width:200px;" >
+                                <label for="room_max" class="col-3 room-tit require text-right">최대 수용 가능 인원</label>
+                                <input type="number" min="2" max="16" name="room_max" value="{{isset($value->room_max) ? $value->room_max : "2"}}" class=" room-con text-center" style="width:200px;">
+
                             </div>
-                            <div  class="d-flex align-items-center">
+                            {{-- <div  class="d-flex align-items-center">
                                 <label for="room_max" class="col-2 room-tit require">최대 수용 가능 인원</label>
                                 <input type="number" min="2" max="16" name="room_max" value="{{isset($value->room_max) ? $value->room_max : "2"}}" class="col-10 room-con text-center" style="width:200px;">
-                            </div>
+                            </div> --}}
                             <div  class="d-flex align-items-center">
-                                <label for="chk_in" class="col-2 room-tit require">체크인</label>
-                                <input type="time" name="chk_in" class="col-10 room-con " value="{{isset($value->chk_in ) ? $value->chk_in : ""}}" style="width:200px;">
+                                <label for="chk_in" class="col-2 room-tit require ">체크인</label>
+                                <input type="time" name="chk_in" class=" room-con text-center " value="{{isset($value->chk_in ) ? $value->chk_in : ""}}" style="width:200px;">
+                                <label for="chk_out" class="col-3 room-tit require text-right">체크아웃</label>
+                                <input type="time" name="chk_out" class=" room-con text-center" value="{{isset($value->chk_out ) ? $value->chk_out : ""}}" style="width:200px;">
+
                             </div>
-                            <div class="d-flex align-items-center">
+                            {{-- <div class="d-flex align-items-center">
                                 <label for="chk_out" class="col-2 room-tit require">체크아웃</label>
-                                <input type="time" name="chk_out" class="col-10 room-con " value="{{isset($value->chk_out ) ? $value->chk_out : ""}}" style="width:200px;">
-                            </div>
+                                <input type="time" name="chk_out" class="col-10 room-con text-center" value="{{isset($value->chk_out ) ? $value->chk_out : ""}}" style="width:200px;">
+                            </div> --}}
                             <div class="d-flex align-items-center">
                                 <label for="room_detail" class="col-2 room-tit require">객실 상세설명</label>
                                 <textarea type="text" name="room_detail" class="col-10 room-con textarea-box">{{ isset($value->room_detail) ? $room_detail : "" }}</textarea>

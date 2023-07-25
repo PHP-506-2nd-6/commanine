@@ -38,24 +38,30 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <label for="room_price" class="col-2 room-tit">객실 가격</label>
-                            <input type="text" name="room_price" maxlength="13" id="room_price" class="col-10 room-con text-center" style="width:200px;" oninput="onlyNumber(this);formatPrice(this);" >
+                            <input type="text" name="room_price" maxlength="13" id="room_price" class="col-10 room-con" style="width:200px;" oninput="onlyNumber(this);formatPrice(this);" >
                         </div>
                         <div class="d-flex align-items-center">
                             <label for="room_min" class="col-2 room-tit">최소 수용 가능 인원</label>
-                            <input type="number" min="2" max="16" name="room_min" value="2" class="col-10 room-con text-center" style="width:200px;">
+                            <input type="number" min="2" max="16" name="room_min" value="2" class=" room-con text-center" style="width:200px;">
+                            <label for="room_max" class="col-3 room-tit text-right">최대 수용 가능 인원</label>
+                            <input type="number" min="2" max="16" name="room_max" value="2" class=" room-con text-center" style="width:200px;">
+
                         </div>
-                        <div  class="d-flex align-items-center">
+                        {{-- <div  class="d-flex align-items-center">
                             <label for="room_max" class="col-2 room-tit">최대 수용 가능 인원</label>
                             <input type="number" min="2" max="16" name="room_max" value="2" class="col-10 room-con text-center" style="width:200px;">
-                        </div>
+                        </div> --}}
                         <div  class="d-flex align-items-center">
                             <label for="chk_in" class="col-2 room-tit">체크인</label>
-                            <input type="time" name="chk_in" class="col-10 room-con" style="width:200px;">
+                            <input type="time" name="chk_in" class=" room-con text-center" style="width:200px;">
+                            <label for="chk_out" class="col-3 room-tit text-right">체크아웃</label>
+                            <input type="time" name="chk_out" class=" room-con text-center" style="width:200px;">
+
                         </div>
-                        <div class="d-flex align-items-center">
+                        {{-- <div class="d-flex align-items-center">
                             <label for="chk_out" class="col-2 room-tit">체크아웃</label>
-                            <input type="time" name="chk_out" class="col-10 room-con" style="width:200px;">
-                        </div>
+                            <input type="time" name="chk_out" class="col-10 room-con text-center" style="width:200px;">
+                        </div> --}}
                         <div class="d-flex align-items-center">
                             <label for="room_detail" class="col-2 room-tit">객실 상세설명</label>
                             <textarea type="text" name="room_detail" class="col-10 room-con textarea-box"></textarea>

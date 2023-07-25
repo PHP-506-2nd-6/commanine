@@ -306,8 +306,8 @@ class AdminController extends Controller
                     ->with('error',$error);
         }
         return redirect()
-                ->route('admin.hanoks')
-                ->with('success','객실 등록 완료');
+                ->route('admin.hanoks.detail',['hanok_id'=> $hanok_id]);
+                // ->with('success','객실 등록 완료');
     }
     // 0720 add end KMH
     // 0722 add KMH

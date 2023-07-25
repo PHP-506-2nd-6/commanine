@@ -9,7 +9,7 @@
 }
 .hanok-tit,.room-tit{
     font-size:18px;
-    text-align: center;
+    text-align: left;
 }
 
 .hanok-con, .room-con{
@@ -87,8 +87,8 @@ input:focus , textarea:focus{
 
 .img-box{
     border:none;
-}
 
+}
 .require::before{
     content: '*'; 
     color: #ff0000;
@@ -97,4 +97,7 @@ input:focus , textarea:focus{
   }
 .textarea-box{
     resize:none;
+}
+.text-right{
+    text-align: right;
 }
