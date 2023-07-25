@@ -24,3 +24,15 @@
 tr> th{
     font-weight: 900;
 }
+tr{
+    vertical-align: middle;
+}
+.frm{
+    margin: 0;
+}
+
+.btn.btn-primary
+,.btn.btn-secondary
+,.btn.btn-danger{
+    margin: 0;
+}
