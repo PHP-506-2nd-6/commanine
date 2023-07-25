@@ -37,3 +37,6 @@ tr{
 ,.btn.btn-outline-danger{
   margin: 0;
 }
+thead{
+  background-color: #f3f3f3;
+}

@@ -20,6 +20,9 @@
     width:100%;
     text-align: center;
 }
+thead{
+    background-color: #f3f3f3;
+}
 
 tr> th{
     font-weight: 900;

@@ -15,7 +15,7 @@
                 <ul class="menu hidden-button">
                     <li class="menuactive hidden-button"><a href="#menu1">category</a></li>
                     <li><a href="#menu2">popularity</a></li>
-                    <li><a href="#menu3">recent</a></li>
+                    <li><a href="#menu3">ranking</a></li>
                 </ul>
                 <div class="logo">
                     <a href="{{route('main')}}"><img src="{{asset('/img/logologo.png')}}" alt="#"></a>
