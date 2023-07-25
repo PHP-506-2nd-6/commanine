@@ -39,7 +39,12 @@ $(function() {
       $(maxBtn).val(5 + minVal);
     }
     maxVal = parseInt($(maxBtn).val());
-    $(range_max).html(addSeparator(maxVal) + ' 원');
+    
+    if(maxVal == 1000000){
+      $(range_max).html(addSeparator(maxVal) + ' 원 이상');
+    }else{
+      $(range_max).html(addSeparator(maxVal) + ' 원');
+    }
   }
 
   $('input[type="range"]').on('input', updateRangeValues);
@@ -66,6 +71,12 @@ $(function() {
     var maxPercentage = ((maxVal - minRange) / (maxRange - minRange)) * 100;
     $('.max').css('background-size', maxPercentage + '% 100%');
     $(range_max).html(addSeparator(maxVal) + ' 원');
+    
+    if(maxVal == 1000000){
+      $(range_max).html(addSeparator(maxVal) + ' 원 이상');
+    }else{
+      $(range_max).html(addSeparator(maxVal) + ' 원');
+    }
   }
   updateRangeThumb();
 });
