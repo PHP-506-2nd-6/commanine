@@ -30,6 +30,14 @@ tr > th{
     margin: 10px 0;
 }
 
+tr{
+    vertical-align: middle;
+}
+
+.btn.btn-primary{
+    margin: 0;
+}
+
 
 /* 리뷰수정페이지 css */
 .reserveup {

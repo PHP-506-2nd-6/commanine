@@ -15,12 +15,11 @@
         <div class="container col-9 content-box">
         <h2>리뷰관리</h2>
     <form class="form" action="{{route('admin.review.search')}}" method="get">
-        {{-- <select name="revsearchType" size="1" class="selectList" id="select_1">
-            <option  value="user_name">회원이름</option>
-            <option value="rev_content" >리뷰 내용</option>
-            <input type="text" name="revkeyword">
-        </select> --}}
-            <input class="input" type="text" placeholder="회원이름/리뷰 내용" name="revkeyword" class="input">
+        <select name="revsearchType" size="1" class="selectList" id="select_1">
+            <option  value="user_name" @if(request('revsearchType') === 'user_name') selected @endif>회원이름</option>
+            <option value="rev_content" @if(request('revsearchType') === 'rev_content') selected @endif>리뷰 내용</option>
+        </select>
+            <input class="input" type="text" name="revkeyword" class="input" value="{{ request('revkeyword') }}">
         <button type="submit" class="btn btn-dark">검색</button>
     </form>
     <div class="searchUl">
@@ -34,7 +33,7 @@
                         <th scope="col">숙소 이름</th>
                         <th scope="col">작성일자</th>
                         <th scope="col">수정일자</th>
-                        <th scope="col">삭제일자</th>
+                        {{-- <th scope="col">삭제일자</th> --}}
                         <th scope="col">리뷰관리</th>
                         <th scope="col">삭제관리</th>
                     </tr>
@@ -49,9 +48,9 @@
                         <td class="td_chk">{{ $val->hanok_name }}</td>
                         <td class="td_chk">{{ $val->created_at }}</td>
                         <td class="td_chk">{{ $val->updated_at }}</td>
-                        <td class="td_chk">{{ $val->deleted_at }}</td>
+                        {{-- <td class="td_chk">{{ $val->deleted_at }}</td> --}}
                         <td class="td_chk">
-                            <form method="POST" action="{{ route('admin.review.update', ['review_id' => $val->rev_id]) }}">
+                            <form class="frm" method="POST" action="{{ route('admin.review.update', ['review_id' => $val->rev_id]) }}">
                                 @csrf
                                 @method('PUT')
                                 @if( $val->rev_flg === '0' )
@@ -63,7 +62,7 @@
                         </td>
                         {{-- <td><a href="{{route('admin.review.update', ['review_id' => $val->rev_id])}}"><button type="button">수정</button></a></td> --}}
                         <td>
-                            <form method="POST" action="{{ route('admin.review.delete', ['review_id' => $val->rev_id]) }}">
+                            <form class="frm" method="POST" action="{{ route('admin.review.delete', ['review_id' => $val->rev_id]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger">삭제</button>
