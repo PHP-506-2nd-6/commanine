@@ -77,26 +77,35 @@ img {
 
 .nav-a1,
 .nav-a2,
-.nav-a3,
-.nav-a4,
-.nav-a5,
-.nav-a6 {
+.nav-1,
+.nav-2,
+.nav-3 {
     color: #434343;
     font-size: 15px;
 }
 
-.nav-a2::before,
-.nav-a3::before,
-.nav-a4::before {
+.nav-2::before
+/* .nav-a3::before,
+.nav-a4::before { */
+    {
     content: "|";
     margin-right: 1rem;
 }
 
 .nav-a1,
-.nav-a2,
-.nav-a3 {
+.nav-a2 {
     padding-top: 0.5rem;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
+}
+
+.nav-1,
+.nav-2,
+.nav-3 {
+    padding-top: 20px;
+}
+
+.nav-3{
+    margin-right: 20px;
 }
 
 .nav_right {
@@ -341,8 +350,8 @@ a {
 .mobile-bar .bar-btn {
     z-index: 999999999;
     position: fixed;
-    right: 30px;
-    top: 30px;
+    right: 20px;
+    top: 25px;
     display: none;
 }
 
@@ -360,7 +369,7 @@ a {
 }
 
 .on .bar1 {
-    transform: rotate(40deg) translateY(11px);
+    transform: rotate(45deg) translateY(10px);
 }
 
 .on .bar2 {
@@ -368,10 +377,11 @@ a {
 }
 
 .on .bar3 {
-    transform: rotate(-40deg) translateY(-10px);
+    transform: rotate(-45deg) translateY(-10px);
 }
 .hiuser{
-    padding: 10px 0;
+    color:#333;
+    /* padding: 10px 0; */
 }
 .mobile-bar .bar-slide {
     display: none;
@@ -392,13 +402,11 @@ a {
 .slide-menu {
     /* background-color: #333; */
     width: 80px;
-    margin: auto;
+    /* margin: auto; */
     margin-top: 20px;
 }
 
-.nav-a2::before,
-.nav-a3::before,
-.nav-a4::before {
+.nav-2::before {
     content: "";
 }
 
@@ -479,6 +487,11 @@ a {
     }
     .bannerevent{
         width: 100%;
+    }
+    .menu_hanok{
+        margin: 25px 0 0 10px ;
+        font-size: 0.8em;
+        /* margin-top: 25px; */
     }
 }
 /* @media screen and (max-width: 415px) {
