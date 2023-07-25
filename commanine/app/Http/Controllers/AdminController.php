@@ -805,7 +805,7 @@ class AdminController extends Controller
         }
 
     $revkeyword = $req->input('revkeyword');
-    // $revsearchType = $req->input('revsearchType');
+    $revsearchType = $req->input('revsearchType');
     $reviews = DB::table('users as u')
         ->join('reviews as rev', 'rev.user_id', '=', 'u.user_id')
         ->join('hanoks as han', 'han.id', '=', 'rev.hanok_id')
@@ -813,9 +813,9 @@ class AdminController extends Controller
         ->select('*')
         // ->where('rev.rev_content', 'LIKE', '%' . $revkeyword . '%')
         // ->orWhere('u.user_name', 'LIKE', '%' . $revkeyword . '%')
-        ->where(function ($query) use ($revkeyword) {
-            $query->where('rev.rev_content', 'like', '%' . $revkeyword . '%')
-                ->orWhere('u.user_name', 'like', '%' . $revkeyword . '%');
+        ->where(function ($query) use ($revkeyword, $revsearchType) {
+            $query->where($revsearchType, 'like', '%' . $revkeyword . '%');
+                // ->orWhere('u.user_name', 'like', '%' . $revkeyword . '%');
         })
         ->whereNull('rev.deleted_at')
         // ->dd();
