@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .payCon {
-    min-height: 115vh;
+    min-height: 140vh;
 }
 body {
     background-color: #f7f7f7;
@@ -98,7 +98,7 @@ ul.join_box {
 }
 .reserveInfo {
     width: 100%;
-    height: 80%;
+    height: auto;
     padding: 1% 30% 0 30%;
     /* margin: auto; */
 }
@@ -267,7 +267,7 @@ label {
         text-align: center;
     }
     .payCon {
-        min-height: 115vh;
+        min-height: 140vh;
     }
     .reservetitle {
         font-size: 1.3rem;
@@ -341,4 +341,11 @@ label {
     .reservetitle {
         font-size: 1.5rem;
     }
+}
+
+
+
+/* 이용약관 CSS */
+.agree {
+    border: 1px solid #000;
 }
