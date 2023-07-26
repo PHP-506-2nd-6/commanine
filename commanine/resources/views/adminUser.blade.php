@@ -20,8 +20,8 @@
                             <th scope="col">이름</th>
                             <th scope="col">생년월일</th>
                             <th scope="col">전화번호</th>
-                            <th scope="col">가입 일자</th>
-                            <th scope="col">탈퇴 일자</th>
+                            <th scope="col">가입일자</th>
+                            <th scope="col">탈퇴일자</th>
                             <th scope="col">비밀번호 리셋</th>
                             <th scope="col">회원탈퇴</th>
                         </tr>

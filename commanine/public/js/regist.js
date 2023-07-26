@@ -165,7 +165,6 @@ function mailNumChk(){
             emailChkNum.readOnly = true;
             clearInterval(cntDown);
         }
-        console.log(data);
     })
     .catch(error=>alert(error.message));
 }
