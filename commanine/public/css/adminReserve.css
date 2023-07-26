@@ -33,7 +33,9 @@ tr > th{
 tr{
     vertical-align: middle;
 }
-
+tbody > tr:hover{
+    background-color: rgb(245, 245, 245);
+}
 .btn.btn-primary{
     margin: 0;
 }

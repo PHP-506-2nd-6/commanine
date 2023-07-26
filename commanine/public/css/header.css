@@ -402,9 +402,8 @@ a {
 .slide-menu {
     /* background-color: #333; */
     width: 80px;
-    margin: auto;
+    /* margin: auto; */
     margin-top: 20px;
-    padding: 0;
 }
 
 .nav-2::before {
