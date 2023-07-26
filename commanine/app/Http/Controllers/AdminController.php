@@ -213,7 +213,6 @@ class AdminController extends Controller
 
     $reserve = $reserve->orderBy('re.id', 'desc')
         ->paginate(15);
-        // dd($reserve->toSql());/
         return view('adminReserve')->with('reservations',$reserve)->with('reserveStatus',$reserveStatus);
     }
 
