@@ -20,7 +20,7 @@
                             <th scope="col">이름</th>
                             <th scope="col">생년월일</th>
                             <th scope="col">전화번호</th>
-                            <th scope="col">생성 일자</th>
+                            <th scope="col">가입 일자</th>
                             <th scope="col">탈퇴 일자</th>
                             <th scope="col">비밀번호 리셋</th>
                             <th scope="col">회원탈퇴</th>
@@ -42,8 +42,6 @@
                                     <button type="submit" class="{{isset($val->deleted_at)? 'btn btn-secondary' : 'btn btn-primary'}}" {{isset($val->deleted_at) ? "disabled" : ""}}>리셋</button>
                                 </form>
                             </td>
-                            {{-- <td class="td_chk"><button type="button">리셋</button></td> --}}
-                            {{-- <td class="td_chk"><button type="button" onclick="location.href='{{route('admin.users.unregist',['user_id' => $val->user_id])}}'">탈퇴</button></td> --}}
                             <td class="td_chk">
                                 <form class="frm" action="{{route('admin.users.unregist',['user_id' => $val->user_id])}}" method="POST"
                                     onsubmit="return confirm('{{$val->user_name}}회원의 탈퇴를 진행하시겠습니까?');">
