@@ -76,7 +76,8 @@ form>input
     border: 1px solid #000;
     /* margin-right:0; */
 }
-#emailChkNum:disabled {
+#email:disabled
+,#emailChkNum:disabled {
     background-color: #f3f3f3;
 }
 #emailChkNumBtn:disabled {

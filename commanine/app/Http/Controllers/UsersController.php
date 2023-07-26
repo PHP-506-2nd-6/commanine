@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use App\Mail\CertificationEmail;
 use App\Mail\FindPassword;
+use App\Models\Userchks;
 use App\Rules\birthcase;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
@@ -143,7 +145,7 @@ class UsersController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+        // return $request->all();
         $data['user_name']   = $request->input('name');
         $data['user_email']  = $request->input('email');
         // 비밀번호 해시화
@@ -154,9 +156,15 @@ class UsersController extends Controller
         $data['user_que'] = $request->input('question');
         $data['user_an'] = $request->input('questAnswer');
 
+        // 인증 테이블에 이 유저가 인증을 했는지 확인.(메일 인증 후 다른 이메일 입력하여 가입하려고 했을 때 막는 처리)
+        $userChk = DB::table('userChks')->
+                        where('email',$request->email)
+                        ->where('chk_flg', '1')->orderBy('id', 'desc')
+                        ->limit(1)->get();
 
-
-        $user = Users::create($data);   // insert 
+        if ($userChk) { // 인증 된 유저면 가입
+            $user = Users::create($data);   // insert 
+        }
         // return var_dump($user->user_email);
         if(!$user){
             $error = '잠시 후에 다시 시도해 주세요';
