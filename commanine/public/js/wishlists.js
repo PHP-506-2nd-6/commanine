@@ -90,7 +90,7 @@ function deleteWish() {
         console.log(apiData);
         if(apiData['errorcode'] === 'E01'){
             // return console.log(apiData['msg']);
-            return window.location.href = 'http://www.localhost/users/login';
+            return window.location.href = 'http://192.168.0.40/users/login';
         }
         wishHeartRed.classList.toggle('active');
         wishHeart.classList.toggle('active');
