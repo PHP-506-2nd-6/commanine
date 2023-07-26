@@ -82,11 +82,93 @@
             <input type='checkbox' name='animal' value='dog' onclick='checkSelectAll()' required />
             만 14세 이상 이용 동의
             <br>
+            <div class="agree" style="height: 100px; overflow: auto"> 
+                <div style="height: 80px;"> 만 14세 이상 이용 동의
+                    약관 동의 안내: [회사명]에서 제공하는 [서비스 또는 앱명]의 이용에 앞서, 만 14세 이상의 사용자만 해당 서비스를 이용할 수 있습니다. 만 14세 이상인 경우에만 앱을 설치하거나 서비스를 이용해 주시기 바랍니다.
+
+                    서비스 이용 조건:
+
+                    1. 만 14세 미만의 사용자는 본 서비스의 이용이 불가능합니다.
+                    2. 만 14세 이상인 사용자는 개인 정보를 올바르게 제공해야 합니다.
+                    3. 만 14세 이상인 사용자는 본 약관에 동의함으로써, [회사명]의 개인정보 처리 방침에 동의하는 것으로 간주됩니다.
+                    4. 사용자는 서비스를 사용함으로써 발생하는 모든 활동과 책임에 대해 전적으로 책임져야 합니다.
+                    5. 사용자는 앱 또는 서비스를 무단으로 수정, 복제, 배포하는 행위를 금지합니다.
+                    동의 여부: 본 약관에 따라, 만 14세 이상이며 [회사명]의 이용 조건을 읽고 이해하였으며, 이에 동의합니다.</div>
+            </div>
+            <br>
             <input type='checkbox' name='animal' value='cat' onclick='checkSelectAll()' required />
             개인 정보 수집 동의
             <br>
+            <div class="agree" style="height: 100px; overflow: auto"> 
+                <div style="height: 80px;"> 개인 정보 수집 동의
+
+                약관 동의 안내: [회사명]은 [서비스 또는 앱명]의 이용자들에게 최적화된 서비스를 제공하기 위해 일부 개인 정보를 수집 및 이용합니다. 이에 대해 아래와 같이 동의 여부를 확인해 주시기 바랍니다.
+
+                1. 수집하는 개인 정보 항목:
+
+                [서비스 또는 앱명]은 다음과 같은 개인 정보를 수집합니다:
+                이름, 이메일 주소, 전화번호 등 연락처 정보
+                주소, 우편번호 등의 배송지 정보
+                로그인 정보 (아이디, 비밀번호)
+                서비스 이용 기록, 접속 로그 등
+
+                2. 개인 정보 수집 및 이용 목적:
+
+                [서비스 또는 앱명]은 다음과 같은 목적으로 개인 정보를 수집 및 이용합니다:
+                회원 가입 및 인증
+                서비스 제공 및 운영
+                상품 배송 및 결제 처리
+                서비스 이용 통계 및 분석
+                서비스 개선 및 개발
+
+                3. 개인 정보 제공 및 제3자 제공:
+
+                [서비스 또는 앱명]은 원칙적으로 사용자의 개인 정보를 제3자에게 제공하지 않습니다. 단, 아래의 경우에는 개인 정보를 제공할 수 있습니다:
+                사용자의 동의가 있는 경우
+                법령에 따라 요구되는 경우
+                개인 정보 보유 기간:
+
+                사용자의 개인 정보는 서비스 이용 목적이 달성된 후에는 지체 없이 파기될 수 있도록 처리됩니다.
+                동의 여부: [서비스 또는 앱명]의 개인 정보 수집 및 이용에 동의하며, 서비스 제공을 위해 필요한 개인 정보의 수집 및 이용에 동의합니다.
+                </div>
+            </div>
+            <br>
             <input type='checkbox' name='animal' value='rabbit' onclick='checkSelectAll()' required />
             개인 정보 제 3자 제공 동의
+            <br>
+            <div class="agree"  style="height: 100px; overflow: auto"> 
+                <div style="height: 80px;"> 개인 정보 수집 동의
+
+                약관 동의 안내: [회사명]은 [서비스 또는 앱명]의 이용자들에게 최적화된 서비스를 제공하기 위해 일부 개인 정보를 수집 및 이용합니다. 이에 대해 아래와 같이 동의 여부를 확인해 주시기 바랍니다.
+
+                1. 수집하는 개인 정보 항목:
+
+                [서비스 또는 앱명]은 다음과 같은 개인 정보를 수집합니다:
+                이름, 이메일 주소, 전화번호 등 연락처 정보
+                주소, 우편번호 등의 배송지 정보
+                로그인 정보 (아이디, 비밀번호)
+                서비스 이용 기록, 접속 로그 등
+
+                2. 개인 정보 수집 및 이용 목적:
+
+                [서비스 또는 앱명]은 다음과 같은 목적으로 개인 정보를 수집 및 이용합니다:
+                회원 가입 및 인증
+                서비스 제공 및 운영
+                상품 배송 및 결제 처리
+                서비스 이용 통계 및 분석
+                서비스 개선 및 개발
+
+                3. 개인 정보 제공 및 제3자 제공:
+
+                [서비스 또는 앱명]은 원칙적으로 사용자의 개인 정보를 제3자에게 제공하지 않습니다. 단, 아래의 경우에는 개인 정보를 제공할 수 있습니다:
+                사용자의 동의가 있는 경우
+                법령에 따라 요구되는 경우
+                개인 정보 보유 기간:
+
+                사용자의 개인 정보는 서비스 이용 목적이 달성된 후에는 지체 없이 파기될 수 있도록 처리됩니다.
+                동의 여부: [서비스 또는 앱명]의 개인 정보 수집 및 이용에 동의하며, 서비스 제공을 위해 필요한 개인 정보의 수집 및 이용에 동의합니다.
+                </div>
+            </div>
         </div>
         <br>
         <br>
@@ -105,5 +187,42 @@
     
 <script>
     alert('이미 예약된 방입니다.')
+
+function toggleFormSection() {
+            const formSection = document.getElementById('formSection');
+            const showFormButton = document.getElementById('showFormButton');
+
+            if (formSection.style.height === '0px') {
+                // 입력 폼이 숨겨진 경우 보이도록 설정
+                formSection.style.height = '500px';
+                showFormButton.textContent = '입력 폼 숨기기';
+
+                // 입력 폼이 위치한 곳으로 스크롤
+                formSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                // 입력 폼이 보이는 경우 숨기도록 설정
+                formSection.style.height = '0px';
+                showFormButton.textContent = '입력 폼 보기';
+            }
+        }
+        function toggleFormSection2() {
+            const formSection = document.getElementById('formSection2');
+            const showFormButton = document.getElementById('showFormButton2');
+
+            if (formSection.style.height === '0px') {
+                // 입력 폼이 숨겨진 경우 보이도록 설정
+                formSection.style.height = '500px';
+                showFormButton.textContent = '입력 폼 숨기기';
+
+                // 입력 폼이 위치한 곳으로 스크롤
+                formSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                // 입력 폼이 보이는 경우 숨기도록 설정
+                formSection.style.height = '0px';
+                showFormButton.textContent = '입력 폼 보기';
+            }
+        }
+
+
 </script>
 @endif

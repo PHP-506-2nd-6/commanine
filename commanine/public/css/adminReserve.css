@@ -46,13 +46,27 @@ thead{
 /* 리뷰수정페이지 css */
 .reserveup {
     font-size: 20px;
-    margin: 20px;
+    margin: 50px;
 }
 .reserveup label{
-    margin-right: 15px;
-    font-weight: 600;
+    margin-right: 20px;
 }
 .reserveup input{
     width: 600px;
     margin: 10px 0;
+}
+
+.require::before {
+    content: '*';
+    color: #ff0000;
+    margin-right: 5px;
+    font-weight: 900;
+}
+.bnt_wrap {
+    width: 600px;
+    height: 40px;
+    margin: 0 auto;
+}
+.reserve_title {
+    margin-top: 20px;
 }
