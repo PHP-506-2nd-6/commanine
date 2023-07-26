@@ -47,6 +47,11 @@ const errbox = document.querySelectorAll('.errbox');
 //달력 input
 const birthInput = document.querySelector('#birth');
 
+// 로딩
+const bgWhite = document.querySelector('.bgWhite');
+const textCenter = document.querySelector('.text-center');
+bgWhite.style.display = 'none';
+textCenter.style.display = 'none';
 
 const email = document.getElementById('email');
 const certification = ()=>{
@@ -62,7 +67,8 @@ const certification = ()=>{
         idSpan.style.color = "red";
         return;
     }
-    
+    bgWhite.style.display = 'block';
+    textCenter.style.display = 'inline-block';
     emailBtn.innerHTML = "재발송하기";
         fetch(url)
         .then(data=>{
@@ -74,10 +80,14 @@ const certification = ()=>{
         })
         .then(apiData =>{
             if(apiData["errorcode"] === "E01"){
+                bgWhite.style.display = 'none';
+                textCenter.style.display = 'none';
                 idSpan.innerHTML = apiData["msg"];
                 idSpan.style.color = "red";
                 timet.style.display = 'none'
             }else{
+                bgWhite.style.display = 'none';
+                textCenter.style.display = 'none';
                 idSpan.innerHTML = apiData["msg"];
                 idSpan.style.color = "green";
                 emailChkNumBtn.disabled = false;
@@ -142,6 +152,8 @@ let token = document.querySelector('meta[name="csrf-token"]').getAttribute('cont
 
 // 인증번호 체크
 function mailNumChk(){
+    
+
     const url = "/api/users/mail/"+email.value;
     fetch(url, {
                 headers: {

@@ -28,7 +28,7 @@ function checkPw(){
         pwAlert.style.color = 'green';
     }
     else{
-        pwAlert.innerHTML = '영어, 숫자, 특수문자 포함 8~20 입력해 주세요.';
+        pwAlert.innerHTML = '영어, 숫자, 특수문자 포함 8~20자로 입력해 주세요.';
         pwAlert.style.color = 'red';
     }
 };

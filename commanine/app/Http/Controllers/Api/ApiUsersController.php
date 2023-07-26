@@ -113,7 +113,7 @@ class ApiUsersController extends Controller
             // $arr['msg'] = var_dump($chk);
         } else {
             $arr['errorcode']="E02";
-            $arr['msg'] = "인증번호가 옳지 않습니다.";
+            $arr['msg'] = "유효한 인증번호가 아닙니다.";
         }
         return response()->json($arr,Response::HTTP_OK);
         // Mail::to($req->email)->send(new CertificationEmail($num));

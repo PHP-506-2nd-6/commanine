@@ -918,6 +918,9 @@ class AdminController extends Controller
         }
         // 유저 id로 삭제
         $user = Users::find($user_id);
+        if(!$user){
+            return redirect()->back();
+        }
         $user->delete();
         return redirect()->back();
     }
@@ -929,6 +932,9 @@ class AdminController extends Controller
             return redirect()->route('admin.login');
         }
         $user = Users::find($user_id);
+        if(!$user){
+            return redirect()->back();
+        }
         // 0719 KMJ add 임시 비밀번호 생성 - 총 10자리의 영어 대소문자, 숫자, 특수문자가 들어가는 비밀번호
         $len = 8;
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

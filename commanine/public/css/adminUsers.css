@@ -30,6 +30,9 @@ tr> th{
 tr{
     vertical-align: middle;
 }
+tbody > tr:hover{
+    background-color: rgb(245, 245, 245);
+}
 .frm{
     margin: 0;
 }

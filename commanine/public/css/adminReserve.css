@@ -33,8 +33,10 @@ tr > th{
 tr{
     vertical-align: middle;
 }
-
-.btn.btn-primary{
+tbody > tr:hover{
+    background-color: rgb(245, 245, 245);
+}
+.btn.btn-outline-primary{
     margin: 0;
 }
 thead{
