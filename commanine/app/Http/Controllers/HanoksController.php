@@ -53,7 +53,7 @@ class HanoksController extends Controller
         if($val_chkOut === null || $val_chkOut <= $val_chkIn) {
             $val_chkOut = $nowDate->addDay()->format("Y-m-d");
         }
-        // return var_dump($val_chkOut);
+
         // 입력한 값 유지하기 위해서 배열로 담아서 view로 보내주기 위한 처리
         $inpData = [
             'val_chkIn' => $val_chkIn
@@ -158,9 +158,8 @@ class HanoksController extends Controller
                 $wishFlg = 0;
             }
                 
-        // return var_dump($hanoks);
 
-        // return var_dump($wishFlg);
+
         // return view('detail')->with('hanok', $hanoks); // 0615 KMJ del
         // return view('detail', [])
         return view('detail')
@@ -238,7 +237,6 @@ class HanoksController extends Controller
     //     echo $result->hanok_local;
     //     echo $result->room_price;  
     // }
-    // return var_dump($hanoks);
 
     // 인기순
     // $hanokswi = DB::table('wishlists as wi')
