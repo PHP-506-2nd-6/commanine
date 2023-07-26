@@ -699,8 +699,6 @@ class AdminController extends Controller
         // $uploaded_file_name = $_FILES['hanok_img1']['name'];
         // $upload_folder = "/public/img/hanokImg";
         // move_uploaded_file( $uploaded_file_name_tmp, $_SERVER['DOCUMENT_ROOT'].'/img/hanokImg/'.$uploaded_file_name );
-        // var_dump($req->hanok_img1[0], $req->hanok_img1[1]);
-        // var_dump(count($req->file()['hanok_img1']) );
         $arr = [];
         // file 담는 배열
         $arr_chk = [];
@@ -712,10 +710,6 @@ class AdminController extends Controller
         // // 관리자 로그인된 모든 값 확인 하고 싶을때
         // $loggedInUserall = Admins::all();
 
-        // var_dump($loggedInUserall);
-        // exit;
-        // var_dump($req->file()['hanok_img1']) ;
-        // exit;
         $arr = $req->file()['hanok_img1'];
         if( !(count($req->file()['hanok_img1']) >= 3 && count($req->file()['hanok_img1']) <= 5) ) {
             session()->flash('errMsg', '사진은 3개에서 5개 사이로 지정하세요.');
@@ -732,7 +726,6 @@ class AdminController extends Controller
             $arr_chk[$i]->store('/img/hanokImg');
             $arr_upload_name[] = $arr_chk[$i]->hashName();
         }
-        // var_dump($arr_chk);
         // exit;
         $hanoks_insert = [
             'hanok_name' => $req->hanok_name
@@ -828,7 +821,6 @@ class AdminController extends Controller
                 // ->orWhere('u.user_name', 'like', '%' . $revkeyword . '%');
         })
         ->whereNull('rev.deleted_at')
-        // ->dd();
         ->paginate(15);
 
         return view('adminReview')->with('review',$reviews);
@@ -842,7 +834,6 @@ class AdminController extends Controller
         }
 
         $users = DB::table('hanoks')->where('hanok_name','LIKE','%' . $request->hanoks . '%')->orWhere('hanok_addr','LIKE','%' . $request->hanoks . '%')
-        // ->dd();
         ->paginate(16);
         return view('adminHanok')->with('hanoks',$users);
     }
@@ -858,7 +849,6 @@ class AdminController extends Controller
         ->where('r.rev_id', "=", $review_id)
         ->get();
         
-        // var_dump($users[0]->rev_id);
         // exit;
 
         // // flg가 0은 출력용, 1은 가리기용
