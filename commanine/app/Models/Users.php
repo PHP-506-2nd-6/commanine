@@ -35,6 +35,7 @@ class Users extends Authenticatable
         'remember_token',
     ];
     protected $guarded=[
+        'users'
     ];
     /**
      * The attributes that should be cast.

@@ -23,7 +23,7 @@
                     <input type="password" name="password" id="password" placeholder="비밀번호" autocomplete="off">
                     <button type="submit" class="loginBtn">Log in</button>
                     
-                    <a href="{{route('login.kakao')}}" class="kakao"><img src="{{asset('/img/kakao_login.png')}}" alt="카카오아이콘"></a>
+                    <a href="{{route('login.kakao')}}" class="kakao admin_kakao"><img src="{{asset('/img/kakao_login.png')}}" alt="카카오아이콘"></a>
                 </form>
             <div class="findBox">
                 <a href="{{route('users.findId')}}" class="findId">아이디 찾기</a>
