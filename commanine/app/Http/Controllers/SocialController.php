@@ -37,7 +37,7 @@ class SocialController extends Controller
         $an = "없음";
 
     //     $userModel = Users::where('user_email', $email)->first();
-    //     // return var_dump($userModel);
+
 
     if (!$userModel) {
         // 사용자가 존재하지 않으면 새로운 사용자로 등록

@@ -81,7 +81,7 @@ class UsersInfoController extends Controller
                     ->groupBy('han.id','han.hanok_name','han.hanok_addr','han.hanok_img1')
                     ->orderBy('han.hanok_name')
                     ->paginate(5);
-        // return var_dump($result);
+
 
         Log::debug("결과", [$result]);
         return view('informationdibs')->with('data', $result);

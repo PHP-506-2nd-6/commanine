@@ -46,7 +46,7 @@ class ApiWishlistsController extends Controller
         $arr['msg'] = 'Insert success';
 
         // 로그인이 안되어 있을 경우
-        // Log::debug('ddd',[session('user_id')]);
+
         if(!$request->user_id) {
             $arr['errorcode'] = 'E01';
             $arr['msg'] = 'Not login';
@@ -60,7 +60,6 @@ class ApiWishlistsController extends Controller
         $prepare = [$request->user_id, $request->hanok_id];
         $wish = DB::insert($query,$prepare);
         // $wish = DB::table('wishlists')->insert(['user_id'=>$request->user_id,'hanok_id'=>$request->hanok_id]);
-        // Log::debug('통신',[var_dump($wish)]);
         // $wish = new Wishlists();
         // $wish->user_id = $request->user_id;
         // $wish->hanok_id = $request->hanok_id;
