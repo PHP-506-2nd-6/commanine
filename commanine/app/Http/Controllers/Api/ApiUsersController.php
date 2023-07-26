@@ -98,8 +98,6 @@ class ApiUsersController extends Controller
         // $sql = "UPDATE userchks SET chk_flg = ? WHERE email = ? AND chk_flg = ? AND chk_num = ?";
         // $prepare = [ 'chk_flg' => '1', 'email' => $req->email, 'chk_num' => $req->chk_num];
         // $chk = DB::update($sql, $prepare);
-        // Log::debug('chk',[$chk]);
-        // return var_dump($chk);
         if ($chk) {
             // $query = "UPDATE userchks SET chk_flg = '1' WHERE email = ? AND chk_flg = '0' AND chk_num = ? and 'time_deadline' > ? ";
             // $prepare = ['email' => $req->email, 'chk_num' => $req->chk_num, Carbon::now()];
@@ -115,7 +113,7 @@ class ApiUsersController extends Controller
 
             $arr['errorcode']="0";
             $arr['msg'] = "올바른 인증번호 입니다.";
-            // $arr['msg'] = var_dump($chk);
+
         } else {
             $arr['errorcode']="E02";
             $arr['msg'] = "유효한 인증번호가 아닙니다.";

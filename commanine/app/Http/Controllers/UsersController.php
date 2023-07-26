@@ -145,7 +145,7 @@ class UsersController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        // return $request->all();
+        
         $data['user_name']   = $request->input('name');
         $data['user_email']  = $request->input('email');
         // 비밀번호 해시화
@@ -162,24 +162,18 @@ class UsersController extends Controller
                             ->where('chk_num', $request->emailChkNum)
                             ->where('chk_flg', '1')->orderBy('id', 'desc')
                             ->limit(1)->get();
-        // Log::debug('유저체크',$userChk);
-        // Log::debug('유저체크', $userChk);
-        // return var_dump($userChk);
+        
         if ($userChk) { // 인증 된 유저면 가입
             $user = Users::create($data);   // insert 
         }
-        // return var_dump($user->user_email);
+        
         if(!$user){
             $error = '잠시 후에 다시 시도해 주세요';
             return redirect()
                     ->route('users.regist')
                     ->with('error',$error);
         }
-        // $user = new Users();
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // Mail::to($data['user_email'])->send(new CertificationEmail($data));
-        // return var_dump($user);
+        
         // 회원가입 완료 로그인 페이지 이동
         return redirect()
                 ->route('users.login')

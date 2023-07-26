@@ -127,35 +127,7 @@ const certification = ()=>{
         .catch(error=>alert(error.message));
 }
 
-// 인증번호 보내기?
-
-// timet.style.display = 'none'
-// timet.innerHTML = "";
-
 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-// function storeUserChks(){
-//     const url = '/api/users/regist/' + email.value;
-//     fetch(url, {
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Accept": "application/json, text-plain, */*",
-//             "X-Requested-With": "XMLHttpRequest",
-//             "X-CSRF-TOKEN": token
-//             },
-//         method: 'post',
-//         credentials: "same-origin",
-//         body: JSON.stringify({
-//             email: email.value
-//         })
-//     })
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     })
-//     emailChkNum.disabled = false;
-// }
 
 // 인증번호 체크
 function mailNumChk(){
@@ -168,12 +140,10 @@ function mailNumChk(){
                     "X-CSRF-TOKEN": token
                     },
                 method: 'PUT',
-                // method: 'get',
                 credentials: "same-origin",
                 body: JSON.stringify({
                     email: email.value
                     ,chk_num: emailChkNum.value
-                    // ,chk_flg:"1"
                 })
             })
     .then(data=>{
