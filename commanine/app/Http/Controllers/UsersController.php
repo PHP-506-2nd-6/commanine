@@ -158,10 +158,13 @@ class UsersController extends Controller
 
         // 인증 테이블에 이 유저가 인증을 했는지 확인.(메일 인증 후 다른 이메일 입력하여 가입하려고 했을 때 막는 처리)
         $userChk = DB::table('userChks')->
-                        where('email',$request->email)
-                        ->where('chk_flg', '1')->orderBy('id', 'desc')
-                        ->limit(1)->get();
-
+                            where('email',$request->email)
+                            ->where('chk_num', $request->emailChkNum)
+                            ->where('chk_flg', '1')->orderBy('id', 'desc')
+                            ->limit(1)->get();
+        // Log::debug('유저체크',$userChk);
+        // Log::debug('유저체크', $userChk);
+        // return var_dump($userChk);
         if ($userChk) { // 인증 된 유저면 가입
             $user = Users::create($data);   // insert 
         }
@@ -318,10 +321,8 @@ class UsersController extends Controller
     }
     //0620 BYJ
     public function logout() {
-        // Session::flush();
-        Session::forget('user_id');
-        Session::forget('user_name');
-        Auth::guard('web')->logout();
+        Session::flush();
+        Auth::logout(); 
         return redirect()->route('main');
     }
 
