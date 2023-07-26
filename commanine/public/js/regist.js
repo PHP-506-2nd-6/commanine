@@ -55,7 +55,7 @@ textCenter.style.display = 'none';
 
 const email = document.getElementById('email');
 let certFlg = false;
-email.disabled = false;
+email.readOnly = false;
 const certification = ()=>{
     const url = "/api/users/regist/"+email.value;
     const regex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
@@ -92,8 +92,8 @@ const certification = ()=>{
                 textCenter.style.display = 'none';
                 idSpan.innerHTML = apiData["msg"];
                 idSpan.style.color = "green";
-                email.disabled = true;
-                emailChkNum.disabled = false;
+                email.readOnly = true;
+                emailChkNum.readOnly = false;
                 emailChkNum.value = "";
                 errMsgEmailChkNum.innerHTML = "";
                 if (certFlg) {  // 재발송 시에 기존 타이머 clear
@@ -192,7 +192,7 @@ function mailNumChk(){
             errMsgEmailChkNum.style.color = "green";
             btnChk = true;
             emailChkNumBtn.disabled = true;
-            emailChkNum.disabled = true;
+            emailChkNum.readOnly = true;
             clearInterval(cntDown);
         }
         console.log(data);
