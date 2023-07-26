@@ -3,9 +3,7 @@
 </head>
 <div class="logo">
     <h1><a href="{{route('admin.login')}}" class="a-link trademark">COMMANINE ADMIN</a></h1>
-@if(!(session()->has('admin_id')))
-    <a href="{{route('admin.login')}}" class="a-link login">로그인 하러 가기</a>
-@elseif(session()->has('admin_id'))
+@auth('admins')
     <ul>
         <li><a  href="{{route('admin.reservation')}}">예약 정보 보기</a></li>
         <li><a href="{{route('admin.review')}}">리뷰 관리 보기</a></li>
@@ -15,6 +13,8 @@
     <div class="logout">
         <a href="{{route('admin.logout')}}" class="a-link login">로그아웃</a>
     </div>
+@else
+    <a href="{{route('admin.login')}}" class="a-link login">로그인 하러 가기</a>
 @endif
 </div>
 

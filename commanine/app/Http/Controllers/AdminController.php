@@ -154,7 +154,7 @@ class AdminController extends Controller
         ->paginate(15);
         
 
-        return view('adminReserve')->with('reservations',$reserve);
+        return view('adminReserve')->with('reservations',$reserve)->with('reserveStatus',"");
     }
     // 0721 add BYJ
     // 예약관리 검색
@@ -185,7 +185,15 @@ class AdminController extends Controller
 
     // 검색 조건 추가
     if (!empty($keyword) && !empty($searchType)) {
-        $reserve->where('re.' . $searchType, 'LIKE', '%' . $keyword . '%');
+        if($searchType === "id") {
+            $reserve->where('re.' . $searchType, '=', $keyword);   
+        }
+        if($searchType === "reserve_name") {
+            $reserve->where('re.' . $searchType, 'LIKE', '%' . $keyword . '%');   
+        }
+        if($searchType === "reserve_num") {
+            $reserve->where('re.' . $searchType, 'LIKE', '%' . $keyword . '%');   
+        }
     }
 
     // 예약 상태로 필터링
@@ -204,7 +212,7 @@ class AdminController extends Controller
     $reserve = $reserve->orderBy('re.id', 'desc')
         ->paginate(15);
         // dd($reserve->toSql());/
-        return view('adminReserve')->with('reservations',$reserve);
+        return view('adminReserve')->with('reservations',$reserve)->with('reserveStatus',$reserveStatus);
     }
 
     // 0720 add KMH
@@ -262,7 +270,7 @@ class AdminController extends Controller
         // 이미지파일이 3개가 아닌 경우 
         if(count($req->file()['room_img']) !== 3){
             // 세션에 에러메세지를 담아주고 back
-            session()->flash('errMsg','사진은 3개만 저장하세요.');
+            session()->flash('errMsg','객실 이미지는 3장만 넣어주세요');
             return redirect()->back();
         }
         // 여러개 담은 파일들 arr_chk에 배열로 담아 줌

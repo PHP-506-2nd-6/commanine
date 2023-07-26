@@ -31,13 +31,13 @@
                 </select> --}}
                 <div class="reservestatus">
                     <label>
-                        <input type="radio" name="reserveStatus" value="all" selected> 전체
+                        <input type="radio" name="reserveStatus" value="" {{$reserveStatus === "" || $reserveStatus === null ? "checked" : ""}}> 전체
                     </label>
                     <label>
-                        <input type="radio" name="reserveStatus" value="0"> 예약대기
+                        <input type="radio" name="reserveStatus" value="0" {{$reserveStatus === "0" ? "checked" : ""}}> 예약대기
                     </label>
                     <label>
-                        <input type="radio" name="reserveStatus" value="1"> 예약완료
+                        <input type="radio" name="reserveStatus" value="1" {{$reserveStatus === "1" ? "checked" : ""}}> 예약완료
                     </label>
                 </div>
                 {{-- <br> --}}
@@ -83,7 +83,7 @@
                             @endif
                         </td>
                         <td>
-                        <a href="{{ route('admin.reservation.edit', ['reserve_id' => $val->reserve_id]) }}" class="btn btn-outline-primary">상세</a>
+                        <a href="{{ route('admin.reservation.edit', ['reserve_id' => $val->reserve_id]) }}" class="btn btn-primary">상세</a>
                         </td>
                     </tr>
                     @empty
@@ -104,30 +104,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{asset('js/adminreserve.js')}}"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-// 라디오 버튼의 값이 변경될 때마다 실행되는 함수
-function handleRadioButtonChange() {
-    // 선택된 라디오 버튼의 값을 LocalStorage에 저장
-    localStorage.setItem('reserveStatus', this.value);
-}
-
-// 라디오 버튼들에 이벤트 리스너 등록
-const radioButtons = document.querySelectorAll('input[type="radio"]');
-radioButtons.forEach(radioButton => {
-    radioButton.addEventListener('change', handleRadioButtonChange);
-});
-
-// 페이지 로딩 시, LocalStorage에 저장된 값이 있는 경우 해당 값으로 라디오 버튼 선택 상태 설정
-window.addEventListener('DOMContentLoaded', () => {
-    const savedValue = localStorage.getItem('reserveStatus');
-    if (savedValue) {
-        // LocalStorage에 저장된 값이 존재하는 경우 해당 값으로 라디오 버튼 선택 상태 설정
-        radioButtons.forEach(radioButton => {
-            if (radioButton.value === savedValue) {
-                radioButton.checked = true;
-            }
-        });
-    }
-});
-</script>
 @endsection
