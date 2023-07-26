@@ -7,7 +7,7 @@
     <div class="container row main-container" style="max-width:2000px">
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
-            <h2 >유저 관리</h2>
+            <h2 class="top-title">유저 관리</h2>
             <form action="{{route('admin.users.search')}}" method="get" class="form" >
                 <input type="text" placeholder="이메일/이름 입력" name="users" class="input">
                 <button type="submit" class="btn btn-dark">검색</button>
