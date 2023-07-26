@@ -47,8 +47,10 @@ class AdminController extends Controller
             return redirect()->intended(route('admin.reservation'));
     }
     public function adminLogout() {
-        Session::flush();
-        Auth::logout();
+        // Session::flush();
+        Session::forget('id');
+        Session::forget('admin_id');
+        Auth::guard('admins')->logout();
         return redirect()->route('admin.regist');
     }
     //0719 KMH add
