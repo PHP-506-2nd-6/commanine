@@ -16,9 +16,9 @@
         </div>
         <form action="{{route('users.findPw.post')}}" method="post">
             @csrf
-            <input type="text" name="email" id="email" placeholder="이메일" class="findInput">
+            <input type="text" name="email" id="email" placeholder="이메일" class="findInput" autocomplete="off">
             <br>
-            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="전화번호" maxlength="11" class="findInput">
+            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="전화번호" maxlength="11" class="findInput" autocomplete="off">
             <br>
             <select name="question" size="1" class="findInput">
                     <option value="1">나의 보물1호는 무엇입니까?</option>
@@ -28,7 +28,7 @@
                 <option value="5">졸업한 초등학교 이름은 무엇입니까?</option>
                 </select>
             <br>
-            <input type="text" name="questAnswer" id="questAnswer" placeholder="질문의 답" class="findInput">
+            <input type="text" name="questAnswer" id="questAnswer" placeholder="질문의 답" class="findInput" autocomplete="off">
             <br>
             <div class="btnGroup">
                 <button type="submit" class="blackBtn">비밀번호 찾기</button>

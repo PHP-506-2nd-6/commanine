@@ -12,6 +12,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 @section('contents')
+<div class="text-center">
+    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"></div>
+</div>
+<div class="bgWhite"></div>
 <div class="container box">
     <div class="registBox">
         <h2 class="title">회원가입</h2>

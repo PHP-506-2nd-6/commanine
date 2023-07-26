@@ -36,7 +36,7 @@ tr{
 tbody > tr:hover{
     background-color: rgb(245, 245, 245);
 }
-.btn.btn-primary{
+.btn.btn-outline-primary{
     margin: 0;
 }
 thead{
