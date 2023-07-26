@@ -120,6 +120,8 @@
                 <input type="hidden" placeholder="아동" name="kids" id="kids" class="kidsHide" value="{{isset($arr['kids']) ? $arr['kids'] : "0" }}">
             
             <button type="submit" id="searchBtn" class="searchBtn qtybtn" >Search</button>
+            {{-- <a href="{{route('research.page.get',['reset' => '1', 'locOrHan' => $arr['locOrHan'], 'chkIn' => $arr['chkIn'], 'chkOut' => $arr['chkOut'] ])}}"><button type="button" id="reset" class="reset" >초기화</button></a> --}}
+            <a href="{{route('research.page.get')}}" style="text-align: right;"><button type="button" id="reset" class="reset" style="border:none;"><img src="{{asset('img/icon/reset.png')}}" style="width:30px; height:30px; background-color: #fff; border: 2px solid #000; border-radius: 5px;" ></button></a>
 
         </form>
     </div>

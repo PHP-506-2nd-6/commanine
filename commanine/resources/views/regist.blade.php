@@ -37,12 +37,12 @@
                 @endif
             </div>
             <div class="emailBox">
-                <input type="text" name="email" onblur="checkEmail()"  class="emailInput" autocomplete="off" id="email" placeholder="이메일" value="{{old('email')}}" maxlength="30" required>
+                <input type="text" name="email" onkeyup="checkEmail()"  class="emailInput" readOnly="" autocomplete="off" id="email" placeholder="이메일" value="{{old('email')}}" maxlength="30" required>
                 <button type="button" id="emailChkBtn" class="blackBtn">인증번호 발송</button>
             </div>
             <div id="errMsgId" class="errmsg emailAlert"></div>
             <div class="emailChkNumBox">
-                <input type="text" name="emailChkNum" onblur="emailNumChk()"  class="emailChkNum" autocomplete="off" id="emailChkNum" placeholder="인증번호" disabled="true" required>
+                <input type="text" name="emailChkNum" onkeyup="emailNumChk()"  class="emailChkNum" autocomplete="off" id="emailChkNum" placeholder="인증번호" readOnly="true" maxlength="8" required>
                 <button type="button" id="emailChkNumBtn" class="blackBtn" disabled="true">인증하기</button>
                 <span id="timet"></span>
             </div>

@@ -63,6 +63,11 @@ class ApiUsersController extends Controller
         }
         $time = Carbon::now()->addMinutes(10);
 
+        // 인증 메일 보내고 난 후 재발송 했을 경우 이전의 인증 번호 못 쓰게 처리
+        DB::table('userchks')
+            ->where('email', '=', $email)
+            ->update(['chk_flg' => '2']);
+
         $userchks = new Userchks;
         $userchks->email = $email;
         $userchks->chk_num = $num;

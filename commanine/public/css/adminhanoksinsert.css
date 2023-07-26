@@ -97,3 +97,13 @@ input::-webkit-inner-spin-button {
     color: white;
     transition: 0.7s;
 }
+.require::before{
+    content: '*'; 
+    color: #ff0000;
+    margin-right: 5px; 
+    font-weight: 900;;
+}
+.btn-outline-danger > a {
+    text-decoration-line: none;
+    color: black;
+}
