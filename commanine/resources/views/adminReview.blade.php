@@ -13,7 +13,7 @@
     <div class="container row main-container" style="max-width:2000px">
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
-        <h2>리뷰관리</h2>
+        <h2 class="top-title">리뷰관리</h2>
     <form class="form" action="{{route('admin.review.search')}}" method="get">
         <select name="revsearchType" size="1" class="selectList" id="select_1">
             <option  value="user_name" @if(request('revsearchType') === 'user_name') selected @endif>회원이름</option>

@@ -13,7 +13,7 @@
     <div class="container row main-container " style="max-width:2000px">
         @include('layout.adminsidebar')
             <div class="container col-9 content-box ">
-                <h2 class="title">객실 등록하기</h2>
+                <h2 class="title top-title">객실 등록하기</h2>
                 <div class="hanoks-info">
                     <div class="d-flex align-items-center">
                         <h3 class="col-2 hanok-tit">숙소명</h3>

@@ -14,7 +14,7 @@
     <div class="container row main-container" style="max-width:2000px">
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
-        <h2>예약관리</h2>
+        <h2 class="top-title">예약관리</h2>
         <div class="form_wrap">
             <form class="form" action="{{route('admin.reservation.search')}}" method="get">
                 <div class="search_form">

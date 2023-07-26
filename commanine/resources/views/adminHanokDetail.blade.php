@@ -15,7 +15,7 @@
         <div class="container col-9 content-box" >
             <div class="hanoks-container">
                 <div class="d-flex justify-content-between">
-                    <h2 class="hanok-title">숙소 상세관리</h2>
+                    <h2 class="hanok-title top-title">숙소 상세관리</h2>
                     <div class="d-flex justify-content-end  hanoks">
                         <button type="button" class=" btn btn-outline-danger cancel-btn" onclick="location.href='{{route('admin.hanoks')}}'">취소</button>
                         <button type="button" class=" btn btn-outline-dark " onclick="location.href='{{route('admin.rooms.insert',[ 'hanok_id' => $hanoks->id ])}}'">객실 등록</button>
