@@ -1,7 +1,7 @@
 .searchUl{
     width:90%;
-    margin:30px auto 0;
-    padding: 20px 40px;
+    /* margin:0 auto; */
+    /* padding: 20px 40px; */
     /* margin-top:30px; */
     min-height:300px;
     display:grid;
@@ -9,7 +9,10 @@
     /* justify-items: center; */
     place-items: center; 
 }    
-
+.frmBox{
+    width: 90%;
+    margin: 10px 0;
+}
 .text-box {
     display: flex;
     /* align-items: center;
@@ -39,7 +42,9 @@
     border: 1px solid #000;
     transition:all 0.3s;
 }
-
+.btn.btn-outline-dark{
+    float: right;
+}
 
 .searchBtn,.countChkBtn{
     background-color: #fff;
@@ -139,7 +144,4 @@ input:focus label{
 }
 img {
     border-radius: 20px / 20px;
-}
-.col-9 {
-    margin-top: 40px;
 }
