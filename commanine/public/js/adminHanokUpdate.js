@@ -39,3 +39,32 @@
         
         const numericValue = num.value.replace(/\D/g, '');
     }
+
+
+    // 아코디언
+        // nextElementSibling => 모두 같은 노드 레벨의 다음 값을 가져옴 
+        // nextElementSibling 은 Element(요소)만 가져옴
+        function collapse(element) {
+            
+            let before = document.getElementsByClassName("aco-active")[0];             // 기존에 활성화된 버튼
+            if (before && document.getElementsByClassName("aco-active")[0] != element) {  // 자신 이외에 이미 활성화된 버튼이 있으면
+                before.nextElementSibling.style.maxHeight = null;   // 기존에 펼쳐진 내용 접고
+                before.classList.remove("active");                  // 버튼 비활성화
+            }
+            element.classList.toggle("active");         // 활성화 여부 toggle
+
+            let content = element.nextElementSibling;
+            if (content.style.maxHeight != 0) {         // 버튼 다음 요소가 펼쳐져 있으면
+                content.style.maxHeight = null;         // 접기
+            } else {
+                content.style.maxHeight = content.scrollHeight +  "200px";  // 접혀있는 경우 펼치기
+            }
+            
+            // for(let i = 0; i<collaps.length; i++ ){
+            //     if(collaps[i].classList.contains('active')){
+            //         contentBox[i].style.border=" 1px solid #000 ; ";
+            //         return;
+            //     }
+            // }
+        }
+
