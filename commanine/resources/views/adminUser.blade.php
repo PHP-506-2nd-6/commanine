@@ -9,14 +9,14 @@
         <div class="container col-9 content-box">
             <h2 class="top-title">유저 관리</h2>
             <form action="{{route('admin.users.search')}}" method="get" class="form" >
-                <div>
+                <div class="statusBox">
                     <label>
                         <input type="radio" name="user_status" value="" {{$userStatus === "" || $userStatus === null ? "checked" : ""}}>
                         전체회원
                     </label>
                     <label>
                         <input type="radio" name="user_status" value="0" {{$userStatus === "0" ? "checked" : ""}}>
-                        일반
+                        정상
                     </label>
                     <label>
                         <input type="radio" name="user_status" value="1" {{$userStatus === "1" ? "checked" : ""}}>
