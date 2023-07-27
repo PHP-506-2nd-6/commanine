@@ -236,3 +236,7 @@ input:focus , textarea:focus{
 }
 
  */
+
+.col-9 {
+    margin-top: 40px;
+}

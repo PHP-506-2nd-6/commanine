@@ -65,9 +65,20 @@ header{
     margin-top:20px;
 } */
 .col-9{
-    margin-top: 40px;
+    margin: 90px 0 30px 0;
+    /* margin-top: 90px;
+    margin-bottom: 40px; */
 }
 /********** Template CSS **********/
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    font-family: 'S-CoreDream-3Light';
+}
 /* vesion3 */
 :root {
     --primary: #009CFF;
@@ -265,5 +276,20 @@ header{
     .content .navbar .navbar-nav .nav-link {
         margin-left: 15px;
     }
+}
+/* 페이지네이션 */
+.pagePadding{
+    color:#000;
+    text-decoration: none;
+    padding:10px;
+}
+.pagePadding:hover{
+    color:#b2b2b2;
+}
+
+.currentLink{
+    font-size:18px;
+    border-bottom: 3px double #000;
+    padding-bottom: 1px;
 }
 

@@ -8,14 +8,13 @@
     <div class="position-relative bg-white d-flex p-0">
     @include('layout.adminsidebar')
     <div class="container col-9 content-box">
-        <h2 class="top-title">숙소관리</h2>
-        <div class="d-flex content-box-1">
-            <form action="{{route('admin.hanoks.search')}}" class="col-9" method="get">
+        <h3 class="top-title">숙소관리</h3>
+        <div class="content-box-1">
+            <form action="{{route('admin.hanoks.search')}}" class="frmBox" method="get">
                 <input type="text" placeholder="숙소명 / 주소 입력" name="hanoks" class="input">
                 <button type="submit" class="btn btn-dark ">검색</button>
+                <button type="button" onclick="location.href='{{route('admin.hanoks.insert')}}'" class="btn btn-outline-dark">숙소등록</button>
             </form>
-            
-                <button type="button" onclick="location.href='{{route('admin.hanoks.insert')}}'" class="btn btn-outline-dark col-2">숙소등록</button>
         </div>
 
         <div class="searchUl">

@@ -14,14 +14,14 @@
     <div class="position-relative bg-white d-flex p-0">
         @include('layout.adminsidebar')
             <div class="container col-9 content-box ">
-                <h2 class="title top-title">객실 등록하기</h2>
+                <h3 class="title top-title">객실 등록하기</h3>
                 <div class="hanoks-info">
                     <div class="d-flex align-items-center">
-                        <h3 class="col-2 hanok-tit">숙소명</h3>
+                        <h4 class="col-2 hanok-tit">숙소명</h4>
                         <div class= "col-10 hanok-con">{{$hanoks->hanok_name}}</div>
                     </div>
                     <div class="d-flex align-items-center">
-                        <h3 class="col-2 hanok-tit">숙소 주소</h3>
+                        <h4 class="col-2 hanok-tit">숙소 주소</h4>
                         <div class="col-10 hanok-con">{{$hanoks->hanok_addr}}</div>
                     </div>
                 </div>

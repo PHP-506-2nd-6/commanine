@@ -14,7 +14,7 @@
     <div class="position-relative bg-white d-flex p-0">
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
-        <h2 class="top-title">리뷰관리</h2>
+        <h3 class="top-title">리뷰관리</h3>
     <form class="form" action="{{route('admin.review.search')}}" method="get">
         <select name="revsearchType" size="1" class="selectList" id="select_1">
             <option  value="user_name" @if(request('revsearchType') === 'user_name') selected @endif>회원이름</option>

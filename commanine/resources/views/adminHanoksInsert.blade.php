@@ -9,7 +9,7 @@
     @include('layout.adminsidebar')
     <div class="container col-9 content-box ">
         <div class="rooms">
-            <h1>숙소 등록하기</h1>
+            <h3>숙소 등록하기</h3>
             <form action="{{route('admin.hanoks.insert.post')}}" class="grid_conn" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="grid_conn_1">

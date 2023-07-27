@@ -16,7 +16,7 @@
         <div class="container col-9 content-box" >
             <div class="hanoks-container">
                 <div class="d-flex justify-content-between">
-                    <h2 class="hanok-title top-title">숙소 상세관리</h2>
+                    <h3 class="hanok-title top-title">숙소 상세관리</h3>
                     <div class="d-flex justify-content-end  hanoks">
                         <button type="button" class=" btn btn-outline-danger cancel-btn" onclick="location.href='{{route('admin.hanoks')}}'">취소</button>
                         <button type="button" class=" btn btn-outline-dark " onclick="location.href='{{route('admin.rooms.insert',[ 'hanok_id' => $hanoks->id ])}}'">객실 등록</button>
@@ -211,7 +211,7 @@
             <div class="line"></div>
 
             <div class="rooms container">
-                <h2 class="room-title" >객실 정보</h2>
+                <h3 class="room-title" >객실 정보</h3>
                 @forelse($rooms as $value)
                 <div class="rooms">
                     @if(session()->has('roomError'))
