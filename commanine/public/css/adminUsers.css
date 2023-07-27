@@ -43,6 +43,9 @@ tbody > tr:hover{
 ,.btn.btn-success{
     margin: 0;
 }
+.statusBox{
+    margin-bottom: 5px;
+}
 
 .info {
     display: inline-block;

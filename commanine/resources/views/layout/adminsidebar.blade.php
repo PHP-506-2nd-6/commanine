@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{route('admin.reservation')}}" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>예약정보</a>
+                    <a href="{{route('admin.reservation')}}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>예약정보</a>
                     <a href="{{route('admin.review')}}" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>리뷰관리</a>
                     <a href="{{route('admin.users')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>유저정보</a>
                     <a href="{{route('admin.hanoks')}}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>숙소 정보</a>
