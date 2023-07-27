@@ -62,18 +62,47 @@ class AdminController extends Controller
         
         $users = DB::table('users')
                 ->paginate(15);
-        return view('adminUser')->with('users',$users);
+        return view('adminUser')->with('users',$users)->with('userStatus',"");
     }
+    // 관리자 유저 검색 0727 add KMJ
     public function adminUsersSearch(Request $request){
         $admin = Auth::guard('admins')->check();
         if(!$admin){
             return redirect()->route('admin.login');
         }
-        $users = DB::table('users')->where('user_email','LIKE','%' . $request->users . '%')->orWhere('user_name','LIKE','%' . $request->users . '%')
-                ->paginate(15);
-        return view('adminUser')->with('users',$users);
+
+        $keyword = $request->input('users'); // 검색어 입력 변수
+        $userStatus = $request->input('user_status'); // 회원상태 변수
+        
+        $users = DB::table('users');
+    
+        // 회원 상태로 필터링
+        if ($userStatus === '0') {
+            $users->where('user_status', '0'); // 정상 회원만 보여줌
+            } else if ($userStatus === '1') {
+                $users->where('user_status', '1'); // 차단된 회원만 보여줌
+            } else if ($userStatus === '9') {
+                $users->where('user_status', '9'); // 탈퇴된 회원만 보여줌
+            }
+
+        if(!empty($keyword)) {
+            $users->where('user_email','LIKE','%' . $request->users . '%')->orWhere('user_name','LIKE','%' . $request->users . '%');
+        }
+
+        $users = $users->paginate(15);
+        return view('adminUser')->with('users',$users)->with('userStatus', $userStatus);
     }
-    // 0719 add end KMH
+    
+    // public function adminUsersSearch(Request $request){
+    //     $admin = Auth::guard('admins')->check();
+    //     if(!$admin){
+    //         return redirect()->route('admin.login');
+    //     }
+    //     $users = DB::table('users')->where('user_email','LIKE','%' . $request->users . '%')->orWhere('user_name','LIKE','%' . $request->users . '%')
+    //             ->paginate(15);
+    //     return view('adminUser')->with('users',$users);
+    // }
+    // 0719 add end KMH 0727 del KMJ
 
     // 0720 add KMH
     public function adminHanoks(){

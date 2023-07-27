@@ -43,3 +43,24 @@ tbody > tr:hover{
 ,.btn.btn-success{
     margin: 0;
 }
+
+.info {
+    display: inline-block;
+    border-radius: 2px;
+    width: 10px;
+    height: 10px;
+}
+.btnInfo{
+    margin: 0 5px 5px 0;
+    float: right;
+    font-size: 12px;
+}
+.info.reset{
+    background-color: #0b5ed7;
+}
+.info.ban{
+    background-color: #bb2d3b;
+}
+.info.cancel{
+    background-color: #157347;
+}
