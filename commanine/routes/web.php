@@ -114,6 +114,10 @@ Route::get('/admin/users/search', [AdminController::class, 'adminUsersSearch'])-
 
 // 관리자 유저 탈퇴
 Route::post('/admin/users/unregist/{user_id}', [AdminController::class,'adminUserUnregist'])->name('admin.users.unregist');
+// 관리자 유저 정지
+Route::post('/admin/users/ban/{user_id}', [AdminController::class,'adminUserBan'])->name('admin.users.ban');
+// 관리자 유저 정지 취소
+Route::post('/admin/users/cancelban/{user_id}', [AdminController::class,'adminUserCancelBan'])->name('admin.users.cancel.ban');
 // 관리자 유저 비밀번호 리셋
 Route::post('/admin/users/pwreset/{user_id}', [AdminController::class,'adminUserPwReset'])->name('admin.users.pw.reset');
 

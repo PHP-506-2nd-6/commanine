@@ -959,6 +959,38 @@ class AdminController extends Controller
         return redirect()->back();
     }
     
+    // 관리자 유저 정지 0727 add KMJ
+    public function adminUserBan($user_id) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+        
+        $user = Users::find($user_id);
+        if(!$user){
+            return redirect()->back();
+        }
+        $user->user_status = '1';
+        $user->save();
+        return redirect()->back();
+    }
+
+    // 관리자 유저 정지 복구 0727 add KMJ
+    public function adminUserCancelBan($user_id) {
+        $admin = Auth::guard('admins')->check();
+        if(!$admin){
+            return redirect()->route('admin.login');
+        }
+        
+        $user = Users::find($user_id);
+        if(!$user){
+            return redirect()->back();
+        }
+        $user->user_status = '0';
+        $user->save();
+        return redirect()->back();
+    }
+
     // 0724 byj
     // 예약 정보 수정
     public function adminReservationEdit($reserve_id) {

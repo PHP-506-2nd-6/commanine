@@ -13,6 +13,7 @@
                 <button type="submit" class="btn btn-dark">검색</button>
             </form>
             <div >
+                {{-- <span class="btnInfo">리셋 정지 복구</span> --}}
                 <table class="table">
                     <thead >
                         <tr>
@@ -23,7 +24,7 @@
                             <th scope="col">가입일자</th>
                             <th scope="col">탈퇴일자</th>
                             <th scope="col">비밀번호 리셋</th>
-                            <th scope="col">회원탈퇴</th>
+                            <th scope="col">회원정지</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,11 +44,24 @@
                                 </form>
                             </td>
                             <td class="td_chk">
-                                <form class="frm" action="{{route('admin.users.unregist',['user_id' => $val->user_id])}}" method="POST"
+                            @if($val->user_status == '1')
+                                <form class="frm" action="{{route('admin.users.cancel.ban',['user_id' => $val->user_id])}}" method="POST"
+                                    onsubmit="return confirm('{{$val->user_name}}회원의 정지를 취소하시겠습니까?');">
+                                    @csrf
+                                    <button type="submit" class="{{$val->user_status === '9'? 'btn btn-secondary' : 'btn btn-success'}}" {{$val->user_status === '9' ? "disabled" : ""}}>복구</button>
+                                </form>
+                            @else
+                                <form class="frm" action="{{route('admin.users.ban',['user_id' => $val->user_id])}}" method="POST"
+                                    onsubmit="return confirm('{{$val->user_name}}회원의 정지를 진행하시겠습니까?');">
+                                    @csrf
+                                    <button type="submit" class="{{$val->user_status === '9'? 'btn btn-secondary' : 'btn btn-danger'}}" {{$val->user_status === '9' ? "disabled" : ""}}>정지</button>
+                                </form>
+                            @endif
+                                {{-- <form class="frm" action="{{route('admin.users.unregist',['user_id' => $val->user_id])}}" method="POST"
                                     onsubmit="return confirm('{{$val->user_name}}회원의 탈퇴를 진행하시겠습니까?');">
                                     @csrf
                                     <button type="submit" class="{{isset($val->deleted_at)? 'btn btn-secondary' : 'btn btn-danger'}}" {{isset($val->deleted_at) ? "disabled" : ""}}>탈퇴</button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                         @empty
