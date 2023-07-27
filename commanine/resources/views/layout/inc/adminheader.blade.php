@@ -17,7 +17,7 @@
     </div> --}}
      <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                 <a href="{{route('admin.reservation')}}" class="navbar-brand">
+                <a href="{{route('admin.reservation')}}" class="navbar-brand">
                     <h3><img src="{{asset('img/commanine_favi.png')}}" alt="" class="logo"> commanine</h3>
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
