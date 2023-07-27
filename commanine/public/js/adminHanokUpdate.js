@@ -46,8 +46,8 @@
         // nextElementSibling 은 Element(요소)만 가져옴
         function collapse(element) {
             
-            let before = document.getElementsByClassName("active")[0];             // 기존에 활성화된 버튼
-            if (before && document.getElementsByClassName("active")[0] != element) {  // 자신 이외에 이미 활성화된 버튼이 있으면
+            let before = document.getElementsByClassName("aco-active")[0];             // 기존에 활성화된 버튼
+            if (before && document.getElementsByClassName("aco-active")[0] != element) {  // 자신 이외에 이미 활성화된 버튼이 있으면
                 before.nextElementSibling.style.maxHeight = null;   // 기존에 펼쳐진 내용 접고
                 before.classList.remove("active");                  // 버튼 비활성화
             }
