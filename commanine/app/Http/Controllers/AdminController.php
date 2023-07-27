@@ -206,8 +206,8 @@ class AdminController extends Controller
 
      // 예약 기간으로 필터링
      if (!empty($chkIn) && !empty($chkOut)) {
-        $reserve->whereDate('re.chk_in', '>=', $chkIn)
-            ->whereDate('re.chk_out', '<=', $chkOut);
+        $reserve->whereDate('re.created_at', '>=', $chkIn)
+            ->whereDate('re.created_at', '<=', $chkOut);
     }
 
     $reserve = $reserve->orderBy('re.id', 'desc')

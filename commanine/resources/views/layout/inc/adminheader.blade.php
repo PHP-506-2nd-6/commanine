@@ -5,7 +5,7 @@
 <header>
     <div class="header-box d-flex justify-content-between ">
         <div class="logo" style="padding: 10px 0">
-            <h1><a href="{{route('admin.reservation')}}" class="a-link">COMMANINE ADMIN</a></h1>
+            {{-- <h1><a href="{{route('admin.reservation')}}" class="a-link">COMMANINE ADMIN</a></h1> --}}
         </div>
         <div class="login">
             @if(!(session()->has('admin_id')))
