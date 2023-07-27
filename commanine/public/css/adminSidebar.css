@@ -139,12 +139,17 @@ header{
 
 
 /*** Navbar ***/
+.logo{
+    width: 30px;
+    height: 30px;
+    border-radius: 0;
+}
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
     color: var(--dark);
     font-weight: 500;
     border-left: 3px solid var(--light);
-    border-radius: 0 30px 30px 0;
+    /* border-radius: 0 30px 30px 0; */
     outline: none;
 }
 

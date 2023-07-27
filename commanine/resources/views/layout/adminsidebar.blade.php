@@ -13,7 +13,7 @@
         <div class="sidebar pe-4 pb-3" style="width:15%;">
             <nav class="navbar bg-light navbar-light">
                 <a href="{{route('admin.reservation')}}" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><img src="" alt=""> commanine</h3>
+                    <h3><img src="{{asset('img/commanine_favi.png')}}" alt="" class="logo"> commanine</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -26,10 +26,10 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{route('admin.reservation')}}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>예약정보</a>
+                    <a href="{{route('admin.reservation')}}" class="nav-item nav-link"><i class="fa fa-calendar me-2"></i>예약정보</a>
                     <a href="{{route('admin.review')}}" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>리뷰관리</a>
-                    <a href="{{route('admin.users')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>유저정보</a>
-                    <a href="{{route('admin.hanoks')}}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>숙소 정보</a>
+                    <a href="{{route('admin.users')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>유저정보</a>
+                    <a href="{{route('admin.hanoks')}}" class="nav-item nav-link"><i class="fa fa-building me-2"></i>숙소 정보</a>
                 </div>
             </nav>
         </div>
