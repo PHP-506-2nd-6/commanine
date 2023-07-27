@@ -69,6 +69,14 @@ class UsersController extends Controller
                     ->back()
                     ->with('error',$error);
         }
+        // 0727 add KMJ
+        // 정지된 유저일 경우
+        if ($user->user_status == '1') {
+            $error = "정지된 회원입니다. 관리자에게 문의하세요.";
+            return redirect()
+                    ->back()
+                    ->with('error',$error);
+        }
         Auth::login($user);
         if(Auth::check()){
             session($user->only('user_id','user_name'));
