@@ -27,17 +27,26 @@
                     <textarea type="text" name="hanok_comment" id="hanok_comment" rows="3" required></textarea>
                     {{-- <input type="text" name="hanok_comment" id="hanok_comment"> --}}
                 </div>
-                <div class="grid_conn_1">
+                {{-- 0727 del KMH --}}
+                {{-- <div class="grid_conn_1">
                     <label for="hanok_addr" class="require">주소</label>
-                    <input type="text" name="hanok_addr" id="hanok_addr" required>
+                    <input type="text" name="hanok_addr" id="hanok_addr" required> 
+                </div> --}}
+                {{-- 0727 del end KMH --}}
+                {{-- 0727 add KMH --}}
+                <div class="grid_conn_1">
+                    <label for="hanok_addr1" class="require">주소</label>
+                    <input type="text" id="address_kakao" name="hanok_addr"  required  class="ad" />
+                    {{-- <label for="hanok_addr2" class="require">상세주소</label>
+                    <input type="text" name="hanok_addr2"  required /> --}}
                 </div>
                 <div class="grid_conn_1">
                     <label for="latitude" class="require">위도</label>
-                    <input type="text" name="latitude" id="latitude" required>
+                    <input type="text" name="latitude" id="latitude" required >
                 </div>
                 <div class="grid_conn_1">
                     <label for="longitude" class="require">경도</label>
-                    <input type="text" name="longitude" id="longitude" required>
+                    <input type="text" name="longitude" id="longitude" required >
                 </div>
                 <div class="grid_conn_1">
                     <label for="hanok_num" class="require">숙소 전화번호</label>
@@ -101,4 +110,8 @@
     alert("{{ session('errMsg') }}")
 </script>
 @endif
+{{-- 0727 add KMH --}}
+{{-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ config('app.kakaomap_key') }}"></script> --}}
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ config('app.kakaomap_key') }}&​libraries=services,clusterer,drawing"></script>
 <script src="{{asset('js/adminhanoksinsert.js')}}"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
