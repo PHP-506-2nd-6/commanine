@@ -182,7 +182,7 @@ class AdminController extends Controller
         ->SELECT('re.id as reserve_id','re.reserve_name','re.reserve_num','han.id','han.hanok_name', 'room.room_name', 'room.room_price', 're.chk_in', 're.chk_out', 're.reserve_adult', 're.user_id', 're.reserve_flg','re.created_at')
         // ->where('re.id', $reserve_id)
         ->orderBy('re.id', 'desc')
-        ->paginate(15);
+        ->paginate(10);
 
         return view('adminReserve')->with('reservations',$reserve)->with('reserveStatus',"");
     }
@@ -240,7 +240,7 @@ class AdminController extends Controller
     }
 
     $reserve = $reserve->orderBy('re.id', 'desc')
-        ->paginate(15);
+        ->paginate(10);
         return view('adminReserve')->with('reservations',$reserve)->with('reserveStatus',$reserveStatus);
     }
 
