@@ -19,7 +19,7 @@
     <div class="position-relative bg-white d-flex p-0">
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
-            <h2 class="reserve_title top-title">예약수정</h2>
+            <h3 class="reserve_title top-title">예약수정</h3>
             {{-- <form action="{{ route('admin.reservation.up', ['reserve_id' => $reservations->reserve_id]) }}" method="POST"> --}}
             <form action="{{ route('admin.reservation.up', ['reserve_id' => $reservations->reserve_id]) }}" method="POST">
                 @csrf

@@ -140,3 +140,6 @@ input:focus label{
 img {
     border-radius: 20px / 20px;
 }
+.col-9 {
+    margin-top: 40px;
+}

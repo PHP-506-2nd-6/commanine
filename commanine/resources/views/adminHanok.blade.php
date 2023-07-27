@@ -8,7 +8,7 @@
     <div class="position-relative bg-white d-flex p-0">
     @include('layout.adminsidebar')
     <div class="container col-9 content-box">
-        <h2 class="top-title">숙소관리</h2>
+        <h3 class="top-title">숙소관리</h3>
         <div class="d-flex content-box-1">
             <form action="{{route('admin.hanoks.search')}}" class="col-9" method="get">
                 <input type="text" placeholder="숙소명 / 주소 입력" name="hanoks" class="input">

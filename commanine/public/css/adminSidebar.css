@@ -66,6 +66,15 @@ header{
 } */
 
 /********** Template CSS **********/
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    font-family: 'S-CoreDream-3Light';
+}
 /* vesion3 */
 :root {
     --primary: #009CFF;
@@ -264,4 +273,6 @@ header{
         margin-left: 15px;
     }
 }
+
+/* 폰트 */
 

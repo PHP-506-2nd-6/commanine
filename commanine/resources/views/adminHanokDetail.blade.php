@@ -16,7 +16,7 @@
         <div class="container col-9 content-box" >
             <div class="hanoks-container">
                 <div class="d-flex justify-content-between">
-                    <h2 class="hanok-title top-title">숙소 상세관리</h2>
+                    <h3 class="hanok-title top-title">숙소 상세관리</h3>
                     <div class="d-flex justify-content-end  hanoks">
                         <button type="button" class=" btn btn-outline-danger cancel-btn" onclick="location.href='{{route('admin.hanoks')}}'">취소</button>
                         <button type="button" class=" btn btn-outline-dark " onclick="location.href='{{route('admin.rooms.insert',[ 'hanok_id' => $hanoks->id ])}}'">객실 등록</button>
@@ -77,7 +77,7 @@
                             {{-- </span> --}}
                         </div>
                         <div class="d-flex align-items-center">
-                            <h3 class="col-2 hanok-tit require">숙소 이미지</h3>
+                            <h4 class="col-2 hanok-tit require">숙소 이미지</h4>
                             <div class="imgBox col-10 hanok-con d-flex justify-content-between">
                                 <span >
                                     <img src="{{asset($hanoks->hanok_img1)}}" style="width:200px; height:150px;" >
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
-                            <h3  class="col-2 hanok-tit">숙소 이미지 변경</h3>
+                            <h4  class="col-2 hanok-tit">숙소 이미지 변경</h4>
                             <div class="col-10 hanok-con d-flex justify-content-between">
                                 <div class="preview-box" >
                                     <label for="hanok_img1">첫번째 사진</label>
@@ -120,7 +120,7 @@
                             
                         @endphp
                         <div class="d-flex align-items-center">
-                            <h3 class="col-2 amenity-tit hanok-tit require">어메니티</h3>
+                            <h4 class="col-2 amenity-tit hanok-tit require">어메니티</h4>
                             <div class="col-10 d-flex row">
                                 <div  class="d-flex" >
                                     <div class="d-flex">
@@ -210,7 +210,7 @@
             <div class="line"></div>
             {{-- 객실 --}}
             <div class="rooms container">
-                <h2 class="room-title" >객실 정보</h2>
+                <h3 class="room-title" >객실 정보</h3>
                 @forelse($rooms as $value)
                     <div class="rooms">
                         @if(session()->has('roomError'))
@@ -273,7 +273,7 @@
                                 <input type="file" name="room_img[]" multiple accept="image/*" class="col-10 room-con img-file ">
                             </div> --}}
                             <div class="d-flex align-items-center">
-                                <h3 class="col-2 room-tit require">객실 이미지</h3>
+                                <h4 class="col-2 room-tit require">객실 이미지</h4>
                                 <div class="imgBox col-10 room-con d-flex justify-content-between">
                                     <span >
                                         <img src="{{asset($value->room_img1)}}" style="width:200px; height:150px;" >
@@ -287,7 +287,7 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
-                                <h3  class="col-2 room-tit ">객실 이미지 변경</h3>
+                                <h4  class="col-2 room-tit ">객실 이미지 변경</h4>
                                     <div class="col-10 hanok-con d-flex justify-content-between">
                                         <div class=" preview-box">
                                             <label for="room_img1">첫번째 사진</label>

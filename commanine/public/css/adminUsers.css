@@ -67,3 +67,6 @@ tbody > tr:hover{
 .info.cancel{
     background-color: #157347;
 }
+.col-9 {
+    margin-top: 40px;
+}

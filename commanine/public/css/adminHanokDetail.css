@@ -112,3 +112,6 @@ input:focus , textarea:focus{
 .hanok-title{
     margin-top:20px;
 }
+.col-9 {
+    margin-top: 40px;
+}

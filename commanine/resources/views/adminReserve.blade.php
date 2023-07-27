@@ -15,7 +15,7 @@
     <div class="position-relative bg-white d-flex p-0" >
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
-        <h2>예약관리</h2>
+        <h3>예약관리</h3>
         <div class="form_wrap">
             <form class="form" action="{{route('admin.reservation.search')}}" method="get">
                 <div class="search_form">
