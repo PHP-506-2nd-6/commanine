@@ -5,6 +5,11 @@
  * 이력       : 0724 BYJ new
  * *********************************** */ --}}
 @extends('layout.adminlayout')
+<?php
+    $from = new Datetime($reservations->chk_in);
+    $to = new Datetime($reservations->chk_out);
+    $gap = date_diff( $from, $to )->days;
+?>
 <head>
     <link rel="stylesheet" href="{{asset('css/adminReserve.css')}}">
     <link rel="stylesheet" href="{{asset('css/adminSidebar.css')}}">
@@ -36,13 +41,13 @@
                     <input style="border: 0; outline:none;" type="text" name="reserve_id" value="{{$reservations->created_at}}" readonly>
                     <br>
                     <label for="">체크인/체크아웃</label>
-                    <input style="border: 0; outline:none;" type="text" name="chk" value="{{$reservations->chk_in}}~{{$reservations->chk_out}}" readonly>
+                    <input style="border: 0; outline:none;" type="text" name="chk" value="{{substr($reservations->chk_in,0,10)}}~{{substr($reservations->chk_out,0,10)}}" readonly>
                     <br>
                     <label for="">인원(성인/아동)</label>
                     <input style="border: 0; outline:none;" type="text" name="reserve_adult" value="{{$reservations->reserve_adult}}/{{$reservations->reserve_child}}" readonly>
                     <br>
                     <label for="">가격</label>
-                    <input style="border: 0; outline:none;" type="text" name="room_price" value="{{$reservations->room_price}}" readonly>
+                    <input style="border: 0; outline:none;" type="text" name="room_price" value="{{number_format($gap * (int)$reservations->room_price)}}원" readonly>
                     <br>
                     <label for="reserve_flg" class="require">예약상태</label>
                     <select name="reserve_flg" id="reserve_flg">
