@@ -1,4 +1,4 @@
-
+{{-- vesion2 --}}
 {{-- <div class="text-center col-3 sidebar" style="width:15%;">
     <ul>
         <li><a  href="{{route('admin.reservation')}}" class="a-link">예약 정보</a></li>
@@ -9,6 +9,7 @@
 </div> --}}
 
 
+{{-- vesion3 --}}
  <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3" style="width:15%;">
             <nav class="navbar bg-light navbar-light">

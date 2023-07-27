@@ -1,3 +1,4 @@
+/* vesion2 */
 /* .header-box{
     background-color: #F6F6F0;
 }
@@ -65,6 +66,7 @@ header{
 } */
 
 /********** Template CSS **********/
+/* vesion3 */
 :root {
     --primary: #009CFF;
     --light: #F3F6F9;
@@ -212,3 +214,7 @@ header{
     background: #FFFFFF;
     border-radius: 40px;
 }
+
+
+
+

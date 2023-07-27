@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 @section('contents')
-    <div class="container row main-container" style="max-width:2000px">
+    {{-- <div class="container row main-container" style="max-width:2000px">--}}{{--version2 --}}
+    <div class="position-relative bg-white d-flex p-0" >
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
         <h2>예약관리</h2>
