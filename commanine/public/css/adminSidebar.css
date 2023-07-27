@@ -153,8 +153,23 @@ header{
     height: 30px;
     border-radius: 0;
 }
+.logout{
+    font-size: 14px;
+    border-radius: 3px;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+}
+.logout:hover{
+    background-color: #fff;
+    color: #000;
+    transition: 0.2s;
+}
 .navbar-nav{
     margin-left: 20px;
+}
+.navbar-nav.w-100 {
+    margin-top: 60px;
 }
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
