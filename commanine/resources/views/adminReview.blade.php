@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="{{asset('css/adminReview.css')}}">
 </head>
 @section('contents')
-    <div class="container row main-container" style="max-width:2000px">
+    {{-- <div class="container row main-container" style="max-width:2000px"> --}}{{-- version2 --}}
+    <div class="position-relative bg-white d-flex p-0">
         @include('layout.adminsidebar')
         <div class="container col-9 content-box">
         <h2 class="top-title">리뷰관리</h2>
