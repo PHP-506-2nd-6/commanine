@@ -64,7 +64,9 @@ header{
 .top-title{
     margin-top:20px;
 } */
-
+.col-9{
+    margin-top: 40px;
+}
 /********** Template CSS **********/
 /* vesion3 */
 :root {
