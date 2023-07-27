@@ -154,7 +154,6 @@ class AdminController extends Controller
         // ->where('re.id', $reserve_id)
         ->orderBy('re.id', 'desc')
         ->paginate(15);
-        
 
         return view('adminReserve')->with('reservations',$reserve)->with('reserveStatus',"");
     }
@@ -994,9 +993,14 @@ class AdminController extends Controller
     $reserve->reserve_name = $req->input('reserve_name');
     $reserve->reserve_num = $req->input('reserve_num');
     $reserve->reserve_flg = $req->input('reserve_flg');
-
-    // 업데이트된 예약 정보를 저장
+    // 예약 정보 저장
     $reserve->save();
+    
+    // 수정이 완료 세션 플래시 메시지
+    $success= '수정이 완료되었습니다.';
+    session()->flash('success', $success);
+
+    
 
     // 수정이 완료되면 예약 목록 페이지 또는 업데이트된 예약 정보를 보여주는 페이지로 리다이렉션
     return redirect()->route('admin.reservation');
