@@ -17,24 +17,12 @@
     </div> --}}
      <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                 <a href="{{route('admin.reservation')}}" class="navbar-brand mx-4 mb-3">
-                    <h3><img src="{{asset('img/commanine_favi.png')}}" alt="" style="width: 30px;"> commanine</h3>
+                <a href="{{route('admin.reservation')}}" class="navbar-brand">
+                    <h3><img src="{{asset('img/commanine_favi.png')}}" alt="" class="logo"> commanine</h3>
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="{{asset('img/user.jpg')}}" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">Log Out</a>
-                        </div>
+                        <strong>{{session('admin_id')}}</strong> 님 <button type="button" class="logout" onClick="location.href='{{route('admin.logout')}}'">로그아웃</button>
                     </div>
                 </div>
             </nav>

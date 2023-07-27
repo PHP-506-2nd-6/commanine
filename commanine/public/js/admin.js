@@ -1,5 +1,5 @@
 const url = location.pathname;
-const navItems = document.querySelectorAll('.nav-item');
+const navItems = document.querySelectorAll('.nav-item.nav-link');
 // 다른 페이지 이동 시 사이드바 탭 활성화 유지
 if (url.includes('reservation')) {
     navItems[0].className += ' active';
