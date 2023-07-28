@@ -38,14 +38,14 @@
                     <label for="hanok_addr1" class="require">주소</label>
                     <input type="text" id="address_kakao" name="hanok_addr" required value="" onblur="getAddress()" />
                 </div>
-                <div class="grid_conn_1">
-                    <label for="latitude" class="require">위도</label>
-                    <input type="text" name="latitude" id="latitude" value="">
-                </div>
-                <div class="grid_conn_1">
-                    <label for="longitude" class="require">경도</label>
-                    <input type="text" name="longitude" id="longitude" value="">
-                </div>
+                {{-- <div class="grid_conn_1"> --}}
+                    {{-- <label for="latitude" class="require">위도</label> --}}
+                    <input type="hidden" name="latitude" id="latitude" value="">
+                {{-- </div> --}}
+                {{-- <div class="grid_conn_1"> --}}
+                    {{-- <label for="longitude" class="require">경도</label> --}}
+                    <input type="hidden" name="longitude" id="longitude" value="">
+                {{-- </div> --}}
                 <div class="grid_conn_1">
                     <label for="hanok_num" class="require">숙소 전화번호</label>
                     <input type="number" name="hanok_num" id="hanok_num" required>
