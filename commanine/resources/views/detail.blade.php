@@ -38,7 +38,7 @@
                         <input type="hidden" value="{{ session('user_id') }}" id="user">
                         <input type="hidden" value="{{ $wishFlg }}" id="wishFlg">
 
-                            <button onclick="storeWish()"><img src="{{asset('img/icon/heart.png')}}" class="wish wishHeart" alt="wish" style="width:25px;height:25px;">
+                            <button onclick="storeWish()"><img src="{{asset('img/icon/heart1.png')}}" class="wish wishHeart" alt="wish" style="width:25px;height:25px;">
                             </button>
                             <button onclick="deleteWish()"><img src="{{asset('img/icon/heart_red.png')}}" class="wish wishHeartRed" alt="wish" style="width:25px;height:25px;">
                             </button>
