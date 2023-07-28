@@ -109,9 +109,9 @@ input:focus , textarea:focus{
 .cancel-btn{
     margin-right: 20px;
 }
-.hanok-title{
+/* .hanok-title{
     margin-top:20px;
-}
+} */
 
 
 .collapsible {
@@ -236,7 +236,3 @@ input:focus , textarea:focus{
 }
 
  */
-
-.col-9 {
-    margin-top: 40px;
-}

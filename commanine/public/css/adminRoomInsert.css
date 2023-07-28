@@ -4,9 +4,9 @@
     * 파일명     : adminRoomInsert.css
     * 이력       : 0722 v001 KMH new
     * *********************************** */ 
-.hanoks-info,.rooms,.title{
+/* .hanoks-info,.rooms,.title{
     margin-top:20px;
-}
+} */
 .hanok-tit,.room-tit{
     font-size:18px;
     text-align: left;
@@ -101,6 +101,6 @@ input:focus , textarea:focus{
 .text-right{
     text-align: right;
 }
-.col-9 {
+/* .col-9 {
     margin-top: 40px;
-}
+} */
