@@ -43,7 +43,7 @@
                     @forelse($review as $val)
                     <tr>
                         <td class="td_chk">{{ $val->user_name }}</td>
-                        <td class="td_chk"><a href="{{route('hanoks.detail', ['id' => $val->hanok_id])}}" target="_blank">{{ $val->rev_content }}</a></td>
+                        <td class="td_chk"><a href="{{route('hanoks.detail', ['id' => $val->hanok_id, 'page'=>'3'])}}" target="_blank">{{ $val->rev_content }}</a></td>
                         {{-- <td class="td_chk"><a href="{{ route('hanoks.detail', ['id' => $val->hanok_id]) }}">{{ $val->rev_content }}</a></td> --}}
                         <td class="td_chk">{{ $val->rate }}</td>
                         <td class="td_chk">{{ $val->hanok_name }}</td>
@@ -63,7 +63,7 @@
                         </td>
                         {{-- <td><a href="{{route('admin.review.update', ['review_id' => $val->rev_id])}}"><button type="button">수정</button></a></td> --}}
                         <td>
-                            <form class="frm" method="POST" action="{{ route('admin.review.delete', ['review_id' => $val->rev_id]) }}">
+                            <form class="frm" method="POST" action="{{ route('admin.review.delete', ['review_id' => $val->rev_id]) }}" onsubmit="return confirm('리뷰를 삭제하시겠습니까?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger">삭제</button>

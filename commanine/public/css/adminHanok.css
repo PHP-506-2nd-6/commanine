@@ -123,6 +123,7 @@
 
 div>input{
     padding-left:10px;
+    /* height: 100%; */
 }
 input:focus{
     outline:none;
@@ -144,4 +145,7 @@ input:focus label{
 }
 img {
     border-radius: 20px / 20px;
+}
+.input{
+    height: 36px;
 }

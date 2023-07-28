@@ -167,7 +167,8 @@ class ResearchController extends Controller
             $inputChkOut = $val_chkOut;
             $val_chkOut = str_replace('-','',$val_chkOut);
         }
-        if( $val_adults === null || $val_kids === null ) {
+        // if( $val_adults === null || $val_kids === null ) {
+        if( $val_adults === null) {
             $val_adults = '2';
             $val_kids = '0';
             $val_count = (int)$val_adults + (int)$val_kids;
