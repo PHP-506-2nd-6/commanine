@@ -36,7 +36,8 @@
 
                         <div class="d-flex align-items-center">
                             <label for="hanok_addr" class="col-2 hanok-tit require">주소</label>
-                            <input type="text" name="hanok_addr" id="hanok_addr" class= "col-10 hanok-con" value="{{isset($hanoks->hanok_addr) ? $hanoks->hanok_addr : ""}}">
+                            {{-- <input type="text" name="hanok_addr" id="hanok_addr" class= "col-10 hanok-con" value="{{isset($hanoks->hanok_addr) ? $hanoks->hanok_addr : ""}}"> --}}
+                            <span class= "col-10 hanok-con">{{isset($hanoks->hanok_addr) ? $hanoks->hanok_addr : ""}}</span>
                         </div>
 
                         <button type="button" class="collapsible" onclick="collapse(this);">숙소 상세 보기</button>

@@ -375,7 +375,7 @@ class AdminController extends Controller
             'hanok_id'          => 'required'
             ,'hanok_name'       => 'required'
             , 'hanok_comment'   => 'required'
-            , 'hanok_addr'      => 'required'
+            // , 'hanok_addr'      => 'required'
             , 'hanok_num'       => 'required'
             , 'hanok_info'      => 'required'
             , 'hanok_refund'    => 'required'
@@ -399,7 +399,7 @@ class AdminController extends Controller
         // 요청된 aemnity랑 데이터베이스에 있는 카테고리들 비교 
         // compare_arr1 => 체크박스중 추가한 값들을 배열로 나타냄
         $compare_arr1 = array_diff($requestAmenity, $category); 
-        // compare_arr2 => 체크박스중 제가한 값들을 배열로 나타냄
+        // compare_arr2 => 체크박스중 제거한 값들을 배열로 나타냄
         $compare_arr2 = array_diff($category,$requestAmenity); 
          Log::debug('카테고리1 비교',$compare_arr1);   
          Log::debug('카테고리2 비교',$compare_arr2);   
@@ -418,9 +418,9 @@ class AdminController extends Controller
             $arrKey[]='hanok_comment';
         }
 
-        if($request->hanok_addr !== $hanoks->hanok_addr){
-            $arrKey[]='hanok_addr';
-        }
+        // if($request->hanok_addr !== $hanoks->hanok_addr){
+        //     $arrKey[]='hanok_addr';
+        // }
         if($request->hanok_num !== $hanoks->hanok_num){
             $arrKey[]='hanok_num';
         }
@@ -459,12 +459,12 @@ class AdminController extends Controller
             // 유효성 검사
             $validate =  $request->validate($arrCheck);
             Log::debug('유효성검사');
+            // 트랜잭션 시작
+            DB::beginTransaction();
+            Log::debug('Start transaction');
             foreach($arrKey as $val){
                 // $arrKey에 amenity가 있는 경우
                 if($val === 'amenity'){
-                    // 트랜잭션 시작
-                    DB::beginTransaction();
-                    Log::debug('Start amenity transaction');
                     // $compare_arr1이 있을 경우에는 insert를 해주어야 하고
                     // $compare_arr2가 있는 경우에는 delete를 해주어야 함
                     // 추가했을 때 insert 
@@ -482,14 +482,17 @@ class AdminController extends Controller
                             if(!$insert_amenity){
                                 throw new Exception('amenity insert Error');
                             }
+                            
                         }
                         Log::debug('insert success');
-                        continue;
+                        
                     }
                     // 체크박스를 해제 했을 때 delete
                     if(!empty($compare_arr2)){
+                        Log::debug('-------------amenity 삭제--------------');
                         // $compare_arr2에 들어있는 값의 개수 만큼 delete
                         foreach($compare_arr2 as $val){
+                            Log::debug('삭제할 값 확인',[$val]);
                             $deleted_amenity = DB::table('amenities')
                                 ->where('hanok_id','=',$request->hanok_id)
                                 ->where('amenity_category','=',$val)
@@ -500,8 +503,8 @@ class AdminController extends Controller
                             }
                         }
                         Log::debug('delete success');
-                        continue;
                     }
+                    continue;
                 }
                 // 수정한 hanok_img1가 있는 경우
                 if($val === 'hanok_img1'){
