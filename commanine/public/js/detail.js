@@ -214,10 +214,7 @@ var tr=document.getElementById("stars-inner").style.width = `${starPercentage - 
 const modalFilterBtn = document.querySelector('.modalFilterBtn');
 const modalAdult = document.querySelector('#modalAdult');
 const modalChild = document.querySelector('#modalChild');
-const adults = document.querySelector('#adults');
-const kids = document.querySelector('#kids');
-const adultCnt = document.querySelector('.adultCnt');
-const kidCnt = document.querySelector('.kidCnt');
+
 const modalChkIn = document.querySelector('#modalChkIn');
 const modalChkOut = document.querySelector('#modalChkOut');
 const chk_in = document.querySelector('#chk_in');
