@@ -20,14 +20,14 @@ const likeBtn = document.querySelector(".like");
 
 const hanokId = window.location.pathname.substring(15);
 
-// 검색했을 때 hanok_id sumbit 안 되도록 막는 기능
+// 검색했을 때 room_id sumbit 안 되도록 막는 기능
 searchBtn.addEventListener('click', () => {
     room_id.disabled = true;
     frm.action="";
 })
 
 // 0625 KMJ add
-// 예약하기 누르면 hanok_id 전달되도록 하는 기능
+// 예약하기 누르면 room_id 전달되도록 하는 기능
 reserveBtn.forEach((btn, index)=> {
     btn.addEventListener('click', () => {
         // 폼 action 결제 페이지로 바꾸기
@@ -210,3 +210,25 @@ const starTotal = 5;
 const starPercentage = ((rating/starTotal)*100)
 
 var tr=document.getElementById("stars-inner").style.width = `${starPercentage - 2.8}%`;
+
+const modalFilterBtn = document.querySelector('.modalFilterBtn');
+const modalAdult = document.querySelector('#modalAdult');
+const modalChild = document.querySelector('#modalChild');
+const adults = document.querySelector('#adults');
+const kids = document.querySelector('#kids');
+const adultCnt = document.querySelector('.adultCnt');
+const kidCnt = document.querySelector('.kidCnt');
+const modalChkIn = document.querySelector('#modalChkIn');
+const modalChkOut = document.querySelector('#modalChkOut');
+const chk_in = document.querySelector('#chk_in');
+const chk_out = document.querySelector('#chk_out');
+modalAdult.value = adultsVal.value;
+modalChild.value = kidsVal.value;
+// 모달에서 필터링form으로 데이터 전달해서 submit하기
+modalFilterBtn.addEventListener('click', () => {
+    adultsHide.value = modalAdult.value;
+    kidsHide.value = modalChild.value;
+    chk_in.value = modalChkIn.value;
+    chk_out.value = modalChkOut.value;
+    frm.submit();
+})

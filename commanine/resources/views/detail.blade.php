@@ -298,36 +298,35 @@
                     </div>
                     <div class="modal-body">
                         <div class="modalForm">
-                            <form method="get" action="{{route('hanoks.detail',$hanok->id)}}" >
-                                <input type="hidden" name="hanok" class="hanokId" value="{{$hanok->id}}">
+                            {{-- <form method="get" action="{{route('hanoks.detail',$hanok->id)}}"> --}}
                                 <div class="search_form">
                                     <div class="search_form2">
                                         <div id="modalDate">
-                                            <label for="chk_in">체크인</label>
-                                            <input name="chk_in" type="text" class="datepicker" placeholder="가는 날짜" value="{{$inpData['val_chkIn']}}" autocomplete="off" readonly>
+                                            <label>체크인</label>
+                                            <input type="text" id="modalChkIn" class="datepicker" placeholder="가는 날짜" value="{{$inpData['val_chkIn']}}" autocomplete="off" readonly>
                                         </div>
                                         <div id="modalDate">
-                                            <label for="chk_out">체크아웃</label>
-                                            <input name="chk_out" type="text" class="datepicker2" placeholder="오는 날짜" value="{{$inpData['val_chkOut']}}" autocomplete="off" readonly>
+                                            <label>체크아웃</label>
+                                            <input type="text" id="modalChkOut" class="datepicker2" placeholder="오는 날짜" value="{{$inpData['val_chkOut']}}" autocomplete="off" readonly>
                                         </div>
                                     </div>
                                         <div>
                                             <div id="modalCount">
                                                 <label for="adults">성인</label>
                                                 <div class="pro-qty row">
-                                                    <input type="number" name="reserve_adult" value="{{$inpData['val_adult']}}" readonly="readonly">
+                                                    <input type="number" id="modalAdult" value="{{$inpData['val_adult']}}" readonly="readonly">
                                                 </div>
                                             </div>
                                             <div id="modalCount">
                                                 <label for="kids">어린이</label>
                                                 <div class="pro-qty row">
-                                                    <input type="number" name="reserve_child" value="{{$inpData['val_child']}}" readonly="readonly">
+                                                    <input type="number" id="modalChild" value="{{$inpData['val_child']}}" readonly="readonly">
                                                 </div>
                                             </div>
                                         </div>
                                     <div id="modalFilterBtnCon"><button id="mainsearch" class="modalFilterBtn" type="submit">적 용</button></div>
                                 </div>
-                            </form>
+                            {{-- </form> --}}
                         </div>
                     </div>
                 </div>
