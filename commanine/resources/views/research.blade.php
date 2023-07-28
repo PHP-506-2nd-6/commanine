@@ -127,10 +127,10 @@
     </div>
     <div class = "range_1">
         <ul class = "range_2">
-            <a href="{{route('research.page.get', array_merge($arr, ['range' => '0']) );}}"><li>가격 낮은 순</li></a>
-            <a href="{{route('research.page.get', array_merge($arr, ['range' => '1']) );}}"><li>가격 높은 순</li></a>
-            <a href="{{route('research.page.get', array_merge($arr, ['range' => '2']) );}}"><li>리뷰 순</li></a>
-            <a href="{{route('research.page.get', array_merge($arr, ['range' => '3']) );}}"><li>별점 순</li></a>
+            <a href="{{route('research.page.get', array_merge($arr, ['range' => '0']) );}}" onclick="li_focus(event, 'li_focus_1')" class="li_focus_1"><li class="li_type">가격 낮은 순</li></a>
+            <a href="{{route('research.page.get', array_merge($arr, ['range' => '1']) );}}" onclick="li_focus(event, 'li_focus_2')" class="li_focus_2"><li class="li_type">가격 높은 순</li></a>
+            <a href="{{route('research.page.get', array_merge($arr, ['range' => '2']) );}}" onclick="li_focus(event, 'li_focus_3')" class="li_focus_3"><li class="li_type">리뷰 순</li></a>
+            <a href="{{route('research.page.get', array_merge($arr, ['range' => '3']) );}}" onclick="li_focus(event, 'li_focus_4')" class="li_focus_4"><li class="li_type">별점 순</li></a>
         </ul>
     </div>
 

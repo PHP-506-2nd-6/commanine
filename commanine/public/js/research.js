@@ -138,4 +138,20 @@ plusBtn[1].addEventListener('click',function(){
   }
 })
 
+// 웹 페이지 요소가 모두 로딩 됐을때 실행
+document.addEventListener('DOMContentLoaded', function() {
+  // URL에서 'range' 매개변수를 가져옵니다.
+  const urlParams = new URLSearchParams(window.location.search);
+  const rangeParam = urlParams.get('range');
 
+  // 'range' 매개변수에 따라 포커스를 설정합니다.
+  if (rangeParam === '0') {
+      document.querySelector('.li_focus_1 .li_type').classList.add('focused');
+  } else if (rangeParam === '1') {
+      document.querySelector('.li_focus_2 .li_type').classList.add('focused');
+  } else if (rangeParam === '2') {
+      document.querySelector('.li_focus_3 .li_type').classList.add('focused');
+  } else if (rangeParam === '3') {
+      document.querySelector('.li_focus_4 .li_type').classList.add('focused');
+  }
+});

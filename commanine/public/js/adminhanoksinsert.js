@@ -46,7 +46,7 @@ var geocoder = new kakao.maps.services.Geocoder();
 
 // 위도 경도 저장
 function getAddress(){
-  console.log('값가져오기');
+  // console.log('값가져오기');
     let val = document.getElementById('address_kakao').value;
     let latitude = document.getElementById('latitude');
     let longitude = document.getElementById('longitude');
