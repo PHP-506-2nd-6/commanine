@@ -112,6 +112,6 @@
 @endif
 {{-- 0727 add KMH --}}
 {{-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ config('app.kakaomap_key') }}"></script> --}}
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ config('app.kakaomap_key') }}&​libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ config('app.kakaomap_key') }}&libraries=services,clusterer,drawing"></script>
 <script src="{{asset('js/adminhanoksinsert.js')}}"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
