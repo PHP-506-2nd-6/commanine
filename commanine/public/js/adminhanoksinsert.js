@@ -31,32 +31,30 @@ function readURL(input) {
 }
 
 //0727 add KMH
-
-window.onload = function(){
-  document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
-      //카카오 지도 발생
+// 주소 가져오기
+window.onload = function () {
+  document.getElementById("address_kakao").addEventListener("click", function () {
       new daum.Postcode({
-          oncomplete: function(data) { //선택시 입력값 세팅
-              document.getElementById("address_kakao").value = data.address; // 주소 넣기
-              document.querySelector("input[name=hanok_num]").focus(); //상세입력 포커싱
-          }
+        oncomplete: function (data) {
+          document.getElementById("address_kakao").value = data.address;
+        }
       }).open();
-  });
+    });
 }
-
-
 var geocoder = new kakao.maps.services.Geocoder();
 
-const ad = document.getElementsByClassName('ad');
 
-ad.addEventListener('change', () => {
-    var val = ad.value;
-    var latitude = document.getElementById('latitude');
-    var longitude = document.getElementById('longitude');
+// 위도 경도 저장
+function getAddress(){
+  console.log('값가져오기');
+    let val = document.getElementById('address_kakao').value;
+    let latitude = document.getElementById('latitude');
+    let longitude = document.getElementById('longitude');
     // if(!val) {
-    //     window.scrollTo(0,0);
-    //     $err = document.getElementById('err_up').innerHTML = "정보를 입력하세요";
-    //     err_up.style.display = 'block';
+    //     // window.scrollTo(0,0);
+    //     // $err = document.getElementById('err_up').innerHTML = "정보를 입력하세요";
+    //     // err_up.style.display = 'block';
+    //     // console.log('실패');
     //     return;
     // }
 
@@ -65,14 +63,9 @@ ad.addEventListener('change', () => {
             // console.log(result);
             // console.log(result[0]['x']);
             // console.log(result[0]['y']);
-            latitude.value = result[0]['x'];
+            longitude.value = result[0]['x'];
             latitude.value = result[0]['y'];
-
-            // document.getElementById('frm').submit();
-
-            // document.getElementById('submit_btn').setAttribute("disabled", "true");
-
         }
     };
     geocoder.addressSearch(val, callback);
-});
+};
