@@ -20,7 +20,7 @@ style="margin: 20px auto">
                     <span style="display:inline-block;margin-top:10px;">임시비밀번호는 {{$pw}} 입니다.</span>
                     <br>
                     <br>
-                    <a href="http://192.168.0.40/users/login"
+                    <a href="http://192.168.0.79/users/login"
                     style="color:#fff; background: #000; border-radius: 5px; padding: 10px 20px;display:inline-block;text-decoration:none;"
                     >로그인 하러 가기</a>
                     {{-- <ul>
