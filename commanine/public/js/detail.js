@@ -31,7 +31,7 @@ searchBtn.addEventListener('click', () => {
 reserveBtn.forEach((btn, index)=> {
     btn.addEventListener('click', () => {
         // 폼 action 결제 페이지로 바꾸기
-        frm.action="http://192.168.0.40/users/payment";
+        frm.action="http://192.168.0.79/users/payment";
         // room_id활성화 시키고 버튼 value에 있는 객실 번호 전달
         room_id.disabled = false;
         room_id.value = reserveBtn[index].value;
@@ -145,7 +145,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-var imageSrc = "http://192.168.0.40/img/map_pin.png", // 마커이미지의 주소입니다    
+var imageSrc = "http://192.168.0.79/img/map_pin.png", // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(18, 36)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
