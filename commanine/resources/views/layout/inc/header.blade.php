@@ -26,11 +26,24 @@
                     <li class="nav-2"><a href="{{route('users.regist')}}">회원가입</a></li>
                     @endguest
 
-                    @auth()
+                    @if( session('flg') )
+                    {{-- @auth() --}}
+                    {{-- <li class="nav-1"><a href="{{route('users.logout')}}">로그인</a></li> --}}
+                    {{-- @endauth --}}
+                    @else
+                    {{-- <li class="nav-2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li> --}}
+
                     <p class="nav-3">안녕하세요! <span class="user_name">{{session('user_name') }}</span>님</p>
                     <li class="nav-1"><a href="{{route('users.logout')}}">로그아웃</a></li>
                     <li class="nav-2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
-                    @endauth
+                        
+                    @endif
+
+                    {{-- @auth('admins')
+                    <p class="nav-3">안녕하세요! <span class="user_name">{{session('user_name') }}</span>님</p>
+                    <li class="nav-1"><a href="{{route('users.logout')}}">로그아웃</a></li>
+                    <li class="nav-2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
+                    @endauth --}}
                 </ul>
             </nav>
             {{-- 햄버거메뉴 --}}

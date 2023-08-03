@@ -43,7 +43,7 @@
                     @forelse($review as $val)
                     <tr>
                         <td class="td_chk">{{ $val->user_name }}</td>
-                        <td class="td_chk"><a href="{{route('hanoks.detail', ['id' => $val->hanok_id, 'page'=>'3'])}}" target="_blank">{{ $val->rev_content }}</a></td>
+                        <td class="td_chk"><a href="{{route('hanoks.detail', ['id' => $val->hanok_id])}}" target="_blank">{{ $val->rev_content }}</a></td>
                         {{-- <td class="td_chk"><a href="{{ route('hanoks.detail', ['id' => $val->hanok_id]) }}">{{ $val->rev_content }}</a></td> --}}
                         <td class="td_chk">{{ $val->rate }}</td>
                         <td class="td_chk">{{ $val->hanok_name }}</td>

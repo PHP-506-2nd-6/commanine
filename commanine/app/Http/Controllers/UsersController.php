@@ -77,7 +77,7 @@ class UsersController extends Controller
                     ->back()
                     ->with('error',$error);
         }
-        Auth::login($user);
+        Auth::guard('web')->login($user);
         if(Auth::check()){
             session($user->only('user_id','user_name'));
 
@@ -323,8 +323,10 @@ class UsersController extends Controller
     }
     //0620 BYJ
     public function logout() {
-        Session::flush();
-        Auth::logout(); 
+        // Session::flush();
+        Session::forget('user_id');
+        Session::forget('user_name');
+        Auth::guard('web')->logout(); 
         return redirect()->route('main');
     }
 
