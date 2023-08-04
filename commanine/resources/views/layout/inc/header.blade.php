@@ -21,21 +21,25 @@
                     <a href="{{route('main')}}"><img src="{{asset('/img/logologo.png')}}" alt="#"></a>
                 </div>
                 <ul class="d-inline-flex mt-2 mt-md-0 ms-md-auto menu2">
-                    @guest()
-                    <li class="nav-1"><a href="{{route('users.login')}}">로그인</a></li>
-                    <li class="nav-2"><a href="{{route('users.regist')}}">회원가입</a></li>
-                    @endguest
 
                     @if( session('flg') )
                     {{-- @auth() --}}
                     {{-- <li class="nav-1"><a href="{{route('users.logout')}}">로그인</a></li> --}}
                     {{-- @endauth --}}
+                    <li class="nav-1"><a href="{{route('users.login')}}">로그인</a></li>
+                    <li class="nav-2"><a href="{{route('users.regist')}}">회원가입</a></li>
                     @else
                     {{-- <li class="nav-2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li> --}}
+                    @guest()
+                    <li class="nav-1"><a href="{{route('users.login')}}">로그인</a></li>
+                    <li class="nav-2"><a href="{{route('users.regist')}}">회원가입</a></li>
+                    @endguest
 
+                    @auth('web')
                     <p class="nav-3">안녕하세요! <span class="user_name">{{session('user_name') }}</span>님</p>
                     <li class="nav-1"><a href="{{route('users.logout')}}">로그아웃</a></li>
                     <li class="nav-2"><a href="{{route('users.information.reserve')}}">마이페이지</a></li>
+                    @endauth
                         
                     @endif
 
